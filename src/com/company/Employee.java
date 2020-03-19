@@ -1,9 +1,10 @@
 package com.company;
 
-public class Employee
-{
+public class Employee extends User {
 }
 /*
 * Hours:Double
 * Salery:Double
-* MaxHours:Double */
+* MaxHours:Double
+* phoneNumber:int
+* */

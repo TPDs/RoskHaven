@@ -1,6 +1,10 @@
 package com.company;
 
-public class DailyOverview {
+public class DailyOverview implements ClassesToStoreInFiles{
+    @Override
+    public void writeToFile() {
+
+    }
 }
 /*
 * EmployeeList: ArrayList
