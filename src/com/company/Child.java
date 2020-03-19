@@ -32,6 +32,11 @@ public class Child implements ClassesToStoreInFiles {
         return CPR;
     }
 
+    public void setStatus(ChildStatus status){
+        this.status = status;
+    }
+
+
     public void addGuardian(String name, String mail, String phoneNumber, String address){
         Guardian guardian = new Guardian(name, mail, phoneNumber, address);
         this.guardians.add(guardian);

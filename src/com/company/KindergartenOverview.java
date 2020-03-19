@@ -1,8 +1,6 @@
 package com.company;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class KindergartenOverview {
     private ArrayList<Child> childrenInGarten;
@@ -26,16 +24,18 @@ public class KindergartenOverview {
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
                 childrenInGarten.add(childrenInQueue.get(i));
+                childrenInQueue.get(i).setStatus(ChildStatus.ACTIVE);
                 childrenInQueue.remove(i);
                 break;
             }
         }
     }
 
-// denne metode remover child men ikke fra en specifik liste. så vi skal evt lave en metode mere eller organisere aktiv / ikke aktiv liste
+    //denne metode remover child men ikke fra en specifik liste. så vi skal evt lave en metode mere eller organisere aktiv / ikke aktiv liste
     public void removeChildFromGarten(String CPR){
         for(int i=0;i<childrenInGarten.size();i++){
             if(childrenInGarten.get(i).getCPR().equals(CPR)){
+                childrenInGarten.get(i).setStatus(ChildStatus.PASSIVE);
                 childrenInGarten.remove(i);
                 break;
             }
