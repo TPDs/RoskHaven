@@ -6,6 +6,8 @@ public class Main {
         System.out.println("Farvel");
         System.out.println("hegsdf");
         System.out.println("Christiantgyucv er lort2");
+        Gui gui = new Gui();
+        gui.gui();
 
 
     }
