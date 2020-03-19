@@ -1,41 +1,56 @@
 package com.company;
 
-public class Child implements ClassesToStoreInFiles {
-    @Override
-    public void writeToFile() {
+import java.util.ArrayList;
 
+public class Child implements ClassesToStoreInFiles {
+
+    private String name;
+    private String CPR;
+    private ArrayList<Guardian> guardians;
+    private String note;
+    private ChildStatus status;
+
+    // this constructor is for when new child objekts need's to be created.
+    public Child(String name, String CPR, String note) {
+        this.name = name;
+        this.CPR = CPR;
+        this.guardians = new ArrayList<Guardian>();
+        this.note = note;
+        this.status = ChildStatus.QUEUE;
     }
 
-    //    private String name;
-//    private String CPR;
-//    //private ArrayList<Guardian værge>;
-//    private String note;
-//    //private enum status;
-//
-//    public void AddGuardian()
-//    {
-//
-//    }
-//    public void RemoveGuardian()
-//    {
-//
-//    }
-//    public void EditGuardian()
-//    {
-//
-//    }
-}
-/*
-Denne class skal indeholde informationerne omkring barn med nedstående informationer.
-samt skal også kunne forbinde til Guardian class for at søge værge informationer ved CPR nummer
-Informationer omkring børn skal oprettes i en fil og som objekt
+    // this constructor is for initiating Arrays when ready from file at the start of the program.
+    public Child(String name, String CPR, String note, ChildStatus status) {
+        this.name = name;
+        this.CPR = CPR;
+        this.guardians = new ArrayList<Guardian>();
+        this.note = note;
+        this.status = status;
+    }
 
-* Name:String
-* CPR:String
-* Contact:ArrayList<Guardian>
-* Note:String ? nice to have højst sandsynligt
-* Status: Enum(Passiv,Active,In queue)
-*
-* AddGuardian()
-* RemoveGuardian()
-* EditGuardian() */
+    public String getCPR() {
+        return CPR;
+    }
+
+    public void addGuardian(String name, String mail,String phoneNumber){
+        Guardian guardian = new Guardian(name, mail, phoneNumber);
+        this.guardians.add(guardian);
+    }
+
+
+    @Override
+    public void writeToFile() {
+    }
+
+    @Override
+    public String toString() {
+        return "Child{" +
+                "name='" + name + '\'' +
+                ", CPR='" + CPR + '\'' +
+                ", guardians=" + guardians + "\n" +
+                ", note='" + note + '\'' +
+                ", status=" + status +
+                '}';
+    }
+}
+
