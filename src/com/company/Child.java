@@ -10,7 +10,7 @@ public class Child implements ClassesToStoreInFiles {
     private String note;
     private ChildStatus status;
 
-    // this constructor is for when new child objekts need's to be created.
+    // this constructor is for when new child objects needs to be created.
     public Child(String name, String CPR, String note) {
         this.name = name;
         this.CPR = CPR;
@@ -32,8 +32,8 @@ public class Child implements ClassesToStoreInFiles {
         return CPR;
     }
 
-    public void addGuardian(String name, String mail,String phoneNumber){
-        Guardian guardian = new Guardian(name, mail, phoneNumber);
+    public void addGuardian(String name, String mail, String phoneNumber, String address){
+        Guardian guardian = new Guardian(name, mail, phoneNumber, address);
         this.guardians.add(guardian);
     }
 

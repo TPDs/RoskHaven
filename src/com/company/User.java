@@ -14,6 +14,11 @@ public class User implements ClassesToStoreInFiles{
         return passwordInput.equals(this.password);
     }
 
+
+    public String getId() {
+        return id;
+    }
+
     @Override
     public void writeToFile() {
 
