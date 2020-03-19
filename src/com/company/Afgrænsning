@@ -1,0 +1,35 @@
+// lave en brugervenlig grænseflade til nemt at CRUD data "i den afgrænsede del af opgaven"
+//
+
+-papir prototype "afgrænset til focus delen"
+-Domain model
+-use cases 1 full dressed
+-
+
+-indhold
+-vagtplan, telefonliste, ventelist over børn, forældre info,mm sv.
+-sikkerheds kopi i tilfælde af feks. brand,vandskade,mm
+-hovedsageligt til brug af lederen, men også til få øvrige medarbejdere
+
+krav.
+1. SWD: Lav en prototype (papir, i Visual Paradigm eller lign.) til Roskilde frie børnehave administrative program.
+○ Opstil et aktivitetsdiagram, hvor ansvarsfordelingen for børnehavens opgaver lægges fast.
+○ Lav en Use Case diagram og 1 stk fully dressed text.
+2. SWD: Tegn en domænemodel for Roskilde frie børnehave.
+3. SWK: I skal udarbejde en prototype over udvalgte use cases
+4. Tegn E/R diagram for jeres database til det nye system.
+5. ITO - Virksomheden: I skal udarbejde feasibility study for jeres miniprojekt.
+6. Alle fag: Powerpoint Show hvor I fremlægger hovedtrækkene fra jeres projekt.
+
+produkter
+-Papir prototype.
+-Java prototype
+-Krav til Java prototype:
+○ Veldesignet kode (i fht. GRASP patterns)
+○ Data håndteres i tekstfiler
+○ Velovervejet valg af datastrukturer
+○ Fejlhåndtering med Exceptions
+-Demo af den kørende Java prototype, inkl. en præsentation af udvalgte dele af koden, herunder pros & cons for designvalg i har truffet undervejs i projektet
+-Power Point show hvor I fremlægger hovedtrækkene fra jeres projekt.
+
+
