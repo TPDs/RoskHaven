@@ -25,14 +25,8 @@ public class KindergartenOverview {
     public void addChildToGarten(String CPR){
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
-                System.out.println("Are you sure that your want to add this child to the active Garten list?" + childrenInQueue.get(i) + " \n Push 1 for Yes, and something else for no");
-                Scanner sc = new Scanner(System.in);
-                int confirmAdd = sc.nextInt();
-                if(confirmAdd==1){
-                    childrenInGarten.add(childrenInQueue.get(i));
-                    childrenInQueue.remove(i);
-                }
-                sc.close();
+                childrenInGarten.add(childrenInQueue.get(i));
+                childrenInQueue.remove(i);
                 break;
             }
         }
@@ -42,13 +36,7 @@ public class KindergartenOverview {
     public void removeChildFromGarten(String CPR){
         for(int i=0;i<childrenInGarten.size();i++){
             if(childrenInGarten.get(i).getCPR().equals(CPR)){
-                System.out.println("Are you sure that you want to delete: " + childrenInGarten.get(i) + "\n Push 1 for Yes, and something else for no" );
-                Scanner sc = new Scanner(System.in);
-                int confirmDelete = sc.nextInt();
-                if(confirmDelete==1){
-                    childrenInGarten.remove(i);
-                }
-                sc.close();
+                childrenInGarten.remove(i);
                 break;
             }
         }
@@ -57,13 +45,7 @@ public class KindergartenOverview {
     public void removeChildFromQueue(String CPR){
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
-                System.out.println("Are you sure that you want to delete: " + childrenInGarten.get(i) + "\n Push 1 for Yes, and something else for no" );
-                Scanner sc = new Scanner(System.in);
-                int confirmDelete = sc.nextInt();
-                if(confirmDelete==1){
-                    childrenInQueue.remove(i);
-                }
-                sc.close();
+                childrenInQueue.remove(i);
                 break;
             }
         }
