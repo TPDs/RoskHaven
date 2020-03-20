@@ -47,7 +47,7 @@ public class Child implements ClassesToStoreInFiles {
     public void addGuardian(String name, String mail, String phoneNumber, String address){
         Guardian guardian = new Guardian(name, mail, phoneNumber, address);
         this.guardians.add(guardian);
-    }
+            }
 
     public int calcAge(){
         CPR.substring(0,6);
