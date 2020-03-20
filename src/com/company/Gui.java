@@ -15,9 +15,10 @@ public class Gui implements ActionListener {
     static JTextField t_password;
     static JLabel l_name;
     static JLabel l_password;
-    //static JSpinner ansatliste;
+    static JComboBox ansatliste;
     static JLabel logo;
     static String user;
+    static String password;
 
     Gui() {
     }
@@ -38,9 +39,9 @@ public class Gui implements ActionListener {
 
         String[] ansat = {"Boss", "Daglig leder", "pædagog"};
 
-        SpinnerListModel ansatliste = new SpinnerListModel(ansat);
-        JSpinner job = new JSpinner(ansatliste);
-
+        ansatliste = new JComboBox(ansat);
+        ansatliste.setSelectedIndex(2);
+        //ansatliste.addActionListener(this);
 
 
         l_test = new JLabel("Input fra navn+password");
@@ -51,7 +52,7 @@ public class Gui implements ActionListener {
 
         t_name.setBounds(190, 180, 130, 20);
         t_password.setBounds(190, 220, 130, 20);
-        job.setBounds(105, 256, 100, 25);
+        ansatliste.setBounds(105, 256, 100, 25);
         l_name.setBounds(105, 180, 150, 20);
         l_password.setBounds(105, 220, 150, 20);
         l_test.setBounds(105, 340, 150, 20);
@@ -67,7 +68,7 @@ public class Gui implements ActionListener {
         logo.setBounds(150, 50, x, y);
 
         frame.add(logo);
-        //frame.add(job);
+        frame.add(ansatliste);
         frame.add(l_test);
         frame.add(button);
         frame.add(t_name);
@@ -111,9 +112,10 @@ public class Gui implements ActionListener {
             l_test.setText(t_name.getText() + " " + t_password.getText());
             System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
+            password = t_password.getText();
             t_name.setText("");
             t_password.setText("");
-
+            System.out.println(ansatliste.getSelectedItem().toString());
             GuiClear clean = new GuiClear();
             clean.guiClear();
 
