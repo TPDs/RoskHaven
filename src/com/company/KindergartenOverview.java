@@ -7,6 +7,7 @@ public class KindergartenOverview {
     private ArrayList<Employee> employeesInGarten;
     private ArrayList<DailyManager> dailyManagersInGarten;
     private ArrayList<Child> childrenInQueue;
+    //private ArrayList<Child> listOfShame;
 
     public KindergartenOverview(ArrayList<Child> childrenInGarten, ArrayList<Employee> employeesInGarten, ArrayList<DailyManager> dailyManagersInGarten,ArrayList<Child> childrenInQueue){
         this.childrenInGarten = childrenInGarten;
@@ -50,4 +51,17 @@ public class KindergartenOverview {
             }
         }
     }
+
+
+    //Checks whether a child should still be in queue, or removed entirely due to reasons.
+    //Reasons could be:     Age broke the upper boundary, Child is somehow passive but is not removed from list
+    //
+    public void updateChildQueue(){
+        for(int i=0; i<childrenInQueue.size(); i++){
+            //childrenInQueue.get(i)
+        }
+    }
+
+
+
 }
