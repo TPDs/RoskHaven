@@ -18,6 +18,7 @@ public class Gui implements ActionListener {
     static JComboBox ansatliste;
     static JLabel logo;
     static String user;
+    static String password;
 
     Gui() {
     }
@@ -111,6 +112,7 @@ public class Gui implements ActionListener {
             l_test.setText(t_name.getText() + " " + t_password.getText());
             System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
+            password = t_password.getText();
             t_name.setText("");
             t_password.setText("");
             System.out.println(ansatliste.getSelectedItem().toString());

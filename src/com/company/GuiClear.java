@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class GuiClear {
@@ -19,6 +20,18 @@ public class GuiClear {
         // Gui.logo.setVisible(false);
         //Gui.l_test.setVisible(false);
         //Gui.frame.remove(Gui.l_test);
+
+
+    }
+
+    public void guiBossClear() {
+        GuiBoss.create_kid.setVisible(false);
+        GuiBoss.check_kid.setVisible(false);
+        GuiBoss.workSheet.setVisible(false);
+        GuiBoss.salary.setVisible(false);
+        GuiBoss.logout.setVisible(false);
+
+
 
     }
 
