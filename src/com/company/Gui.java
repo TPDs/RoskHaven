@@ -1,16 +1,11 @@
 package com.company;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 public class Gui implements ActionListener {
     static JLabel l_test;
@@ -23,7 +18,7 @@ public class Gui implements ActionListener {
     }
 
 
-    public void gui() throws IOException {
+    public void gui() {
         frame = new JFrame("Roskilde frie børnehave");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
@@ -43,7 +38,7 @@ public class Gui implements ActionListener {
         ansatliste.addActionListener(this);
 
 
-        l_test = new JLabel("Say my name Bitch!!!");
+        l_test = new JLabel("Input fra navn+password");
 
         JLabel l_name = new JLabel("Navn:");
         JLabel l_password = new JLabel("Password:");
@@ -112,19 +107,16 @@ public class Gui implements ActionListener {
         String s = e.getActionCommand();
         if (s.equals("Login")) {
             l_test.setText(t_name.getText() + " " + t_password.getText());
+            System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
             t_name.setText("");
             t_password.setText("");
-            System.out.println("Test: " + t_password + " " + t_name);
+
         }
 
 
     }
 
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }
 
 
