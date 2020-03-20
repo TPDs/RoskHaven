@@ -62,6 +62,7 @@ public class KindergartenOverview {
         }
     }
 
-
-
+    public ArrayList<Child> getChildrenInQueue() {
+        return childrenInQueue;
+    }
 }
