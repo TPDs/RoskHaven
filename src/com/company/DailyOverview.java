@@ -31,7 +31,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
     }
 
     public DailyManager importDailyManagerFromWorksheet(){
-        return new DailyManager();
+        return new DailyManager("a","b","c");
     }
 
 
