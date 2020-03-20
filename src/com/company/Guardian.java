@@ -1,5 +1,9 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Guardian implements ClassesToStoreInFiles {
 
     private String name;
@@ -12,11 +16,21 @@ public class Guardian implements ClassesToStoreInFiles {
         this.mail=mail;
         this.phoneNumber=phoneNumber;
         this.address=address;
+        writeToFile();
     }
 
     @Override
     public void writeToFile() {
 
+        try {
+            FileWriter Guardianfw = new FileWriter("src/resourser/GuardianFile");
+            String StringToFile = ""+ this.name + "" + this.mail + "" + this.phoneNumber + "" + this.address + "\n";
+            Guardianfw.write(StringToFile);
+            Guardianfw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
