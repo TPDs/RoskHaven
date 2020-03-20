@@ -5,12 +5,11 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Farvel");
-        System.out.println("hegsdf");
-        System.out.println("Christiantgyucv er lort2");
+        InitiateArray ia = new InitiateArray();
+        LogIn login = new LogIn(ia);
+        KindergartenOverview ko = new KindergartenOverview(ia);
+
         Gui gui = new Gui();
         gui.gui();
-
-
     }
 }
