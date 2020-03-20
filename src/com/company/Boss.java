@@ -2,6 +2,10 @@ package com.company;
 
 public class Boss extends User {
 
+
+    public Boss(String name, String id, String password) {
+        super(name, id, password);
+    }
 }
 
 
