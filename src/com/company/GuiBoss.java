@@ -35,7 +35,7 @@ public class GuiBoss extends Gui implements ActionListener {
         check_kid.setBounds(200, 220, 120, 20);
         workSheet.setBounds(70, 250, 120, 20);
         salary.setBounds(200, 250, 120, 20);
-        logout.setBounds(300,320,75,20);
+        logout.setBounds(245,320,75,20);
 
 
         frame.add(create_kid);
@@ -43,15 +43,6 @@ public class GuiBoss extends Gui implements ActionListener {
         frame.add(workSheet);
         frame.add(salary);
         frame.add(logout);
-
-
-
-        /*
-        frame.add(check_kid);
-        frame.add(workSheet);
-        frame.add(salary);
-        frame.add(logout);
-        */
 
 
     }
