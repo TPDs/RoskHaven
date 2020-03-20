@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-public class InitiateArray {
+public final class InitiateArray {
     ArrayList<Employee> employeeList;
     ArrayList<DailyManager> dailyManagerList;
     Boss boss;

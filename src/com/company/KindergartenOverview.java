@@ -9,11 +9,11 @@ public class KindergartenOverview {
     private ArrayList<Child> childrenInQueue;
     //private ArrayList<Child> listOfShame;
 
-    public KindergartenOverview(ArrayList<Child> childrenInGarten, ArrayList<Employee> employeesInGarten, ArrayList<DailyManager> dailyManagersInGarten,ArrayList<Child> childrenInQueue){
-        this.childrenInGarten = childrenInGarten;
-        this.employeesInGarten= employeesInGarten;
-        this.dailyManagersInGarten = dailyManagersInGarten;
-        this.childrenInQueue = childrenInQueue;
+    public KindergartenOverview(InitiateArray allArrays){
+        childrenInGarten = allArrays.childrenInGarten;
+        employeesInGarten = allArrays.employeeList;
+        dailyManagersInGarten = allArrays.dailyManagerList;
+        childrenInQueue = allArrays.childrenInQueue;
     }
 
     public void addChildToQueue(String name, String CPR, String note){
