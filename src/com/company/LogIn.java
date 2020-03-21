@@ -12,29 +12,24 @@ public class LogIn {
     }
 
     public boolean logIn(String id, String password){
-        boolean loginAttempt = false;
-
         if(id.equals(boss.getId())){
-            loginAttempt = boss.login(password);
-            return loginAttempt;
+            return boss.login(password);
         }
 
 
         for(int i=0; i<dailyManagers.size(); i++){
             if(id.equals(dailyManagers.get(i).getId())){
-                loginAttempt = dailyManagers.get(i).login(password);
-                return loginAttempt;
+                return dailyManagers.get(i).login(password);
             }
         }
 
 
         for(int i=0; i<employees.size(); i++){
             if(id.equals(employees.get(i).getId())){
-                loginAttempt = employees.get(i).login(password);
-                return loginAttempt;
+                return employees.get(i).login(password);
             }
         }
 
-        return loginAttempt;
+        return false;
     }
 }
