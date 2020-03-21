@@ -94,7 +94,7 @@ public class Child implements ClassesToStoreInFiles {
         // skrivet de ønskede informationer omkring objektet ind i den nuværende fil placering
         try {
             FileWriter Childqueuefw = new FileWriter("src/resourser/ChildQueueFile");
-            String StringToFile = ""+ this.name + "" + this.CPR + "" + this.guardians + "" + this.note + "" + this.status + "\n";
+            String StringToFile = ""+ this.name + " , " + this.CPR + " , " + this.note + " , " + this.status + "\n";
             Childqueuefw.write(StringToFile);
             Childqueuefw.close();
         }   catch (IOException e) {
