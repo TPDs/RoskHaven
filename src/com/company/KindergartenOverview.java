@@ -9,11 +9,14 @@ public class KindergartenOverview {
     private ArrayList<Child> childrenInQueue;
     //private ArrayList<Child> listOfShame;
 
+    private ArrayList<Worksheet> worksheetList;
+
     public KindergartenOverview(InitiateArray allArrays){
         childrenInGarten = allArrays.childrenInGarten;
         employeesInGarten = allArrays.employeeList;
         dailyManagersInGarten = allArrays.dailyManagerList;
         childrenInQueue = allArrays.childrenInQueue;
+        worksheetList = allArrays.worksheetList;
     }
 
     public void addChildToQueue(String name, String CPR, String note){
