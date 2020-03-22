@@ -32,7 +32,7 @@ public class GuiClear {
         GuiBoss.logout.setVisible(false);
         Gui.logo.setVisible(false);
         GuiBoss.l_name.setVisible(false);
-        GuiBoss.l_test.setVisible(false);
+
 
 
 

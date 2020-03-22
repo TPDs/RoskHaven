@@ -8,7 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Gui implements ActionListener {
-    static JLabel l_test;
+
     static JFrame frame;
     static JButton button;
     static JTextField t_name;
@@ -26,8 +26,12 @@ public class Gui implements ActionListener {
     public void gui() {
         frame = new JFrame("Roskilde frie børnehave");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 400);
         frame.setLayout(null);
+        frame.setSize(400, 400);
+
+
+        frame.setResizable(false);
+
 
         Image window_icon = Toolkit.getDefaultToolkit().getImage("src/resourser/window_icon.png");
         frame.setIconImage(window_icon);
@@ -43,7 +47,7 @@ public class Gui implements ActionListener {
         //ansatliste.addActionListener(this);
 
 
-        l_test = new JLabel("Input fra navn+password");
+
         l_name = new JLabel("Navn:");
         l_password = new JLabel("Password:");
         t_name = new JTextField("");
@@ -54,7 +58,7 @@ public class Gui implements ActionListener {
         ansatliste.setBounds(105, 256, 100, 25);
         l_name.setBounds(105, 180, 150, 20);
         l_password.setBounds(105, 220, 150, 20);
-        l_test.setBounds(105, 340, 150, 20);
+
 
 
         int x = 95;
@@ -68,7 +72,7 @@ public class Gui implements ActionListener {
 
         frame.add(logo);
         frame.add(ansatliste);
-        frame.add(l_test);
+
         frame.add(button);
         frame.add(t_name);
         frame.add(t_password);
@@ -108,7 +112,7 @@ public class Gui implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
         if (s.equals("Login")) {
-            l_test.setText(t_name.getText() + " " + t_password.getText());
+
             System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
             password = t_password.getText();
