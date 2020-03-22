@@ -45,9 +45,9 @@ public class Child implements ClassesToStoreInFiles {
     }
 
     public void addGuardian(String name, String mail, String phoneNumber, String address){
-        Guardian guardian = new Guardian(name, mail, phoneNumber, address);
+        Guardian guardian = new Guardian(name, mail, phoneNumber, address,this.CPR);
         this.guardians.add(guardian);
-            }
+    }
 
     public int calcAge(){
         CPR.substring(0,6);
@@ -85,41 +85,19 @@ public class Child implements ClassesToStoreInFiles {
         }
     }
 
-// denne metode skal oprette en fil med Child "check om filen er der med en singleeton" opret kun hvis filen ikke findes
-// samt håndtere fejl hændelser
+    // skriver de ønskede informationer omkring objektet ind i den nuværende fil placering
     @Override
     public void writeToFile(){
 
-        // this.guardian er et objekt og fungere muligvist ikke ?
-        // skrivet de ønskede informationer omkring objektet ind i den nuværende fil placering
         try {
-            FileWriter Childqueuefw = new FileWriter("src/resourser/ChildQueueFile");
-            String StringToFile = ""+ this.name + "" + this.CPR + "" + this.guardians + "" + this.note + "" + this.status + "\n";
+            FileWriter Childqueuefw = new FileWriter("src/resourser/ChildFile");
+            String StringToFile = ""+ this.name + "" + this.CPR + "" + this.note + "" + this.status + "\n";
             Childqueuefw.write(StringToFile);
             Childqueuefw.close();
         }   catch (IOException e) {
             e.printStackTrace();
         }
     }
-//    final String filepath="src/resourser/ChildQueueFile";
-//        try {
-//        FileOutputStream fileOut = new FileOutputStream((filepath));
-//        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-//        objectOut.writeObject(this.name + this.CPR + this.guardians + this.note + this.status);
-//        objectOut.close();
-//    } catch (IOException e) {
-//        e.printStackTrace();
-//    }
-
-    // new Child(this.name + this.CPR + this.guardians + this.note + this.status
-
-//      File childQueueFile = new File("com/company/ChildQueueFile");
-//        try {
-//            FileWriter myWriter = new FileWriter("com/company/ChildQueueFile");
-//            myWriter.write(Child);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
     @Override
     public String toString() {
