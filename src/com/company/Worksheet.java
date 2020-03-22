@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class Worksheet implements ClassesToStoreInFiles {
+    //ID is composed of the year followed by the month. So January of 2019 will be "Y2019M1".
     String workSheetID;
     ArrayList<WorkDay> workDays;
     ArrayList<Employee> completeListOfEmployees;
@@ -15,6 +16,16 @@ public class Worksheet implements ClassesToStoreInFiles {
         makeListOfDaysInMonth(monthOfWorksheet, yearOfWorkSheet);
         completeListOfEmployees = ia.employeeList;
         completeListOfDailyManagers = ia.dailyManagerList;
+
+        //Remember to check if a worksheet within the month already exists and deny the user to create a new if that's the case.
+        workSheetID = calcID(yearOfWorkSheet, monthOfWorksheet);
+    }
+
+
+
+
+    public String calcID(int year, int month){
+        return "Y" + year + "M" + month;
     }
 
 
@@ -52,7 +63,8 @@ public class Worksheet implements ClassesToStoreInFiles {
 
     //Assign the dailymanager to a specific day (they will be in charge of the whole day). Each day will be a day in the month (1 => 1st of x)
     public void addDailyManagerToSchedule(DailyManager dailyManager, int dayOfMonth){
-
+        //Days are one-off (the 1st in each month will be in the 0th position).
+        workDays.get(dayOfMonth-1).setDailyManager(dailyManager);
     }
 
 
@@ -82,6 +94,13 @@ public class Worksheet implements ClassesToStoreInFiles {
 
     //Maybe just do it as a toString-override?
     public void viewWorksheet(){
+
+    }
+
+
+
+
+    public void clearWorksheet(){
 
     }
 
