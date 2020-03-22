@@ -1,9 +1,15 @@
 package com.company;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Child implements ClassesToStoreInFiles {
 
@@ -99,9 +105,33 @@ public class Child implements ClassesToStoreInFiles {
         }
     }
 
-    public void updateChildInFile(){
+    public void updateChildInFile()throws IOException{
 
+            // lave en metode der iterere gennem child filen og sletter child med cpr nummer som matcher.
+            Scanner data = new Scanner("src/resourser/ChildFile");
+            if(data.hasNextLine()){
+                for(int j = 0; true==data.hasNextLine();j++){
+                    if(data.nextLine().contains(CPR)){
+
+                        String tempStringFileChange = this.name +" "+ this.CPR + " " + this.note +" " + this.status + "\n";
+                        FileWriter tempChildqueuefw = new FileWriter(new File("src/resourser/tempChildFile"));
+                        tempChildqueuefw.write(tempStringFileChange);
+                        tempChildqueuefw.close();
+                    }
+                    else{
+                        FileWriter tempChildqueuefw = new FileWriter(new File("src/resourser/tempChildFile"));
+                        String tempStringToFile = data.nextLine() + "\n";
+                        tempChildqueuefw.write(tempStringToFile);
+                        tempChildqueuefw.close();
+                    }
+                }// her overskrives så childfile med tempChildFile "som er den ændrede information"
+
+                Path source = Paths.get("src/resourser/tempChildFile");
+                Path newdir = Paths.get("src/resourser/ChildFile");
+                Files.move(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
+            }
     }
+
 
     @Override
     public String toString() {

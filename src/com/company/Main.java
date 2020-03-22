@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
         LogIn login = new LogIn();
         KindergartenOverview ko = new KindergartenOverview();
-
         Gui gui = new Gui();
         gui.gui();
 
