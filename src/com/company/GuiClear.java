@@ -30,8 +30,14 @@ public class GuiClear {
         GuiBoss.workSheet.setVisible(false);
         GuiBoss.salary.setVisible(false);
         GuiBoss.logout.setVisible(false);
+        Gui.logo.setVisible(false);
 
 
+
+
+    }
+
+    public void guiAddChild(){
 
     }
 

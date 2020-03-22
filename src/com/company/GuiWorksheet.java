@@ -7,6 +7,6 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
     GuiWorksheet(){}
 
     public void guiWorksheet(){
-        Gui.frame.setTitle("Roskilde frie børnehave - Worksheet menu");
+        Gui.frame.setTitle("Roskilde frie børnehave - Worksheet");
     }
 }

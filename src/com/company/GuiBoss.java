@@ -19,7 +19,7 @@ public class GuiBoss extends Gui implements ActionListener {
 
     public void GuiBoss() {
 
-        Gui.frame.setTitle("Roskilde frie børnehave - Boss menu");
+        Gui.frame.setTitle("Roskilde frie børnehave - Boss");
 
         l_name.setText("Velkommen " + Gui.user);
         l_name.setVisible(true);

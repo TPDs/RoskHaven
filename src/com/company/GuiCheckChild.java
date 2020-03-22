@@ -9,7 +9,7 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
     }
 
     public void guiCheckChild() {
-        Gui.frame.setTitle("Roskilde frie børnehave - CheckChild menu");
+        Gui.frame.setTitle("Roskilde frie børnehave - CheckChild");
     }
 }
 
