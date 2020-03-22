@@ -17,8 +17,10 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
     static JLabel child_note;
     static JTextField c_note;
     static JButton next;
-    //static String user;
-    //static String password;
+    static String barn_navn;
+    static String barn_cpr;
+    static String barn_adresse;
+    static String barn_note;
 
     GuiAddChild(){}
 
@@ -40,18 +42,21 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
 
         next = new JButton("Næste");
 
-        child_information.setBounds(120,45,200,20);
-        child_name.setBounds(70,90,150,20);
-        child_cpr.setBounds(70,130,150,20);
-        child_address.setBounds(70,170,150,20);
-        child_note.setBounds(70,210,200,20);
+        Gui.frame.getContentPane().add(child_name,BorderLayout.CENTER);
+        Gui.frame.getContentPane().add(child_note,BorderLayout.WEST);
 
-        c_name.setBounds(152,90,150,20);
-        c_cpr.setBounds(152,130,150,20);
-        c_address.setBounds(152,170,150,20);
-        c_note.setBounds(70,240,235,70);
+        child_information.setBounds(110,45,200,20);
+        child_name.setBounds(40,90,150,20);
+        child_cpr.setBounds(40,130,150,20);
+        child_address.setBounds(40,170,150,20);
+        child_note.setBounds(40,210,200,20);
 
-        next.setBounds(245, 320, 75, 20);
+        c_name.setBounds(150,90,150,20);
+        c_cpr.setBounds(150,130,150,20);
+        c_address.setBounds(150,170,150,20);
+        c_note.setBounds(40,240,235,70);
+
+        next.setBounds(275, 320, 75, 20);
 
         frame.add(child_information);
         frame.add(child_name);
@@ -76,6 +81,11 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
 
         if (s == "Næste") {
             System.out.println("Guardian: " + s); //ændres til login();
+
+            barn_navn = c_name.getText();
+            barn_cpr = c_cpr.getText();
+            barn_adresse = c_address.getText();
+            barn_note = c_note.getText();
 
             clean.guiAddChild();
 
