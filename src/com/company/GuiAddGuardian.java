@@ -4,9 +4,9 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 
-public class GuiAddGuardian {
+public class GuiAddGuardian extends GuiAddChild{
 
-
+    static JLabel title;
     static JTextField name_box;
     static JTextField mail_box;
     static JTextField phone_box;
@@ -32,21 +32,23 @@ public class GuiAddGuardian {
         address_box = new JTextField("");
         adresse_postnummer_box = new JTextField("");
 
+        title = new JLabel("Tilføj Værge til "+ barn_navn);
         name_text = new JLabel("Navn:");
         mail_text = new JLabel("Email:");
         phone_text = new JLabel("Tlf nummer:");
         adresse_text = new JLabel("Adresse:");
         adresse_postnummer_text = new JLabel("Postnummer :");
-        int y = 20;
-        int yy = 85;
+        int y = 40;
+        int yy = 110;
         Gui.frame.getContentPane().add(name_text,BorderLayout.CENTER);
+        title.setBounds(110,35,300,45);
         name_text.setBounds(y, yy, 100, 20);
         mail_text.setBounds(y, yy+=30, 100, 20);
         phone_text.setBounds(y, yy+=30, 100, 20);
         adresse_text.setBounds(y, yy+=30, 100, 20);
         adresse_postnummer_text.setBounds(y, yy+=30, 100, 25);
-        int x = 180;
-        int xx = 85;
+        int x = 200;
+        int xx = 110;
         name_box.setBounds(x, xx, 150, 20);
         mail_box.setBounds(x, xx+=30, 150, 20);
         phone_box.setBounds(x, xx+=30, 150, 20);
@@ -54,7 +56,7 @@ public class GuiAddGuardian {
         adresse_postnummer_box.setBounds(x, xx+=30, 150, 20);
 
 
-
+        Gui.frame.add(title);
         Gui.frame.add(name_text);
         Gui.frame.add(mail_text);
         Gui.frame.add(phone_text);
