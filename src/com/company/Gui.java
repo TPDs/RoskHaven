@@ -36,7 +36,6 @@ public class Gui implements ActionListener {
         button = new JButton("Login");
         button.setBounds(230, 256, 90, 25);
         button.addActionListener(te);
-
         String[] ansat = {"Boss", "Daglig leder", "pædagog"};
 
         ansatliste = new JComboBox(ansat);

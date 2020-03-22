@@ -7,7 +7,7 @@ public class GuiClear {
 
     public void guiClear() {
 
-        Gui.ansatliste.setBounds(10,10,10,10);
+        Gui.ansatliste.setBounds(10,10,10,10); //dropDown menu der laver en glitch med andre boxe
         Gui.ansatliste.setVisible(false);
         Gui.frame.remove(Gui.ansatliste);
         Gui.l_name.setVisible(false);
