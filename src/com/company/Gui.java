@@ -118,7 +118,7 @@ public class Gui implements ActionListener {
             GuiClear clean = new GuiClear();
             clean.guiClear();
 
-            GuiBoss boss = new GuiBoss();
+            GuiBoss boss = new GuiBoss(); // ændres til en switch case der gør at vi kan vælge hvem der logger ind via login();
             boss.GuiBoss();
 
 
