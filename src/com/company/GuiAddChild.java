@@ -2,6 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GuiAddChild extends GuiBoss implements ActionListener {
@@ -26,7 +27,7 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
     public void guiAddChild(){
         Gui.frame.setTitle("Roskilde frie børnehave - AddChild");
 
-        ImageIcon icon = new ImageIcon("src/resourser/window_icon.png");
+        GuiAddChild te = new GuiAddChild();
 
         child_information = new JLabel("Indtast barnets oplysninger");
         child_name = new JLabel("Navn: ");
@@ -43,7 +44,7 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
 
         next = new JButton("Næste");
 
-        child_information.setBounds(140,45,200,20);
+        child_information.setBounds(120,45,200,20);
         child_name.setBounds(70,70,150,20);
         child_birth.setBounds(70,110,150,20);
         next.setBounds(245, 320, 75, 20);
@@ -53,6 +54,21 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         frame.add(child_birth);
         frame.add(next);
 
+        next.addActionListener(te);
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        GuiClear clean = new GuiClear();
+        String s = e.getActionCommand();
+
+        if (s == "Næste") {
+            System.out.println("Guardian: " + s); //ændres til login();
+
+            clean.guiAddChild();
+
+            GuiAddGuardian guardian = new GuiAddGuardian();
+            guardian.guiAddGuardian();
+        }
     }
 }

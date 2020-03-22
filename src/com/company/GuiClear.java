@@ -31,14 +31,26 @@ public class GuiClear {
         GuiBoss.salary.setVisible(false);
         GuiBoss.logout.setVisible(false);
         Gui.logo.setVisible(false);
-
+        GuiBoss.l_name.setVisible(false);
+        GuiBoss.l_test.setVisible(false);
 
 
 
     }
 
     public void guiAddChild(){
-
+        GuiAddChild.child_name.setVisible(false);
+        GuiAddChild.child_birth.setVisible(false);
+        GuiAddChild.child_note.setVisible(false);
+        GuiAddChild.child_address.setVisible(false);
+        GuiAddChild.child_information.setVisible(false);
+        GuiAddChild.child_cpr.setVisible(false);
+        GuiAddChild.c_name.setVisible(false);
+        GuiAddChild.c_birth.setVisible(false);
+        GuiAddChild.c_note.setVisible(false);
+        GuiAddChild.c_address.setVisible(false);
+        GuiAddChild.c_cpr.setVisible(false);
+        GuiAddChild.next.setVisible(false);
     }
 
 
