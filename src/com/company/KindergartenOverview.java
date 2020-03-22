@@ -25,7 +25,11 @@ public class KindergartenOverview {
         childrenInQueue.add(child);
     }
 
-    // this method moves child from queue list to garten list and removes the child from que list
+    //
+    // this method VIP need a funktionality that edit the child text file and changes status to active.
+    //
+
+    // this method moves child from queue list to garten list and removes the child from queue list
     public void addChildToGarten(String CPR){
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
@@ -36,6 +40,10 @@ public class KindergartenOverview {
             }
         }
     }
+
+    //
+    //this method need a funktionality that edit the child status in the child file to passive
+    //
 
     //this method removes the child from the active garten list
     public void removeChildFromGarten(String CPR){
@@ -48,6 +56,10 @@ public class KindergartenOverview {
         }
     }
 
+    //
+    //this method need a funktionality that removes the child from the text file aswell
+    //
+
     // this method removes the child from the que list
     public void removeChildFromQueue(String CPR){
         for(int i=0;i<childrenInQueue.size();i++){
@@ -58,6 +70,10 @@ public class KindergartenOverview {
         }
     }
 
+    //
+    // this method need a funktionality that edit the child file and removes the child from the list
+    //
+
     //this method checks first if child status is passive and removes child, and then if age > 10 and removes
     //this is to make sure that children aren't in the wrong list!
     public void updateChildQueue(){
@@ -65,7 +81,6 @@ public class KindergartenOverview {
             if(childrenInQueue.get(i).getStatus().equals(ChildStatus.PASSIVE)){
                 childrenInQueue.remove(i);
             }
-
             if(childrenInQueue.get(i).calcAge()>10){
             childrenInQueue.remove(i);
             }

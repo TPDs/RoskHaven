@@ -35,10 +35,3 @@ public class Guardian implements ClassesToStoreInFiles {
         }
     }
 }
-
-/*
-* Name: String
-* Child:class<child>
-* Mail:String
-* PhoneNumber;int
-* */

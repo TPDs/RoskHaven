@@ -16,13 +16,11 @@ public class LogIn {
             return boss.login(password);
         }
 
-
         for(int i=0; i<dailyManagers.size(); i++){
             if(id.equals(dailyManagers.get(i).getId())){
                 return dailyManagers.get(i).login(password);
             }
         }
-
 
         for(int i=0; i<employees.size(); i++){
             if(id.equals(employees.get(i).getId())){
