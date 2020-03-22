@@ -7,8 +7,10 @@ public class LogIn {
     ArrayList<DailyManager> dailyManagers;
     Boss boss;
 
-    public LogIn(InitiateArray ia){
-
+    public LogIn(){
+        employees = InitiateArray.getInstance().employeeList;
+        dailyManagers = InitiateArray.getInstance().dailyManagerList;
+        boss = InitiateArray.getInstance().boss;
     }
 
     public boolean logIn(String id, String password){

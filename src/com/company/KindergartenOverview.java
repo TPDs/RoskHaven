@@ -18,12 +18,13 @@ public class KindergartenOverview {
 
     private ArrayList<Worksheet> worksheetList;
 
-    public KindergartenOverview(InitiateArray allArrays){
-        childrenInGarten = allArrays.childrenInGarten;
-        employeesInGarten = allArrays.employeeList;
-        dailyManagersInGarten = allArrays.dailyManagerList;
-        childrenInQueue = allArrays.childrenInQueue;
-        worksheetList = allArrays.worksheetList;
+    public KindergartenOverview(){
+        childrenInGarten = InitiateArray.getInstance().childrenInGarten;
+        employeesInGarten = InitiateArray.getInstance().employeeList;
+        dailyManagersInGarten = InitiateArray.getInstance().dailyManagerList;
+        childrenInQueue = InitiateArray.getInstance().childrenInQueue;
+        worksheetList = InitiateArray.getInstance().worksheetList;
+
     }
 
     //this method is to add a new child to the queue list
@@ -42,6 +43,7 @@ public class KindergartenOverview {
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
                 childrenInGarten.add(childrenInQueue.get(i));
                 childrenInQueue.get(i).setStatus(ChildStatus.ACTIVE);
+                childrenInQueue.get(i).updateChildInFile();
                 childrenInQueue.remove(i);
                 break;
             }
