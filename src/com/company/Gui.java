@@ -28,8 +28,6 @@ public class Gui implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setSize(400, 400);
-
-
         frame.setResizable(false);
 
 
@@ -44,9 +42,6 @@ public class Gui implements ActionListener {
 
         ansatliste = new JComboBox(ansat);
         ansatliste.setSelectedIndex(2);
-        //ansatliste.addActionListener(this);
-
-
 
         l_name = new JLabel("Navn:");
         l_password = new JLabel("Password:");

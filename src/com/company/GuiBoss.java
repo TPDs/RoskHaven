@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -31,12 +32,14 @@ public class GuiBoss extends Gui implements ActionListener {
         workSheet = new JButton("Uge plan");
         salary = new JButton("Løn");
         logout = new JButton("Log ud");
+        frame.getContentPane().add(logout, BorderLayout.CENTER);
+
 
         create_kid.setBounds(70, 220, 120, 20);
         check_kid.setBounds(200, 220, 120, 20);
         workSheet.setBounds(70, 250, 120, 20);
         salary.setBounds(200, 250, 120, 20);
-        logout.setBounds(245, 320, 75, 20);
+        logout.setBounds(300, 320, 75, 20);
 
         create_kid.addActionListener(te);
         check_kid.addActionListener(te);

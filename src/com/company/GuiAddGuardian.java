@@ -2,6 +2,7 @@ package com.company;
 
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GuiAddGuardian {
 
@@ -35,9 +36,10 @@ public class GuiAddGuardian {
         mail_text = new JLabel("Email:");
         phone_text = new JLabel("Tlf nummer:");
         adresse_text = new JLabel("Adresse:");
-        adresse_postnummer_text = new JLabel("Postnummer:");
-        int y = 70;
+        adresse_postnummer_text = new JLabel("Postnummer :");
+        int y = 20;
         int yy = 85;
+        Gui.frame.getContentPane().add(name_text,BorderLayout.CENTER);
         name_text.setBounds(y, yy, 100, 20);
         mail_text.setBounds(y, yy+=30, 100, 20);
         phone_text.setBounds(y, yy+=30, 100, 20);
