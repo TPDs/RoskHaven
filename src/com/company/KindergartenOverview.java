@@ -1,6 +1,13 @@
 package com.company;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class KindergartenOverview {
     private ArrayList<Child> childrenInGarten;
@@ -46,25 +53,30 @@ public class KindergartenOverview {
     //
 
     //this method removes the child from the active garten list
-    public void removeChildFromGarten(String CPR){
+    public void removeChildFromGarten(String CPR) throws IOException {
         for(int i=0;i<childrenInGarten.size();i++){
             if(childrenInGarten.get(i).getCPR().equals(CPR)){
                 childrenInGarten.get(i).setStatus(ChildStatus.PASSIVE);
                 childrenInGarten.remove(i);
+                editChildFile(CPR,ChildStatus.PASSIVE);
                 break;
             }
         }
     }
 
+    public static void deleteFromFile(ArrayList<String> ChildFile, String search) {
+
+    }
     //
     //this method need a funktionality that removes the child from the text file aswell
     //
 
     // this method removes the child from the que list
-    public void removeChildFromQueue(String CPR){
+    public void removeChildFromQueue(String CPR) throws IOException {
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
                 childrenInQueue.remove(i);
+                editChildFile(CPR , ChildStatus.PASSIVE);
                 break;
             }
         }
@@ -86,4 +98,36 @@ public class KindergartenOverview {
             }
         }
     }
+
+    public void editChildFile(String CPR, ChildStatus Status) throws IOException {
+
+        // lave en metode der iterere gennem child filen og sletter child med cpr nummer som matcher.
+        Scanner data = new Scanner("src/resourser/ChildFile");
+        if(data.hasNextLine()){
+            for(int j = 0; true==data.hasNextLine();j++){
+                if(data.nextLine().contains(CPR)){
+
+                    String tempStringFileChange = data.next() +""+ data.next()+ "" + data.next()+"" + Status + "\n";
+                    FileWriter tempChildqueuefw = new FileWriter(new File("src/resourser/tempChildFile"));
+                    tempChildqueuefw.write(tempStringFileChange);
+                    tempChildqueuefw.close();
+                }
+                else{
+                    FileWriter tempChildqueuefw = new FileWriter(new File("src/resourser/tempChildFile"));
+                    String tempStringToFile = data.nextLine() + "\n";
+                    tempChildqueuefw.write(tempStringToFile);
+                    tempChildqueuefw.close();
+                }
+            }// her skal childfile så overskrives med tempChildFile
+            Path source = Paths.get("src/resourser/tempChildFile");
+            Path newdir = Paths.get("src/resourser/ChildFile");
+            Files.move(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
+        }
+    }
 }
+
+//            File oldfile =new File("src/resourser/ChildFile");
+//            oldfile.delete();
+//            File newFile = new File("src/resourser/tempChildFile");
+//            newFile.renameTo(src/resourser/ChildFile);
+

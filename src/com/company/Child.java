@@ -99,6 +99,10 @@ public class Child implements ClassesToStoreInFiles {
         }
     }
 
+    public void updateChildInFile(){
+
+    }
+
     @Override
     public String toString() {
         return "Child{" +
