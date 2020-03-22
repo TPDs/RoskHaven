@@ -8,14 +8,11 @@ import java.awt.event.KeyEvent;
 
 public class GuiBoss extends Gui implements ActionListener {
 
-
     static JButton create_kid;
     static JButton check_kid;
     static JButton workSheet;
     static JButton salary;
     static JButton logout;
-
-
 
     GuiBoss() {
     }
@@ -24,7 +21,7 @@ public class GuiBoss extends Gui implements ActionListener {
 
         Gui.frame.setTitle("Roskilde frie børnehave - Boss menu");
 
-        l_name.setText("Velkommen " + Gui.user );
+        l_name.setText("Velkommen " + Gui.user);
         l_name.setVisible(true);
 
         GuiBoss te = new GuiBoss();
@@ -39,9 +36,13 @@ public class GuiBoss extends Gui implements ActionListener {
         check_kid.setBounds(200, 220, 120, 20);
         workSheet.setBounds(70, 250, 120, 20);
         salary.setBounds(200, 250, 120, 20);
-        logout.setBounds(245,320,75,20);
+        logout.setBounds(245, 320, 75, 20);
 
         create_kid.addActionListener(te);
+        check_kid.addActionListener(te);
+        workSheet.addActionListener(te);
+        salary.addActionListener(te);
+        logout.addActionListener(te);
 
         frame.add(create_kid);
         frame.add(check_kid);
@@ -49,96 +50,49 @@ public class GuiBoss extends Gui implements ActionListener {
         frame.add(salary);
         frame.add(logout);
 
-
-        create_kid.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    create_kid.doClick();
-
-                }
-            }
-        });
-
-        check_kid.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    check_kid.doClick();
-
-                }
-            }
-        });
-
-        workSheet.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    workSheet.doClick();
-
-                }
-            }
-        });
-
-        salary.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    salary.doClick();
-
-                }
-            }
-        });
-
-        logout.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    logout.doClick();
-
-                }
-            }
-        });
-
     }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
-        if (s.equals("Opret barn")) {
+
+        if (s == "Opret barn") {
             System.out.println("Test: " + s); //ændres til login();
-            GuiClear clean = new GuiClear();
+
             clean.guiBossClear();
 
             GuiAddChild child = new GuiAddChild();
             child.guiAddChild();
+
+        } else if (s == "Ret barn") {
+            System.out.println("Test: " + s);
+
+            clean.guiBossClear();
+
+            GuiCheckChild child = new GuiCheckChild();
+            child.guiCheckChild();
+
+        } else if (s.equals("Uge plan")) {
+            System.out.println("Test: " + s);
+            clean.guiBossClear();
+            GuiWorksheet work = new GuiWorksheet();
+            work.guiWorksheet();
+
+        } else if (s.equals("Løn")) {
+            System.out.println("Test: " + s);
+            clean.guiBossClear();
+            GuiSalary salary = new GuiSalary();
+            salary.guiSalary();
+
+        } else if (s.equals("Log ud")) {
+            System.out.println("Test: " + s);
+            user=null;
+            password=null;
+            clean.guiBossClear();
+            gui();
         }
-            else if(s.equals("Ret barn")){
-                System.out.println("Test: " + s);
-                GuiClear clean = new GuiClear();
-                clean.guiBossClear();
-
-                GuiCheckChild child = new GuiCheckChild();
-                child.guiCheckChild();
-            }
-                else if(s.equals("Uge plan")){
-                    System.out.println("Test: " + s);
-                    GuiClear clean = new GuiClear();
-                    clean.guiBossClear();
-
-                    GuiWorksheet work = new GuiWorksheet();
-                    work.guiWorksheet();
-                }
-                    else if(s.equals("Løn")){
-                        System.out.println("Test: " + s);
-                        GuiClear clean = new GuiClear();
-                        clean.guiBossClear();
-
-                        GuiSalary salary = new GuiSalary();
-                        salary.guiSalary();
-                    }
-                        /*else if(s.equals("Log ud")){
-                            System.out.println("Test: " + s);
-                            GuiClear clean = new GuiClear();
-                            clean.guiBossClear();
-
-                            GuiAddChild child = new GuiAddChild();
-                            child.guiAddChild();
-                        }*/
 
 
     }

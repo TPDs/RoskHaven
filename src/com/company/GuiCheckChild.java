@@ -5,9 +5,10 @@ import java.awt.event.ActionListener;
 public class GuiCheckChild extends GuiBoss implements ActionListener {
 
 
-    GuiCheckChild(){}
+    GuiCheckChild() {
+    }
 
-    public void guiCheckChild(){
+    public void guiCheckChild() {
         Gui.frame.setTitle("Roskilde frie børnehave - CheckChild menu");
     }
 }
