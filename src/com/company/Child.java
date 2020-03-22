@@ -45,9 +45,9 @@ public class Child implements ClassesToStoreInFiles {
     }
 
     public void addGuardian(String name, String mail, String phoneNumber, String address){
-        Guardian guardian = new Guardian(name, mail, phoneNumber, address);
+        Guardian guardian = new Guardian(name, mail, phoneNumber, address,this.CPR);
         this.guardians.add(guardian);
-            }
+    }
 
     public int calcAge(){
         CPR.substring(0,6);
@@ -94,7 +94,7 @@ public class Child implements ClassesToStoreInFiles {
         // skrivet de ønskede informationer omkring objektet ind i den nuværende fil placering
         try {
             FileWriter Childqueuefw = new FileWriter("src/resourser/ChildQueueFile");
-            String StringToFile = ""+ this.name + " , " + this.CPR + " , " + this.note + " , " + this.status + "\n";
+            String StringToFile = ""+ this.name + "" + this.CPR + "" + this.note + "" + this.status + "\n";
             Childqueuefw.write(StringToFile);
             Childqueuefw.close();
         }   catch (IOException e) {

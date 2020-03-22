@@ -10,12 +10,14 @@ public class Guardian implements ClassesToStoreInFiles {
     private String mail;
     private String phoneNumber;
     private String address;
+    private String childCPR;
 
-    public Guardian(String name, String mail, String phoneNumber, String address){
+    public Guardian(String name, String mail, String phoneNumber, String address, String childCPR){
         this.name=name;
         this.mail=mail;
         this.phoneNumber=phoneNumber;
         this.address=address;
+        this.childCPR=childCPR;
         writeToFile();
     }
 
@@ -24,7 +26,7 @@ public class Guardian implements ClassesToStoreInFiles {
 
         try {
             FileWriter Guardianfw = new FileWriter("src/resourser/GuardianFile");
-            String StringToFile = ""+ this.name + " , " + this.mail + " , " + this.phoneNumber + " , " + this.address + "\n";
+            String StringToFile = ""+ this.name + "" + this.mail + "" + this.phoneNumber + "" + this.address + "\n";
             Guardianfw.write(StringToFile);
             Guardianfw.close();
 
