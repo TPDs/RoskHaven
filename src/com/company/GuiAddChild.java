@@ -43,7 +43,7 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         next = new JButton("Næste");
 
         Gui.frame.getContentPane().add(child_name,BorderLayout.CENTER);
-        Gui.frame.getContentPane().add(child_note,BorderLayout.WEST);
+        Gui.frame.getContentPane().add(next,BorderLayout.CENTER);
 
         child_information.setBounds(110,45,200,20);
         child_name.setBounds(40,90,150,20);
