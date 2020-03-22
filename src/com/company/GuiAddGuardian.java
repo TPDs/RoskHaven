@@ -87,14 +87,13 @@ public class GuiAddGuardian extends GuiAddChild {
             System.out.println("Test: Tilføj flere");
             String location = address_box.getText() + " " + adresse_postnummer_box.getText();
 
-            Guardian newg = new Guardian(name_text.getText(),mail_box.getText(),phone_box.getText(),location,barn_cpr);
-
+            //Guardian newg = new Guardian(name_text.getText(),mail_box.getText(),phone_box.getText(),location,barn_cpr);
 
             name_box.setText(null);
-            mail_box.setText("");
-            phone_box.setText("");
-            address_box.setText("");
-            adresse_postnummer_box.setText("");
+            mail_box.setText(null);
+            phone_box.setText(null);
+            address_box.setText(null);
+            adresse_postnummer_box.setText(null);
 
         }
 
