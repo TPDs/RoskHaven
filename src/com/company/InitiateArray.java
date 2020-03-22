@@ -2,7 +2,16 @@ package com.company;
 
 import java.util.ArrayList;
 
+//
+//
+//Singleton class of all arrays to be used globally in the entire program.
+//
+//
+
 public final class InitiateArray {
+
+    private static InitiateArray instance = null;
+
     ArrayList<Employee> employeeList;
     ArrayList<DailyManager> dailyManagerList;
     Boss boss;
@@ -13,73 +22,90 @@ public final class InitiateArray {
 
     ArrayList<Worksheet> worksheetList;
 
-    public InitiateArray(){
-        employeeList = initiateEmployeeList();
-        dailyManagerList = initiateDailyManagerList();
-        boss = initiateBoss();
+    private InitiateArray(){
 
-        completeChildList = initiateChildList();
-        childrenInGarten = initiateChildrenInGarten(completeChildList);
-        childrenInQueue = initiateChildrenInQueue(completeChildList);
-
-        worksheetList = initiateWorksheet();
     }
 
-    public Boss initiateBoss(){
+
+
+    public static InitiateArray getInstance(){
+        if(instance == null){
+            instance = new InitiateArray();
+            instance.makeAllArrays();
+        }
+        return instance;
+    }
+
+
+
+
+    public void makeAllArrays(){
+        initiateBoss();
+        initiateEmployeeList();
+        initiateDailyManagerList();
+        initiateChildList();
+        initiateChildrenInQueue();
+        initiateChildrenInGarten();
+        initiateWorksheet();
+    }
+
+
+
+    public void initiateBoss(){
         //dummy boss, needs to be read to make sense.
         Boss boss = new Boss("a", "b", "c");
         //READ FROM FILE
-        return boss;
+        this.boss = boss;
     }
 
-    public ArrayList<Employee> initiateEmployeeList(){
+    public void initiateEmployeeList(){
         ArrayList<Employee> empList = new ArrayList<Employee>();
         //READ FROM FILE
-        return empList;
+        this.employeeList = empList;
     }
 
-    public ArrayList<DailyManager> initiateDailyManagerList(){
+    public void initiateDailyManagerList(){
         ArrayList<DailyManager> dmList = new ArrayList<DailyManager>();
         //READ FROM FILE
-        return dmList;
+        this.dailyManagerList = dmList;
     }
 
 
 
 
-    public ArrayList<Child> initiateChildList(){
+    public void initiateChildList(){
         ArrayList<Child> childList = new ArrayList<Child>();
         //READ FROM FILE
-        return childList;
+        this.completeChildList = childList;
     }
 
-    public ArrayList<Child> initiateChildrenInGarten(ArrayList<Child> completeChildList){
+    public void initiateChildrenInGarten(){
         ArrayList<Child> childrenInGarten = new ArrayList<Child>();
-        for(int i=0; i<completeChildList.size(); i++){
-            if(completeChildList.get(i).getStatus()==ChildStatus.ACTIVE){
-                childrenInGarten.add(completeChildList.get(i));
+        for(int i=0; i<this.completeChildList.size(); i++){
+            if(this.completeChildList.get(i).getStatus()==ChildStatus.ACTIVE){
+                childrenInGarten.add(this.completeChildList.get(i));
             }
         }
-        return childrenInGarten;
+        this.childrenInGarten = childrenInGarten;
     }
 
-    public ArrayList<Child> initiateChildrenInQueue(ArrayList<Child> completeChildList){
+    public void initiateChildrenInQueue(){
         ArrayList<Child> childrenInQueue = new ArrayList<Child>();
-        for(int i=0; i<completeChildList.size(); i++){
-            if(completeChildList.get(i).getStatus()==ChildStatus.QUEUE){
-                childrenInQueue.add(completeChildList.get(i));
+        for(int i=0; i<this.completeChildList.size(); i++){
+            if(this.completeChildList.get(i).getStatus()==ChildStatus.QUEUE){
+                childrenInQueue.add(this.completeChildList.get(i));
             }
         }
-        return childrenInQueue;
+        this.childrenInQueue = childrenInQueue;
     }
 
 
 
 
-    public ArrayList<Worksheet> initiateWorksheet(){
+    public void initiateWorksheet(){
         ArrayList<Worksheet> worksheetList = new ArrayList<Worksheet>();
         //READ FROM FILE
-        return worksheetList;
+        this.worksheetList = worksheetList;
     }
 
 }
