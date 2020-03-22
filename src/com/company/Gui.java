@@ -23,6 +23,8 @@ public class Gui implements ActionListener {
     Gui() {
     }
 
+
+
     public void gui() {
         frame = new JFrame("Roskilde frie børnehave");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

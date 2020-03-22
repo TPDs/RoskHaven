@@ -10,8 +10,6 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
     static JLabel child_information;
     static JLabel child_name;
     static JTextField c_name;
-    static JLabel child_birth;
-    static JTextField c_birth;
     static JLabel child_cpr;
     static JTextField c_cpr;
     static JLabel child_address;
@@ -30,14 +28,12 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         GuiAddChild te = new GuiAddChild();
 
         child_information = new JLabel("Indtast barnets oplysninger");
-        child_name = new JLabel("Navn: ");
-        child_birth = new JLabel("Fødselsdato: ");
-        child_cpr = new JLabel("CPR-Nummer");
-        child_address = new JLabel("Adresse: ");
-        child_note = new JLabel("Note (Allergier, sygdomme, medicin mm.: ");
+        child_name = new JLabel("Navn:");
+        child_cpr = new JLabel("CPR-Nummer:");
+        child_address = new JLabel("Adresse:");
+        child_note = new JLabel("Note (Allergier, \n sygdomme mm):");
 
         c_name = new JTextField("");
-        c_birth = new JTextField("");
         c_cpr = new JTextField("");
         c_address = new JTextField("");
         c_note = new JTextField("");
@@ -45,13 +41,29 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         next = new JButton("Næste");
 
         child_information.setBounds(120,45,200,20);
-        child_name.setBounds(70,70,150,20);
-        child_birth.setBounds(70,110,150,20);
+        child_name.setBounds(70,90,150,20);
+        child_cpr.setBounds(70,130,150,20);
+        child_address.setBounds(70,170,150,20);
+        child_note.setBounds(70,210,200,20);
+
+        c_name.setBounds(152,90,150,20);
+        c_cpr.setBounds(152,130,150,20);
+        c_address.setBounds(152,170,150,20);
+        c_note.setBounds(70,240,235,70);
+
         next.setBounds(245, 320, 75, 20);
 
         frame.add(child_information);
         frame.add(child_name);
-        frame.add(child_birth);
+        frame.add(child_note);
+        frame.add(child_cpr);
+        frame.add(child_address);
+
+        frame.add(c_name);
+        frame.add(c_note);
+        frame.add(c_cpr);
+        frame.add(c_address);
+
         frame.add(next);
 
         next.addActionListener(te);
