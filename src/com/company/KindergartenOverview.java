@@ -58,7 +58,6 @@ public class KindergartenOverview {
             if(childrenInGarten.get(i).getCPR().equals(CPR)){
                 childrenInGarten.get(i).setStatus(ChildStatus.PASSIVE);
                 childrenInGarten.remove(i);
-                editChildFile(CPR,ChildStatus.PASSIVE);
                 break;
             }
         }
@@ -75,8 +74,9 @@ public class KindergartenOverview {
     public void removeChildFromQueue(String CPR) throws IOException {
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
+                childrenInQueue.get(i).setStatus(ChildStatus.PASSIVE);
                 childrenInQueue.remove(i);
-                editChildFile(CPR , ChildStatus.PASSIVE);
+                childrenInQueue.get(i).updateChildInFile();
                 break;
             }
         }
@@ -96,32 +96,6 @@ public class KindergartenOverview {
             if(childrenInQueue.get(i).calcAge()>10){
             childrenInQueue.remove(i);
             }
-        }
-    }
-
-    public void editChildFile(String CPR, ChildStatus Status) throws IOException {
-
-        // lave en metode der iterere gennem child filen og sletter child med cpr nummer som matcher.
-        Scanner data = new Scanner("src/resourser/ChildFile");
-        if(data.hasNextLine()){
-            for(int j = 0; true==data.hasNextLine();j++){
-                if(data.nextLine().contains(CPR)){
-
-                    String tempStringFileChange = data.next() +""+ data.next()+ "" + data.next()+"" + Status + "\n";
-                    FileWriter tempChildqueuefw = new FileWriter(new File("src/resourser/tempChildFile"));
-                    tempChildqueuefw.write(tempStringFileChange);
-                    tempChildqueuefw.close();
-                }
-                else{
-                    FileWriter tempChildqueuefw = new FileWriter(new File("src/resourser/tempChildFile"));
-                    String tempStringToFile = data.nextLine() + "\n";
-                    tempChildqueuefw.write(tempStringToFile);
-                    tempChildqueuefw.close();
-                }
-            }// her skal childfile så overskrives med tempChildFile
-            Path source = Paths.get("src/resourser/tempChildFile");
-            Path newdir = Paths.get("src/resourser/ChildFile");
-            Files.move(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
         }
     }
 }
