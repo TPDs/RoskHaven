@@ -56,6 +56,7 @@ public class GuiAddGuardian extends GuiAddChild {
         addedG = new JTextArea("");
         addedG.setLineWrap(true);
         addedG.setBounds(35,255,340,60);
+        addedG.setEditable(false);
 
         int y = 40; //x For text fields
         int yy = 110; // y
@@ -102,9 +103,7 @@ public class GuiAddGuardian extends GuiAddChild {
             }
         });
 
-
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -121,7 +120,7 @@ public class GuiAddGuardian extends GuiAddChild {
         } else if (s == "Tilføj Værge" && name_box != null) {
             System.out.println("Test: Tilføj flere");
             String location = address_box.getText() + " " + adresse_postnummer_box.getText();
-            addedG.setText("Navn: " + name_box.getText()+ "\nKontakt info: " + mail_box.getText()+ " ," + phone_box.getText() +"\nAdresse: " +location);
+            addedG.setText("Navn: " + name_box.getText()+ "\nKontakt info: " + mail_box.getText()+ ",    " + phone_box.getText() +"\nAdresse: " +location);
             //Guardian newg = new Guardian(name_text.getText(),mail_box.getText(),phone_box.getText(),location,barn_cpr);
 
             name_box.setText(null);
