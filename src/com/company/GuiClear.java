@@ -39,12 +39,10 @@ public class GuiClear {
     public void guiAddChild() {
         GuiAddChild.child_name.setVisible(false);
         GuiAddChild.child_note.setVisible(false);
-        GuiAddChild.child_address.setVisible(false);
         GuiAddChild.child_information.setVisible(false);
         GuiAddChild.child_cpr.setVisible(false);
         GuiAddChild.c_name.setVisible(false);
         GuiAddChild.c_note.setVisible(false);
-        GuiAddChild.c_address.setVisible(false);
         GuiAddChild.c_cpr.setVisible(false);
         GuiAddChild.next.setVisible(false);
     }
@@ -72,6 +70,15 @@ public class GuiClear {
         GuiCheckChild.child_information.setVisible(false);
         GuiCheckChild.c_cpr.setVisible(false);
         GuiCheckChild.next.setVisible(false);
+    }
+
+    public void guiViewChild(){
+        GuiViewChild.topTekst.setVisible(false);
+        GuiViewChild.back.setVisible(false);
+        GuiViewChild.editChild.setVisible(false);
+        GuiViewChild.editGuardian.setVisible(false);
+        GuiViewChild.createGuardian.setVisible(false);
+        GuiViewChild.removeChild.setVisible(false);
     }
 
 

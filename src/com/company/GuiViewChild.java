@@ -37,13 +37,13 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         Gui.frame.getContentPane().add(createGuardian,BorderLayout.CENTER);
         Gui.frame.getContentPane().add(removeChild, BorderLayout.CENTER);
 
-        topTekst.setBounds(110, 45, 200, 20);
+        topTekst.setBounds(90, 45, 200, 20);
 
-        back.setBounds(40, 340, 150, 20);
-        editChild.setBounds(120, 270, 150, 20);
-        editGuardian.setBounds(200, 270, 150, 20);
-        createGuardian.setBounds(280,270,130,20);
-        removeChild.setBounds(340, 270, 150, 20);
+        back.setBounds(40, 320, 100, 20);
+        editChild.setBounds(40, 230, 130, 20);
+        editGuardian.setBounds(220, 230, 130, 20);
+        createGuardian.setBounds(40,270,130,20);
+        removeChild.setBounds(220, 270, 130, 20);
 
         frame.add(topTekst);
 
@@ -65,13 +65,31 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
 
-        if (s == "Næste") {
-            System.out.println("Guardian: " + s); //ændres til login();
+        if (s == "Tilbage") {
+            clean.guiViewChild();
 
-            clean.guiAddChild();
+            GuiBoss boss = new GuiBoss();
+            boss.GuiBoss();
+        } else if (s == "Opdater Barn") {
+            clean.guiViewChild();
 
-            GuiAddGuardian guardian = new GuiAddGuardian();
-            guardian.guiAddGuardian();
+            GuiEditChild editChild = new GuiEditChild();
+            editChild.guiEditChild();
+        } else if(s == "Opdater Værge"){
+            clean.guiViewChild();
+
+            GuiEditGuardian editGuardian = new GuiEditGuardian();
+            editGuardian.guiEditGuardian();
+        } else if(s == "Opret Værge"){
+            clean.guiViewChild();
+
+            GuiAddGuardian addGuardian = new GuiAddGuardian();
+            addGuardian.guiAddGuardian();
+        } else if(s == "Fjern Barn"){
+            clean.guiViewChild();
+
+            GuiRemoveChild removeChild = new GuiRemoveChild();
+            removeChild.guiRemoveChild();
         }
     }
 

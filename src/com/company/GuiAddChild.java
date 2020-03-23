@@ -12,14 +12,11 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
     static JTextField c_name;
     static JLabel child_cpr;
     static JTextField c_cpr;
-    static JLabel child_address;
-    static JTextField c_address;
     static JLabel child_note;
     static JTextArea c_note;
     static JButton next;
     static String barn_navn;
     static String barn_cpr;
-    static String barn_adresse;
     static String barn_note;
 
     GuiAddChild(){}
@@ -32,12 +29,10 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         child_information = new JLabel("Indtast barnets oplysninger");
         child_name = new JLabel("Navn:");
         child_cpr = new JLabel("CPR-Nummer:");
-        child_address = new JLabel("Adresse:");
         child_note = new JLabel("Note (Allergier, \n sygdomme mm):");
 
         c_name = new JTextField("");
         c_cpr = new JTextField("");
-        c_address = new JTextField("");
         c_note = new JTextArea();
         c_note.setLineWrap(true);
 
@@ -49,13 +44,11 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         child_information.setBounds(110,45,200,20);
         child_name.setBounds(40,90,150,20);
         child_cpr.setBounds(40,130,150,20);
-        child_address.setBounds(40,170,150,20);
-        child_note.setBounds(80,210,200,20);
+        child_note.setBounds(40,170,200,20);
 
         c_name.setBounds(150,90,150,20);
         c_cpr.setBounds(150,130,150,20);
-        c_address.setBounds(150,170,150,20);
-        c_note.setBounds(50,240,275,70);
+        c_note.setBounds(50,210,275,70);
 
         next.setBounds(275, 320, 75, 20);
 
@@ -63,12 +56,10 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         frame.add(child_name);
         frame.add(child_note);
         frame.add(child_cpr);
-        frame.add(child_address);
 
         frame.add(c_name);
         frame.add(c_note);
         frame.add(c_cpr);
-        frame.add(c_address);
 
         frame.add(next);
 
@@ -85,13 +76,18 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
 
             barn_navn = c_name.getText();
             barn_cpr = c_cpr.getText();
-            barn_adresse = c_address.getText();
             barn_note = c_note.getText();
 
             clean.guiAddChild();
 
             GuiAddGuardian guardian = new GuiAddGuardian();
             guardian.guiAddGuardian();
+
+
+            //Tilfoej parametre, saa man ikke kan klikke videre (!= null)
+            //Tilfoej tilbageknap
+
+
         }
     }
 }
