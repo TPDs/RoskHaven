@@ -7,7 +7,7 @@ public class GuiClear {
 
     public void guiClear() {
 
-        Gui.ansatliste.setBounds(10,10,10,10); //dropDown menu der laver en glitch med andre boxe
+        Gui.ansatliste.setBounds(10, 10, 10, 10); //dropDown menu der laver en glitch med andre boxe
         Gui.ansatliste.setVisible(false);
         Gui.frame.remove(Gui.ansatliste);
         Gui.l_name.setVisible(false);
@@ -34,11 +34,9 @@ public class GuiClear {
         GuiBoss.l_name.setVisible(false);
 
 
-
-
     }
 
-    public void guiAddChild(){
+    public void guiAddChild() {
         GuiAddChild.child_name.setVisible(false);
         GuiAddChild.child_note.setVisible(false);
         GuiAddChild.child_address.setVisible(false);
@@ -51,23 +49,22 @@ public class GuiClear {
         GuiAddChild.next.setVisible(false);
     }
 
-    public void guiAddGuardian(){
+    public void guiAddGuardian() {
         GuiAddGuardian.title.setVisible(false);
-        GuiAddGuardian.name_box.setVisible(false);;
-        GuiAddGuardian.mail_box.setVisible(false);;
-        GuiAddGuardian.phone_box.setVisible(false);;
-        GuiAddGuardian.address_box.setVisible(false);;
-        GuiAddGuardian.adresse_postnummer_box.setVisible(false);;
-        GuiAddGuardian.name_text.setVisible(false);;
-        GuiAddGuardian.mail_text.setVisible(false);;
-        GuiAddGuardian.phone_text.setVisible(false);;
-        GuiAddGuardian.adresse_text.setVisible(false);;
-        GuiAddGuardian.adresse_postnummer_text.setVisible(false);;
+        GuiAddGuardian.name_box.setVisible(false);
+        GuiAddGuardian.mail_box.setVisible(false);
+        GuiAddGuardian.phone_box.setVisible(false);
+        GuiAddGuardian.address_box.setVisible(false);
+        GuiAddGuardian.adresse_postnummer_box.setVisible(false);
+        GuiAddGuardian.name_text.setVisible(false);
+        GuiAddGuardian.mail_text.setVisible(false);
+        GuiAddGuardian.phone_text.setVisible(false);
+        GuiAddGuardian.adresse_text.setVisible(false);
+        GuiAddGuardian.adresse_postnummer_text.setVisible(false);
         GuiAddGuardian.next2.setVisible(false);
-
     }
 
-    public void guiCheckChild(){
+    public void guiCheckChild() {
         GuiCheckChild.child_cpr.setVisible(false);
         GuiCheckChild.child_information.setVisible(false);
         GuiCheckChild.c_cpr.setVisible(false);

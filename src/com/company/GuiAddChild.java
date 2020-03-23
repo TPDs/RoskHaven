@@ -15,7 +15,7 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
     static JLabel child_address;
     static JTextField c_address;
     static JLabel child_note;
-    static JTextField c_note;
+    static JTextArea c_note;
     static JButton next;
     static String barn_navn;
     static String barn_cpr;
@@ -38,7 +38,9 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         c_name = new JTextField("");
         c_cpr = new JTextField("");
         c_address = new JTextField("");
-        c_note = new JTextField("");
+        c_note = new JTextArea();
+        c_note.setLineWrap(true);
+
 
         next = new JButton("Næste");
 
@@ -49,12 +51,12 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         child_name.setBounds(40,90,150,20);
         child_cpr.setBounds(40,130,150,20);
         child_address.setBounds(40,170,150,20);
-        child_note.setBounds(40,210,200,20);
+        child_note.setBounds(80,210,200,20);
 
         c_name.setBounds(150,90,150,20);
         c_cpr.setBounds(150,130,150,20);
         c_address.setBounds(150,170,150,20);
-        c_note.setBounds(40,240,235,70);
+        c_note.setBounds(50,240,275,70);
 
         next.setBounds(275, 320, 75, 20);
 
