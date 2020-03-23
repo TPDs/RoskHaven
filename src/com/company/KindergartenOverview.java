@@ -24,39 +24,34 @@ public class KindergartenOverview {
     }
 
     //this method is to add a new child to the queue list
+    //adds a new child to queue list and then updates the file with the new info
     public void addChildToQueue(String name, String CPR, String note){
         Child child = new Child( name, CPR, note);
         childrenInQueue.add(child);
     }
-
-    //
-    // this method VIP need a funktionality that edit the child text file and changes status to active.
-    //
 
     // this method moves child from queue list to active garten list and removes the child from queue list
     // in other words, it changes the status to active, then updates the child file
     public void addChildToGarten(String CPR) throws IOException {
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
-                childrenInGarten.add(childrenInQueue.get(i));
                 childrenInQueue.get(i).setStatus(ChildStatus.ACTIVE);
+                childrenInGarten.add(childrenInQueue.get(i));
+                childrenInQueue.get(i).updateChildInFile();
                 childrenInQueue.remove(i);
                 break;
             }
         }
     }
 
-    //
-    //this method need a funktionality that edit the child status in the child file to passive
-    //
-
     //this method removes the child from the active garten list
+    //changes child status to passive and updates file
     public void removeChildFromGarten(String CPR) throws IOException {
         for(int i=0;i<childrenInGarten.size();i++){
             if(childrenInGarten.get(i).getCPR().equals(CPR)){
                 childrenInGarten.get(i).setStatus(ChildStatus.PASSIVE);
+                childrenInGarten.get(i).updateChildInFile();
                 childrenInGarten.remove(i);
-                editChildFile(CPR,ChildStatus.PASSIVE);
                 break;
             }
         }
@@ -67,18 +62,16 @@ public class KindergartenOverview {
     public void removeChildFromQueue(String CPR) throws IOException {
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
+                childrenInQueue.get(i).setStatus(ChildStatus.PASSIVE);
+                childrenInQueue.get(i).updateChildInFile();
                 childrenInQueue.remove(i);
-                editChildFile(CPR , ChildStatus.PASSIVE);
                 break;
             }
         }
     }
 
-    //
-    // this method need a funktionality that edit the child file and removes the child from the list
-    //
-
     //this method checks first if child status is passive and removes child, and then if age > 10 and removes
+    //the child, it also changes status to passive if age > 10 and updates file.
     //this is to make sure that children aren't in the wrong list!
     public void updateChildQueue() throws IOException {
         for(int i=0; i<childrenInQueue.size(); i++){
