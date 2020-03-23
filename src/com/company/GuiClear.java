@@ -82,6 +82,14 @@ public class GuiClear {
         GuiViewChild.removeChild.setVisible(false);
     }
 
+    public void guiWorksheet(){
+        GuiWorksheet.info.setVisible(false);
+        GuiWorksheet.week_label.setVisible(false);
+        GuiWorksheet.week_text.setVisible(false);
+        GuiWorksheet.back.setVisible(false);
+        GuiWorksheet.next.setVisible(false);
+    }
+
 
 
 

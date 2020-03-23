@@ -9,5 +9,29 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
 
     public void guiEditChild(){
         Gui.frame.setTitle("Roskilde frie børnehave - EditChild");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

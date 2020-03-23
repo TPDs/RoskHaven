@@ -1,12 +1,91 @@
 package com.company;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GuiWorksheet extends GuiBoss implements ActionListener {
 
-    GuiWorksheet(){}
+    static JLabel info;
+    static JLabel week_label;
+    static JTextField week_text;
+    static JButton back;
+    static JButton next;
+    static String week_nr;
 
-    public void guiWorksheet(){
+    GuiWorksheet() {
+    }
+
+    public void guiWorksheet() {
         Gui.frame.setTitle("Roskilde frie børnehave - Worksheet");
+
+        GuiWorksheet te = new GuiWorksheet();
+
+        info = new JLabel("Indtast ugenummeret, som du gerne vil se ugeplanen for");
+        week_label = new JLabel("Uge nr.:");
+
+        week_text = new JTextField(null);
+
+        back = new JButton("Tilbage");
+        next = new JButton("Næste");
+
+        Gui.frame.getContentPane().add(info, BorderLayout.CENTER);
+        Gui.frame.getContentPane().add(week_label, BorderLayout.CENTER);
+        Gui.frame.getContentPane().add(week_text, BorderLayout.CENTER);
+        Gui.frame.getContentPane().add(back, BorderLayout.CENTER);
+        Gui.frame.getContentPane().add(next, BorderLayout.CENTER);
+
+        info.setBounds(30, 45, 360, 20);
+
+        week_label.setBounds(40, 170, 200, 20);
+        week_text.setBounds(150, 170, 200, 20);
+
+        next.setBounds(275, 320, 75, 20);
+        back.setBounds(40, 320, 100, 20);
+
+        next.addActionListener(te);
+        back.addActionListener(te);
+
+        frame.add(info);
+        frame.add(week_label);
+        frame.add(week_text);
+        frame.add(back);
+        frame.add(next);
+
+
+        week_text.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    next.doClick();
+
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        GuiClear clean = new GuiClear();
+        String s = e.getActionCommand();
+
+        if (s == "Næste") {
+            week_nr = week_text.getText();
+
+            clean.guiWorksheet();
+
+            GuiWorksheetWeek worksheetWeek = new GuiWorksheetWeek();
+            worksheetWeek.guiWorksheetWeek();
+
+
+        } else if(s =="Tilbage") {
+        clean.guiWorksheet();
+
+        GuiBoss bigboss = new GuiBoss();
+        bigboss.GuiBoss();
+        }
     }
 }
