@@ -87,7 +87,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter childInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
         for(int i=0;i<childrenInGartenToday.size();i++){
-            if(childrenInGartenToday.get(i).getCPR()==CPR){
+            if(childrenInGartenToday.get(i).getCPR().equals(CPR)){
                 String childCheckInToFile =  childrenInGartenToday.get(i).getCPR() + " " + tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
                 childInGartenTodayfw.write(childCheckInToFile);
                 childInGartenTodayfw.close();
@@ -99,7 +99,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter employeeInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
         for(int i=0;i<employeesInGartenToday.size();i++){
-            if(employeesInGartenToday.get(i).getId()==ID){
+            if(employeesInGartenToday.get(i).getId().equals(ID)){
                 String employeeWriteToCheckInFile = employeesInGartenToday.get(i).getId() + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
                 employeeInGartenTodayfw.write(employeeWriteToCheckInFile);
                 employeeInGartenTodayfw.close();
