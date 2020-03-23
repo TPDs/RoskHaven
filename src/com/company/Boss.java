@@ -9,13 +9,6 @@ public class Boss extends User {
 }
 
 
-
-
-
-
-
-
-
 //    Child child = new Child();
 //
 //Private Object AddChildToQueue()

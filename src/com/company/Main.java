@@ -1,15 +1,18 @@
 package com.company;
-
-import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         LogIn login = new LogIn();
         KindergartenOverview ko = new KindergartenOverview();
         Gui gui = new Gui();
         gui.gui();
 
+        LocalDateTime tempDateTime = LocalDateTime.now();
+        System.out.println(tempDateTime);
+
+        System.out.println(tempDateTime.getHour()+":"+tempDateTime.getMinute());
     }
 }
 
