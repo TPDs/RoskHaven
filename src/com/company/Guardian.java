@@ -26,7 +26,7 @@ public class Guardian implements ClassesToStoreInFiles {
 
         try {
             FileWriter Guardianfw = new FileWriter("src/resourser/GuardianFile");
-            String StringToFile = ""+ this.name + "" + this.mail + "" + this.phoneNumber + "" + this.address + "\n";
+            String StringToFile = ""+ this.name + " " + this.mail + " " + this.phoneNumber + " " + this.address + "\n";
             Guardianfw.write(StringToFile);
             Guardianfw.close();
 

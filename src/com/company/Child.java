@@ -97,7 +97,7 @@ public class Child implements ClassesToStoreInFiles {
 
         try {
             FileWriter Childqueuefw = new FileWriter("src/resourser/ChildFile");
-            String StringToFile = ""+ this.name + "" + this.CPR + "" + this.note + "" + this.status + "\n";
+            String StringToFile = ""+ this.name + " " + this.CPR + " " + this.note + " " + this.status + "\n";
             Childqueuefw.write(StringToFile);
             Childqueuefw.close();
         }   catch (IOException e) {
