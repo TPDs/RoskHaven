@@ -1,5 +1,8 @@
 package com.company;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class User implements ClassesToStoreInFiles{
     private String name;
     private String id;
@@ -20,7 +23,13 @@ public class User implements ClassesToStoreInFiles{
     }
 
     @Override
-    public void writeToFile() {
-
+    public void writeToFile(){
+    String StringToFile =  this.name + " " + this.id + " " + this.password;
+        try {
+            FileWriter Userfw = new FileWriter("src/resourser/EmployeeListFile");
+            Userfw.write(StringToFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
