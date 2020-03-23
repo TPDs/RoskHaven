@@ -66,7 +66,7 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
 
         frame.add(c_name);
         frame.add(c_note);
-        frame.add(child_cpr);
+        frame.add(c_cpr);
         frame.add(c_address);
 
         frame.add(next);
