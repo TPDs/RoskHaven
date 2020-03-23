@@ -62,6 +62,9 @@ public class GuiClear {
         GuiAddGuardian.adresse_text.setVisible(false);
         GuiAddGuardian.adresse_postnummer_text.setVisible(false);
         GuiAddGuardian.next2.setVisible(false);
+        GuiAddGuardian.addedG.setVisible(false);
+        GuiAddGuardian.add_next.setVisible(false);
+
     }
 
     public void guiCheckChild() {
@@ -70,6 +73,9 @@ public class GuiClear {
         GuiCheckChild.c_cpr.setVisible(false);
         GuiCheckChild.next.setVisible(false);
     }
+
+
+
 
 
 }
