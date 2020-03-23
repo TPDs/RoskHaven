@@ -1,9 +1,11 @@
 package com.company;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DailyOverview implements ClassesToStoreInFiles{
     private ArrayList<Child> childrenInGartenToday;
@@ -120,7 +122,28 @@ public class DailyOverview implements ClassesToStoreInFiles{
     // der skal laves en metode der regner ud hvor mange timer de forskellige employee har været på arbejde
     // samt tilføjer denne tids information i denne fil også
 
-    private void childCheckOutOfDailyOverview(String CPR){
+    private void childCheckOutOfDailyOverview(String CPR) throws IOException {
+        LocalDateTime tempDateTime = LocalDateTime.now();
+        FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+        for(int i=0; i<childrenInGartenToday.size();i++){
+            if(childrenInGartenToday.get(i).getCPR().equals(CPR)){
+
+                Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+
+                String theStringINeed="";
+                while (sc.hasNextLine())
+                {
+                    if(sc.next().equals(CPR)){
+                         theStringINeed=sc.next();
+                    }
+                }
+
+                String childCheckOutToFile = childrenInGartenToday.get(i).getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
+                childOutOfGartenTodayfw.write(childCheckOutToFile);
+                childOutOfGartenTodayfw.close();
+
+            }
+        }
     }
 
     private void EmployeesCheckOutOfDailyoverview(String ID){
