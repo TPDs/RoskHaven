@@ -18,6 +18,7 @@ public class GuiAddGuardian extends GuiAddChild {
     static JLabel phone_text;
     static JLabel adresse_text;
     static JLabel adresse_postnummer_text;
+    static JButton next2;
 
 
     // String name, String mail, String phoneNumber, String address, String childCPR
@@ -32,6 +33,13 @@ public class GuiAddGuardian extends GuiAddChild {
         address_box = new JTextField("");
         adresse_postnummer_box = new JTextField("");
 
+        GuiAddGuardian ter = new GuiAddGuardian();
+        next2 = new JButton("Næste");
+        Gui.frame.getContentPane().add(next2,BorderLayout.CENTER);
+        next2.setBounds(275, 320, 75, 20);
+
+        next2.addActionListener(ter);
+
         title = new JLabel("Tilføj Værge til " + barn_navn);
         name_text = new JLabel("Navn:");
         mail_text = new JLabel("Email:");
@@ -41,7 +49,7 @@ public class GuiAddGuardian extends GuiAddChild {
         int y = 40; //x For text fields
         int yy = 110; // y
         Gui.frame.getContentPane().add(name_text, BorderLayout.CENTER);
-        title.setBounds(110, 35, 300, 45);
+        title.setBounds(130, 35, 300, 45);
         name_text.setBounds(y, yy, 100, 20);
         mail_text.setBounds(y, yy += 30, 100, 20);
         phone_text.setBounds(y, yy += 30, 100, 20);
@@ -68,6 +76,8 @@ public class GuiAddGuardian extends GuiAddChild {
         Gui.frame.add(phone_box);
         Gui.frame.add(address_box);
         Gui.frame.add(adresse_postnummer_box);
+        frame.add(next2);
+
 
     }
 
@@ -80,9 +90,10 @@ public class GuiAddGuardian extends GuiAddChild {
         if (s == "Næste") {
             System.out.println("Næste click");
             clean.guiAddChild();
+            clean.guiAddGuardian();
 
-            //GuiConfirm confirm = new Gui Confirm();
-            //confirm.confirm();
+            GuiConfirm confirm = new GuiConfirm();
+            confirm.guiConfirm();
         } else if (s == "Tilføj flere" && name_box != null) {
             System.out.println("Test: Tilføj flere");
             String location = address_box.getText() + " " + adresse_postnummer_box.getText();

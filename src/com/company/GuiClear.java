@@ -51,5 +51,21 @@ public class GuiClear {
         GuiAddChild.next.setVisible(false);
     }
 
+    public void guiAddGuardian(){
+        GuiAddGuardian.title.setVisible(false);
+        GuiAddGuardian.name_box.setVisible(false);;
+        GuiAddGuardian.mail_box.setVisible(false);;
+        GuiAddGuardian.phone_box.setVisible(false);;
+        GuiAddGuardian.address_box.setVisible(false);;
+        GuiAddGuardian.adresse_postnummer_box.setVisible(false);;
+        GuiAddGuardian.name_text.setVisible(false);;
+        GuiAddGuardian.mail_text.setVisible(false);;
+        GuiAddGuardian.phone_text.setVisible(false);;
+        GuiAddGuardian.adresse_text.setVisible(false);;
+        GuiAddGuardian.adresse_postnummer_text.setVisible(false);;
+        GuiAddGuardian.next2.setVisible(false);
+
+    }
+
 
 }
