@@ -4,6 +4,8 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GuiAddGuardian extends GuiAddChild {
 
@@ -19,6 +21,8 @@ public class GuiAddGuardian extends GuiAddChild {
     static JLabel adresse_text;
     static JLabel adresse_postnummer_text;
     static JButton next2;
+    static JButton add_next;
+    static JTextArea addedG;
 
 
     // String name, String mail, String phoneNumber, String address, String childCPR
@@ -33,12 +37,15 @@ public class GuiAddGuardian extends GuiAddChild {
         address_box = new JTextField("");
         adresse_postnummer_box = new JTextField("");
 
+
         GuiAddGuardian ter = new GuiAddGuardian();
         next2 = new JButton("Næste");
+        add_next = new JButton("Tilføj Værge");
         Gui.frame.getContentPane().add(next2,BorderLayout.CENTER);
         next2.setBounds(275, 320, 75, 20);
-
+        add_next.setBounds(75, 320, 75, 20);
         next2.addActionListener(ter);
+        add_next.addActionListener(ter);
 
         title = new JLabel("Tilføj Værge til " + barn_navn);
         name_text = new JLabel("Navn:");
@@ -46,6 +53,10 @@ public class GuiAddGuardian extends GuiAddChild {
         phone_text = new JLabel("Tlf nummer:");
         adresse_text = new JLabel("Adresse:");
         adresse_postnummer_text = new JLabel("Postnummer :");
+        addedG = new JTextArea("");
+        addedG.setLineWrap(true);
+        addedG.setBounds(35,255,340,60);
+
         int y = 40; //x For text fields
         int yy = 110; // y
         Gui.frame.getContentPane().add(name_text, BorderLayout.CENTER);
@@ -55,6 +66,9 @@ public class GuiAddGuardian extends GuiAddChild {
         phone_text.setBounds(y, yy += 30, 100, 20);
         adresse_text.setBounds(y, yy += 30, 100, 20);
         adresse_postnummer_text.setBounds(y, yy += 30, 100, 25);
+
+
+
         int x = 200; // X for Box
         int xx = 110; // Y for Box
         name_box.setBounds(x, xx, 150, 20);
@@ -63,7 +77,7 @@ public class GuiAddGuardian extends GuiAddChild {
         address_box.setBounds(x, xx += 30, 150, 20);
         adresse_postnummer_box.setBounds(x, xx += 30, 150, 20);
 
-
+        Gui.frame.add(addedG);
         Gui.frame.add(title);
         Gui.frame.add(name_text);
         Gui.frame.add(mail_text);
@@ -77,6 +91,16 @@ public class GuiAddGuardian extends GuiAddChild {
         Gui.frame.add(address_box);
         Gui.frame.add(adresse_postnummer_box);
         frame.add(next2);
+        frame.add(add_next);
+
+        adresse_postnummer_box.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    add_next.doClick();
+
+                }
+            }
+        });
 
 
     }
@@ -94,10 +118,10 @@ public class GuiAddGuardian extends GuiAddChild {
 
             GuiConfirm confirm = new GuiConfirm();
             confirm.guiConfirm();
-        } else if (s == "Tilføj flere" && name_box != null) {
+        } else if (s == "Tilføj Værge" && name_box != null) {
             System.out.println("Test: Tilføj flere");
             String location = address_box.getText() + " " + adresse_postnummer_box.getText();
-
+            addedG.setText("Navn: " + name_box.getText()+ "\nKontakt info: " + mail_box.getText()+ " ," + phone_box.getText() +"\nAdresse: " +location);
             //Guardian newg = new Guardian(name_text.getText(),mail_box.getText(),phone_box.getText(),location,barn_cpr);
 
             name_box.setText(null);

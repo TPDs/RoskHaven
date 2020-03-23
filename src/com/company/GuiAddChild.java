@@ -41,7 +41,6 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         c_note = new JTextArea();
         c_note.setLineWrap(true);
 
-
         next = new JButton("Næste");
 
         Gui.frame.getContentPane().add(child_name,BorderLayout.CENTER);
