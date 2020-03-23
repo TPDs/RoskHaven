@@ -67,5 +67,12 @@ public class GuiClear {
 
     }
 
+    public void guiCheckChild(){
+        GuiCheckChild.child_cpr.setVisible(false);
+        GuiCheckChild.child_information.setVisible(false);
+        GuiCheckChild.c_cpr.setVisible(false);
+        GuiCheckChild.next.setVisible(false);
+    }
+
 
 }
