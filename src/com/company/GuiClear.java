@@ -45,6 +45,7 @@ public class GuiClear {
         GuiAddChild.c_note.setVisible(false);
         GuiAddChild.c_cpr.setVisible(false);
         GuiAddChild.next.setVisible(false);
+        GuiAddChild.back.setVisible(false);
     }
 
     public void guiAddGuardian() {
