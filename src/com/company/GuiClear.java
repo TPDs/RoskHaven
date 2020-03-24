@@ -78,6 +78,8 @@ public class GuiClear {
         GuiViewChild.editGuardian.setVisible(false);
         GuiViewChild.createGuardian.setVisible(false);
         GuiViewChild.removeChild.setVisible(false);
+        GuiViewChild.child_info.setVisible(false);
+        GuiViewChild.scroll.setVisible(false);
     }
 
     public void guiWorksheet(){

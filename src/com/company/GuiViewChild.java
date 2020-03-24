@@ -18,6 +18,7 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
     static JButton createGuardian;
     static JButton removeChild;
     static JTextArea child_info;
+    static JScrollPane scroll;
 
     GuiViewChild(){}
 
@@ -58,7 +59,7 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         child_info.setEditable(false);
         child_info.setVisible(true);
 
-        JScrollPane scroll = new JScrollPane(child_info);
+        scroll = new JScrollPane(child_info);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scroll.setBounds(20,50,335,170);
 
