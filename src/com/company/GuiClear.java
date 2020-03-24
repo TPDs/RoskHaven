@@ -97,7 +97,15 @@ public class GuiClear {
         GuiWorksheetWeek.back.setVisible(false);
     }
 
+    public void guiConfirm(){
 
+        GuiConfirm.quit_button.setVisible(false);
+        GuiConfirm.box_info.setVisible(false);
+        GuiConfirm.confirm_lable.setVisible(false);
+        GuiConfirm.confirm_button.setVisible(false);
+        GuiConfirm.scroll2.setVisible(false);
+
+    }
 
 
 }
