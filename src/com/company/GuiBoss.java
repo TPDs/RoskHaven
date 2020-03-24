@@ -12,7 +12,6 @@ public class GuiBoss extends Gui implements ActionListener {
     static JButton create_kid;
     static JButton check_kid;
     static JButton workSheet;
-    static JButton salary;
     static JButton logout;
 
     GuiBoss() {
@@ -30,26 +29,22 @@ public class GuiBoss extends Gui implements ActionListener {
         create_kid = new JButton("Opret barn");
         check_kid = new JButton("Ret barn");
         workSheet = new JButton("Uge plan");
-        salary = new JButton("Løn");
         logout = new JButton("Log ud");
         frame.getContentPane().add(logout,BorderLayout.CENTER);
 
         create_kid.setBounds(70, 220, 120, 20);
         check_kid.setBounds(200, 220, 120, 20);
-        workSheet.setBounds(70, 250, 120, 20);
-        salary.setBounds(200, 250, 120, 20);
+        workSheet.setBounds(145, 250, 100, 20);
         logout.setBounds(245, 320, 75, 20);
 
         create_kid.addActionListener(te);
         check_kid.addActionListener(te);
         workSheet.addActionListener(te);
-        salary.addActionListener(te);
         logout.addActionListener(te);
 
         frame.add(create_kid);
         frame.add(check_kid);
         frame.add(workSheet);
-        frame.add(salary);
         frame.add(logout);
 
     }
@@ -81,12 +76,6 @@ public class GuiBoss extends Gui implements ActionListener {
             clean.guiBossClear();
             GuiWorksheet work = new GuiWorksheet();
             work.guiWorksheet();
-
-        } else if (s.equals("Løn")) {
-            System.out.println("Test: " + s);
-            clean.guiBossClear();
-            GuiSalary salary = new GuiSalary();
-            salary.guiSalary();
 
         } else if (s.equals("Log ud")) {
             System.out.println("Test: " + s);
