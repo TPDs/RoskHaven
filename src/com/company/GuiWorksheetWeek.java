@@ -31,12 +31,12 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
         Gui.frame.getContentPane().add(edit_worksheet, BorderLayout.CENTER);
         Gui.frame.getContentPane().add(back, BorderLayout.CENTER);
 
-        label.setBounds(30,45,360,20);
+        label.setBounds(95,25,360,20);
 
-        worksheet_info.setBounds(40,70,360,230);
+        worksheet_info.setBounds(20,50,340,230);
 
-        edit_worksheet.setBounds(160,330,150,20);
-        back.setBounds(40,360,150,20);
+        edit_worksheet.setBounds(130,290,140,20);
+        back.setBounds(20,330,90,20);
 
         edit_worksheet.addActionListener(te);
         back.addActionListener(te);
