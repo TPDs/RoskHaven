@@ -106,5 +106,13 @@ public class GuiClear {
 
     }
 
+    public void guiEmployeeClear(){
+        GuiEmployee.worksheet.setVisible(false);
+        GuiEmployee.dailyOverview.setVisible(false);
+        GuiEmployee.logout.setVisible(false);
+        GuiEmployee.l_name.setVisible(false);
+        GuiEmployee.logo.setVisible(false);
+    }
+
 
 }

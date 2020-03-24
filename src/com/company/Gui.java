@@ -138,7 +138,7 @@ public class Gui implements ActionListener {
             boss.GuiBoss();
 
 
-        } else if (s.equals("Login") && ansatliste.getSelectedItem() == "Pædagog") {
+        } else if (s.equals("Login") && ansatliste.getSelectedItem() == "pædagog") {
 
             System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
