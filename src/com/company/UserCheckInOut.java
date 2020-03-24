@@ -2,21 +2,21 @@ package com.company;
 
 import java.time.LocalDateTime;
 
-public class ChildCheckInOut {
-    private Child child;
+public class UserCheckInOut {
+    User user;
     private String checkInTime;
     private String checkOutTime;
     private int totalTimeCheckedIn;
 
-    public ChildCheckInOut(Child child){
-        this.child = child;
+    public UserCheckInOut(User user){
+        this.user = user;
         checkInTime = "";
         checkOutTime = "";
         totalTimeCheckedIn = 0;
     }
 
-    public Child getChild() {
-        return child;
+    public User getUser() {
+        return user;
     }
 
 
@@ -38,8 +38,6 @@ public class ChildCheckInOut {
     public void setCustomCheckOutTime(int hour, int minutes){
         checkOutTime = "" + hour + ":" + minutes;
     }
-
-
 
 
     public void calcTotalTimeCheckedIn(){

@@ -8,13 +8,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DailyOverview implements ClassesToStoreInFiles{
-    private ArrayList<Child> childrenInGartenToday;
-    private ArrayList<Employee> employeesInGartenToday;
-    private DailyManager dailyManagerInGartenToday;
-    private DailyManager dailyManagerCheckOut;
-    private ArrayList<Employee> employeeCheckOut;
-    private ArrayList<Child> childCheckOut;
+    private ArrayList<ChildCheckInOut> childrenInGartenNow;
+    private ArrayList<ChildCheckInOut> childCheckedOut;
 
+    //User in the sense of this program is the different employees of the kindergarten, including DailyManager and Boss.
+    private ArrayList<Employee> employeesScheduled;
+    private ArrayList<UserCheckInOut> employeesInGartenNow;
+    private ArrayList<UserCheckInOut> employeeCheckedOut;
+
+    private DailyManager dailyManagerScheduled;
+    private UserCheckInOut dailyManagerInGartenNow;
+    private UserCheckInOut dailyManagerCheckedOut;
 
     //Initially there is no children in garten, they will all be checked in when they arrive
     //and checked out when they leave.
@@ -22,11 +26,14 @@ public class DailyOverview implements ClassesToStoreInFiles{
     //The specific employees and daily manager at work today will be determined by the worksheet,
     //and directly imported from there, i. e. no input needed when instantiating this object.
 
-    public DailyOverview(){
-        childrenInGartenToday = new ArrayList<Child>();
-        employeesInGartenToday = importEmployeesFromWorksheet();
-        dailyManagerInGartenToday = importDailyManagerFromWorksheet();
+    public DailyOverview(ArrayList<Employee> employeesScheduled, DailyManager dailyManagerScheduled){
+        childrenInGartenNow = new ArrayList<ChildCheckInOut>();
 
+        this.employeesScheduled = employeesScheduled;
+        employeesInGartenNow = new ArrayList<UserCheckInOut>();
+
+        this.dailyManagerScheduled = dailyManagerScheduled;
+        //dailyManagerInGartenNow = new UserCheckInOut(null);
     }
 
     //
@@ -35,51 +42,74 @@ public class DailyOverview implements ClassesToStoreInFiles{
     //
     //
 
-    public ArrayList<Employee> importEmployeesFromWorksheet(){
-        return new ArrayList<Employee>();
-    }
-
-    public DailyManager importDailyManagerFromWorksheet(){
-        return new DailyManager("a","b","c");
-    }
-
-
     public void childCheckIn(Child child){
-        childrenInGartenToday.add(child);
+        ChildCheckInOut ccio = new ChildCheckInOut(child);
+        childrenInGartenNow.add(ccio);
     }
 
     public void childCheckOut(Child child){
-        for(int i=0; i<childrenInGartenToday.size(); i++){
-            if(childrenInGartenToday.get(i).getCPR().equals(child.getCPR())){
-                childrenInGartenToday.remove(i);
+        for(int i = 0; i< childrenInGartenNow.size(); i++){
+            if(childrenInGartenNow.get(i).getChild().getCPR().equals(child.getCPR())){
+                childrenInGartenNow.remove(i);
                 break;
             }
         }
     }
 
     public void employeeCheckIn(Employee employee){
-        employeesInGartenToday.add(employee);
+        UserCheckInOut ucio = new UserCheckInOut(employee);
+        ucio.setCheckInTimeToNow();
+        employeesInGartenNow.add(ucio);
     }
 
     public void employeeCheckOut(Employee employee){
-        for(int i=0; i<employeesInGartenToday.size(); i++){
-            if(employeesInGartenToday.get(i).getId().equals(employee.getId())){
-                employeesInGartenToday.remove(i);
+        for(int i = 0; i< employeesInGartenNow.size(); i++){
+            if(employeesInGartenNow.get(i).getUser().getId().equals(employee.getId())){
+                employeesInGartenNow.get(i).setCheckOutTimeToNow();
+                employeesInGartenNow.get(i).calcTotalTimeCheckedIn();
+                employeeCheckedOut.add(employeesInGartenNow.get(i));
+                employeesInGartenNow.remove(i);
                 break;
             }
         }
     }
 
     public void dailyManagerCheckIn(DailyManager dm){
-        dailyManagerInGartenToday = dm;
+        UserCheckInOut ucio = new UserCheckInOut(dm);
+        ucio.setCheckInTimeToNow();
+        dailyManagerInGartenNow = ucio;
     }
 
-    public void dailyManagerCheckOut(){ dailyManagerInGartenToday = null;
+    public void dailyManagerCheckOut(){
+        dailyManagerInGartenNow.setCheckOutTimeToNow();
+        dailyManagerInGartenNow.calcTotalTimeCheckedIn();
+        dailyManagerCheckedOut = dailyManagerInGartenNow;
+        dailyManagerInGartenNow = null;
     }
 
+
+
+
+
+    //Gui-cal magic. If necessary override toString.
     public String showDailyOverview(){
         return "";
     }
+
+
+
+
+
+
+
+
+
+    //
+    //
+    //All of the methods below this point handles files and file storaging of changes.
+    //
+    //
+
 
     // Her er 3 metoder der skriver til en fil med børn, daily manager, samt employee der bliver checket ind.
     // der skal laves en metode der regner ud hvor mange timer de forskellige employee har været på arbejde
@@ -88,9 +118,9 @@ public class DailyOverview implements ClassesToStoreInFiles{
     private void childCheckInToDailyOverviewFile(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter childInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
-        for(int i=0;i<childrenInGartenToday.size();i++){
-            if(childrenInGartenToday.get(i).getCPR().equals(CPR)){
-                String childCheckInToFile =  childrenInGartenToday.get(i).getCPR() + " " + tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
+        for(int i = 0; i< childrenInGartenNow.size(); i++){
+            if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
+                String childCheckInToFile =  childrenInGartenNow.get(i).getChild().getCPR() + " " + tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
                 childInGartenTodayfw.write(childCheckInToFile);
                 childInGartenTodayfw.close();
             }
@@ -100,9 +130,9 @@ public class DailyOverview implements ClassesToStoreInFiles{
     private void EmployeesCheckInToDailyoverviewFile(String ID) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter employeeInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
-        for(int i=0;i<employeesInGartenToday.size();i++){
-            if(employeesInGartenToday.get(i).getId().equals(ID)){
-                String employeeWriteToCheckInFile = employeesInGartenToday.get(i).getId() + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
+        for(int i = 0; i< employeesInGartenNow.size(); i++){
+            if(employeesInGartenNow.get(i).getUser().getId().equals(ID)){
+                String employeeWriteToCheckInFile = employeesInGartenNow.get(i).getUser().getId() + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
                 employeeInGartenTodayfw.write(employeeWriteToCheckInFile);
                 employeeInGartenTodayfw.close();
             }
@@ -113,7 +143,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
     private void DailyManagerCheckInToDailyOverviewFile() throws IOException {
         FileWriter dailyManagerInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
         LocalDateTime tempDateTime = LocalDateTime.now();
-        String dailyManagerCheckInToFile = dailyManagerInGartenToday.getId()+" "+ tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
+        String dailyManagerCheckInToFile = dailyManagerInGartenNow.getUser().getId()+" "+ tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
         dailyManagerInGartenTodayfw.write(dailyManagerCheckInToFile);
         dailyManagerInGartenTodayfw.close();
     }
@@ -125,8 +155,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
     private void childCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
-        for(int i=0; i<childrenInGartenToday.size();i++){
-            if(childrenInGartenToday.get(i).getCPR().equals(CPR)){
+        for(int i = 0; i< childrenInGartenNow.size(); i++){
+            if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
 
                 Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
 
@@ -138,7 +168,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
                     }
                 }
 
-                String childCheckOutToFile = childrenInGartenToday.get(i).getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
+                String childCheckOutToFile = childrenInGartenNow.get(i).getChild().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
                 childOutOfGartenTodayfw.write(childCheckOutToFile);
                 childOutOfGartenTodayfw.close();
 
@@ -164,9 +194,9 @@ public class DailyOverview implements ClassesToStoreInFiles{
     @Override
     public String toString() {
         return "DailyOverview{" +
-                "Children still in kindergarten: " + childrenInGartenToday + "\n\n" +
-                "Employees still on work: " + employeesInGartenToday + "\n\n" +
-                "Daily Manager still: " + dailyManagerInGartenToday +
+                "Children still in kindergarten: " + childrenInGartenNow + "\n\n" +
+                "Employees still on work: " + employeesInGartenNow + "\n\n" +
+                "Daily Manager still: " + dailyManagerInGartenNow +
                 '}';
     }
 }

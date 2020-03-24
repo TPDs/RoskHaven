@@ -64,7 +64,7 @@ public class Worksheet implements ClassesToStoreInFiles {
         for(int i=0; i<completeListOfDailyManagers.size(); i++){
             if(completeListOfDailyManagers.get(i).getId().equals(DMid)){
                 //Days are one-off (the 1st in each month will be in the 0th position).
-                workDays.get(dayOfMonth-1).setDailyManager(completeListOfDailyManagers.get(i));
+                workDays.get(dayOfMonth-1).setDailyManagerScheduled(completeListOfDailyManagers.get(i));
             }
         }
     }

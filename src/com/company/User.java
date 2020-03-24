@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 public class User implements ClassesToStoreInFiles{
     private String name;
@@ -20,6 +21,20 @@ public class User implements ClassesToStoreInFiles{
 
     public String getId() {
         return id;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
