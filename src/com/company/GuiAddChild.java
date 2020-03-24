@@ -78,8 +78,7 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         String s = e.getActionCommand();
         barn_cpr = c_cpr.getText();
 
-        if(barn_cpr != null) {
-            if (barn_cpr != null && s == "Næste") {
+            if (s == "Næste") {
                 System.out.println("Guardian: " + s); //ændres til login();
 
                 barn_navn = c_name.getText();
@@ -91,12 +90,9 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
                 guardian.guiAddGuardian();
 
 
-                //Tilfoej parametre, saa man ikke kan klikke videre (!= null)
-
-            }
         } else if (s == "Tilbage") {
             clean.guiAddChild();
-
+            Gui.logo.setVisible(true);
             GuiBoss bigboss = new GuiBoss();
             bigboss.GuiBoss();
         }
