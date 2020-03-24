@@ -90,6 +90,12 @@ public class GuiClear {
         GuiWorksheet.next.setVisible(false);
     }
 
+    public void guiWorksheetWeek(){
+        GuiWorksheetWeek.label.setVisible(false);
+        GuiWorksheetWeek.worksheet_info.setVisible(false);
+        GuiWorksheetWeek.edit_worksheet.setVisible(false);
+        GuiWorksheetWeek.back.setVisible(false);
+    }
 
 
 

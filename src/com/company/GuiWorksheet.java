@@ -82,10 +82,10 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
 
 
         } else if(s =="Tilbage") {
-        clean.guiWorksheet();
+            clean.guiWorksheet();
 
-        GuiBoss bigboss = new GuiBoss();
-        bigboss.GuiBoss();
+            GuiBoss bigboss = new GuiBoss();
+            bigboss.GuiBoss();
         }
     }
 }
