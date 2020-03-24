@@ -106,7 +106,7 @@ public class Gui implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
-        if (s.equals("Login")) {
+        /*if (s.equals("Login")) {
 
             System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
@@ -119,6 +119,53 @@ public class Gui implements ActionListener {
 
             GuiBoss boss = new GuiBoss(); // ændres til en switch case der gør at vi kan vælge hvem der logger ind via login();
             boss.GuiBoss();
+
+
+        }*/
+
+        if (s.equals("Login") && ansatliste.getSelectedItem() == "Boss") {
+
+            System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
+            user = t_name.getText();
+            password = t_password.getText();
+            t_name.setText("");
+            t_password.setText("");
+            System.out.println(ansatliste.getSelectedItem().toString());
+            GuiClear clean = new GuiClear();
+            clean.guiClear();
+
+            GuiBoss boss = new GuiBoss(); // ændres til en switch case der gør at vi kan vælge hvem der logger ind via login();
+            boss.GuiBoss();
+
+
+        } else if (s.equals("Login") && ansatliste.getSelectedItem() == "Pædagog") {
+
+            System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
+            user = t_name.getText();
+            password = t_password.getText();
+            t_name.setText("");
+            t_password.setText("");
+            System.out.println(ansatliste.getSelectedItem().toString());
+            GuiClear clean = new GuiClear();
+            clean.guiClear();
+
+            GuiEmployee employee = new GuiEmployee(); // ændres til en switch case der gør at vi kan vælge hvem der logger ind via login();
+            employee.guiEmployee();
+
+
+        }else if (s.equals("Login") && ansatliste.getSelectedItem() == "Daglig leder") {
+
+            System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
+            user = t_name.getText();
+            password = t_password.getText();
+            t_name.setText("");
+            t_password.setText("");
+            System.out.println(ansatliste.getSelectedItem().toString());
+            GuiClear clean = new GuiClear();
+            clean.guiClear();
+
+            GuiDailyManager dailyManager = new GuiDailyManager(); // ændres til en switch case der gør at vi kan vælge hvem der logger ind via login();
+            dailyManager.guiDailyManager();
 
 
         }
