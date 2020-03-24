@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
     static JButton editGuardian;
     static JButton createGuardian;
     static JButton removeChild;
+    static JTextArea child_info;
 
     GuiViewChild(){}
 
@@ -23,6 +25,8 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         GuiViewChild te = new GuiViewChild();
 
         topTekst = new JLabel("Hvad kunne du tænke dig at gøre?");
+
+        child_info = new JTextArea(10,10);
 
         back = new JButton("Tilbage");
         editChild = new JButton("Opdater Barn");
@@ -36,8 +40,11 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         Gui.frame.getContentPane().add(editGuardian, BorderLayout.CENTER);
         Gui.frame.getContentPane().add(createGuardian,BorderLayout.CENTER);
         Gui.frame.getContentPane().add(removeChild, BorderLayout.CENTER);
+        Gui.frame.getContentPane().add(child_info, BorderLayout.CENTER);
 
-        topTekst.setBounds(90, 45, 200, 20);
+        topTekst.setBounds(90, 25, 200, 20);
+
+        child_info.setBounds(20,50,340,170);
 
         back.setBounds(40, 320, 100, 20);
         editChild.setBounds(40, 230, 130, 20);
@@ -45,7 +52,14 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         createGuardian.setBounds(40,270,130,20);
         removeChild.setBounds(220, 270, 130, 20);
 
+        child_info.setLineWrap(true);
+        child_info.setEditable(true);
+        child_info.setVisible(true);
+
+        JScrollPane scroll = new JScrollPane(child_info, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
         frame.add(topTekst);
+
 
         back.addActionListener(te);
         editChild.addActionListener(te);
@@ -53,6 +67,9 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         createGuardian.addActionListener(te);
         removeChild.addActionListener(te);
 
+
+        frame.add(child_info);
+        frame.add(scroll);
         frame.add(back);
         frame.add(editChild);
         frame.add(editGuardian);
@@ -67,6 +84,7 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
         if (s == "Tilbage") {
             clean.guiViewChild();
+            Gui.logo.setVisible(true);
 
             GuiBoss boss = new GuiBoss();
             boss.GuiBoss();

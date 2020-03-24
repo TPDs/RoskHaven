@@ -83,6 +83,7 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
 
         } else if(s =="Tilbage") {
             clean.guiWorksheet();
+            Gui.logo.setVisible(true);
 
             GuiBoss bigboss = new GuiBoss();
             bigboss.GuiBoss();

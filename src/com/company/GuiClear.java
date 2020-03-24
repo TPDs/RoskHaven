@@ -68,6 +68,7 @@ public class GuiClear {
         GuiCheckChild.child_information.setVisible(false);
         GuiCheckChild.c_cpr.setVisible(false);
         GuiCheckChild.next.setVisible(false);
+        GuiCheckChild.back.setVisible(false);
     }
 
     public void guiViewChild(){

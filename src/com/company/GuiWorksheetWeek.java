@@ -62,7 +62,7 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
 
         } else if(s =="Tilbage") {
             clean.guiWorksheetWeek();
-
+            Gui.logo.setVisible(true);
             GuiBoss bigboss = new GuiBoss();
             bigboss.GuiBoss();
         }

@@ -14,6 +14,7 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
     static JTextField c_cpr;
     static JButton next;
     static String barn_cpr;
+    static JButton back;
 
 
     GuiCheckChild() {
@@ -30,9 +31,11 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
         c_cpr = new JTextField("");
 
         next = new JButton("Næste");
+        back = new JButton("Tilbage");
 
         Gui.frame.getContentPane().add(child_cpr, BorderLayout.CENTER);
         Gui.frame.getContentPane().add(next,BorderLayout.CENTER);
+        Gui.frame.getContentPane().add(back,BorderLayout.CENTER);
 
         child_information.setBounds(110,45,200,20);
         child_cpr.setBounds(40,170,150,20);
@@ -40,8 +43,10 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
         c_cpr.setBounds(150,170,150,20);
 
         next.setBounds(275, 320, 75, 20);
+        back.setBounds(20,320,75,20);
 
         next.addActionListener(te);
+        back.addActionListener(te);
 
         frame.add(child_information);
         frame.add(child_cpr);
@@ -49,6 +54,7 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
         frame.add(c_cpr);
 
         frame.add(next);
+        frame.add(back);
 
         c_cpr.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
@@ -76,6 +82,13 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
 
             GuiViewChild view = new GuiViewChild();
             view.guiViewChild();
+
+        } else if(s == "Tilbage"){
+            clean.guiCheckChild();
+            Gui.logo.setVisible(true);
+
+            GuiBoss boss = new GuiBoss();
+            boss.GuiBoss();
         }
     }
 }
