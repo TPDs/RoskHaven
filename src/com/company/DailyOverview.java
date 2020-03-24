@@ -1,16 +1,19 @@
 package com.company;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DailyOverview implements ClassesToStoreInFiles{
     private ArrayList<Child> childrenInGartenToday;
     private ArrayList<Employee> employeesInGartenToday;
     private DailyManager dailyManagerInGartenToday;
+    private DailyManager dailyManagerCheckOut;
+    private ArrayList<Employee> employeeCheckOut;
+    private ArrayList<Child> childCheckOut;
 
 
     //Initially there is no children in garten, they will all be checked in when they arrive
@@ -23,8 +26,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
         childrenInGartenToday = new ArrayList<Child>();
         employeesInGartenToday = importEmployeesFromWorksheet();
         dailyManagerInGartenToday = importDailyManagerFromWorksheet();
-    }
 
+    }
 
     //
     //
@@ -71,50 +74,92 @@ public class DailyOverview implements ClassesToStoreInFiles{
         dailyManagerInGartenToday = dm;
     }
 
-    public void dailyManagerCheckOut(){
-        dailyManagerInGartenToday = null;
+    public void dailyManagerCheckOut(){ dailyManagerInGartenToday = null;
     }
 
-    // Her skal oprettes en fil med børn, daily manager, samt employee der bliver checket ind og så ud.
+    public String showDailyOverview(){
+        return "";
+    }
+
+    // Her er 3 metoder der skriver til en fil med børn, daily manager, samt employee der bliver checket ind.
     // der skal laves en metode der regner ud hvor mange timer de forskellige employee har været på arbejde
-    // samt tilføjer denne tids information i en anden fil ?
-    // metoden skal kunne bruges på childingartenToday til at tilføje
+    // samt tilføjer denne tids information i en anden fil
+
+    private void childCheckInToDailyOverviewFile(String CPR) throws IOException {
+        LocalDateTime tempDateTime = LocalDateTime.now();
+        FileWriter childInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
+        for(int i=0;i<childrenInGartenToday.size();i++){
+            if(childrenInGartenToday.get(i).getCPR().equals(CPR)){
+                String childCheckInToFile =  childrenInGartenToday.get(i).getCPR() + " " + tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
+                childInGartenTodayfw.write(childCheckInToFile);
+                childInGartenTodayfw.close();
+            }
+        }
+    }
+
+    private void EmployeesCheckInToDailyoverviewFile(String ID) throws IOException {
+        LocalDateTime tempDateTime = LocalDateTime.now();
+        FileWriter employeeInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
+        for(int i=0;i<employeesInGartenToday.size();i++){
+            if(employeesInGartenToday.get(i).getId().equals(ID)){
+                String employeeWriteToCheckInFile = employeesInGartenToday.get(i).getId() + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
+                employeeInGartenTodayfw.write(employeeWriteToCheckInFile);
+                employeeInGartenTodayfw.close();
+            }
+        }
+    }
+
+    //tilføjer daily manager til dailyoverviewFile
+    private void DailyManagerCheckInToDailyOverviewFile() throws IOException {
+        FileWriter dailyManagerInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
+        LocalDateTime tempDateTime = LocalDateTime.now();
+        String dailyManagerCheckInToFile = dailyManagerInGartenToday.getId()+" "+ tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
+        dailyManagerInGartenTodayfw.write(dailyManagerCheckInToFile);
+        dailyManagerInGartenTodayfw.close();
+    }
+
+    // Her skal laves 3 metoder der skriver til en fil med børn, daily manager, samt employee der bliver checket ud.
+    // der skal laves en metode der regner ud hvor mange timer de forskellige employee har været på arbejde
+    // samt tilføjer denne tids information i denne fil også
+
+    private void childCheckOutOfDailyOverview(String CPR) throws IOException {
+        LocalDateTime tempDateTime = LocalDateTime.now();
+        FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+        for(int i=0; i<childrenInGartenToday.size();i++){
+            if(childrenInGartenToday.get(i).getCPR().equals(CPR)){
+
+                Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+
+                String theStringINeed="";
+                while (sc.hasNextLine())
+                {
+                    if(sc.next().equals(CPR)){
+                         theStringINeed=sc.next();
+                    }
+                }
+
+                String childCheckOutToFile = childrenInGartenToday.get(i).getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
+                childOutOfGartenTodayfw.write(childCheckOutToFile);
+                childOutOfGartenTodayfw.close();
+
+            }
+        }
+    }
+
+    private void EmployeesCheckOutOfDailyoverview(String ID){
+    }
+
+    private void DailyManagerCheckOutOfDailyOverview(){
+
+    }
+
     @Override
     public void writeToFile() {
-
-        try {
-            FileWriter childInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
-            LocalDateTime tempDateTime = LocalDateTime.now();
-
-            for(int i=0; i<childrenInGartenToday.size();i++){
-                String stringToFile =  childrenInGartenToday.get(i).getCPR() + " " + tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
-                childInGartenTodayfw.write(stringToFile);
-            }
-
-            childInGartenTodayfw.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-        }
     }
 
     // metoden skal kunne bruges på childingartenToday til at fjerne fra listen ved checkout
     public void removeFromFile(){
-
     }
-
-//    try {
-//        FileWriter Guardianfw = new FileWriter("src/resourser/GuardianFile");
-//        String StringToFile = ""+ this.name + " " + this.mail + " " + this.phoneNumber + " " + this.address + "\n";
-//        Guardianfw.write(StringToFile);
-//        Guardianfw.close();
-//
-//    } catch (
-//    IOException e) {
-//        e.printStackTrace();
-//    }
-
-
 
     @Override
     public String toString() {
@@ -125,11 +170,4 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 '}';
     }
 }
-/*
-* EmployeeList: ArrayList
-* ChildPresent: Arraylist
-*
-* ChildChekin()
-* ChildChekcOut()
-* EmployeeCheckout()
-* EmployeeCheckin()*/
+
