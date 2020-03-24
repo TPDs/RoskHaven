@@ -25,7 +25,6 @@ public class GuiClear {
         GuiBoss.create_kid.setVisible(false);
         GuiBoss.check_kid.setVisible(false);
         GuiBoss.workSheet.setVisible(false);
-        GuiBoss.salary.setVisible(false);
         GuiBoss.logout.setVisible(false);
         Gui.logo.setVisible(false);
         GuiBoss.l_name.setVisible(false);
