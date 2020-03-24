@@ -55,11 +55,11 @@ public class GuiAddGuardian extends GuiAddChild {
         adresse_postnummer_text = new JLabel("Postnummer :");
         addedG = new JTextArea("");
         addedG.setLineWrap(true);
-        addedG.setBounds(35,255,340,60);
+        addedG.setBounds(35,245,340,50);
         addedG.setEditable(false);
 
         int y = 40; //x For text fields
-        int yy = 110; // y
+        int yy = 90; // y
         Gui.frame.getContentPane().add(name_text, BorderLayout.CENTER);
         title.setBounds(130, 35, 300, 45);
         name_text.setBounds(y, yy, 100, 20);
@@ -71,7 +71,7 @@ public class GuiAddGuardian extends GuiAddChild {
 
 
         int x = 200; // X for Box
-        int xx = 110; // Y for Box
+        int xx = 90; // Y for Box
         name_box.setBounds(x, xx, 150, 20);
         mail_box.setBounds(x, xx += 30, 150, 20);
         phone_box.setBounds(x, xx += 30, 150, 20);
