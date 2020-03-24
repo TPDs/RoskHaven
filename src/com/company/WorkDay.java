@@ -7,11 +7,19 @@ public class WorkDay {
     //will have to be scheduled for a minumum of one hour and any subsequent full hour.
     private ArrayList<WorkHour> workHours;
     private DailyManager dailyManager;
+    private DailyOverview dailyOverview;
 
     public WorkDay(){
         //For now only 7:00-17:00 is workable hours, so hour at index 0 is hour 7-8, index 1 is 8-9.
         makeWorkHoursInADay();
         //Daily Manager assigned to this day is initially none, but should be set manually.
+
+        dailyOverview = new DailyOverview();
+    }
+
+
+    public ArrayList<WorkHour> getWorkHours() {
+        return workHours;
     }
 
     public void makeWorkHoursInADay(){
@@ -24,5 +32,12 @@ public class WorkDay {
 
     public void setDailyManager(DailyManager dailyManager) {
         this.dailyManager = dailyManager;
+    }
+
+
+
+
+    public void clearWorkDay(){
+
     }
 }

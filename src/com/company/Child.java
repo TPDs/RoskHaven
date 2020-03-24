@@ -55,9 +55,18 @@ public class Child implements ClassesToStoreInFiles {
         this.guardians.add(guardian);
     }
 
-    public int calcAge(){
-        CPR.substring(0,6);
 
+
+
+    public void removeGuardian(){
+
+    }
+
+
+
+
+
+    public int calcAge(){
         LocalDate today = LocalDate.now();
 
         int childDay = Integer.parseInt(CPR.substring(0,2));
@@ -110,7 +119,7 @@ public class Child implements ClassesToStoreInFiles {
             // lave en metode der iterere gennem child filen og sletter child med cpr nummer som matcher.
             Scanner data = new Scanner("src/resourser/ChildFile");
             if(data.hasNextLine()){
-                for(int j = 0; true==data.hasNextLine();j++){
+                for(int j = 0; data.hasNextLine();j++){
                     if(data.nextLine().contains(CPR)){
 
                         String tempStringFileChange = this.name +" "+ this.CPR + " " + this.note +" " + this.status + "\n";
