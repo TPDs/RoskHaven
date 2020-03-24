@@ -2,6 +2,8 @@ package com.company;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,7 +46,7 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
         topTekst.setBounds(90, 25, 200, 20);
 
-        child_info.setBounds(20,50,340,170);
+        //child_info.setBounds(20,50,340,170);
 
         back.setBounds(40, 320, 100, 20);
         editChild.setBounds(40, 230, 130, 20);
@@ -52,11 +54,14 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         createGuardian.setBounds(40,270,130,20);
         removeChild.setBounds(220, 270, 130, 20);
 
-        child_info.setLineWrap(true);
-        child_info.setEditable(true);
-        child_info.setVisible(true);
+        //child_info.setLineWrap(true);
+        //child_info.setEditable(true);
+        //child_info.setVisible(true);
 
-        JScrollPane scroll = new JScrollPane(child_info, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane scroll = new JScrollPane(child_info);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scroll.setBounds(20,50,335,170);
+
 
         frame.add(topTekst);
 
@@ -67,9 +72,7 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         createGuardian.addActionListener(te);
         removeChild.addActionListener(te);
 
-
-        frame.add(child_info);
-        frame.add(scroll);
+        frame.getContentPane().add(scroll);
         frame.add(back);
         frame.add(editChild);
         frame.add(editGuardian);
