@@ -34,7 +34,7 @@ public class GuiConfirm extends GuiAddGuardian {
 
 
         box_info.setLineWrap(true);
-        box_info.setEditable(true);
+        box_info.setEditable(false);
         box_info.setVisible(true);
 
         Font  f3  = new Font(Font.DIALOG,  Font.BOLD, 12);
@@ -61,11 +61,7 @@ public class GuiConfirm extends GuiAddGuardian {
         quit_button.addActionListener(te);
         confirm_button.addActionListener(te);
 
-
-
-
         box_info.setText( "Barn: " + barn_navn + "\nCPR: " + barn_cpr + "\nNoter: " + barn_note);
-
 
     }
 
