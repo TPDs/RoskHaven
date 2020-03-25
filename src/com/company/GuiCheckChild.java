@@ -84,11 +84,21 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
             view.guiViewChild();
 
         } else if(s == "Tilbage"){
-            clean.guiCheckChild();
-            Gui.logo.setVisible(true);
+            if(ansatliste.getSelectedItem() == "Daglig leder"){
+                clean.guiCheckChild();
+                Gui.logo.setVisible(true);
 
-            GuiBoss boss = new GuiBoss();
-            boss.GuiBoss();
+                GuiDailyManager dailyManager = new GuiDailyManager();
+                dailyManager.guiDailyManager();
+
+            } else if(ansatliste.getSelectedItem() == "Boss"){
+                clean.guiCheckChild();
+                Gui.logo.setVisible(true);
+
+                GuiBoss boss = new GuiBoss();
+                boss.GuiBoss();
+            }
+
         }
     }
 }

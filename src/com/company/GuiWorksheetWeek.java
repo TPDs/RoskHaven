@@ -46,6 +46,14 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
         frame.add(edit_worksheet);
         frame.add(back);
 
+        if(ansatliste.getSelectedItem() == "Boss"){
+            edit_worksheet.setVisible(true);
+        } else if(ansatliste.getSelectedItem() == "pædagog"){
+            edit_worksheet.setVisible(false);
+        } else if(ansatliste.getSelectedItem() == "Daglig leder"){
+            edit_worksheet.setVisible(false);
+        }
+
     }
 
     @Override

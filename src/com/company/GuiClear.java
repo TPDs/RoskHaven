@@ -114,5 +114,14 @@ public class GuiClear {
         GuiEmployee.logo.setVisible(false);
     }
 
+    public void guiDailyManagerClear(){
+        GuiDailyManager.worksheet.setVisible(false);
+        GuiDailyManager.dailyOverview.setVisible(false);
+        GuiDailyManager.logout.setVisible(false);
+        GuiDailyManager.check_kid.setVisible(false);
+        GuiDailyManager.l_name.setVisible(false);
+        GuiDailyManager.logo.setVisible(false);
+    }
+
 
 }

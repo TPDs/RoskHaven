@@ -41,6 +41,7 @@ public class GuiEmployee extends GuiBoss implements ActionListener {
         frame.add(dailyOverview);
         frame.add(logout);
 
+
     }
 
     @Override
@@ -52,16 +53,16 @@ public class GuiEmployee extends GuiBoss implements ActionListener {
             System.out.println("Test: " + s); //ændres til login();
 
             clean.guiEmployeeClear();
-        try {
-            GuiWorksheetWeek.label.setText("Ugeplanen for uge " /* + week*/);
-            GuiWorksheetWeek.edit_worksheet.setVisible(false);
+        //try {
+            //GuiWorksheetWeek.label.setText("Ugeplanen for uge " /* + week*/);
+            //GuiWorksheetWeek.edit_worksheet.setVisible(false);
 
             GuiWorksheet worksheet = new GuiWorksheet();
             worksheet.guiWorksheet();
-        }
-        catch(NullPointerException n){
-            System.out.println("NullPointerException catched");
-            }
+        //}
+        //catch(NullPointerException n){
+            //System.out.println("NullPointerException catched");
+            //}
             //GuiAddChild child = new GuiAddChild();
             //child.guiAddChild();
 

@@ -79,6 +79,18 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         frame.add(editGuardian);
         frame.add(createGuardian);
         frame.add(removeChild);
+
+        if(ansatliste.getSelectedItem() == "Daglig leder"){
+            topTekst.setText("Barnets informationer");
+            topTekst.setBounds(130,25,200,20);
+            editChild.setVisible(false);
+            editGuardian.setVisible(false);
+            createGuardian.setVisible(false);
+            removeChild.setVisible(false);
+        }
+
+
+
     }
 
     @Override
@@ -87,11 +99,19 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         String s = e.getActionCommand();
 
         if (s == "Tilbage") {
-            clean.guiViewChild();
-            Gui.logo.setVisible(true);
+            if(ansatliste.getSelectedItem() == "Daglig leder") {
+                clean.guiViewChild();
+                Gui.logo.setVisible(true);
 
-            GuiBoss boss = new GuiBoss();
-            boss.GuiBoss();
+                GuiDailyManager dailyManager = new GuiDailyManager();
+                dailyManager.guiDailyManager();
+            } else if(ansatliste.getSelectedItem() == "Boss"){
+                clean.guiViewChild();
+                Gui.logo.setVisible(true);
+
+                GuiBoss boss = new GuiBoss();
+                boss.GuiBoss();
+            }
         } else if (s == "Opdater Barn") {
             clean.guiViewChild();
 
