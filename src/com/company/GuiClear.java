@@ -125,8 +125,7 @@ public class GuiClear {
 
     public void guiDailyOverviewClean(){
         GuiDailyOverview.topText.setVisible(false);
-        GuiDailyOverview.check_child_in.setVisible(false);
-        GuiDailyOverview.check_child_out.setVisible(false);
+        GuiDailyOverview.check_child_in_or_out.setVisible(false);
         GuiDailyOverview.employee_check_in.setVisible(false);
         GuiDailyOverview.employee_check_out.setVisible(false);
         GuiDailyOverview.back.setVisible(false);
@@ -143,6 +142,26 @@ public class GuiClear {
         GuiCheckOut.checkOutConfirmed.setVisible(false);
         GuiCheckOut.back.setVisible(false);
     }
+
+    public void guiCheckInChildOrOut(){
+        GuiCheckInChildOrOut.topText.setVisible(false);
+        GuiCheckInChildOrOut.child_cpr.setVisible(false);
+        GuiCheckInChildOrOut.c_cpr.setVisible(false);
+        GuiCheckInChildOrOut.checkInChild.setVisible(false);
+        GuiCheckInChildOrOut.checkOutChild.setVisible(false);
+        GuiCheckInChildOrOut.back.setVisible(false);
+    }
+
+    public void guiInChildConfirm(){
+        GuiCheckInChildConfirm.check_in_confirm.setVisible(false);
+        GuiCheckInChildConfirm.back.setVisible(false);
+    }
+
+    public void guiOutChildConfirm(){
+        GuiCheckOutChildConfirm.check_out_confirm.setVisible(false);
+        GuiCheckOutChildConfirm.back.setVisible(false);
+    }
+
 
 
 }

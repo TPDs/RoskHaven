@@ -18,6 +18,7 @@ public class GuiDailyOverview extends GuiEmployee implements ActionListener {
     GuiDailyOverview(){}
 
     public void guiDailyOverview(){
+        logo.setVisible(true);
         Gui.frame.setTitle("Roskilde frie børnehave - DailyOverview");
 
         GuiDailyOverview te = new GuiDailyOverview();
@@ -32,7 +33,7 @@ public class GuiDailyOverview extends GuiEmployee implements ActionListener {
 
         topText.setBounds(90, 25, 200, 20);
 
-        check_child_in_or_out.setBounds(130, 200, 110, 20);
+        check_child_in_or_out.setBounds(110, 200, 160, 20);
         employee_check_in.setBounds(70, 230, 110, 20);
         employee_check_out.setBounds(200, 230, 110, 20);
 

@@ -2,6 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionListener {
@@ -16,10 +17,12 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
     static JButton back;
 
+    static String barn_cpr;
+
     GuiCheckInChildOrOut(){}
 
     public void guiCheckInChildOrOut(){
-        Gui.frame.setTitle("Roskilde frie børnehave - CheckInChild");
+        Gui.frame.setTitle("Roskilde frie børnehave - CheckInChildOrOut");
 
         GuiCheckInChildOrOut te = new GuiCheckInChildOrOut();
 
@@ -28,18 +31,18 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
         c_cpr = new JTextField(null);
 
-        checkInChild = new JButton("Check barn ind");
-        checkOutChild = new JButton("Check barn ud");
+        checkInChild = new JButton("Tjek barn ind");
+        checkOutChild = new JButton("Tjek barn ud");
 
         back = new JButton("Tilbage");
 
         topText.setBounds(90, 25, 200, 20);
 
         child_cpr.setBounds(40,160,110,20);
-        c_cpr.setBounds(120,160,110,20);
+        c_cpr.setBounds(140,160,200,20);
 
-        checkInChild.setBounds(70,200,110,20);
-        checkOutChild.setBounds(180,200,110,20);
+        checkInChild.setBounds(70,220,110,20);
+        checkOutChild.setBounds(200,220,110,20);
 
         back.setBounds(40,320,100,20);
 
@@ -65,4 +68,44 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         frame.add(checkOutChild);
         frame.add(back);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        GuiClear clean = new GuiClear();
+        String s = e.getActionCommand();
+        barn_cpr = c_cpr.getText();
+
+        if (s == "Tjek barn ind") {
+            clean.guiCheckInChildOrOut();
+
+            GuiCheckInChildConfirm checkInChildConfirm = new GuiCheckInChildConfirm();
+            checkInChildConfirm.guiCheckInChildConfirm();
+
+        } else if(s == "Tjek barn ud") {
+            clean.guiCheckInChildOrOut();
+
+            GuiCheckOutChildConfirm checkOutChildConfirm = new GuiCheckOutChildConfirm();
+            checkOutChildConfirm.guiCheckOutChildConfirm();
+
+
+        } else if(s == "Tilbage"){
+            if(ansatliste.getSelectedItem() == "Daglig leder"){
+                clean.guiCheckInChildOrOut();
+                Gui.logo.setVisible(true);
+
+                GuiDailyManager dailyManager = new GuiDailyManager();
+                dailyManager.guiDailyManager();
+
+            } else if(ansatliste.getSelectedItem() == "pædagog"){
+                clean.guiCheckInChildOrOut();
+                Gui.logo.setVisible(true);
+
+                GuiEmployee employee = new GuiEmployee();
+                employee.guiEmployee();
+            }
+
+        }
+    }
+
+
 }
