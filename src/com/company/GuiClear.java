@@ -123,5 +123,26 @@ public class GuiClear {
         GuiDailyManager.logo.setVisible(false);
     }
 
+    public void guiDailyOverviewClean(){
+        GuiDailyOverview.topText.setVisible(false);
+        GuiDailyOverview.check_child_in.setVisible(false);
+        GuiDailyOverview.check_child_out.setVisible(false);
+        GuiDailyOverview.employee_check_in.setVisible(false);
+        GuiDailyOverview.employee_check_out.setVisible(false);
+        GuiDailyOverview.back.setVisible(false);
+        GuiDailyOverview.l_name.setVisible(false);
+        GuiDailyOverview.logo.setVisible(false);
+    }
+
+    public void guiCheckInClear(){
+        GuiCheckIn.checkInConfirmed.setVisible(false);
+        GuiCheckIn.back.setVisible(false);
+    }
+
+    public void guiCheckOutClear(){
+        GuiCheckOut.checkOutConfirmed.setVisible(false);
+        GuiCheckOut.back.setVisible(false);
+    }
+
 
 }
