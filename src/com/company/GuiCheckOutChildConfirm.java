@@ -40,7 +40,7 @@ public class GuiCheckOutChildConfirm extends GuiCheckInChildOrOut implements Act
 
         frame.add(back2);
 
-        System.out.println(back2.getText());
+        System.out.println(ansatliste.getSelectedItem());
     }
 
     @Override
@@ -48,8 +48,7 @@ public class GuiCheckOutChildConfirm extends GuiCheckInChildOrOut implements Act
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
 
-        if(s==back2.getText()){
-            System.out.println("test1");
+        if(s.equals("Tilbage2")){
             if(ansatliste.getSelectedItem().equals("Daglig leder")){
                 clean.guiOutChildConfirm();
                 Gui.logo.setVisible(true);
