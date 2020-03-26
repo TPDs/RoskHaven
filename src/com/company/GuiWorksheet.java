@@ -82,11 +82,29 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
 
 
         } else if(s =="Tilbage") {
-            clean.guiWorksheet();
-            Gui.logo.setVisible(true);
+            if(ansatliste.getSelectedItem().equals("Boss")) {
+                clean.guiWorksheet();
+                Gui.logo.setVisible(true);
 
-            GuiBoss bigboss = new GuiBoss();
-            bigboss.GuiBoss();
+                GuiBoss bigboss = new GuiBoss();
+                bigboss.GuiBoss();
+            }
+
+            if(ansatliste.getSelectedItem().equals("Daglig leder")){
+                clean.guiWorksheet();
+                Gui.logo.setVisible(true);
+
+                GuiDailyManager dm = new GuiDailyManager();
+                dm.guiDailyManager();
+            }
+
+            if(ansatliste.getSelectedItem().equals("pædagog")){
+                clean.guiWorksheet();
+                Gui.logo.setVisible(true);
+
+                GuiEmployee emp = new GuiEmployee();
+                emp.guiEmployee();
+            }
         }
     }
 }

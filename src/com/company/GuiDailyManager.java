@@ -24,13 +24,13 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
 
         worksheet = new JButton("Tjek uge plan");
         dailyOverview = new JButton("Oversigt");
-        check_kid = new JButton("Liste over børn");
+        check_kid = new JButton("Tjek barn");
         logout = new JButton("Log ud");
 
         worksheet.setBounds(70,220,120,20);
         dailyOverview.setBounds(200,220,120,20);
-        check_kid.setBounds(135,260,120,20);
-        logout.setBounds(245,320,75,20);
+        check_kid.setBounds(70,260,120,20);
+        logout.setBounds(220,260,75,20);
 
         frame.getContentPane().add(worksheet, BorderLayout.CENTER);
         frame.getContentPane().add(dailyOverview,BorderLayout.CENTER);

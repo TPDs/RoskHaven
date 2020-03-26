@@ -24,7 +24,7 @@ public class GuiCheckOutChildConfirm extends GuiCheckInChildOrOut implements Act
 
         check_out_confirm = new JLabel("Barnet " + barn2_cpr + " er herved tjekket ind");
 
-        back2 = new JButton("Tilbage2");
+        back2 = new JButton("Tilbage");
 
         check_out_confirm.setBounds(90,200,300,20);
 
@@ -48,7 +48,7 @@ public class GuiCheckOutChildConfirm extends GuiCheckInChildOrOut implements Act
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
 
-        if(s.equals("Tilbage2")){
+        if(s.equals("Tilbage")){
             if(ansatliste.getSelectedItem().equals("Daglig leder")){
                 clean.guiOutChildConfirm();
                 Gui.logo.setVisible(true);

@@ -20,6 +20,8 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
     static String barn1_cpr;
     static String barn2_cpr;
 
+    static JLabel checked;
+
     GuiCheckInChildOrOut(){}
 
     public void guiCheckInChildOrOut(){
@@ -29,6 +31,7 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
         topText = new JLabel("Indtast CPR-nummeret på barnet");
         child_cpr = new JLabel("CPR-Nummer:");
+        checked = new JLabel("");
 
         c_cpr = new JTextField(null);
 
@@ -37,25 +40,27 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
         back = new JButton("Tilbage");
 
-        topText.setBounds(90, 25, 200, 20);
+        topText.setBounds(120, 80, 380, 20);
+        checked.setBounds(135,110,300,20);
 
-        child_cpr.setBounds(40,160,110,20);
+        child_cpr.setBounds(42,160,110,20);
         c_cpr.setBounds(140,160,200,20);
 
         checkInChild.setBounds(70,220,110,20);
         checkOutChild.setBounds(200,220,110,20);
 
-        back.setBounds(40,320,100,20);
+        back.setBounds(70,250,110,20);
 
-        frame.getContentPane().add(topText, BorderLayout.CENTER);
+        frame.getContentPane().add(topText, BorderLayout.NORTH);
+        frame.getContentPane().add(checked, BorderLayout.NORTH);
 
-        frame.getContentPane().add(child_cpr, BorderLayout.CENTER);
-        frame.getContentPane().add(c_cpr, BorderLayout.CENTER);
+        frame.getContentPane().add(child_cpr, BorderLayout.NORTH);
+        frame.getContentPane().add(c_cpr, BorderLayout.NORTH);
 
-        frame.getContentPane().add(checkInChild, BorderLayout.CENTER);
-        frame.getContentPane().add(checkOutChild, BorderLayout.CENTER);
+        frame.getContentPane().add(checkInChild, BorderLayout.NORTH);
+        frame.getContentPane().add(checkOutChild, BorderLayout.NORTH);
 
-        frame.getContentPane().add(back, BorderLayout.CENTER);
+        frame.getContentPane().add(back, BorderLayout.NORTH);
 
         checkInChild.addActionListener(te);
         checkOutChild.addActionListener(te);
@@ -63,6 +68,7 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         back.addActionListener(te);
 
         frame.add(topText);
+        frame.add(checked);
         frame.add(child_cpr);
         frame.add(c_cpr);
         frame.add(checkInChild);
@@ -74,21 +80,19 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
     public void actionPerformed(ActionEvent e) {
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
-
+        barn2_cpr = c_cpr.getText();
 
 
         if (s == "Tjek barn ind") {
-            clean.guiCheckInChildOrOut();
-            barn1_cpr = c_cpr.getText();
-            GuiCheckInChildConfirm checkInChildConfirm = new GuiCheckInChildConfirm();
-            checkInChildConfirm.guiCheckInChildConfirm();
+
+            topText.setText(barn2_cpr);
+            c_cpr.setText("");
+            checked.setText("er blevet tjekket ind");
 
         } else if(s == "Tjek barn ud") {
-            clean.guiCheckInChildOrOut();
-            barn2_cpr = c_cpr.getText();
-            GuiCheckOutChildConfirm checkOutChildConfirm = new GuiCheckOutChildConfirm();
-            checkOutChildConfirm.guiCheckOutChildConfirm();
-
+            topText.setText(barn2_cpr);
+            c_cpr.setText("");
+            checked.setText("er blevet tjekket ud");
 
         } else if(s == "Tilbage"){
             if(ansatliste.getSelectedItem() == "Daglig leder"){

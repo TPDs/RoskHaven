@@ -28,7 +28,7 @@ public class GuiEmployee extends GuiBoss implements ActionListener {
 
         worksheet.setBounds(70,220,120,20);
         dailyOverview.setBounds(200,220,120,20);
-        logout.setBounds(245,320,75,20);
+        logout.setBounds(220,260,75,20);
 
         frame.getContentPane().add(worksheet, BorderLayout.CENTER);
         frame.getContentPane().add(dailyOverview,BorderLayout.CENTER);

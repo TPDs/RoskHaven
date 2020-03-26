@@ -151,6 +151,7 @@ public class GuiClear {
         GuiCheckInChildOrOut.checkInChild.setVisible(false);
         GuiCheckInChildOrOut.checkOutChild.setVisible(false);
         GuiCheckInChildOrOut.back.setVisible(false);
+        GuiCheckInChildOrOut.checked.setVisible(false);
     }
 
     public void guiInChildConfirm(){
