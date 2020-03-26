@@ -34,6 +34,7 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
         label.setBounds(95,25,360,20);
 
         worksheet_info.setBounds(20,50,340,230);
+        worksheet_info.setEditable(false);
 
         edit_worksheet.setBounds(130,290,140,20);
         back.setBounds(20,330,90,20);
@@ -82,6 +83,13 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
 
                 GuiBoss bigboss = new GuiBoss();
                 bigboss.GuiBoss();
+
+            } else if(ansatliste.getSelectedItem().equals("pædagog")){
+                clean.guiWorksheetWeek();
+                Gui.logo.setVisible(true);
+
+                GuiEmployee emp = new GuiEmployee();
+                emp.guiEmployee();
             }
         }
     }

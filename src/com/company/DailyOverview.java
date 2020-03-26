@@ -180,38 +180,22 @@ public class DailyOverview implements ClassesToStoreInFiles{
     //der skal også tilføjes en dato på de forskellige "checkout" filskrivninger når folk bliver checket ud og tilføjet
     //til filendailyOverviewCheckOutFile så vi kan holde styr på hvilke dato dataen er fra.
 
+
+    // den her metode har jeg fået rodet ved så den skal lige kigges efter for passende
+    // funktionalitet :(
     private void childCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+
         Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
         for(int i = 0; i< childrenInGartenNow.size(); i++){
             if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
                 String theStringINeed="";
-
-                File file = new File("src/resourser/DailyOverviewFile");
-                try {
-                    // Create a new Scanner object which will read the data
-                    // from the file passed in. To check if there are more
-                    // line to read from it we check by calling the
-                    // scanner.hasNextLine() method. We then read line one
-                    // by one till all lines is read.
-                    Scanner scanner = new Scanner(file);
-                    while (scanner.hasNextLine()) {
-                        String line = scanner.nextLine();
-                        System.out.println(line);
+                while(sc.hasNextLine()){
+                    if(sc.next().equals(CPR)){
+                        theStringINeed = sc.next();
                     }
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 }
-
-//                while (sc.hasNextLine()) {
-//
-//                    if(sc.nextLine().contains(CPR)){
-//
-//                         theStringINeed=sc.nextLine();
-//                    }
-//                }
-
                 String childCheckOutToFile = childrenInGartenNow.get(i).getChild().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
                 childOutOfGartenTodayfw.write(childCheckOutToFile);
                 childOutOfGartenTodayfw.close();
@@ -278,7 +262,14 @@ public class DailyOverview implements ClassesToStoreInFiles{
             String tempString = sc.nextLine();
             System.out.println(tempString);
             if(tempString.contains(CPR)){
-                System.out.println("This is the file im looking for !");
+                System.out.println("This is the file im looking for !" + tempString);
+            }
+            // der er noget fejl vej tempString1 som fucker det hele op. skal lige kigge det her efter i sømmene
+            // efter en kort pause!
+
+            else{
+                String tempString1=sc.nextLine();
+                System.out.println("This is not what im looking for !" + CPR);
             }
         }
 

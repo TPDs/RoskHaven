@@ -34,8 +34,8 @@ public class GuiBoss extends Gui implements ActionListener {
 
         create_kid.setBounds(70, 220, 120, 20);
         check_kid.setBounds(200, 220, 120, 20);
-        workSheet.setBounds(145, 250, 100, 20);
-        logout.setBounds(245, 320, 75, 20);
+        workSheet.setBounds(70, 260, 120, 20);
+        logout.setBounds(220,260,75,20);
 
         create_kid.addActionListener(te);
         check_kid.addActionListener(te);
