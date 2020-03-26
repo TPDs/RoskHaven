@@ -276,7 +276,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         Scanner sc = new Scanner("src/resourser/DailyOverviewFile");
         while(sc.hasNextLine()){
             String tempString = sc.nextLine();
-            System.out.println(tempString);
+
             if(tempString.contains(CPR)){
                 System.out.println("This is the file im looking for !" + tempString);
             }
