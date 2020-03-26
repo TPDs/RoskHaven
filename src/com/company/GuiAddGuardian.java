@@ -109,6 +109,7 @@ public class GuiAddGuardian extends GuiAddChild {
         Gui.frame.add(adresse_postnummer_box);
         frame.add(next2);
         frame.add(add_next);
+        next2.setVisible(false);
 
         adresse_postnummer_box.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
@@ -159,6 +160,7 @@ public class GuiAddGuardian extends GuiAddChild {
             address_box.setText(null);
             adresse_postnummer_box.setText(null);
             System.out.println(v_list.toString());
+            next2.setVisible(true);
 
         }
 
