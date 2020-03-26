@@ -1,9 +1,14 @@
 package com.company;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class DailyOverview implements ClassesToStoreInFiles{
     private ArrayList<ChildCheckInOut> childrenInGartenNow;
@@ -186,17 +191,19 @@ public class DailyOverview implements ClassesToStoreInFiles{
     private void childCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
-
         Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+
         for(int i = 0; i< childrenInGartenNow.size(); i++){
             if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
-                String theStringINeed="";
+                String TheRightString="";
+
                 while(sc.hasNextLine()){
-                    if(sc.next().equals(CPR)){
-                        theStringINeed = sc.next();
+                    String theStringINeed=sc.nextLine();
+                    if(theStringINeed.contains(childrenInGartenNow.get(i).getChild().getCPR())){
+                       TheRightString = theStringINeed.substring(6,14);
                     }
                 }
-                String childCheckOutToFile = childrenInGartenNow.get(i).getChild().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
+                String childCheckOutToFile = childrenInGartenNow.get(i).getChild().getCPR() + " " + TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
                 childOutOfGartenTodayfw.write(childCheckOutToFile);
                 childOutOfGartenTodayfw.close();
                 removeChildFromDailyOverviewFile(CPR);
@@ -255,51 +262,34 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
 
     private void removeChildFromDailyOverviewFile(String CPR)throws IOException{
+        Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
 
-
-        Scanner sc = new Scanner("src/resourser/DailyOverviewFile");
         while(sc.hasNextLine()){
-            String tempString = sc.nextLine();
-            System.out.println(tempString);
-            if(tempString.contains(CPR)){
-                System.out.println("This is the file im looking for !" + tempString);
+
+            if(sc.nextLine().contains(CPR)){
+                continue;
             }
-            // der er noget fejl vej tempString1 som fucker det hele op. skal lige kigge det her efter i sømmene
-            // efter en kort pause!
 
-            else{
-                String tempString1=sc.nextLine();
-                System.out.println("This is not what im looking for !" + CPR);
+                else{
+// denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
+                    FileWriter tempdailyOverviewfw = new FileWriter(new File("src/resourser/TempDailyOverviewFile"));
+                    String tempStringToFile = sc.nextLine() + "\n";
+                    tempdailyOverviewfw.write(tempStringToFile);
+                    tempdailyOverviewfw.close();
+                    }
+
+                }
+                // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
+
+
+
             }
-        }
 
 
-        // lave en metode der iterere gennem dailyOverviewFile filen og sletter child med cpr nummer som matcher.
-//        Scanner data = new Scanner("src/resourser/DailyOverviewFile");
-//        if(data.hasNextLine()){
-//            while(data.hasNextLine()){
-//                if(data.nextLine().contains(CPR)){
-//
-//                    data.nextLine();
-//                }
-//                else{
-//                    // denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
-//
-//                    FileWriter tempdailyOverviewfw = new FileWriter(new File("src/resourser/TempDailyOverviewFile"));
-//                    String tempStringToFile = data.nextLine() + "\n";
-//                    tempdailyOverviewfw.write(tempStringToFile);
-//                    tempdailyOverviewfw.close();
-//                }
-//            }
-//            // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
-//
-//            Path source = Paths.get("src/resourser/TempDailyOverviewFile");
-//            Path newdir = Paths.get("src/resourser/DailyOverviewFile");
-//            Files.move(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
-//        }
-//        new PrintWriter("src/resourser/TempDailyOverviewFile").close();
 
-    }
+//         lave en metode der iterere gennem dailyOverviewFile filen og sletter child med cpr nummer som matcher.
+
+
 
 
     @Override
