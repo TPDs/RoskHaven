@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class GuiAddGuardian extends GuiAddChild {
 
@@ -23,10 +24,26 @@ public class GuiAddGuardian extends GuiAddChild {
     static JButton next2;
     static JButton add_next;
     static JTextArea addedG;
+    static int v_counter;
+    static ArrayList<GuiAddGuardian> v_list = new ArrayList<>();
 
 
     // String name, String mail, String phoneNumber, String address, String childCPR
+
     GuiAddGuardian() {
+    }
+
+    String name;
+    String mail;
+    String phoneNumber;
+    String adresse;
+
+    public GuiAddGuardian(String name, String mail, String phoneNumber, String location) {
+        this.name = name;
+        this.mail= mail;
+        this.phoneNumber= phoneNumber;
+        this.adresse= location;
+
     }
 
     public void guiAddGuardian() {
@@ -36,7 +53,8 @@ public class GuiAddGuardian extends GuiAddChild {
         phone_box = new JTextField("");
         address_box = new JTextField("");
         adresse_postnummer_box = new JTextField("");
-
+        v_counter = 0;
+        //ArrayList<GuiAddGuardian> v_list = new ArrayList<>();
 
         GuiAddGuardian ter = new GuiAddGuardian();
         next2 = new JButton("Næste");
@@ -67,8 +85,6 @@ public class GuiAddGuardian extends GuiAddChild {
         phone_text.setBounds(y, yy += 30, 100, 20);
         adresse_text.setBounds(y, yy += 30, 100, 20);
         adresse_postnummer_text.setBounds(y, yy += 30, 100, 25);
-
-
 
         int x = 200; // X for Box
         int xx = 90; // Y for Box
@@ -105,6 +121,19 @@ public class GuiAddGuardian extends GuiAddChild {
 
     }
 
+
+    @Override
+    public String toString() {
+        return "\nGuardian\n "  +
+                "\nname: " + name  +
+                "\nMail: " + mail  +
+                "\nPhone: " + phoneNumber  +
+                "\nAdresse: " + adresse;
+    }
+
+
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         GuiClear clean = new GuiClear();
@@ -117,22 +146,28 @@ public class GuiAddGuardian extends GuiAddChild {
 
             GuiConfirm confirm = new GuiConfirm();
             confirm.guiConfirm();
-        } else if (s == "Tilføj Værge" && name_box != null) {
-            System.out.println("Test: Tilføj flere");
-            String location = address_box.getText() + " " + adresse_postnummer_box.getText();
+        } else if (s == "Tilføj Værge") {
+            String location = address_box.getText() + "  " + adresse_postnummer_box.getText();
             addedG.setText("Navn: " + name_box.getText()+ "\nKontakt info: " + mail_box.getText()+ ",    " + phone_box.getText() +"\nAdresse: " +location);
-            //Guardian newg = new Guardian(name_text.getText(),mail_box.getText(),phone_box.getText(),location,barn_cpr);
-
+            //newg = new Guardian(name_text.getText(),mail_box.getText(),phone_box.getText(),location,barn_cpr);
+            String Gname = name_box.getText();
+            v_list.add(new GuiAddGuardian(name_box.getText(),mail_box.getText(),phone_box.getText(),location));
+            v_counter++;
             name_box.setText(null);
             mail_box.setText(null);
             phone_box.setText(null);
             address_box.setText(null);
             adresse_postnummer_box.setText(null);
+            System.out.println(v_list.toString());
 
         }
 
 
     }
+
+
+
+
 
 }
 
