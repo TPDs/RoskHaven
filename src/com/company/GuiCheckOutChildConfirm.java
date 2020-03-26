@@ -20,7 +20,7 @@ public class GuiCheckOutChildConfirm extends GuiCheckInChildOrOut implements Act
 
         logo.setVisible(true);
 
-        GuiCheckInChildConfirm te = new GuiCheckInChildConfirm();
+        GuiCheckOutChildConfirm te = new GuiCheckOutChildConfirm();
 
         check_out_confirm = new JLabel("Barnet " + barn2_cpr + " er herved tjekket ind");
 

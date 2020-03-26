@@ -159,7 +159,7 @@ public class GuiClear {
 
     public void guiOutChildConfirm(){
         GuiCheckOutChildConfirm.check_out_confirm.setVisible(false);
-        GuiCheckOutChildConfirm.back.setVisible(false);
+        GuiCheckOutChildConfirm.back2.setVisible(false);
     }
 
 
