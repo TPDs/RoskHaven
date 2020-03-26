@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class GuiCheckInChildConfirm extends GuiCheckInChildOrOut implements ActionListener {
 
     static JLabel check_in_confirm;
-    static JButton back;
+    static JButton back1;
 
     GuiCheckInChildConfirm(){}
 
@@ -19,23 +19,23 @@ public class GuiCheckInChildConfirm extends GuiCheckInChildOrOut implements Acti
 
         GuiCheckInChildConfirm te = new GuiCheckInChildConfirm();
 
-        check_in_confirm = new JLabel("Barnet   /*+ barn_cpr +*/ er herved tjekket ind");
+        check_in_confirm = new JLabel("Barnet" + barn1_cpr + " er herved tjekket ind");
 
-        back = new JButton("Tilbage");
+        back1 = new JButton("Tilbage1");
 
         check_in_confirm.setBounds(80,200,300,20);
 
-        back.setBounds(40,320,100,20);
+        back1.setBounds(40,320,100,20);
 
-        back.addActionListener(te);
+        back1.addActionListener(te);
 
         Gui.frame.getContentPane().add(check_in_confirm, BorderLayout.CENTER);
 
-        Gui.frame.getContentPane().add(back, BorderLayout.CENTER);
+        Gui.frame.getContentPane().add(back1, BorderLayout.CENTER);
 
         frame.add(check_in_confirm);
 
-        frame.add(back);
+        frame.add(back1);
 
     }
 
@@ -44,7 +44,7 @@ public class GuiCheckInChildConfirm extends GuiCheckInChildOrOut implements Acti
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
 
-        if(s == "Tilbage"){
+        if(s == "Tilbage1"){
             if(ansatliste.getSelectedItem() == "Daglig leder"){
                 clean.guiInChildConfirm();
                 Gui.logo.setVisible(true);

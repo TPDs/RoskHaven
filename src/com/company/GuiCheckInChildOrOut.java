@@ -17,7 +17,8 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
     static JButton back;
 
-    static String barn_cpr;
+    static String barn1_cpr;
+    static String barn2_cpr;
 
     GuiCheckInChildOrOut(){}
 
@@ -73,17 +74,18 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
     public void actionPerformed(ActionEvent e) {
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
-        barn_cpr = c_cpr.getText();
+
+
 
         if (s == "Tjek barn ind") {
             clean.guiCheckInChildOrOut();
-
+            barn1_cpr = c_cpr.getText();
             GuiCheckInChildConfirm checkInChildConfirm = new GuiCheckInChildConfirm();
             checkInChildConfirm.guiCheckInChildConfirm();
 
         } else if(s == "Tjek barn ud") {
             clean.guiCheckInChildOrOut();
-
+            barn2_cpr = c_cpr.getText();
             GuiCheckOutChildConfirm checkOutChildConfirm = new GuiCheckOutChildConfirm();
             checkOutChildConfirm.guiCheckOutChildConfirm();
 

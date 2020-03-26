@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static com.company.GuiCheckInChildOrOut.barn_cpr;
 
-public class GuiCheckOutChildConfirm extends GuiDailyOverview implements ActionListener {
+
+public class GuiCheckOutChildConfirm extends GuiCheckInChildOrOut implements ActionListener {
 
     static JLabel check_out_confirm;
 
-    static JButton back;
+    static JButton back2;
 
     GuiCheckOutChildConfirm(){}
 
@@ -22,23 +22,25 @@ public class GuiCheckOutChildConfirm extends GuiDailyOverview implements ActionL
 
         GuiCheckInChildConfirm te = new GuiCheckInChildConfirm();
 
-        check_out_confirm = new JLabel("Barnet " + barn_cpr + " er herved tjekket ind");
+        check_out_confirm = new JLabel("Barnet " + barn2_cpr + " er herved tjekket ind");
 
-        back = new JButton("Tilbage");
+        back2 = new JButton("Tilbage2");
 
         check_out_confirm.setBounds(90,200,300,20);
 
-        back.setBounds(40,320,100,20);
+        back2.setBounds(40,320,100,20);
 
-        back.addActionListener(te);
+        back2.addActionListener(te);
 
         Gui.frame.getContentPane().add(check_out_confirm, BorderLayout.CENTER);
 
-        Gui.frame.getContentPane().add(back, BorderLayout.CENTER);
+        Gui.frame.getContentPane().add(back2, BorderLayout.CENTER);
 
         frame.add(check_out_confirm);
 
-        frame.add(back);
+        frame.add(back2);
+
+        System.out.println(ansatliste.getSelectedItem());
     }
 
     @Override
@@ -46,17 +48,21 @@ public class GuiCheckOutChildConfirm extends GuiDailyOverview implements ActionL
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
 
-        if(s == "Tilbage"){
-            if(ansatliste.getSelectedItem() == "Daglig leder"){
+        if(s.equals("Tilbage2")){
+            if(ansatliste.getSelectedItem().equals("Daglig leder")){
                 clean.guiOutChildConfirm();
                 Gui.logo.setVisible(true);
+
+                System.out.println("Colamanden25");
 
                 GuiDailyManager dailyManager = new GuiDailyManager();
                 dailyManager.guiDailyManager();
 
-            } else if(ansatliste.getSelectedItem() == "pædagog"){
+            } else if(ansatliste.getSelectedItem().equals("pædagog")){
                 clean.guiOutChildConfirm();
                 Gui.logo.setVisible(true);
+
+                System.out.println("Colamanden23");
 
                 GuiEmployee employee = new GuiEmployee();
                 employee.guiEmployee();

@@ -154,7 +154,7 @@ public class GuiClear {
 
     public void guiInChildConfirm(){
         GuiCheckInChildConfirm.check_in_confirm.setVisible(false);
-        GuiCheckInChildConfirm.back.setVisible(false);
+        GuiCheckInChildConfirm.back1.setVisible(false);
     }
 
     public void guiOutChildConfirm(){
