@@ -37,7 +37,7 @@ public class GuiDailyOverview extends GuiEmployee implements ActionListener {
         employee_check_in.setBounds(70, 230, 110, 20);
         employee_check_out.setBounds(200, 230, 110, 20);
 
-        back.setBounds(70, 300, 110, 20);
+        back.setBounds(70, 260, 110, 20);
 
         frame.getContentPane().add(topText, BorderLayout.CENTER);
 

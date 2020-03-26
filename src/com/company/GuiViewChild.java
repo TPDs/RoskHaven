@@ -49,10 +49,10 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
         //child_info.setBounds(20,50,340,170);
 
-        back.setBounds(40, 320, 100, 20);
-        editChild.setBounds(40, 230, 130, 20);
+        back.setBounds(35, 320, 100, 20);
+        editChild.setBounds(35, 230, 130, 20);
         editGuardian.setBounds(220, 230, 130, 20);
-        createGuardian.setBounds(40,270,130,20);
+        createGuardian.setBounds(35,270,130,20);
         removeChild.setBounds(220, 270, 130, 20);
 
         child_info.setLineWrap(true);
@@ -61,7 +61,7 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
         scroll = new JScrollPane(child_info);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.setBounds(20,50,331,170);
+        scroll.setBounds(35,50,315,170);
 
 
         frame.add(topTekst);

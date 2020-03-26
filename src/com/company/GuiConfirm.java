@@ -26,6 +26,16 @@ public class GuiConfirm extends GuiAddGuardian implements ActionListener {
         confirm_lable = new JLabel("Godkend information");
         confirm_button = new JButton("Godkend");
 
+
+        confirm_button.setBackground(new Color(62, 249, 106));
+        confirm_button.setForeground(Color.BLACK);
+        confirm_button.setFocusPainted(false);
+
+        quit_button.setBackground(new Color(239, 33, 44));
+        quit_button.setForeground(Color.WHITE);
+        quit_button.setFocusPainted(false);
+
+
         Gui.frame.getContentPane().add(box_info, BorderLayout.CENTER);
 
         scroll2 = new JScrollPane(box_info);

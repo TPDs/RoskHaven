@@ -22,9 +22,10 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
     static JLabel checked;
 
-    GuiCheckInChildOrOut(){}
+    GuiCheckInChildOrOut() {
+    }
 
-    public void guiCheckInChildOrOut(){
+    public void guiCheckInChildOrOut() {
         Gui.frame.setTitle("Roskilde frie børnehave - CheckInChildOrOut");
 
         GuiCheckInChildOrOut te = new GuiCheckInChildOrOut();
@@ -41,15 +42,15 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         back = new JButton("Tilbage");
 
         topText.setBounds(120, 80, 380, 20);
-        checked.setBounds(135,110,300,20);
+        checked.setBounds(135, 110, 300, 20);
 
-        child_cpr.setBounds(42,160,110,20);
-        c_cpr.setBounds(140,160,200,20);
+        child_cpr.setBounds(42, 160, 110, 20);
+        c_cpr.setBounds(140, 160, 200, 20);
 
-        checkInChild.setBounds(70,220,110,20);
-        checkOutChild.setBounds(200,220,110,20);
+        checkInChild.setBounds(70, 220, 110, 20);
+        checkOutChild.setBounds(200, 220, 110, 20);
 
-        back.setBounds(70,250,110,20);
+        back.setBounds(70, 250, 110, 20);
 
         frame.getContentPane().add(topText, BorderLayout.NORTH);
         frame.getContentPane().add(checked, BorderLayout.NORTH);
@@ -89,20 +90,20 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
             c_cpr.setText("");
             checked.setText("er blevet tjekket ind");
 
-        } else if(s == "Tjek barn ud") {
+        } else if (s == "Tjek barn ud") {
             topText.setText(barn2_cpr);
             c_cpr.setText("");
             checked.setText("er blevet tjekket ud");
 
-        } else if(s == "Tilbage"){
-            if(ansatliste.getSelectedItem() == "Daglig leder"){
+        } else if (s == "Tilbage") {
+            if (ansatliste.getSelectedItem() == "Daglig leder") {
                 clean.guiCheckInChildOrOut();
                 Gui.logo.setVisible(true);
 
                 GuiDailyManager dailyManager = new GuiDailyManager();
                 dailyManager.guiDailyManager();
 
-            } else if(ansatliste.getSelectedItem() == "pædagog"){
+            } else if (ansatliste.getSelectedItem() == "pædagog") {
                 clean.guiCheckInChildOrOut();
                 Gui.logo.setVisible(true);
 

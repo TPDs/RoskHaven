@@ -58,7 +58,7 @@ public class GuiAddGuardian extends GuiAddChild {
 
         GuiAddGuardian ter = new GuiAddGuardian();
         next2 = new JButton("Næste");
-        add_next = new JButton("Tilføj Værge");
+        add_next = new JButton("Tilføj");
         Gui.frame.getContentPane().add(next2,BorderLayout.CENTER);
         next2.setBounds(275, 320, 75, 20);
         add_next.setBounds(75, 320, 75, 20);
@@ -75,6 +75,12 @@ public class GuiAddGuardian extends GuiAddChild {
         addedG.setLineWrap(true);
         addedG.setBounds(35,245,340,50);
         addedG.setEditable(false);
+
+        add_next.setBackground(new Color(62, 249, 106));
+        add_next.setForeground(Color.BLACK);
+        add_next.setFocusPainted(false);
+
+
 
         int y = 40; //x For text fields
         int yy = 90; // y
@@ -147,7 +153,7 @@ public class GuiAddGuardian extends GuiAddChild {
 
             GuiConfirm confirm = new GuiConfirm();
             confirm.guiConfirm();
-        } else if (s == "Tilføj Værge") {
+        } else if (s == "Tilføj") {
             String location = address_box.getText() + "  " + adresse_postnummer_box.getText();
             addedG.setText("Navn: " + name_box.getText()+ "\nKontakt info: " + mail_box.getText()+ ",    " + phone_box.getText() +"\nAdresse: " +location);
             //newg = new Guardian(name_text.getText(),mail_box.getText(),phone_box.getText(),location,barn_cpr);
