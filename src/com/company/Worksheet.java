@@ -14,8 +14,8 @@ public class Worksheet implements ClassesToStoreInFiles {
     //This creates a new worksheet.
     public Worksheet(int yearOfWorkSheet, int monthOfWorksheet){
         makeListOfDaysInMonth(monthOfWorksheet, yearOfWorkSheet);
-        completeListOfEmployees = InitiateArray.getInstance().employeeList;
-        completeListOfDailyManagers = InitiateArray.getInstance().dailyManagerList;
+        completeListOfEmployees = Kindergarten.getInstance().getEmployeesInGarten();
+        completeListOfDailyManagers = Kindergarten.getInstance().getDailyManagersInGarten();
 
         //Remember to check if a worksheet within the month already exists and deny the user to create a new if that's the case.
         workSheetID = calcID(yearOfWorkSheet, monthOfWorksheet);
@@ -24,7 +24,6 @@ public class Worksheet implements ClassesToStoreInFiles {
     public String getWorkSheetID() {
         return workSheetID;
     }
-
 
 
 

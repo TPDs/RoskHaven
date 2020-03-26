@@ -8,9 +8,9 @@ public class LogIn {
     Boss boss;
 
     public LogIn(){
-        employees = InitiateArray.getInstance().employeeList;
-        dailyManagers = InitiateArray.getInstance().dailyManagerList;
-        boss = InitiateArray.getInstance().boss;
+        employees = Kindergarten.getInstance().getEmployeesInGarten();
+        dailyManagers = Kindergarten.getInstance().getDailyManagersInGarten();
+        boss = Kindergarten.getInstance().getBoss();
     }
 
     public boolean logIn(String id, String password){

@@ -8,8 +8,15 @@ import java.util.ArrayList;
 //
 //
 
-public final class InitiateArray {
+//
+//
+//Changed from a singleton class to a pure utility class
+//
+//
 
+public final class ReadFileUtil {
+
+    /*
     private static InitiateArray instance = null;
 
     ArrayList<Employee> employeeList;
@@ -21,13 +28,14 @@ public final class InitiateArray {
     ArrayList<Child> childrenInQueue;
 
     ArrayList<Worksheet> worksheetList;
+    */
 
-    private InitiateArray(){
+    private ReadFileUtil(){
 
     }
 
 
-
+    /*
     public static InitiateArray getInstance(){
         if(instance == null){
             instance = new InitiateArray();
@@ -35,9 +43,6 @@ public final class InitiateArray {
         }
         return instance;
     }
-
-
-
 
     public void makeAllArrays(){
         initiateBoss();
@@ -48,64 +53,38 @@ public final class InitiateArray {
         initiateChildrenInGarten();
         initiateWorksheet();
     }
+    */
 
 
 
-    public void initiateBoss(){
+    public static Boss readBoss(){
         //dummy boss, needs to be read to make sense.
         Boss boss = new Boss("a", "b", "c");
         //READ FROM FILE
-        this.boss = boss;
+        return boss;
     }
 
-    public void initiateEmployeeList(){
+    public static ArrayList<Employee> readEmployeeList(){
         ArrayList<Employee> empList = new ArrayList<Employee>();
         //READ FROM FILE
-        this.employeeList = empList;
+        return empList;
     }
 
-    public void initiateDailyManagerList(){
+    public static ArrayList<DailyManager> readDailyManagerList(){
         ArrayList<DailyManager> dmList = new ArrayList<DailyManager>();
         //READ FROM FILE
-        this.dailyManagerList = dmList;
+        return dmList;
     }
 
-
-
-
-    public void initiateChildList(){
+    public static ArrayList<Child> readChildList(){
         ArrayList<Child> childList = new ArrayList<Child>();
         //READ FROM FILE
-        this.completeChildList = childList;
+        return childList;
     }
 
-    public void initiateChildrenInGarten(){
-        ArrayList<Child> childrenInGarten = new ArrayList<Child>();
-        for(int i=0; i<this.completeChildList.size(); i++){
-            if(this.completeChildList.get(i).getStatus()==ChildStatus.ACTIVE){
-                childrenInGarten.add(this.completeChildList.get(i));
-            }
-        }
-        this.childrenInGarten = childrenInGarten;
-    }
-
-    public void initiateChildrenInQueue(){
-        ArrayList<Child> childrenInQueue = new ArrayList<Child>();
-        for(int i=0; i<this.completeChildList.size(); i++){
-            if(this.completeChildList.get(i).getStatus()==ChildStatus.QUEUE){
-                childrenInQueue.add(this.completeChildList.get(i));
-            }
-        }
-        this.childrenInQueue = childrenInQueue;
-    }
-
-
-
-
-    public void initiateWorksheet(){
+    public static ArrayList<Worksheet> readWorksheet(){
         ArrayList<Worksheet> worksheetList = new ArrayList<Worksheet>();
         //READ FROM FILE
-        this.worksheetList = worksheetList;
+        return worksheetList;
     }
-
 }

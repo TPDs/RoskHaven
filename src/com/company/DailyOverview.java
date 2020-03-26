@@ -1,8 +1,6 @@
 package com.company;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,14 +40,33 @@ public class DailyOverview implements ClassesToStoreInFiles{
     //
     //
 
-    public void childCheckIn(Child child){
-        ChildCheckInOut ccio = new ChildCheckInOut(child);
-        childrenInGartenNow.add(ccio);
+    public void childCheckIn(String CPR) throws IOException {
+
+        boolean flag = false;
+
+        for(int h=0;h<childrenInGartenNow.size();h++){
+            if(childrenInGartenNow.get(h).getChild().getCPR().equals(CPR)){
+                flag = true;
+                break;
+            }
+        }
+
+        ArrayList<Child> childrenInGarten = Kindergarten.getInstance().getChildrenInGarten();
+        if(!flag){
+            for(int i=0; i<childrenInGarten.size();i++){
+                if (childrenInGarten.get(i).getCPR().equals(CPR)){
+                    ChildCheckInOut ccio = new ChildCheckInOut(childrenInGarten.get(i));
+                    childrenInGartenNow.add(ccio);
+                    childCheckInToDailyOverviewFile(CPR);
+                }
+            }
+        }
     }
 
-    public void childCheckOut(Child child){
+    public void childCheckOut(String CPR) throws IOException {
         for(int i = 0; i< childrenInGartenNow.size(); i++){
-            if(childrenInGartenNow.get(i).getChild().getCPR().equals(child.getCPR())){
+            if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
+                childCheckOutOfDailyOverview(CPR);
                 childrenInGartenNow.remove(i);
                 break;
             }
@@ -93,7 +110,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
     //Gui-cal magic. If necessary override toString.
     public String showDailyOverview(){
-        return "";
+        return "" + childrenInGartenNow;
     }
 
 
@@ -115,10 +132,15 @@ public class DailyOverview implements ClassesToStoreInFiles{
     // der skal laves en metode der regner ud hvor mange timer de forskellige employee har været på arbejde
     // samt tilføjer denne tids information i en anden fil
 
+
+    // ser ud somom den skriver fra første linje hver gang så der skal laves en rettelse så den først starter med at skrive
+    // når der er en tom linje
     private void childCheckInToDailyOverviewFile(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
-        FileWriter childInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
+        FileWriter childInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile",true);
+
         for(int i = 0; i< childrenInGartenNow.size(); i++){
+            System.out.println("her også ?"+ i + CPR);
             if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
                 String childCheckInToFile =  childrenInGartenNow.get(i).getChild().getCPR() + " " + tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
                 childInGartenTodayfw.write(childCheckInToFile);
@@ -152,25 +174,32 @@ public class DailyOverview implements ClassesToStoreInFiles{
     // der skal laves en metode der regner ud hvor mange timer de forskellige employee har været på arbejde
     // samt tilføjer denne tids information i denne fil også
 
+    // der skal laves metoder der fjerner den valgte persons information/checkin info i dailyOverviewFile når de checker
+    // checker ud, så listen ikke bliver initialiseret ved fejlopstart igen på den liste over folk der er checket ind
+
+    //der skal også tilføjes en dato på de forskellige "checkout" filskrivninger når folk bliver checket ud og tilføjet
+    //til filendailyOverviewCheckOutFile så vi kan holde styr på hvilke dato dataen er fra.
+
+
+    // den her metode har jeg fået rodet ved så den skal lige kigges efter for passende
+    // funktionalitet :(
     private void childCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+
+        Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
         for(int i = 0; i< childrenInGartenNow.size(); i++){
             if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
-
-                Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
-
                 String theStringINeed="";
-                while (sc.hasNextLine())
-                {
+                while(sc.hasNextLine()){
                     if(sc.next().equals(CPR)){
-                         theStringINeed=sc.next();
+                        theStringINeed = sc.next();
                     }
                 }
-
                 String childCheckOutToFile = childrenInGartenNow.get(i).getChild().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
                 childOutOfGartenTodayfw.write(childCheckOutToFile);
                 childOutOfGartenTodayfw.close();
+                removeChildFromDailyOverviewFile(CPR);
 
             }
         }
@@ -216,6 +245,59 @@ public class DailyOverview implements ClassesToStoreInFiles{
         String dailyManagerCheckOutToFile = dailyManagerInGartenNow.getUser().getId() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
         dailyManagerOutOfGartenTodayfw.write(dailyManagerCheckOutToFile);
         dailyManagerOutOfGartenTodayfw.close();
+
+    }
+
+
+    private void removeUserFromDailyOverviewFile(String ID){
+
+    }
+
+
+    private void removeChildFromDailyOverviewFile(String CPR)throws IOException{
+
+
+        Scanner sc = new Scanner("src/resourser/DailyOverviewFile");
+        while(sc.hasNextLine()){
+            String tempString = sc.nextLine();
+            System.out.println(tempString);
+            if(tempString.contains(CPR)){
+                System.out.println("This is the file im looking for !" + tempString);
+            }
+            // der er noget fejl vej tempString1 som fucker det hele op. skal lige kigge det her efter i sømmene
+            // efter en kort pause!
+
+            else{
+                String tempString1=sc.nextLine();
+                System.out.println("This is not what im looking for !" + CPR);
+            }
+        }
+
+
+        // lave en metode der iterere gennem dailyOverviewFile filen og sletter child med cpr nummer som matcher.
+//        Scanner data = new Scanner("src/resourser/DailyOverviewFile");
+//        if(data.hasNextLine()){
+//            while(data.hasNextLine()){
+//                if(data.nextLine().contains(CPR)){
+//
+//                    data.nextLine();
+//                }
+//                else{
+//                    // denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
+//
+//                    FileWriter tempdailyOverviewfw = new FileWriter(new File("src/resourser/TempDailyOverviewFile"));
+//                    String tempStringToFile = data.nextLine() + "\n";
+//                    tempdailyOverviewfw.write(tempStringToFile);
+//                    tempdailyOverviewfw.close();
+//                }
+//            }
+//            // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
+//
+//            Path source = Paths.get("src/resourser/TempDailyOverviewFile");
+//            Path newdir = Paths.get("src/resourser/DailyOverviewFile");
+//            Files.move(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
+//        }
+//        new PrintWriter("src/resourser/TempDailyOverviewFile").close();
 
     }
 

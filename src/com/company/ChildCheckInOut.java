@@ -10,7 +10,7 @@ public class ChildCheckInOut {
 
     public ChildCheckInOut(Child child){
         this.child = child;
-        checkInTime = "";
+        setCheckInTimeToNow();
         checkOutTime = "";
         totalTimeCheckedIn = 0;
     }
