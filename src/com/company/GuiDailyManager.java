@@ -74,6 +74,7 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
             System.out.println("Test: " + s);
             user=null;
             password=null;
+            l_name.setText("Navn: ");
             clean.guiDailyManagerClear();
             clean.guiLogOut();
 

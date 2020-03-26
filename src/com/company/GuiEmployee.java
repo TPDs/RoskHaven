@@ -79,6 +79,7 @@ public class GuiEmployee extends GuiBoss implements ActionListener {
             System.out.println("Test: " + s);
             user=null;
             password=null;
+            l_name.setText("Navn: ");
             clean.guiEmployeeClear();
             clean.guiLogOut();
 

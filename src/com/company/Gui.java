@@ -12,13 +12,13 @@ public class Gui implements ActionListener {
     static JFrame frame;
     static JButton button;
     static JTextField t_name;
-    static JTextField t_password;
+    static JPasswordField t_password;
     static JLabel l_name;
     static JLabel l_password;
     static JComboBox ansatliste;
     static JLabel logo;
     static String user;
-    static String password;
+    static char[] password;
 
     Gui() {
     }
@@ -50,7 +50,7 @@ public class Gui implements ActionListener {
         l_name = new JLabel("Navn:");
         l_password = new JLabel("Password:");
         t_name = new JTextField("");
-        t_password = new JTextField("");
+        t_password = new JPasswordField ();
 
         t_name.setBounds(190, 180, 130, 20);
         t_password.setBounds(190, 220, 130, 20);
@@ -129,9 +129,9 @@ public class Gui implements ActionListener {
 
         if (s.equals("Login") && ansatliste.getSelectedItem() == "Boss") {
 
-            System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
+            System.out.println("Test: " + t_password.getPassword() + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
-            password = t_password.getText();
+            password = t_password.getPassword();
             t_name.setText("");
             t_password.setText("");
             System.out.println(ansatliste.getSelectedItem().toString());
@@ -144,9 +144,9 @@ public class Gui implements ActionListener {
 
         } else if (s.equals("Login") && ansatliste.getSelectedItem() == "pædagog") {
 
-            System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
+            System.out.println("Test: " + t_password.getPassword() + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
-            password = t_password.getText();
+            password = t_password.getPassword();
             t_name.setText("");
             t_password.setText("");
             System.out.println(ansatliste.getSelectedItem().toString());
@@ -159,9 +159,9 @@ public class Gui implements ActionListener {
 
         }else if (s.equals("Login") && ansatliste.getSelectedItem() == "Daglig leder") {
 
-            System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
+            System.out.println("Test: " + t_password.getPassword() + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
-            password = t_password.getText();
+            password = t_password.getPassword();
             t_name.setText("");
             t_password.setText("");
             System.out.println(ansatliste.getSelectedItem().toString());
