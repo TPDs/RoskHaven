@@ -176,12 +176,49 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
-    private void EmployeesCheckOutOfDailyoverview(String ID){
+    private void EmployeesCheckOutOfDailyoverview(String ID) throws IOException {
+        LocalDateTime tempDateTime = LocalDateTime.now();
+        FileWriter employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+        for(int i = 0; i< employeesInGartenNow.size(); i++){
+            if(employeesInGartenNow.get(i).getUser().getId().equals(ID)){
+
+                Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+
+                String theStringINeed="";
+                while (sc.hasNextLine())
+                {
+                    if(sc.next().equals(ID)){
+                        theStringINeed=sc.next();
+                    }
+                }
+
+                String employeeCheckOutToFile = employeesInGartenNow.get(i).getUser().getId() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
+                employeeOutOfGartenTodayfw.write(employeeCheckOutToFile);
+                employeeOutOfGartenTodayfw.close();
+
+            }
+        }
     }
 
-    private void DailyManagerCheckOutOfDailyOverview(){
+    private void DailyManagerCheckOutOfDailyOverview(String ID) throws IOException {
+        LocalDateTime tempDateTime = LocalDateTime.now();
+        FileWriter dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+        Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+
+        String theStringINeed="";
+        while (sc.hasNextLine())
+        {
+            if(sc.next().equals(ID)){
+                theStringINeed=sc.next();
+            }
+        }
+
+        String dailyManagerCheckOutToFile = dailyManagerInGartenNow.getUser().getId() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
+        dailyManagerOutOfGartenTodayfw.write(dailyManagerCheckOutToFile);
+        dailyManagerOutOfGartenTodayfw.close();
 
     }
+
 
     @Override
     public void writeToFile() {
