@@ -21,6 +21,12 @@ public class Worksheet implements ClassesToStoreInFiles {
         workSheetID = calcID(yearOfWorkSheet, monthOfWorksheet);
     }
 
+    public String getWorkSheetID() {
+        return workSheetID;
+    }
+
+
+
 
 
 
