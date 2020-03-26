@@ -278,7 +278,11 @@ public class DailyOverview implements ClassesToStoreInFiles{
             String tempString = sc.nextLine();
             System.out.println(tempString);
             if(tempString.contains(CPR)){
-                System.out.println("This is the file im looking for !");
+                System.out.println("This is the file im looking for !" + tempString);
+            }
+            else{
+                String tempString1=sc.nextLine();
+                System.out.println("This is not what im looking for !" + CPR);
             }
         }
 
