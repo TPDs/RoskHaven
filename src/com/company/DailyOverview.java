@@ -1,9 +1,9 @@
 package com.company;
-
+//import java.io.BufferedReader;
+//import java.io.BufferedWriter;
+//import java.io.File;
+//import java.io.PrintWriter;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -281,15 +281,53 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 }
                 // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
 
-
-
             }
-
-
 
 //         lave en metode der iterere gennem dailyOverviewFile filen og sletter child med cpr nummer som matcher.
 
+    private static void removeRecord(String filepath, String removeTerm, int positionOfTerm, String delimiter) {
 
+        int position = positionOfTerm -1; // gør metoden mere brugervenlig ved at fjerne en fra positionTerm da den ellers starter på 0
+
+        String tempFile = "temp.txt"; // deletes in the record requires you to make a new temperary file and replace it with the old file
+        File oldFile = new File(filepath); // so these 2 files are needed to "replace" old file with new
+        File newFile = new File(tempFile); // we are going to write evrything in the new file we want to keep and give the illution
+                                            // that we are deleting something from the old file
+
+        String currentLine; // the current line we are reading
+        String data[]; // Splitting up a line into multiple fields
+
+        try{
+            FileWriter fw = new FileWriter(tempFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            FileReader fr =new FileReader(filepath);
+            BufferedReader br = new BufferedReader(fr);
+
+            while((currentLine = br.readLine()) != null){
+               data = currentLine.split(","); // måden linjer bliver splittet op på
+               if(!(data[position].equalsIgnoreCase(removeTerm))){   // if the remove term is equal to the field it gets "deleted" not moved to new file
+                   pw.println(currentLine);
+               }
+            }
+// close the 5 objeckts der bliver created for at spare på memory
+            pw.flush();
+            pw.close();
+            fr.close();
+            br.close();
+            bw.close();
+            fw.close();
+
+            // fileswap
+            oldFile.delete(); // sletter den oprindelige fil
+            File dump = new File(filepath); // opretter den nye fil og kalder den dump
+            newFile.renameTo(dump);
+        }
+        catch(Exception e)
+        {
+        }
+    }
 
 
     @Override
