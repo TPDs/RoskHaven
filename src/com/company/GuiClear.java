@@ -6,11 +6,11 @@ public class GuiClear {
 
         Gui.ansatliste.setBounds(10, 10, 10, 10); //dropDown menu der laver en glitch med andre boxe
         Gui.ansatliste.setVisible(false);
-        Gui.frame.remove(Gui.ansatliste);
+        //Gui.frame.remove(Gui.ansatliste);
         Gui.l_name.setVisible(false);
         Gui.l_password.setVisible(false);
         Gui.button.setVisible(false);
-        Gui.frame.remove(Gui.button);
+        //Gui.frame.remove(Gui.button);
         Gui.t_name.setVisible(false);
         Gui.t_password.setVisible(false);
         Gui.l_name.setVisible(false);
@@ -112,6 +112,7 @@ public class GuiClear {
         GuiEmployee.logout.setVisible(false);
         GuiEmployee.l_name.setVisible(false);
         GuiEmployee.logo.setVisible(false);
+
     }
 
     public void guiDailyManagerClear(){
@@ -162,6 +163,19 @@ public class GuiClear {
         GuiCheckOutChildConfirm.back2.setVisible(false);
     }
 
+    public void guiLogOut(){
+
+        Gui.l_name.setVisible(true);
+        Gui.l_password.setVisible(true);
+        Gui.button.setVisible(true);
+        Gui.t_name.setVisible(true);
+        Gui.t_password.setVisible(true);
+        Gui.l_name.setVisible(true);
+        Gui.logo.setVisible(true);
+        Gui.button.setVisible(true);
+        Gui.ansatliste.setBounds(105, 256, 100, 25);
+        Gui.ansatliste.setVisible(true);
+    }
 
 
 }

@@ -82,7 +82,7 @@ public class GuiBoss extends Gui implements ActionListener {
             user=null;
             password=null;
             clean.guiBossClear();
-            gui();
+            clean.guiLogOut();
         }
 
 

@@ -75,7 +75,7 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
             user=null;
             password=null;
             clean.guiDailyManagerClear();
-            gui();
+            clean.guiLogOut();
 
         } else if(s == "Liste over børn"){
             clean.guiDailyManagerClear();

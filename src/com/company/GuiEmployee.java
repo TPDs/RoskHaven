@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 public class GuiEmployee extends GuiBoss implements ActionListener {
 
@@ -79,7 +80,8 @@ public class GuiEmployee extends GuiBoss implements ActionListener {
             user=null;
             password=null;
             clean.guiEmployeeClear();
-            gui();
+            clean.guiLogOut();
+
         }
 
     }
