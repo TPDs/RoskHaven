@@ -3,25 +3,90 @@ package com.company;
 import java.io.*;
 import java.util.ArrayList;
 
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
-public class KindergartenOverview {
+//
+//
+//This class is made Singleton, because there should only ever be one instance of it. It contains
+//all lists and methods with connectivity to all of the program's core functionalities.
+//
+//
+public class Kindergarten {
+    private static Kindergarten instance = null;
+
     private ArrayList<Child> childrenInGarten;
     private ArrayList<Employee> employeesInGarten;
     private ArrayList<DailyManager> dailyManagersInGarten;
     private ArrayList<Child> childrenInQueue;
     //private ArrayList<Child> listOfShame;
 
+    private Boss boss;
+
     private ArrayList<Worksheet> worksheetList;
 
-    public KindergartenOverview(){
-        childrenInGarten = InitiateArray.getInstance().childrenInGarten;
-        employeesInGarten = InitiateArray.getInstance().employeeList;
-        dailyManagersInGarten = InitiateArray.getInstance().dailyManagerList;
-        childrenInQueue = InitiateArray.getInstance().childrenInQueue;
-        worksheetList = InitiateArray.getInstance().worksheetList;
-
+    private Kindergarten(){
+        //Empty constructor
     }
+
+    public static Kindergarten getInstance(){
+        if(instance == null){
+            instance = new Kindergarten();
+            instance.makeAttributeArrays();
+        }
+        return instance;
+    }
+
+    public void makeAttributeArrays(){
+        boss = ReadFileUtil.readBoss();
+
+        childrenInGarten = findChildrenInGarten(ReadFileUtil.readChildList());
+        childrenInQueue = findChildrenInQueue(ReadFileUtil.readChildList());
+
+        employeesInGarten = ReadFileUtil.readEmployeeList();
+        dailyManagersInGarten = ReadFileUtil.readDailyManagerList();
+
+        worksheetList = ReadFileUtil.readWorksheet();
+    }
+
+    public ArrayList<Child> findChildrenInGarten(ArrayList<Child> allChildren){
+        ArrayList<Child> childrenInGarten = new ArrayList<Child>();
+        for(int i=0; i<allChildren.size(); i++){
+            if(allChildren.get(i).getStatus()==ChildStatus.ACTIVE){
+                childrenInGarten.add(allChildren.get(i));
+            }
+        }
+        return childrenInGarten;
+    }
+
+    public ArrayList<Child> findChildrenInQueue(ArrayList<Child> allChildren){
+        ArrayList<Child> childrenInQueue = new ArrayList<Child>();
+        for(int i=0; i<allChildren.size(); i++){
+            if(allChildren.get(i).getStatus()==ChildStatus.QUEUE){
+                childrenInQueue.add(allChildren.get(i));
+            }
+        }
+        return childrenInQueue;
+    }
+
+
+
+    public ArrayList<Child> getChildrenInGarten() {
+        return childrenInGarten;
+    }
+
+    public ArrayList<Employee> getEmployeesInGarten() {
+        return employeesInGarten;
+    }
+
+    public ArrayList<DailyManager> getDailyManagersInGarten() {
+        return dailyManagersInGarten;
+    }
+
+    public Boss getBoss() {
+        return boss;
+    }
+
+
+
 
     //this method is to add a new child to the queue list
     //adds a new child to queue list and then updates the file with the new info

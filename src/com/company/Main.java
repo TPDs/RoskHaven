@@ -7,7 +7,6 @@ public class Main {
     // husk at slette IOException når dummy data bliver slettet.
     public static void main(String[] args) throws IOException {
         LogIn login = new LogIn();
-        KindergartenOverview ko = new KindergartenOverview();
         Gui gui = new Gui();
         gui.gui();
 
@@ -19,9 +18,9 @@ public class Main {
         Child child1 = new Child("Hansi","032332-2451","hun spiser ikke kartofler om onsdagen",ChildStatus.ACTIVE);
         Child child2 = new Child("Gurgemau","031231-2453","hun spiser ikke kartofler om onsdagen",ChildStatus.ACTIVE);
 
-        InitiateArray.getInstance().childrenInGarten.add(child);
-        InitiateArray.getInstance().childrenInGarten.add(child1);
-        InitiateArray.getInstance().childrenInGarten.add(child2);
+        Kindergarten.getInstance().getChildrenInGarten().add(child);
+        Kindergarten.getInstance().getChildrenInGarten().add(child1);
+        Kindergarten.getInstance().getChildrenInGarten().add(child2);
 
         ArrayList<Employee> worker = new ArrayList<>();
         worker.add(new Employee("Søren", "020202","1234" ));

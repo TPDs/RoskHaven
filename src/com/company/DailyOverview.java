@@ -1,14 +1,9 @@
 package com.company;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class DailyOverview implements ClassesToStoreInFiles{
     private ArrayList<ChildCheckInOut> childrenInGartenNow;
@@ -56,7 +51,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
             }
         }
 
-        ArrayList<Child> childrenInGarten = InitiateArray.getInstance().childrenInGarten;
+        ArrayList<Child> childrenInGarten = Kindergarten.getInstance().getChildrenInGarten();
         if(!flag){
             for(int i=0; i<childrenInGarten.size();i++){
                 if (childrenInGarten.get(i).getCPR().equals(CPR)){
