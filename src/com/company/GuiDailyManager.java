@@ -29,8 +29,8 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
 
         worksheet.setBounds(70,220,120,20);
         dailyOverview.setBounds(200,220,120,20);
-        check_kid.setBounds(70,260,120,20);
-        logout.setBounds(220,260,75,20);
+        check_kid.setBounds(70,250,120,20);
+        logout.setBounds(220,250,75,20);
 
         frame.getContentPane().add(worksheet, BorderLayout.CENTER);
         frame.getContentPane().add(dailyOverview,BorderLayout.CENTER);
@@ -77,7 +77,7 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
             clean.guiDailyManagerClear();
             clean.guiLogOut();
 
-        } else if(s == "Liste over børn"){
+        } else if(s == "Tjek barn"){
             clean.guiDailyManagerClear();
 
             GuiCheckChild checkChild = new GuiCheckChild();

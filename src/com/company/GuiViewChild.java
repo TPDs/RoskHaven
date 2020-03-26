@@ -61,7 +61,7 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
         scroll = new JScrollPane(child_info);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.setBounds(20,50,335,170);
+        scroll.setBounds(20,50,331,170);
 
 
         frame.add(topTekst);
