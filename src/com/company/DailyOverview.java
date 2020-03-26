@@ -1,9 +1,6 @@
 package com.company;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -191,18 +188,34 @@ public class DailyOverview implements ClassesToStoreInFiles{
     private void childCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+        Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
         for(int i = 0; i< childrenInGartenNow.size(); i++){
             if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
-
-                Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
-
                 String theStringINeed="";
-                while (sc.hasNextLine())
-                {
-                    if(sc.next().equals(CPR)){
-                         theStringINeed=sc.next();
+
+                File file = new File("src/resourser/DailyOverviewFile");
+                try {
+                    // Create a new Scanner object which will read the data
+                    // from the file passed in. To check if there are more
+                    // line to read from it we check by calling the
+                    // scanner.hasNextLine() method. We then read line one
+                    // by one till all lines is read.
+                    Scanner scanner = new Scanner(file);
+                    while (scanner.hasNextLine()) {
+                        String line = scanner.nextLine();
+                        System.out.println(line);
                     }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
+
+//                while (sc.hasNextLine()) {
+//
+//                    if(sc.nextLine().contains(CPR)){
+//
+//                         theStringINeed=sc.nextLine();
+//                    }
+//                }
 
                 String childCheckOutToFile = childrenInGartenNow.get(i).getChild().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
                 childOutOfGartenTodayfw.write(childCheckOutToFile);
@@ -264,30 +277,41 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
     private void removeChildFromDailyOverviewFile(String CPR)throws IOException{
 
-        // lave en metode der iterere gennem dailyOverviewFile filen og sletter child med cpr nummer som matcher.
-        Scanner data = new Scanner("src/resourser/DailyOverviewFile");
-        if(data.hasNextLine()){
-            while(data.hasNextLine()){
-                if(data.nextLine().contains(CPR)){
 
-                    data.nextLine();
-                }
-                else{
-                    // denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
-
-                    FileWriter tempdailyOverviewfw = new FileWriter(new File("src/resourser/TempDailyOverviewFile"));
-                    String tempStringToFile = data.nextLine() + "\n";
-                    tempdailyOverviewfw.write(tempStringToFile);
-                    tempdailyOverviewfw.close();
-                }
+        Scanner sc = new Scanner("src/resourser/DailyOverviewFile");
+        while(sc.hasNextLine()){
+            String tempString = sc.nextLine();
+            System.out.println(tempString);
+            if(tempString.contains(CPR)){
+                System.out.println("This is the file im looking for !");
             }
-            // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
-
-            Path source = Paths.get("src/resourser/TempDailyOverviewFile");
-            Path newdir = Paths.get("src/resourser/DailyOverviewFile");
-            Files.move(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
         }
-        new PrintWriter("src/resourser/TempDailyOverviewFile").close();
+
+
+        // lave en metode der iterere gennem dailyOverviewFile filen og sletter child med cpr nummer som matcher.
+//        Scanner data = new Scanner("src/resourser/DailyOverviewFile");
+//        if(data.hasNextLine()){
+//            while(data.hasNextLine()){
+//                if(data.nextLine().contains(CPR)){
+//
+//                    data.nextLine();
+//                }
+//                else{
+//                    // denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
+//
+//                    FileWriter tempdailyOverviewfw = new FileWriter(new File("src/resourser/TempDailyOverviewFile"));
+//                    String tempStringToFile = data.nextLine() + "\n";
+//                    tempdailyOverviewfw.write(tempStringToFile);
+//                    tempdailyOverviewfw.close();
+//                }
+//            }
+//            // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
+//
+//            Path source = Paths.get("src/resourser/TempDailyOverviewFile");
+//            Path newdir = Paths.get("src/resourser/DailyOverviewFile");
+//            Files.move(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
+//        }
+//        new PrintWriter("src/resourser/TempDailyOverviewFile").close();
 
     }
 

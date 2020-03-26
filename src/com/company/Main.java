@@ -40,7 +40,8 @@ public class Main {
         System.out.println(worker.get(2).getId());
         System.out.println(dailyOverview.showDailyOverview());
 
-        System.out.println();
+
+        dailyOverview.childCheckOut("031231-2453");
     }
 }
 
