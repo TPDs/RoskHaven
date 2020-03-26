@@ -69,10 +69,20 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
 
 
         } else if(s =="Tilbage") {
-            clean.guiWorksheetWeek();
-            Gui.logo.setVisible(true);
-            GuiBoss bigboss = new GuiBoss();
-            bigboss.GuiBoss();
+            if(ansatliste.getSelectedItem() == "Daglig leder"){
+                clean.guiWorksheetWeek();
+                Gui.logo.setVisible(true);
+
+                GuiDailyManager dailyManager = new GuiDailyManager();
+                dailyManager.guiDailyManager();
+
+            } else if(ansatliste.getSelectedItem() == "Boss"){
+                clean.guiWorksheetWeek();
+                Gui.logo.setVisible(true);
+
+                GuiBoss bigboss = new GuiBoss();
+                bigboss.GuiBoss();
+            }
         }
     }
 
