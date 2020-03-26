@@ -86,6 +86,23 @@ public class KindergartenOverview {
             }
         }
     }
+
+
+
+    //Creates a new worksheet for a month and year of the user's choice.
+    public void createNewWorksheet(int year, int month){
+        //check whether the worksheet for the desired month already exists.
+        String newID = "Y" + year + "M" + month;
+        boolean flag = false;
+        for(int i=0; i<worksheetList.size(); i++){
+            if(worksheetList.get(i).getWorkSheetID().equals(newID)){
+                flag = true;
+                break;
+            }
+        }
+
+        if(!flag){
+            worksheetList.add(new Worksheet(year, month));
+        }
+    }
 }
-
-

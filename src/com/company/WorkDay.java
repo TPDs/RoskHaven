@@ -22,11 +22,15 @@ public class WorkDay {
         return workHours;
     }
 
-
+    public void setDailyManagerScheduled(DailyManager dailyManagerScheduled) {
+        this.dailyManagerScheduled = dailyManagerScheduled;
+    }
 
 
     //Ideally this is only called on the day (or maybe the day before). That way it's ensured that all scheduled employees are added automatically.
-    //However, there are modification methods added to thet DailyOverview-class to changes to plans.
+    //However, there are modification methods added to the DailyOverview-class to changes to plans.
+
+    //The DailyOverview-class handles stuff that is relavant on a day-to-day basis, i. e. hours worked by employees and children in the kindergarten right now.
     public void makeDailyOverview(){
         dailyOverview = new DailyOverview(employeesScheduled, dailyManagerScheduled);
     }
@@ -56,9 +60,7 @@ public class WorkDay {
         }
     }
 
-    public void setDailyManagerScheduled(DailyManager dailyManagerScheduled) {
-        this.dailyManagerScheduled = dailyManagerScheduled;
-    }
+
 
 
 

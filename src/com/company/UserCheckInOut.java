@@ -3,7 +3,7 @@ package com.company;
 import java.time.LocalDateTime;
 
 public class UserCheckInOut {
-    User user;
+    private User user;
     private String checkInTime;
     private String checkOutTime;
     private int totalTimeCheckedIn;
