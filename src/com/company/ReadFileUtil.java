@@ -16,46 +16,9 @@ import java.util.ArrayList;
 
 public final class ReadFileUtil {
 
-    /*
-    private static InitiateArray instance = null;
-
-    ArrayList<Employee> employeeList;
-    ArrayList<DailyManager> dailyManagerList;
-    Boss boss;
-
-    ArrayList<Child> completeChildList;
-    ArrayList<Child> childrenInGarten;
-    ArrayList<Child> childrenInQueue;
-
-    ArrayList<Worksheet> worksheetList;
-    */
-
     private ReadFileUtil(){
 
     }
-
-
-    /*
-    public static InitiateArray getInstance(){
-        if(instance == null){
-            instance = new InitiateArray();
-            instance.makeAllArrays();
-        }
-        return instance;
-    }
-
-    public void makeAllArrays(){
-        initiateBoss();
-        initiateEmployeeList();
-        initiateDailyManagerList();
-        initiateChildList();
-        initiateChildrenInQueue();
-        initiateChildrenInGarten();
-        initiateWorksheet();
-    }
-    */
-
-
 
     public static Boss readBoss(){
         //dummy boss, needs to be read to make sense.

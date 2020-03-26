@@ -40,6 +40,10 @@ public class Gui implements ActionListener {
         button.addActionListener(te);
         String[] ansat = {"Boss", "Daglig leder", "pædagog"};
 
+        button.setBackground(new Color(59, 89, 182));
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+
         ansatliste = new JComboBox(ansat);
         ansatliste.setSelectedIndex(2);
 
