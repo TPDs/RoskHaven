@@ -24,9 +24,8 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
         String[] guardianArrays = {"Far", "mor", "søs"};
 
         guardian_list = new JComboBox(guardianArrays);
-        guardian_list.addActionListener(te);
         guardian_list.setSelectedIndex(2);
-
+        guardian_list.addActionListener(te);
         g_name = new JLabel("Barn_navn fra cpr"); //rettes til barn navn via cpr
         g_info = new JLabel("Info: ");
 
@@ -38,14 +37,18 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
         edit = new JButton("Ret");
         exit = new JButton("Afslut");
 
+        edit.addActionListener(te);
+        exit.addActionListener(te);
 
-        guardian_list.setBounds(200, 90, 150, 20);
-        g_name.setBounds(140, 40, 150, 20);
-        g_info.setBounds(45, 60, 150, 20);
-        name.setBounds(45,90,100,20);
-        mail.setBounds(45,120,100,20);
-        adresse.setBounds(45,150,100,20);
-        phone.setBounds(45,180,100,20);
+
+        guardian_list.setBounds(160, 90, 190, 20);
+        g_name.setBounds(140, 40, 200, 20);
+        g_info.setBounds(45, 150, 200, 20);
+        name.setBounds(45,180,250,20);
+        mail.setBounds(45,210,250,20);
+        adresse.setBounds(45,240,250,20);
+        phone.setBounds(45,270,250,20);
+
         edit.setBounds(40,320,100,20);
         exit.setBounds(240,320,100,20);
 
@@ -81,13 +84,15 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
 
         }
         else if (guardian_list.getSelectedItem().equals("Far")) {
-            name.setText("");
-            mail.setText("");
-            adresse.setText("");
-            phone.setText("");
+            name.setText("lol tester");
+            mail.setText("Jeg ved det jo ikke");
+            adresse.setText("Google det da ");
+            phone.setText("Bruger ikke phone, men smartphone");
 
 
         }
-
+        else if (s=="Afslut") {
+            System.out.println("Lukker ned");
+        }
     }
 }
