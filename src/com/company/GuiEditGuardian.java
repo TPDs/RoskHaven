@@ -73,8 +73,7 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
             phone.setText("66");
 
 
-        } /*
-        else if (guardian_list.getSelectedItem().equals("søs")){
+        } else if (guardian_list.getSelectedItem().equals("søs")){
             name.setText("Søs er nice");
             mail.setText("Søs love");
             adresse.setText("søsvej 55");
@@ -88,7 +87,7 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
             phone.setText("");
 
 
-        } */
+        }
 
     }
 }
