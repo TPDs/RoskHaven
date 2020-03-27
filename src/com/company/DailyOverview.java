@@ -4,6 +4,7 @@ package com.company;
 //import java.io.File;
 //import java.io.PrintWriter;
 import java.io.*;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -145,7 +146,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         FileWriter childInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile",true);
 
         for(int i = 0; i< childrenInGartenNow.size(); i++){
-            System.out.println("her også ?"+ i + CPR);
+
             if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
                 String childCheckInToFile =  childrenInGartenNow.get(i).getChild().getCPR() + " " + tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
                 childInGartenTodayfw.write(childCheckInToFile);
@@ -176,21 +177,16 @@ public class DailyOverview implements ClassesToStoreInFiles{
     }
 
     // Her skal laves 3 metoder der skriver til en fil med børn, daily manager, samt employee der bliver checket ud.
-    // der skal laves en metode der regner ud hvor mange timer de forskellige employee har været på arbejde
-    // samt tilføjer denne tids information i denne fil også
 
-    // der skal laves metoder der fjerner den valgte persons information/checkin info i dailyOverviewFile når de checker
+    // der skal laves metoder der fjerner den valgte persons information/checkin info i dailyOverviewFile når de
     // checker ud, så listen ikke bliver initialiseret ved fejlopstart igen på den liste over folk der er checket ind
 
     //der skal også tilføjes en dato på de forskellige "checkout" filskrivninger når folk bliver checket ud og tilføjet
     //til filendailyOverviewCheckOutFile så vi kan holde styr på hvilke dato dataen er fra.
 
-
-    // den her metode har jeg fået rodet ved så den skal lige kigges efter for passende
-    // funktionalitet :(
     private void childCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
-        FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+        FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile", true);
         Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
 
         for(int i = 0; i< childrenInGartenNow.size(); i++){
@@ -200,13 +196,13 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 while(sc.hasNextLine()){
                     String theStringINeed=sc.nextLine();
                     if(theStringINeed.contains(childrenInGartenNow.get(i).getChild().getCPR())){
-                       TheRightString = theStringINeed.substring(6,14);
+                       TheRightString = theStringINeed;
                     }
                 }
-                String childCheckOutToFile = childrenInGartenNow.get(i).getChild().getCPR() + " " + TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
+                String childCheckOutToFile = TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
                 childOutOfGartenTodayfw.write(childCheckOutToFile);
                 childOutOfGartenTodayfw.close();
-                removeChildFromDailyOverviewFile(CPR);
+                removeFromDailyOverviewFile(CPR);
 
             }
         }
@@ -261,74 +257,45 @@ public class DailyOverview implements ClassesToStoreInFiles{
     }
 
 
-    private void removeChildFromDailyOverviewFile(String CPR)throws IOException{
+    private void removeFromDailyOverviewFile(String CPR)throws IOException {
         Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+        String LineChecker = "";
+        while (sc.hasNextLine()) {
 
-        while(sc.hasNextLine()){
+            LineChecker = sc.nextLine();
 
-            if(sc.nextLine().contains(CPR)){
-                continue;
+            if (LineChecker.contains(CPR)) {
+
+            } else {
+                // denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
+                FileWriter tempdailyOverviewfw = new FileWriter("src/resourser/TempDailyOverviewFile", true);
+                String tempStringToFile = LineChecker + "\n";
+                tempdailyOverviewfw.write(tempStringToFile);
+                tempdailyOverviewfw.close();
             }
-
-                else{
-// denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
-                    FileWriter tempdailyOverviewfw = new FileWriter(new File("src/resourser/TempDailyOverviewFile"));
-                    String tempStringToFile = sc.nextLine() + "\n";
-                    tempdailyOverviewfw.write(tempStringToFile);
-                    tempdailyOverviewfw.close();
-                    }
-
-                }
-                // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
-
-            }
-
-//         lave en metode der iterere gennem dailyOverviewFile filen og sletter child med cpr nummer som matcher.
-
-    private static void removeRecord(String filepath, String removeTerm, int positionOfTerm, String delimiter) {
-
-        int position = positionOfTerm -1; // gør metoden mere brugervenlig ved at fjerne en fra positionTerm da den ellers starter på 0
-
-        String tempFile = "temp.txt"; // deletes in the record requires you to make a new temperary file and replace it with the old file
-        File oldFile = new File(filepath); // so these 2 files are needed to "replace" old file with new
-        File newFile = new File(tempFile); // we are going to write evrything in the new file we want to keep and give the illution
-                                            // that we are deleting something from the old file
-
-        String currentLine; // the current line we are reading
-        String data[]; // Splitting up a line into multiple fields
-
-        try{
-            FileWriter fw = new FileWriter(tempFile, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw = new PrintWriter(bw);
-
-            FileReader fr =new FileReader(filepath);
-            BufferedReader br = new BufferedReader(fr);
-
-            while((currentLine = br.readLine()) != null){
-               data = currentLine.split(","); // måden linjer bliver splittet op på
-               if(!(data[position].equalsIgnoreCase(removeTerm))){   // if the remove term is equal to the field it gets "deleted" not moved to new file
-                   pw.println(currentLine);
-               }
-            }
-// close the 5 objeckts der bliver created for at spare på memory
-            pw.flush();
-            pw.close();
-            fr.close();
-            br.close();
-            bw.close();
-            fw.close();
-
-            // fileswap
-            oldFile.delete(); // sletter den oprindelige fil
-            File dump = new File(filepath); // opretter den nye fil og kalder den dump
-            newFile.renameTo(dump);
         }
-        catch(Exception e)
-        {
+        // dailyoverwievFilen bliver slettet ved af lave et Write med en tom string til filen uden append.
+        PrintWriter writer = new PrintWriter("src/resourser/DailyOverviewFile");
+        writer.print("");
+        writer.close();
+
+        // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
+        Scanner overridesc = new Scanner(new File("src/resourser/TempDailyOverviewFile"));
+        String overrideText = "";
+        while(overridesc.hasNextLine()){
+            overrideText=overridesc.nextLine();
+            FileWriter tempfw = new FileWriter("src/resourser/DailyOverviewFile",true);
+            String tempString = overrideText + "\n";
+            tempfw.write(tempString);
+            tempfw.close();
+
+            // her slettes indholdet af tempDailyOverviewFile med et tomt string Write så den er parat til næste opgave
+            PrintWriter writer2 = new PrintWriter("src/resourser/TempDailyOverviewFile");
+            writer.print("");
+            writer.close();
+
         }
     }
-
 
     @Override
     public void writeToFile() {
