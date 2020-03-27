@@ -53,7 +53,6 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 break;
             }
         }
-
         ArrayList<Child> childrenInGarten = Kindergarten.getInstance().getChildrenInGarten();
         if(!flag){
             for(int i=0; i<childrenInGarten.size();i++){
@@ -80,6 +79,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         UserCheckInOut ucio = new UserCheckInOut(employee);
         ucio.setCheckInTimeToNow();
         employeesInGartenNow.add(ucio);
+
     }
 
     public void employeeCheckOut(Employee employee){
@@ -160,7 +160,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
-    // mangler muligvis CPR som input ved login og logud men den tager vi når gui ikke virker!: :D
+
     //tilføjer daily manager til dailyoverviewFile
     private void DailyManagerCheckInToDailyOverviewFile(String CPR) throws IOException {
         FileWriter dailyManagerInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile",true);
