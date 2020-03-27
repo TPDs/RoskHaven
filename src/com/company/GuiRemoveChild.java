@@ -25,7 +25,7 @@ public class GuiRemoveChild extends GuiViewChild implements ActionListener {
         confirmationText1 = new JLabel("Er du sikker på, at " + barn_cpr);
         confirmationText2 = new JLabel(" skal blive fjernet fra børnehaven?");
 
-        back = new JButton("Tilbage");
+        back = new JButton("Fortryd");
         confirm = new JButton("Bekræft");
 
         confirmationText1.setBounds(110,150,300,20);
@@ -53,7 +53,7 @@ public class GuiRemoveChild extends GuiViewChild implements ActionListener {
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
 
-        if (s == "Tilbage") {
+        if (s == "Fortryd") {
             clean.guiRemoveChild();
 
             GuiBoss bigboss = new GuiBoss();
