@@ -132,12 +132,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
 
     // Her er 3 metoder der skriver til en fil med børn, daily manager, samt employee der bliver checket ind.
-    // der skal laves en metode der regner ud hvor mange timer de forskellige employee har været på arbejde
-    // samt tilføjer denne tids information i en anden fil
+    // tilføjer tids information på check in og check ud
 
-
-    // ser ud somom den skriver fra første linje hver gang så der skal laves en rettelse så den først starter med at skrive
-    // når der er en tom linje
     private void childCheckInToDailyOverviewFile(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter childInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile",true);
@@ -154,7 +150,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
     private void EmployeesCheckInToDailyoverviewFile(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
-        FileWriter employeeInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
+        FileWriter employeeInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile",true);
         for(int i = 0; i< employeesInGartenNow.size(); i++){
             if(employeesInGartenNow.get(i).getUser().getCPR().equals(CPR)){
                 String employeeWriteToCheckInFile = employeesInGartenNow.get(i).getUser().getCPR() + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
@@ -163,15 +159,19 @@ public class DailyOverview implements ClassesToStoreInFiles{
             }
         }
     }
+
     // mangler muligvis CPR som input ved login og logud men den tager vi når gui ikke virker!: :D
     //tilføjer daily manager til dailyoverviewFile
     private void DailyManagerCheckInToDailyOverviewFile(String CPR) throws IOException {
-        FileWriter dailyManagerInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
+        FileWriter dailyManagerInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile",true);
         LocalDateTime tempDateTime = LocalDateTime.now();
-        String dailyManagerCheckInToFile = dailyManagerInGartenNow.getUser().getCPR()+" "+ tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
-        dailyManagerInGartenTodayfw.write(dailyManagerCheckInToFile);
-        dailyManagerInGartenTodayfw.close();
-
+        for(int i=0;i<Kindergarten.getInstance().getDailyManagersInGarten().size();i++){
+            if(Kindergarten.getInstance().getDailyManagersInGarten().get(i).getCPR().equals(CPR)){
+                String dailyManagerCheckInToFile = dailyManagerInGartenNow.getUser().getCPR()+" "+ tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
+                dailyManagerInGartenTodayfw.write(dailyManagerCheckInToFile);
+                dailyManagerInGartenTodayfw.close();
+            }
+        }
     }
 
     // Her skal laves 3 metoder der skriver til en fil med børn, daily manager, samt employee der bliver checket ud.
@@ -208,7 +208,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
     private void EmployeesCheckOutOfDailyoverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
-        FileWriter employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+        FileWriter employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true);
         for(int i = 0; i< employeesInGartenNow.size(); i++){
             if(employeesInGartenNow.get(i).getUser().getCPR().equals(CPR)){
 
@@ -233,7 +233,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
     private void DailyManagerCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
-        FileWriter dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+        FileWriter dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true );
         Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
 
         String theStringINeed="";
