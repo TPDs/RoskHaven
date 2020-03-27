@@ -113,21 +113,25 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
                 boss.GuiBoss();
             }
         } else if (s == "Opdater Barn") {
+            barn_cpr = c_cpr.getText();
             clean.guiViewChild();
 
             GuiEditChild editChild = new GuiEditChild();
             editChild.guiEditChild();
         } else if(s == "Opdater Værge"){
+            barn_cpr = c_cpr.getText();
             clean.guiViewChild();
 
             GuiEditGuardian editGuardian = new GuiEditGuardian();
             editGuardian.guiEditGuardian();
         } else if(s == "Opret Værge"){
+            barn_cpr = c_cpr.getText();
             clean.guiViewChild();
 
             GuiAddGuardian addGuardian = new GuiAddGuardian();
             addGuardian.guiAddGuardian();
         } else if(s == "Fjern Barn"){
+            barn_cpr = c_cpr.getText();
             clean.guiViewChild();
 
             GuiRemoveChild removeChild = new GuiRemoveChild();

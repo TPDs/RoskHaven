@@ -179,5 +179,12 @@ public class GuiClear {
         Gui.ansatliste.setVisible(true);
     }
 
+    public void guiRemoveChild(){
+        GuiRemoveChild.confirmationText1.setVisible(false);
+        GuiRemoveChild.confirmationText2.setVisible(false);
+        GuiRemoveChild.confirm.setVisible(false);
+        GuiRemoveChild.back.setVisible(false);
+    }
+
 
 }
