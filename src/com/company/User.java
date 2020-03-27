@@ -19,7 +19,7 @@ public class User implements ClassesToStoreInFiles{
         return password.equals(this.password);
     }
 
-    public String getId() {
+    public String getCPR() {
         return CPR;
     }
 

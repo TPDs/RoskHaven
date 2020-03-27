@@ -35,7 +35,7 @@ public class Main {
 
         System.out.println(child2.getCPR());
         System.out.println(child2.getStatus());
-        System.out.println(worker.get(2).getId());
+        System.out.println(worker.get(2).getCPR());
         System.out.println(dailyOverview.showDailyOverview());
 
 

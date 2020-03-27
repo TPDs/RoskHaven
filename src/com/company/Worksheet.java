@@ -67,7 +67,7 @@ public class Worksheet implements ClassesToStoreInFiles {
     //Assign the dailymanager to a specific day (they will be in charge of the whole day). Each day will be a day in the month (1 => 1st of x)
     public void addDailyManagerToSchedule(String DMid, int dayOfMonth){
         for(int i=0; i<completeListOfDailyManagers.size(); i++){
-            if(completeListOfDailyManagers.get(i).getId().equals(DMid)){
+            if(completeListOfDailyManagers.get(i).getCPR().equals(DMid)){
                 //Days are one-off (the 1st in each month will be in the 0th position).
                 workDays.get(dayOfMonth-1).setDailyManagerScheduled(completeListOfDailyManagers.get(i));
             }
@@ -82,7 +82,7 @@ public class Worksheet implements ClassesToStoreInFiles {
     //Adds employee to a whole day of work. A work day is made of the hours from 7:00-17:00, which each gets an index in the arraylist (0 being 7:00-8:00, 1 is 8:00-9:00 and so on).
     public void addWorkerToSchedule(String empID, int dayOfMonth){
         for(int i=0; i<completeListOfEmployees.size(); i++){
-            if(completeListOfEmployees.get(i).getId().equals(empID)){
+            if(completeListOfEmployees.get(i).getCPR().equals(empID)){
                 for(int j=0; j<10; j++){
                     workDays.get(dayOfMonth-1).getWorkHours().get(j).getEmployeeAtWork().add(completeListOfEmployees.get(i));
                 }
@@ -94,7 +94,7 @@ public class Worksheet implements ClassesToStoreInFiles {
     //Adds an employee to a specific hour - the int given should be the start of the hour and the following 60 minutes.
     public void addWorkerToSchedule(String empID, int dayOfMonth, int hour){
         for(int i=0; i<completeListOfEmployees.size(); i++){
-            if(completeListOfEmployees.get(i).getId().equals(empID)){
+            if(completeListOfEmployees.get(i).getCPR().equals(empID)){
                 workDays.get(dayOfMonth).getWorkHours().get(hour-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
             }
         }
@@ -103,7 +103,7 @@ public class Worksheet implements ClassesToStoreInFiles {
     //Adds employee to a range of hours in a specific workday.
     public void addWorkerToSchedule(String empID, int dayOfMonth, int startHour, int endHour){
         for(int i=0; i<completeListOfEmployees.size(); i++){
-            if(completeListOfEmployees.get(i).getId().equals(empID)){
+            if(completeListOfEmployees.get(i).getCPR().equals(empID)){
                 for(int j=startHour; j<endHour; j++){
                     workDays.get(dayOfMonth).getWorkHours().get(j-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
                 }

@@ -4,12 +4,9 @@ package com.company;
 //import java.io.File;
 //import java.io.PrintWriter;
 import java.io.*;
-import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class DailyOverview implements ClassesToStoreInFiles{
     private ArrayList<ChildCheckInOut> childrenInGartenNow;
@@ -87,7 +84,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
     public void employeeCheckOut(Employee employee){
         for(int i = 0; i< employeesInGartenNow.size(); i++){
-            if(employeesInGartenNow.get(i).getUser().getId().equals(employee.getId())){
+            if(employeesInGartenNow.get(i).getUser().getCPR().equals(employee.getCPR())){
                 employeesInGartenNow.get(i).setCheckOutTimeToNow();
                 employeesInGartenNow.get(i).calcTotalTimeCheckedIn();
                 employeeCheckedOut.add(employeesInGartenNow.get(i));
@@ -155,25 +152,26 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
-    private void EmployeesCheckInToDailyoverviewFile(String ID) throws IOException {
+    private void EmployeesCheckInToDailyoverviewFile(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter employeeInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
         for(int i = 0; i< employeesInGartenNow.size(); i++){
-            if(employeesInGartenNow.get(i).getUser().getId().equals(ID)){
-                String employeeWriteToCheckInFile = employeesInGartenNow.get(i).getUser().getId() + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
+            if(employeesInGartenNow.get(i).getUser().getCPR().equals(CPR)){
+                String employeeWriteToCheckInFile = employeesInGartenNow.get(i).getUser().getCPR() + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
                 employeeInGartenTodayfw.write(employeeWriteToCheckInFile);
                 employeeInGartenTodayfw.close();
             }
         }
     }
-
+    // mangler muligvis CPR som input ved login og logud men den tager vi når gui ikke virker!: :D
     //tilføjer daily manager til dailyoverviewFile
-    private void DailyManagerCheckInToDailyOverviewFile() throws IOException {
+    private void DailyManagerCheckInToDailyOverviewFile(String CPR) throws IOException {
         FileWriter dailyManagerInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile");
         LocalDateTime tempDateTime = LocalDateTime.now();
-        String dailyManagerCheckInToFile = dailyManagerInGartenNow.getUser().getId()+" "+ tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
+        String dailyManagerCheckInToFile = dailyManagerInGartenNow.getUser().getCPR()+" "+ tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
         dailyManagerInGartenTodayfw.write(dailyManagerCheckInToFile);
         dailyManagerInGartenTodayfw.close();
+
     }
 
     // Her skal laves 3 metoder der skriver til en fil med børn, daily manager, samt employee der bliver checket ud.
@@ -208,31 +206,32 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
-    private void EmployeesCheckOutOfDailyoverview(String ID) throws IOException {
+    private void EmployeesCheckOutOfDailyoverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
         for(int i = 0; i< employeesInGartenNow.size(); i++){
-            if(employeesInGartenNow.get(i).getUser().getId().equals(ID)){
+            if(employeesInGartenNow.get(i).getUser().getCPR().equals(CPR)){
 
                 Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
 
                 String theStringINeed="";
                 while (sc.hasNextLine())
                 {
-                    if(sc.next().equals(ID)){
+                    if(sc.next().equals(CPR)){
                         theStringINeed=sc.next();
                     }
                 }
 
-                String employeeCheckOutToFile = employeesInGartenNow.get(i).getUser().getId() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
+                String employeeCheckOutToFile = employeesInGartenNow.get(i).getUser().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
                 employeeOutOfGartenTodayfw.write(employeeCheckOutToFile);
                 employeeOutOfGartenTodayfw.close();
+                removeFromDailyOverviewFile(CPR);
 
             }
         }
     }
 
-    private void DailyManagerCheckOutOfDailyOverview(String ID) throws IOException {
+    private void DailyManagerCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
         Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
@@ -240,12 +239,12 @@ public class DailyOverview implements ClassesToStoreInFiles{
         String theStringINeed="";
         while (sc.hasNextLine())
         {
-            if(sc.next().equals(ID)){
+            if(sc.next().equals(CPR)){
                 theStringINeed=sc.next();
             }
         }
 
-        String dailyManagerCheckOutToFile = dailyManagerInGartenNow.getUser().getId() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
+        String dailyManagerCheckOutToFile = dailyManagerInGartenNow.getUser().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
         dailyManagerOutOfGartenTodayfw.write(dailyManagerCheckOutToFile);
         dailyManagerOutOfGartenTodayfw.close();
 
