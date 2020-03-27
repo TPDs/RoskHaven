@@ -185,6 +185,20 @@ public class GuiClear {
         GuiRemoveChild.confirm.setVisible(false);
         GuiRemoveChild.back.setVisible(false);
     }
+    public void guiRemoveEditChild(){
+
+
+        GuiEditChild.ce_name.setVisible(false);
+        GuiEditChild.ce_cpr.setVisible(false);
+        GuiEditChild.ce_note_lable.setVisible(false);
+        GuiEditChild.ce_name_field.setVisible(false);
+        GuiEditChild.ce_cpr_field.setVisible(false);
+        GuiEditChild.ce_note.setVisible(false);
+        GuiEditChild.ce_ok.setVisible(false);
+        GuiEditChild.ce_regret.setVisible(false);
+
+
+    }
 
 
 }
