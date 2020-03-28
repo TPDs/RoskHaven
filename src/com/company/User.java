@@ -51,4 +51,13 @@ public class User implements ClassesToStoreInFiles{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", CPR='" + CPR + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

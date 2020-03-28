@@ -26,9 +26,11 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
     public DailyOverview(ArrayList<Employee> employeesScheduled, DailyManager dailyManagerScheduled){
         childrenInGartenNow = new ArrayList<ChildCheckInOut>();
+        childCheckedOut = new ArrayList<ChildCheckInOut>();
 
         this.employeesScheduled = employeesScheduled;
         employeesInGartenNow = new ArrayList<UserCheckInOut>();
+        employeeCheckedOut = new ArrayList<UserCheckInOut>();
 
         this.dailyManagerScheduled = dailyManagerScheduled;
         //dailyManagerInGartenNow = new UserCheckInOut(null);
@@ -131,14 +133,14 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 break;
             }
         }
-
         ArrayList<Employee> empInGarten = Kindergarten.getInstance().getEmployeesInGarten();
         if(!flag){
+
             for(int i=0; i<empInGarten.size(); i++){
                 if(empInGarten.get(i).getCPR().equals(CPR)){
                     UserCheckInOut ucio = new UserCheckInOut(empInGarten.get(i));
                     employeesInGartenNow.add(ucio);
-                    employeesCheckInToDailyoverviewFile(CPR);
+                    employeesCheckInToDailyoverviewFile(empInGarten.get(i).getCPR());
                     break;
                 }
             }
@@ -164,13 +166,12 @@ public class DailyOverview implements ClassesToStoreInFiles{
                     UserCheckInOut ucio = new UserCheckInOut(empInGarten.get(i));
                     ucio.setCustomCheckInTime(hours, minutes);
                     employeesInGartenNow.add(ucio);
-                    employeesCheckInToDailyoverviewFile(CPR);
+                    employeesCheckInToDailyoverviewFile(empInGarten.get(i).getCPR());
                     break;
                 }
             }
         }
     }
-
 
 
     //Checks out with current time
@@ -350,8 +351,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 String theStringINeed="";
                 while (sc.hasNextLine())
                 {
-                    if(sc.next().equals(CPR)){
-                        theStringINeed=sc.next();
+                    if(theStringINeed.contains(CPR)){
+                        theStringINeed=sc.nextLine();
                     }
                 }
 
@@ -395,10 +396,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
         while (sc.hasNextLine()) {
 
             LineChecker = sc.nextLine();
-
-            if (LineChecker.contains(CPR)) {
-
-            } else {
+// checker om linechecker String ikke indeholder CPR input og gemmer de linjer der ikke container i en temp fil
+            if (!LineChecker.contains(CPR)) {
                 // denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
                 FileWriter tempdailyOverviewfw = new FileWriter("src/resourser/TempDailyOverviewFile", true);
                 String tempStringToFile = LineChecker + "\n";

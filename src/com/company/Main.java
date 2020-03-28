@@ -21,30 +21,34 @@ public class Main {
         Kindergarten.getInstance().getChildrenInGarten().add(child1);
         Kindergarten.getInstance().getChildrenInGarten().add(child2);
 
-        ArrayList<Employee> worker = new ArrayList<>();
-        worker.add(new Employee("Søren", "020202","1234" ));
-        worker.add(new Employee("Ulla", "030303","1234" ));
-        worker.add(new Employee("Faisal", "040404","1234" ));
-        worker.add(new Employee("Kian", "050505","1234" ));
+        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202","1234" ));
+        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Ulla", "030303","1234" ));
+        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Faisal", "040404","1234" ));
+        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Kian", "050505","1234" ));
 
         DailyManager dailyManager = new DailyManager("ManaWar", "2222","4321" );
-        DailyOverview dailyOverview = new DailyOverview(worker,dailyManager);
+        DailyOverview dailyOverview = new DailyOverview(Kindergarten.getInstance().getEmployeesInGarten(),dailyManager);
         dailyOverview.childCheckIn("030503-2451");
         dailyOverview.childCheckIn("032332-2451");
         dailyOverview.childCheckIn("031231-2453");
 
-//        dailyOverview.employeeCheckIn();
-//        dailyOverview.employeeCheckIn();   // employee skal ændres så de tager imod CPR ved checkin
-//        dailyOverview.employeeCheckIn();
-                                            // samme med dailymanager
+       dailyOverview.employeeCheckIn("020202");
+       dailyOverview.employeeCheckIn("030303");
+       dailyOverview.employeeCheckIn("040404");
+       dailyOverview.employeeCheckIn("050505");
+
 
         System.out.println(child2.getCPR());
         System.out.println(child2.getStatus());
-        System.out.println(worker.get(2).getCPR());
-        System.out.println(dailyOverview.showDailyOverview());
 
+        System.out.println(Kindergarten.getInstance().getChildrenInGarten());
+        System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(2).getCPR());
+        System.out.println(Kindergarten.getInstance().getEmployeesInGarten());
 
+        // vi kan pludselig ikke printe en listo over daily overwiev ud det skal kigges på ?
+        // System.out.println(dailyOverview.showDailyOverview());
 
+        dailyOverview.employeeCheckOut("050505");
         dailyOverview.childCheckOut("031231-2453");
     }
 }
