@@ -8,7 +8,7 @@ public class LogInUtil {
 
     }
 
-    public boolean logIn(String id, String password){
+    public static boolean logIn(String id, String password){
         Boss boss = Kindergarten.getInstance().getBoss();
         if(id.equals(boss.getCPR())){
             return boss.login(password);

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.concurrent.TimeUnit;
 
 public class Gui implements ActionListener {
 
@@ -47,17 +48,16 @@ public class Gui implements ActionListener {
         ansatliste = new JComboBox(ansat);
         ansatliste.setSelectedIndex(2);
 
-        l_name = new JLabel("Navn:");
+        l_name = new JLabel("CPR:");
         l_password = new JLabel("Password:");
         t_name = new JTextField("");
-        t_password = new JPasswordField ();
+        t_password = new JPasswordField();
 
         t_name.setBounds(190, 180, 130, 20);
         t_password.setBounds(190, 220, 130, 20);
         ansatliste.setBounds(105, 256, 100, 25);
         l_name.setBounds(105, 180, 150, 20);
         l_password.setBounds(105, 220, 150, 20);
-
 
 
         int x = 95;
@@ -110,6 +110,7 @@ public class Gui implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
+        String pass = new String(t_password.getPassword());
         /*if (s.equals("Login")) {
 
             System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
@@ -129,47 +130,92 @@ public class Gui implements ActionListener {
 
         if (s.equals("Login") && ansatliste.getSelectedItem() == "Boss") {
 
-            System.out.println("Test: " + t_password.getPassword() + " " + t_name.getText()); //ændres til login();
+            System.out.println("Test: " + pass + " " + t_name.getText());
             user = t_name.getText();
-            password = t_password.getPassword();
-            t_name.setText("");
-            t_password.setText("");
-            System.out.println(ansatliste.getSelectedItem().toString());
-            GuiClear clean = new GuiClear();
-            clean.guiClear();
 
-            GuiBoss boss = new GuiBoss(); // ændres til en switch case der gør at vi kan vælge hvem der logger ind via login();
-            boss.GuiBoss();
+            if (LogInUtil.logIn(user, pass)) {
+
+                t_name.setText("");
+                t_password.setText("");
+                System.out.println(ansatliste.getSelectedItem().toString());
+                GuiClear clean = new GuiClear();
+                clean.guiClear();
+                button.setBackground(new Color(59, 89, 182));
+                GuiBoss boss = new GuiBoss();
+                boss.GuiBoss();
+            } else if (!LogInUtil.logIn(user, pass)) {
+                button.setBackground(new Color(182, 0, 32));
+                System.out.println("Forkert");
+                t_name.setText("");
+                t_password.setText("");
+
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
 
 
         } else if (s.equals("Login") && ansatliste.getSelectedItem() == "pædagog") {
 
-            System.out.println("Test: " + t_password.getPassword() + " " + t_name.getText()); //ændres til login();
+            System.out.println("Test: " + pass + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
-            password = t_password.getPassword();
-            t_name.setText("");
-            t_password.setText("");
-            System.out.println(ansatliste.getSelectedItem().toString());
-            GuiClear clean = new GuiClear();
-            clean.guiClear();
 
-            GuiEmployee employee = new GuiEmployee(); // ændres til en switch case der gør at vi kan vælge hvem der logger ind via login();
-            employee.guiEmployee();
+            if (LogInUtil.logIn(user, pass)) {
+
+                t_name.setText("");
+                t_password.setText("");
+                System.out.println(ansatliste.getSelectedItem().toString());
+                GuiClear clean = new GuiClear();
+                clean.guiClear();
+                button.setBackground(new Color(59, 89, 182));
+                GuiEmployee employee = new GuiEmployee();
+                employee.guiEmployee();
+            } else if (!LogInUtil.logIn(user, pass)) {
+                button.setBackground(new Color(182, 0, 32));
+                System.out.println("Forkert");
+                t_name.setText("");
+                t_password.setText("");
 
 
-        }else if (s.equals("Login") && ansatliste.getSelectedItem() == "Daglig leder") {
+                try {
+                    TimeUnit.SECONDS.sleep(1);
 
-            System.out.println("Test: " + t_password.getPassword() + " " + t_name.getText()); //ændres til login();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+
+        } else if (s.equals("Login") && ansatliste.getSelectedItem() == "Daglig leder") {
+
+            System.out.println("Test: " + pass + " " + t_name.getText());
             user = t_name.getText();
-            password = t_password.getPassword();
-            t_name.setText("");
-            t_password.setText("");
-            System.out.println(ansatliste.getSelectedItem().toString());
-            GuiClear clean = new GuiClear();
-            clean.guiClear();
+            if (LogInUtil.logIn(user, pass)) {
 
-            GuiDailyManager dailyManager = new GuiDailyManager(); // ændres til en switch case der gør at vi kan vælge hvem der logger ind via login();
-            dailyManager.guiDailyManager();
+                t_name.setText("");
+                t_password.setText("");
+                System.out.println(ansatliste.getSelectedItem().toString());
+                GuiClear clean = new GuiClear();
+                clean.guiClear();
+                button.setBackground(new Color(59, 89, 182));
+                GuiDailyManager dailyManager = new GuiDailyManager();
+                dailyManager.guiDailyManager();
+            } else if (!LogInUtil.logIn(user, pass)) {
+                button.setBackground(new Color(182, 0, 32));
+                System.out.println("Forkert");
+                t_name.setText("");
+                t_password.setText("");
+
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
 
 
         }

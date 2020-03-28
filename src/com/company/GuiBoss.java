@@ -81,7 +81,7 @@ public class GuiBoss extends Gui implements ActionListener {
             System.out.println("Test: " + s);
             user=null;
             password=null;
-            l_name.setText("Navn: ");
+            l_name.setText("CPR: ");
             clean.guiBossClear();
             clean.guiLogOut();
         }
