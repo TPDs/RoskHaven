@@ -133,7 +133,7 @@ public class Gui implements ActionListener {
             System.out.println("Test: " + pass + " " + t_name.getText());
             user = t_name.getText();
 
-            if (LogInUtil.logIn(user, pass)) {
+            if (LogInUtil.bossLogIn(user, pass)) {
 
                 t_name.setText("");
                 t_password.setText("");
@@ -143,7 +143,7 @@ public class Gui implements ActionListener {
                 button.setBackground(new Color(59, 89, 182));
                 GuiBoss boss = new GuiBoss();
                 boss.GuiBoss();
-            } else if (!LogInUtil.logIn(user, pass)) {
+            } else if (!LogInUtil.bossLogIn(user, pass)) {
                 button.setBackground(new Color(182, 0, 32));
                 System.out.println("Forkert");
                 t_name.setText("");
@@ -163,7 +163,7 @@ public class Gui implements ActionListener {
             System.out.println("Test: " + pass + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
 
-            if (LogInUtil.logIn(user, pass)) {
+            if (LogInUtil.empLogIn(user, pass)) {
 
                 t_name.setText("");
                 t_password.setText("");
@@ -173,7 +173,7 @@ public class Gui implements ActionListener {
                 button.setBackground(new Color(59, 89, 182));
                 GuiEmployee employee = new GuiEmployee();
                 employee.guiEmployee();
-            } else if (!LogInUtil.logIn(user, pass)) {
+            } else if (!LogInUtil.empLogIn(user, pass)) {
                 button.setBackground(new Color(182, 0, 32));
                 System.out.println("Forkert");
                 t_name.setText("");
@@ -193,7 +193,7 @@ public class Gui implements ActionListener {
 
             System.out.println("Test: " + pass + " " + t_name.getText());
             user = t_name.getText();
-            if (LogInUtil.logIn(user, pass)) {
+            if (LogInUtil.dmLogIn(user, pass)) {
 
                 t_name.setText("");
                 t_password.setText("");
@@ -203,7 +203,7 @@ public class Gui implements ActionListener {
                 button.setBackground(new Color(59, 89, 182));
                 GuiDailyManager dailyManager = new GuiDailyManager();
                 dailyManager.guiDailyManager();
-            } else if (!LogInUtil.logIn(user, pass)) {
+            } else if (!LogInUtil.dmLogIn(user, pass)) {
                 button.setBackground(new Color(182, 0, 32));
                 System.out.println("Forkert");
                 t_name.setText("");

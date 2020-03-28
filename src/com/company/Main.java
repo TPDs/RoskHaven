@@ -26,6 +26,7 @@ public class Main {
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Faisal", "040404","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Kian", "050505","1234" ));
 
+
         DailyManager dailyManager = new DailyManager("ManaWar", "2222","4321" );
         DailyOverview dailyOverview = new DailyOverview(Kindergarten.getInstance().getEmployeesInGarten(),dailyManager);
         dailyOverview.childCheckIn("030503-2451");

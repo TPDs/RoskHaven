@@ -78,6 +78,7 @@ public class GuiBoss extends Gui implements ActionListener {
             work.guiWorksheet();
 
         } else if (s.equals("Log ud")) {
+            frame = new JFrame("Roskilde frie børnehave");
             System.out.println("Test: " + s);
             user=null;
             password=null;
