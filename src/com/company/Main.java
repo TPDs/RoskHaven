@@ -10,7 +10,6 @@ public class Main {
         gui.gui();
 
 
-
         // dummy data til test af funktionaliteter i DailyOverview classen
 
         Child child = new Child("Cirkeline","030503-2451","hun spiser ikke kartofler om onsdagen",ChildStatus.ACTIVE);
@@ -26,9 +25,13 @@ public class Main {
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Faisal", "040404","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Kian", "050505","1234" ));
 
+        Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("ManaWar", "2222","43211" ));
+        Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("Søren", "1122","43241" ));
+        Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("Rygesen", "060302-5221","432334" ));
 
-        DailyManager dailyManager = new DailyManager("ManaWar", "2222","4321" );
-        DailyOverview dailyOverview = new DailyOverview(Kindergarten.getInstance().getEmployeesInGarten(),dailyManager);
+        Kindergarten.getInstance().setBoss(new Boss("Trolle", "080592-9992","iddqd"));
+
+        DailyOverview dailyOverview = new DailyOverview(Kindergarten.getInstance().getEmployeesInGarten(),Kindergarten.getInstance().getDailyManagersInGarten().get(0));
         dailyOverview.childCheckIn("030503-2451");
         dailyOverview.childCheckIn("032332-2451");
         dailyOverview.childCheckIn("031231-2453");

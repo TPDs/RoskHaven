@@ -1,8 +1,8 @@
 package com.company;
 
 public class DailyManager extends User {
-    public DailyManager(String name, String id, String password) {
-        super(name, id, password);
+    public DailyManager(String name, String CPR, String password) {
+        super(name, CPR, password);
     }
 }
 
