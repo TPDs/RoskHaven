@@ -20,13 +20,13 @@ public class Main {
         Kindergarten.getInstance().getChildrenInGarten().add(child1);
         Kindergarten.getInstance().getChildrenInGarten().add(child2);
 
-        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202","1234" ));
-        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Ulla", "030303","1234" ));
-        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Faisal", "040404","1234" ));
-        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Kian", "050505","1234" ));
+        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202-7878","1234" ));
+        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Ulla", "030303-7474","1234" ));
+        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Faisal", "040404-0000","1234" ));
+        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Kian", "050505-1111","1234" ));
 
-        Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("ManaWar", "2222","43211" ));
-        Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("Søren", "1122","43241" ));
+        Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("ManaWar", "020302-2817","43211" ));
+        Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("Søren", "201854-8745","43241" ));
         Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("Rygesen", "060302-5221","432334" ));
 
         Kindergarten.getInstance().setBoss(new Boss("Trolle", "080592-9992","iddqd"));
@@ -36,22 +36,23 @@ public class Main {
         dailyOverview.childCheckIn("032332-2451");
         dailyOverview.childCheckIn("031231-2453");
 
-       dailyOverview.employeeCheckIn("020202");
-       dailyOverview.employeeCheckIn("030303");
-       dailyOverview.employeeCheckIn("040404");
-       dailyOverview.employeeCheckIn("050505");
+       dailyOverview.employeeCheckIn("020202-7878");
+       dailyOverview.employeeCheckIn("030303-7474");
+       dailyOverview.employeeCheckIn("040404-0000");
+       dailyOverview.employeeCheckIn("050505-1111");
 
+        dailyOverview.dailyManagerCheckIn("020302-2817");
 
         System.out.println(child2.getCPR());
         System.out.println(child2.getStatus());
 
         System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(2).getCPR());
 
-
         // vi kan pludselig ikke printe en listo over daily overwiev ud det skal kigges på ?
         // System.out.println(dailyOverview.showDailyOverview());
 
-        dailyOverview.employeeCheckOut("050505");
+        dailyOverview.dailyManagerCheckOut();
+        dailyOverview.employeeCheckOut("030303-7474");
         dailyOverview.childCheckOut("031231-2453");
     }
 }

@@ -237,7 +237,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         dailyManagerInGartenNow.setCheckOutTimeToNow();
         dailyManagerInGartenNow.calcTotalTimeCheckedIn();
         dailyManagerCheckedOut = dailyManagerInGartenNow;
-        //dailyManagerCheckOutOfDailyOverview();
+        dailyManagerCheckOutOfDailyOverview(dailyManagerInGartenNow.getUser().getCPR());
         dailyManagerInGartenNow = null;
     }
 
@@ -365,7 +365,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 FileWriter employeeOutOfGartenTodayfw = null;
                 try {
                     employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true);
-                    String employeeCheckOutToFile = employeesInGartenNow.get(i).getUser().getCPR() + " " + TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
+                    String employeeCheckOutToFile = "" + TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
                     employeeOutOfGartenTodayfw.write(employeeCheckOutToFile);
                     employeeOutOfGartenTodayfw.close();
                     removeFromDailyOverviewFile(CPR);
@@ -388,25 +388,26 @@ public class DailyOverview implements ClassesToStoreInFiles{
             e.printStackTrace();
         }
 
-        String theStringINeed="";
-        while (sc.hasNextLine())
-        {
-            if(sc.next().equals(CPR)){
-                theStringINeed=sc.next();
+        String TheRightString="";
+
+        while (sc.hasNextLine()){
+        String theStringINeed=sc.nextLine();
+
+            if(theStringINeed.contains(CPR)){
+                TheRightString=theStringINeed;
             }
         }
 
         FileWriter dailyManagerOutOfGartenTodayfw = null;
         try {
             dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true );
-            String dailyManagerCheckOutToFile = dailyManagerInGartenNow.getUser().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute() +"\n";
+            String dailyManagerCheckOutToFile = TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute() +"\n";
             dailyManagerOutOfGartenTodayfw.write(dailyManagerCheckOutToFile);
             dailyManagerOutOfGartenTodayfw.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 

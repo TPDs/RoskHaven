@@ -67,8 +67,6 @@ public class Kindergarten {
         return childrenInQueue;
     }
 
-
-
     public ArrayList<Child> getChildrenInGarten() {
         return childrenInGarten;
     }
@@ -153,7 +151,6 @@ public class Kindergarten {
             }
         }
     }
-
 
 
     //Creates a new worksheet for a month and year of the user's choice.
