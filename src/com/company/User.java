@@ -23,6 +23,10 @@ public class User implements ClassesToStoreInFiles{
         return CPR;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setId(String id) {
         this.CPR = id;
     }
