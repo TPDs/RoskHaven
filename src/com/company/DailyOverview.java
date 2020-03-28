@@ -1,8 +1,5 @@
 package com.company;
-//import java.io.BufferedReader;
-//import java.io.BufferedWriter;
-//import java.io.File;
-//import java.io.PrintWriter;
+
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -75,6 +72,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
+
+    // disse 4 metoder til check in og ud skal ændres så de tager imod cpr ved check in og ud
     public void employeeCheckIn(Employee employee){
         UserCheckInOut ucio = new UserCheckInOut(employee);
         ucio.setCheckInTimeToNow();

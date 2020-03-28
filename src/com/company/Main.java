@@ -33,10 +33,16 @@ public class Main {
         dailyOverview.childCheckIn("032332-2451");
         dailyOverview.childCheckIn("031231-2453");
 
+//        dailyOverview.employeeCheckIn();
+//        dailyOverview.employeeCheckIn();   // employee skal ændres så de tager imod CPR ved checkin
+//        dailyOverview.employeeCheckIn();
+                                            // samme med dailymanager
+
         System.out.println(child2.getCPR());
         System.out.println(child2.getStatus());
         System.out.println(worker.get(2).getCPR());
         System.out.println(dailyOverview.showDailyOverview());
+
 
 
         dailyOverview.childCheckOut("031231-2453");
