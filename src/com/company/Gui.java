@@ -160,7 +160,6 @@ public class Gui implements ActionListener {
 
         } else if (s.equals("Login") && ansatliste.getSelectedItem() == "pædagog") {
 
-            System.out.println("Test: " + pass + " " + t_name.getText()); //ændres til login();
             user = t_name.getText();
 
             if (LogInUtil.empLogIn(user, pass)) {

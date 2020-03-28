@@ -85,8 +85,10 @@ public class Kindergarten {
         return boss;
     }
 
-
-
+    // denne midlertidige boss setter skal slettes.! husk daniel på det når han glemmer det.!
+    public void setBoss(Boss boss) {
+        this.boss = boss;
+    }
 
     //this method is to add a new child to the queue list
     //adds a new child to queue list and then updates the file with the new info
