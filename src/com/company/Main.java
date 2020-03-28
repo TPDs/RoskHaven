@@ -41,9 +41,8 @@ public class Main {
         System.out.println(child2.getCPR());
         System.out.println(child2.getStatus());
 
-        System.out.println(Kindergarten.getInstance().getChildrenInGarten());
         System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(2).getCPR());
-        System.out.println(Kindergarten.getInstance().getEmployeesInGarten());
+
 
         // vi kan pludselig ikke printe en listo over daily overwiev ud det skal kigges på ?
         // System.out.println(dailyOverview.showDailyOverview());

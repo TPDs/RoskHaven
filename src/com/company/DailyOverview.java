@@ -94,7 +94,6 @@ public class DailyOverview implements ClassesToStoreInFiles{
     }
 
 
-
     //Checks out with current time.
     public void childCheckOut(String CPR) throws IOException {
         for(int i = 0; i< childrenInGartenNow.size(); i++){
@@ -181,6 +180,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 employeesInGartenNow.get(i).setCheckOutTimeToNow();
                 employeesInGartenNow.get(i).calcTotalTimeCheckedIn();
                 employeeCheckedOut.add(employeesInGartenNow.get(i));
+
                 employeesCheckOutOfDailyoverview(CPR);
                 employeesInGartenNow.remove(i);
                 break;
@@ -340,35 +340,53 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
-    private void employeesCheckOutOfDailyoverview(String CPR) throws IOException {
+    private void employeesCheckOutOfDailyoverview(String CPR){
         LocalDateTime tempDateTime = LocalDateTime.now();
-        FileWriter employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true);
+        Scanner sc = null;
+
+        try {
+            sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         for(int i = 0; i< employeesInGartenNow.size(); i++){
             if(employeesInGartenNow.get(i).getUser().getCPR().equals(CPR)){
+                String TheRightString="";
 
-                Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
 
-                String theStringINeed="";
-                while (sc.hasNextLine())
-                {
+                while (sc.hasNextLine()) {
+                    String theStringINeed=sc.nextLine();
                     if(theStringINeed.contains(CPR)){
-                        theStringINeed=sc.nextLine();
+                        TheRightString = theStringINeed;
                     }
                 }
 
-                String employeeCheckOutToFile = employeesInGartenNow.get(i).getUser().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
-                employeeOutOfGartenTodayfw.write(employeeCheckOutToFile);
-                employeeOutOfGartenTodayfw.close();
-                removeFromDailyOverviewFile(CPR);
+                FileWriter employeeOutOfGartenTodayfw = null;
+                try {
+                    employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true);
+                    String employeeCheckOutToFile = employeesInGartenNow.get(i).getUser().getCPR() + " " + TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
+                    employeeOutOfGartenTodayfw.write(employeeCheckOutToFile);
+                    employeeOutOfGartenTodayfw.close();
+                    removeFromDailyOverviewFile(CPR);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         }
     }
 
-    private void dailyManagerCheckOutOfDailyOverview(String CPR) throws IOException {
+    private void dailyManagerCheckOutOfDailyOverview(String CPR){
         LocalDateTime tempDateTime = LocalDateTime.now();
-        FileWriter dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true );
-        Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         String theStringINeed="";
         while (sc.hasNextLine())
@@ -378,9 +396,16 @@ public class DailyOverview implements ClassesToStoreInFiles{
             }
         }
 
-        String dailyManagerCheckOutToFile = dailyManagerInGartenNow.getUser().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute();
-        dailyManagerOutOfGartenTodayfw.write(dailyManagerCheckOutToFile);
-        dailyManagerOutOfGartenTodayfw.close();
+        FileWriter dailyManagerOutOfGartenTodayfw = null;
+        try {
+            dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true );
+            String dailyManagerCheckOutToFile = dailyManagerInGartenNow.getUser().getCPR() + " " + theStringINeed + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute() +"\n";
+            dailyManagerOutOfGartenTodayfw.write(dailyManagerCheckOutToFile);
+            dailyManagerOutOfGartenTodayfw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -390,8 +415,14 @@ public class DailyOverview implements ClassesToStoreInFiles{
     }
 
 
-    private void removeFromDailyOverviewFile(String CPR)throws IOException {
-        Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+    private void removeFromDailyOverviewFile(String CPR) {
+
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+            } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            }
         String LineChecker = "";
         while (sc.hasNextLine()) {
 
@@ -399,32 +430,64 @@ public class DailyOverview implements ClassesToStoreInFiles{
 // checker om linechecker String ikke indeholder CPR input og gemmer de linjer der ikke container i en temp fil
             if (!LineChecker.contains(CPR)) {
                 // denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
-                FileWriter tempdailyOverviewfw = new FileWriter("src/resourser/TempDailyOverviewFile", true);
-                String tempStringToFile = LineChecker + "\n";
-                tempdailyOverviewfw.write(tempStringToFile);
-                tempdailyOverviewfw.close();
+                FileWriter tempdailyOverviewfw = null;
+                try {
+                    tempdailyOverviewfw = new FileWriter("src/resourser/TempDailyOverviewFile", true);
+                    String tempStringToFile = LineChecker + "\n";
+                    tempdailyOverviewfw.write(tempStringToFile);
+                    tempdailyOverviewfw.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         }
         // dailyoverwievFilen bliver slettet ved af lave et Write med en tom string til filen uden append.
-        PrintWriter writer = new PrintWriter("src/resourser/DailyOverviewFile");
-        writer.print("");
-        writer.close();
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter("src/resourser/DailyOverviewFile");
+            writer.print("");
+            writer.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
-        Scanner overridesc = new Scanner(new File("src/resourser/TempDailyOverviewFile"));
+        Scanner overridesc = null;
+        try {
+            overridesc = new Scanner(new File("src/resourser/TempDailyOverviewFile"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         String overrideText = "";
         while(overridesc.hasNextLine()){
             overrideText=overridesc.nextLine();
-            FileWriter tempfw = new FileWriter("src/resourser/DailyOverviewFile",true);
-            String tempString = overrideText + "\n";
-            tempfw.write(tempString);
-            tempfw.close();
+
+
+            FileWriter tempfw = null;
+            try {
+                tempfw = new FileWriter("src/resourser/DailyOverviewFile",true);
+                String tempString = overrideText + "\n";
+                tempfw.write(tempString);
+                tempfw.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             // her slettes indholdet af tempDailyOverviewFile med et tomt string Write så den er parat til næste opgave
-            PrintWriter writer2 = new PrintWriter("src/resourser/TempDailyOverviewFile");
-            writer2.print("");
-            writer2.close();
+            PrintWriter writer2 = null;
+            try {
+                writer2 = new PrintWriter("src/resourser/TempDailyOverviewFile");
+                writer2.print("");
+                writer2.close();
 
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
