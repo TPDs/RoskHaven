@@ -43,10 +43,13 @@ public class DailyOverview implements ClassesToStoreInFiles{
     //
     //
 
+
+    //Check in using current time
     public void childCheckIn(String CPR) throws IOException {
 
         boolean flag = false;
 
+        //Checks whether the child is already checked in.
         for(int h=0;h<childrenInGartenNow.size();h++){
             if(childrenInGartenNow.get(h).getChild().getCPR().equals(CPR)){
                 flag = true;
@@ -65,9 +68,40 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
+
+    //Check in using custom time.
+    public void childCheckIn(String CPR, int hours, int minutes) throws IOException {
+        boolean flag = false;
+
+        //Checks whether the child is already checked in.
+        for(int h=0;h<childrenInGartenNow.size();h++){
+            if(childrenInGartenNow.get(h).getChild().getCPR().equals(CPR)){
+                flag = true;
+                break;
+            }
+        }
+
+        ArrayList<Child> childrenInGarten = Kindergarten.getInstance().getChildrenInGarten();
+        if(!flag){
+            for(int i=0; i<childrenInGarten.size();i++){
+                if (childrenInGarten.get(i).getCPR().equals(CPR)){
+                    ChildCheckInOut ccio = new ChildCheckInOut(childrenInGarten.get(i));
+                    ccio.setCustomCheckInTime(hours, minutes);
+                    childrenInGartenNow.add(ccio);
+                    childCheckInToDailyOverviewFile(CPR);
+                }
+            }
+        }
+    }
+
+
+
+    //Checks out with current time.
     public void childCheckOut(String CPR) throws IOException {
         for(int i = 0; i< childrenInGartenNow.size(); i++){
             if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
+                childrenInGartenNow.get(i).setCheckOutTimeToNow();
+                childCheckedOut.add(childrenInGartenNow.get(i));
                 childCheckOutOfDailyOverview(CPR);
                 childrenInGartenNow.remove(i);
                 break;
@@ -75,45 +109,147 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
-    public void employeeCheckIn(Employee employee){
-        UserCheckInOut ucio = new UserCheckInOut(employee);
-        ucio.setCheckInTimeToNow();
-        employeesInGartenNow.add(ucio);
-
+    //Checks out with custom time.
+    public void childCheckOut(String CPR, int hours, int minutes) throws IOException {
+        for(int i = 0; i< childrenInGartenNow.size(); i++){
+            if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
+                childrenInGartenNow.get(i).setCustomCheckOutTime(hours, minutes);
+                childCheckedOut.add(childrenInGartenNow.get(i));
+                childCheckOutOfDailyOverview(CPR);
+                childrenInGartenNow.remove(i);
+                break;
+            }
+        }
     }
 
-    public void employeeCheckOut(Employee employee){
+
+    //Checks in with current time.
+    public void employeeCheckIn(String CPR) throws IOException {
+        boolean flag = false;
+
+        //Checks whether the employee is already checked in.
+        for(int h=0; h<employeesInGartenNow.size(); h++){
+            if(employeesInGartenNow.get(h).getUser().getCPR().equals(CPR)){
+                flag=true;
+                break;
+            }
+        }
+
+        ArrayList<Employee> empInGarten = Kindergarten.getInstance().getEmployeesInGarten();
+        if(!flag){
+            for(int i=0; i<empInGarten.size(); i++){
+                if(empInGarten.get(i).getCPR().equals(CPR)){
+                    UserCheckInOut ucio = new UserCheckInOut(empInGarten.get(i));
+                    employeesInGartenNow.add(ucio);
+                    employeesCheckInToDailyoverviewFile(CPR);
+                    break;
+                }
+            }
+        }
+    }
+
+    //Checks in with custom time.
+    public void employeeCheckIn(String CPR, int hours, int minutes) throws IOException {
+        boolean flag = false;
+
+        //Checks whether the employee is already checked in.
+        for(int h=0; h<employeesInGartenNow.size(); h++){
+            if(employeesInGartenNow.get(h).getUser().getCPR().equals(CPR)){
+                flag=true;
+                break;
+            }
+        }
+
+        ArrayList<Employee> empInGarten = Kindergarten.getInstance().getEmployeesInGarten();
+        if(!flag){
+            for(int i=0; i<empInGarten.size(); i++){
+                if(empInGarten.get(i).getCPR().equals(CPR)){
+                    UserCheckInOut ucio = new UserCheckInOut(empInGarten.get(i));
+                    ucio.setCustomCheckInTime(hours, minutes);
+                    employeesInGartenNow.add(ucio);
+                    employeesCheckInToDailyoverviewFile(CPR);
+                    break;
+                }
+            }
+        }
+    }
+
+
+
+    //Checks out with current time
+    public void employeeCheckOut(String CPR) throws IOException {
         for(int i = 0; i< employeesInGartenNow.size(); i++){
-            if(employeesInGartenNow.get(i).getUser().getCPR().equals(employee.getCPR())){
+            if(employeesInGartenNow.get(i).getUser().getCPR().equals(CPR)){
                 employeesInGartenNow.get(i).setCheckOutTimeToNow();
                 employeesInGartenNow.get(i).calcTotalTimeCheckedIn();
                 employeeCheckedOut.add(employeesInGartenNow.get(i));
+                employeesCheckOutOfDailyoverview(CPR);
                 employeesInGartenNow.remove(i);
                 break;
             }
         }
     }
 
-    public void dailyManagerCheckIn(DailyManager dm){
-        UserCheckInOut ucio = new UserCheckInOut(dm);
-        ucio.setCheckInTimeToNow();
-        dailyManagerInGartenNow = ucio;
+
+    //Checks out with custom time.
+    public void employeeCheckOut(String CPR, int hours, int minutes) throws IOException {
+        for(int i = 0; i< employeesInGartenNow.size(); i++){
+            if(employeesInGartenNow.get(i).getUser().getCPR().equals(CPR)){
+                employeesInGartenNow.get(i).setCustomCheckOutTime(hours, minutes);
+                employeesInGartenNow.get(i).calcTotalTimeCheckedIn();
+                employeeCheckedOut.add(employeesInGartenNow.get(i));
+                employeesCheckOutOfDailyoverview(CPR);
+                employeesInGartenNow.remove(i);
+                break;
+            }
+        }
     }
 
+
+    //Check in with current time.
+    public void dailyManagerCheckIn(String CPR) throws IOException {
+        ArrayList<DailyManager> dmList = Kindergarten.getInstance().getDailyManagersInGarten();
+
+        for(int i=0; i<dmList.size(); i++){
+            if(dmList.get(i).getCPR().equals(CPR)){
+                UserCheckInOut ucio = new UserCheckInOut(dmList.get(i));
+                dailyManagerInGartenNow = ucio;
+                dailyManagerCheckInToDailyOverviewFile(CPR);
+            }
+        }
+    }
+
+    //check in with custom time
+    public void dailyManagerCheckIn(String CPR, int hours, int minutes) throws IOException {
+        ArrayList<DailyManager> dmList = Kindergarten.getInstance().getDailyManagersInGarten();
+
+        for(int i=0; i<dmList.size(); i++){
+            if(dmList.get(i).getCPR().equals(CPR)){
+                UserCheckInOut ucio = new UserCheckInOut(dmList.get(i));
+                ucio.setCustomCheckInTime(hours, minutes);
+                dailyManagerInGartenNow = ucio;
+                dailyManagerCheckInToDailyOverviewFile(CPR);
+            }
+        }
+    }
+
+
+    //Checks out with current time.
     public void dailyManagerCheckOut(){
         dailyManagerInGartenNow.setCheckOutTimeToNow();
         dailyManagerInGartenNow.calcTotalTimeCheckedIn();
         dailyManagerCheckedOut = dailyManagerInGartenNow;
+        //dailyManagerCheckOutOfDailyOverview();
         dailyManagerInGartenNow = null;
     }
 
-
-
-
-
-    //Gui-cal magic. If necessary override toString.
-    public String showDailyOverview(){
-        return "" + childrenInGartenNow;
+    //Checks out with custom time
+    public void dailyManagerCheckOut(int hours, int minutes){
+        dailyManagerInGartenNow.setCustomCheckOutTime(hours, minutes);
+        dailyManagerInGartenNow.calcTotalTimeCheckedIn();
+        dailyManagerCheckedOut = dailyManagerInGartenNow;
+        //dailyManagerCheckOutOfDailyOverview();
+        dailyManagerInGartenNow = null;
     }
 
 
@@ -148,7 +284,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
-    private void EmployeesCheckInToDailyoverviewFile(String CPR) throws IOException {
+    private void employeesCheckInToDailyoverviewFile(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter employeeInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile",true);
         for(int i = 0; i< employeesInGartenNow.size(); i++){
@@ -162,7 +298,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
 
     //tilføjer daily manager til dailyoverviewFile
-    private void DailyManagerCheckInToDailyOverviewFile(String CPR) throws IOException {
+    private void dailyManagerCheckInToDailyOverviewFile(String CPR) throws IOException {
         FileWriter dailyManagerInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile",true);
         LocalDateTime tempDateTime = LocalDateTime.now();
         for(int i=0;i<Kindergarten.getInstance().getDailyManagersInGarten().size();i++){
@@ -206,7 +342,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
-    private void EmployeesCheckOutOfDailyoverview(String CPR) throws IOException {
+    private void employeesCheckOutOfDailyoverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true);
         for(int i = 0; i< employeesInGartenNow.size(); i++){
@@ -231,7 +367,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         }
     }
 
-    private void DailyManagerCheckOutOfDailyOverview(String CPR) throws IOException {
+    private void dailyManagerCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true );
         Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
