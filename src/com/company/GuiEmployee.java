@@ -17,7 +17,15 @@ public class GuiEmployee extends GuiBoss implements ActionListener {
 
     public void guiEmployee(){
         Gui.frame.setTitle("Roskilde frie børnehave - Employee");
-        l_name.setText("Velkommen " + Gui.user);
+        String brugerNavn ="";
+        for (int i=0; i< Kindergarten.getInstance().getEmployeesInGarten().size();i++ )
+        {
+            if (user.equals(Kindergarten.getInstance().getEmployeesInGarten().get(i).getCPR())) {
+                brugerNavn= Kindergarten.getInstance().getEmployeesInGarten().get(i).getCPR(); // Ændres til getName
+            }
+        }
+
+        System.out.println(brugerNavn);
         l_name.setVisible(true);
 
         GuiEmployee te = new GuiEmployee();
