@@ -1,8 +1,5 @@
 package com.company;
-//import java.io.BufferedReader;
-//import java.io.BufferedWriter;
-//import java.io.File;
-//import java.io.PrintWriter;
+
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -426,8 +423,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
             // her slettes indholdet af tempDailyOverviewFile med et tomt string Write så den er parat til næste opgave
             PrintWriter writer2 = new PrintWriter("src/resourser/TempDailyOverviewFile");
-            writer.print("");
-            writer.close();
+            writer2.print("");
+            writer2.close();
 
         }
     }
