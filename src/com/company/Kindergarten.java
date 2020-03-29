@@ -90,10 +90,10 @@ public class Kindergarten {
 
     //this method is to add a new child to the queue list
     //adds a new child to queue list and then updates the file with the new info
-    public void addChildToQueue(String name, String CPR, String note){
+    public Child addChildToQueue(String name, String CPR, String note){
         Child child = new Child( name, CPR, note);
         childrenInQueue.add(child);
-
+        return child;
     }
 
 
