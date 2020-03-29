@@ -72,16 +72,19 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
+        barn_cpr = c_cpr.getText();
 
-        if (s == "Næste") {
-            System.out.println("CPR: " + s); //ændres til login();
+            if (s == "Næste") {
+                if(Kindergarten.getInstance().searchAndFindChild(barn_cpr) != null){
+                System.out.println("CPR: " + s); //ændres til login();
 
-            barn_cpr = c_cpr.getText();
+                clean.guiCheckChild();
 
-            clean.guiCheckChild();
+                GuiViewChild view = new GuiViewChild();
+                view.guiViewChild();
 
-            GuiViewChild view = new GuiViewChild();
-            view.guiViewChild();
+                }
+            c_cpr.setText("Findes ikke. Prøv igen");
 
         } else if(s == "Tilbage"){
             if(ansatliste.getSelectedItem() == "Daglig leder"){
