@@ -26,6 +26,7 @@ public class GuiAddGuardian extends GuiAddChild {
     static JTextArea addedG;
     static int v_counter;
     static ArrayList<GuiAddGuardian> v_list = new ArrayList<>();
+    static JButton back;
 
 
     // String name, String mail, String phoneNumber, String address, String childCPR
@@ -58,9 +59,12 @@ public class GuiAddGuardian extends GuiAddChild {
         GuiAddGuardian ter = new GuiAddGuardian();
         next2 = new JButton("Næste");
         add_next = new JButton("Tilføj");
+        back = new JButton("Tilbage");
         Gui.frame.getContentPane().add(next2,BorderLayout.CENTER);
         next2.setBounds(275, 320, 75, 20);
-        add_next.setBounds(75, 320, 75, 20);
+        add_next.setBounds(140, 320, 75, 20);
+        back.setBounds(40, 320, 75, 20);
+        back.addActionListener(ter);
         next2.addActionListener(ter);
         add_next.addActionListener(ter);
 
@@ -78,6 +82,8 @@ public class GuiAddGuardian extends GuiAddChild {
         add_next.setBackground(new Color(62, 249, 106));
         add_next.setForeground(Color.BLACK);
         add_next.setFocusPainted(false);
+
+
 
 
 
@@ -106,7 +112,7 @@ public class GuiAddGuardian extends GuiAddChild {
         Gui.frame.add(phone_text);
         Gui.frame.add(adresse_text);
         Gui.frame.add(adresse_postnummer_text);
-
+        Gui.frame.add(back);
         Gui.frame.add(name_box);
         Gui.frame.add(mail_box);
         Gui.frame.add(phone_box);
@@ -139,11 +145,11 @@ public class GuiAddGuardian extends GuiAddChild {
     @Override
     public void actionPerformed(ActionEvent e) {
         GuiClear clean = new GuiClear();
+
         String s = e.getActionCommand();
 
         if (s == "Næste") {
             System.out.println("Næste click");
-            clean.guiAddChild();
             clean.guiAddGuardian();
 
             GuiConfirm confirm = new GuiConfirm();
@@ -160,6 +166,21 @@ public class GuiAddGuardian extends GuiAddChild {
             adresse_postnummer_box.setText(null);
             System.out.println(v_list.toString());
             next2.setVisible(true);
+
+        }
+        else if (s=="Tilbage") {
+            try {
+                clean.guiAddChild();
+            }
+            catch(Exception ignored)
+             {
+
+            }
+            clean.guiAddGuardian();
+            logo.setVisible(true);
+            GuiBoss bigboss = new GuiBoss();
+            bigboss.GuiBoss();
+
 
         }
     }

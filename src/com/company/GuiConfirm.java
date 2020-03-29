@@ -90,11 +90,10 @@ public class GuiConfirm extends GuiAddGuardian implements ActionListener {
             testkid.addGuardian(v_list.get(i).name,v_list.get(i).mail,v_list.get(i).phoneNumber,v_list.get(i).adresse);
               i++;
         }
+        v_list.clear();
+
 
     }
-
-
-
 
 
     @Override
