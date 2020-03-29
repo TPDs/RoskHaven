@@ -56,6 +56,12 @@ public class Child implements ClassesToStoreInFiles {
     public void addGuardian(String name, String mail, String phoneNumber, String address){
         Guardian guardian = new Guardian(name, mail, phoneNumber, address,this.CPR);
         this.guardians.add(guardian);
+        guardian.writeToFile();
+    }
+
+    public void addGuardianFromFile(String name, String mail, String phoneNumber, String address){
+        Guardian guardian = new Guardian(name, mail, phoneNumber, address,this.CPR);
+        this.guardians.add(guardian);
     }
 
 
@@ -120,7 +126,7 @@ public class Child implements ClassesToStoreInFiles {
     public void updateChildInFile()throws IOException{
 
             // lave en metode der iterere gennem child filen og sletter child med cpr nummer som matcher.
-            Scanner data = new Scanner(new File("src/resourser/ChildFile")).useDelimiter("\\s*BREAK\\s*");;
+            Scanner data = new Scanner(new File("src/resourser/ChildFile")).useDelimiter("\\s*BREAK\\s*");
             FileWriter tempChildqueuefw = new FileWriter("src/resourser/tempChildFile",true);
             // her skrives data med ændringer i temp child file
             while(data.hasNextLine()){
@@ -144,7 +150,7 @@ public class Child implements ClassesToStoreInFiles {
                     deletefw.close();
 
                     // her overskrives så childfile med tempChildFile "som er den ændrede information"
-                    Scanner sc = new Scanner(new File("src/resourser/tempChildFile")).useDelimiter("\\s*BREAK\\s*");;
+                    Scanner sc = new Scanner(new File("src/resourser/tempChildFile")).useDelimiter("\\s*BREAK\\s*");
                     FileWriter tempFilefw = new FileWriter("src/resourser/ChildFile",true);
                     while(sc.hasNextLine()){
                         String overrideText = sc.nextLine() + "\n";

@@ -1,6 +1,5 @@
 package com.company;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -18,23 +17,9 @@ public class Guardian implements ClassesToStoreInFiles {
         this.phoneNumber=phoneNumber;
         this.address=address;
         this.childCPR=childCPR;
-        writeToFile();
     }
 
-    public String getGName(){
-        return name;
-    }
-    public String getMail(){
-        return mail;
-    }
 
-    public String getPhoneNumber(){
-        return phoneNumber;
-    }
-
-    public String getAddress(){
-        return address;
-    }
 
     @Override
     public void writeToFile() {
