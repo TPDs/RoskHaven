@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class Kindergarten {
     private static Kindergarten instance = null;
 
+    private ArrayList<Child> allChildren;
+
     private ArrayList<Child> childrenInGarten;
     private ArrayList<Employee> employeesInGarten;
     private ArrayList<DailyManager> dailyManagersInGarten;
@@ -38,8 +40,10 @@ public class Kindergarten {
     public void makeAttributeArrays(){
         boss = ReadFileUtil.readBoss();
 
-        childrenInGarten = findChildrenInGarten(ReadFileUtil.readChildList());
-        childrenInQueue = findChildrenInQueue(ReadFileUtil.readChildList());
+        allChildren = ReadFileUtil.readChildList();
+
+        childrenInGarten = findChildrenInGarten();
+        childrenInQueue = findChildrenInQueue();
 
         employeesInGarten = ReadFileUtil.readEmployeeList();
         dailyManagersInGarten = ReadFileUtil.readDailyManagerList();
@@ -47,7 +51,7 @@ public class Kindergarten {
         worksheetList = ReadFileUtil.readWorksheet();
     }
 
-    public ArrayList<Child> findChildrenInGarten(ArrayList<Child> allChildren){
+    public ArrayList<Child> findChildrenInGarten(){
         ArrayList<Child> childrenInGarten = new ArrayList<Child>();
         for(int i=0; i<allChildren.size(); i++){
             if(allChildren.get(i).getStatus()==ChildStatus.ACTIVE){
@@ -57,7 +61,7 @@ public class Kindergarten {
         return childrenInGarten;
     }
 
-    public ArrayList<Child> findChildrenInQueue(ArrayList<Child> allChildren){
+    public ArrayList<Child> findChildrenInQueue(){
         ArrayList<Child> childrenInQueue = new ArrayList<Child>();
         for(int i=0; i<allChildren.size(); i++){
             if(allChildren.get(i).getStatus()==ChildStatus.QUEUE){
@@ -87,6 +91,19 @@ public class Kindergarten {
     public void setBoss(Boss boss) {
         this.boss = boss;
     }
+
+
+    public Child searchAndFindChild(String CPR){
+        Child child = null;
+        for(int i=0; i<allChildren.size(); i++){
+            if(allChildren.get(i).getCPR().equals(CPR)){
+                child = allChildren.get(i);
+                break;
+            }
+        }
+        return child;
+    }
+
 
     //this method is to add a new child to the queue list
     //adds a new child to queue list and then updates the file with the new info
