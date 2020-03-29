@@ -17,8 +17,9 @@ public class Guardian implements ClassesToStoreInFiles {
         this.phoneNumber=phoneNumber;
         this.address=address;
         this.childCPR=childCPR;
-        writeToFile();
     }
+
+
 
     @Override
     public void writeToFile() {

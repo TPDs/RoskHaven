@@ -107,14 +107,22 @@ public final class ReadFileUtil {
     // skal indlæse og checke guardian filen om der er en guardian til barn
     private static void readGuardians(ArrayList<Child> childList){
 
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new File("src/resourser/GuardianFile"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        Scanner sc = new Scanner("src/resourser/GuardianFile").useDelimiter("\\s*BREAK\\s*");
         while(sc.hasNextLine()){
-            String name = sc.next();
-            String mail = sc.next();
-            String phoneN = sc.next();
-            String adress = sc.next();
-            String childCPR = sc.next();
+            String tempF = sc.nextLine();
+            Scanner sc1=new Scanner(tempF).useDelimiter("\\s*BREAK\\s*");
+
+            String name = sc1.next();
+            String mail = sc1.next();
+            String phoneN = sc1.next();
+            String adress = sc1.next();
+            String childCPR = sc1.next();
 
             for(int i=0;i<childList.size();i++){
                 if(childCPR.equals(childList.get(i).getCPR())){
