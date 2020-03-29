@@ -1,15 +1,12 @@
 package com.company;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Child implements ClassesToStoreInFiles {
 
