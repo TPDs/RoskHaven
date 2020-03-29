@@ -275,7 +275,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         for(int i = 0; i< childrenInGartenNow.size(); i++){
 
             if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
-                String childCheckInToFile =  childrenInGartenNow.get(i).getChild().getCPR() + " " + tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
+                String childCheckInToFile =  childrenInGartenNow.get(i).getChild().getCPR() + "BREAK" + tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
                 childInGartenTodayfw.write(childCheckInToFile);
                 childInGartenTodayfw.close();
             }
@@ -287,7 +287,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         FileWriter employeeInGartenTodayfw = new FileWriter("src/resourser/DailyOverviewFile",true);
         for(int i = 0; i< employeesInGartenNow.size(); i++){
             if(employeesInGartenNow.get(i).getUser().getCPR().equals(CPR)){
-                String employeeWriteToCheckInFile = employeesInGartenNow.get(i).getUser().getCPR() + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
+                String employeeWriteToCheckInFile = employeesInGartenNow.get(i).getUser().getCPR() + "BREAK" + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
                 employeeInGartenTodayfw.write(employeeWriteToCheckInFile);
                 employeeInGartenTodayfw.close();
             }
@@ -301,7 +301,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         LocalDateTime tempDateTime = LocalDateTime.now();
         for(int i=0;i<Kindergarten.getInstance().getDailyManagersInGarten().size();i++){
             if(Kindergarten.getInstance().getDailyManagersInGarten().get(i).getCPR().equals(CPR)){
-                String dailyManagerCheckInToFile = dailyManagerInGartenNow.getUser().getCPR()+" "+ tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
+                String dailyManagerCheckInToFile = dailyManagerInGartenNow.getUser().getCPR()+"BREAK"+ tempDateTime.getHour()+":"+tempDateTime.getMinute() + "\n";
                 dailyManagerInGartenTodayfw.write(dailyManagerCheckInToFile);
                 dailyManagerInGartenTodayfw.close();
             }
@@ -319,7 +319,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
     private void childCheckOutOfDailyOverview(String CPR) throws IOException {
         LocalDateTime tempDateTime = LocalDateTime.now();
         FileWriter childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile", true);
-        Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+        Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile")).useDelimiter("\\s*BREAK\\s*");;
 
         for(int i = 0; i< childrenInGartenNow.size(); i++){
             if(childrenInGartenNow.get(i).getChild().getCPR().equals(CPR)){
@@ -331,7 +331,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
                        TheRightString = theStringINeed;
                     }
                 }
-                String childCheckOutToFile = TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
+                String childCheckOutToFile = TheRightString + "BREAK" + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
                 childOutOfGartenTodayfw.write(childCheckOutToFile);
                 childOutOfGartenTodayfw.close();
                 removeFromDailyOverviewFile(CPR);
@@ -345,7 +345,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         Scanner sc = null;
 
         try {
-            sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+            sc = new Scanner(new File("src/resourser/DailyOverviewFile")).useDelimiter("\\s*BREAK\\s*");;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -365,7 +365,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 FileWriter employeeOutOfGartenTodayfw = null;
                 try {
                     employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true);
-                    String employeeCheckOutToFile = "" + TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
+                    String employeeCheckOutToFile = "" + TheRightString + "BREAK" + tempDateTime.getHour()+ ":" + tempDateTime.getMinute()+"\n";
                     employeeOutOfGartenTodayfw.write(employeeCheckOutToFile);
                     employeeOutOfGartenTodayfw.close();
                     removeFromDailyOverviewFile(CPR);
@@ -383,7 +383,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
         Scanner sc = null;
         try {
-            sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+            sc = new Scanner(new File("src/resourser/DailyOverviewFile")).useDelimiter("\\s*BREAK\\s*");;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -401,7 +401,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         FileWriter dailyManagerOutOfGartenTodayfw = null;
         try {
             dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true );
-            String dailyManagerCheckOutToFile = TheRightString + " " + tempDateTime.getHour()+ ":" + tempDateTime.getMinute() +"\n";
+            String dailyManagerCheckOutToFile = TheRightString + "BREAK" + tempDateTime.getHour()+ ":" + tempDateTime.getMinute() +"\n";
             dailyManagerOutOfGartenTodayfw.write(dailyManagerCheckOutToFile);
             dailyManagerOutOfGartenTodayfw.close();
 
@@ -415,7 +415,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
         Scanner sc = null;
         try {
-            sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+            sc = new Scanner(new File("src/resourser/DailyOverviewFile")).useDelimiter("\\s*BREAK\\s*");;
             } catch (FileNotFoundException e) {
             e.printStackTrace();
             }
@@ -453,7 +453,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         // her overskrives så dailyOverviewFile med TempDailyOverviewFile "som er den ændrede information"
         Scanner overridesc = null;
         try {
-            overridesc = new Scanner(new File("src/resourser/TempDailyOverviewFile"));
+            overridesc = new Scanner(new File("src/resourser/TempDailyOverviewFile")).useDelimiter("\\s*BREAK\\s*");;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

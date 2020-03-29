@@ -7,7 +7,6 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Child implements ClassesToStoreInFiles {
 
     private String name;
@@ -103,7 +102,7 @@ public class Child implements ClassesToStoreInFiles {
 
         try {
             FileWriter Childqueuefw = new FileWriter("src/resourser/ChildFile",true);
-            String StringToFile = ""+ this.name + " " + this.CPR + " " + this.note + " " + this.status + "\n";
+            String StringToFile = ""+ this.name + "BREAK" + this.CPR + "BREAK" + this.note + "BREAK" + this.status + "\n";
             Childqueuefw.write(StringToFile);
             Childqueuefw.close();
         }   catch (IOException e) {
@@ -114,14 +113,14 @@ public class Child implements ClassesToStoreInFiles {
     public void updateChildInFile()throws IOException{
 
             // lave en metode der iterere gennem child filen og sletter child med cpr nummer som matcher.
-            Scanner data = new Scanner(new File("src/resourser/ChildFile"));
+            Scanner data = new Scanner(new File("src/resourser/ChildFile")).useDelimiter("\\s*BREAK\\s*");;
             FileWriter tempChildqueuefw = new FileWriter("src/resourser/tempChildFile",true);
             // her skrives data med ændringer i temp child file
             while(data.hasNextLine()){
                     String tempString =data.nextLine();
                     if(tempString.contains(CPR)){
 
-                        String tempStringFileChange = this.name +" "+ this.CPR + " " + this.note +" " + this.status + "\n";
+                        String tempStringFileChange = this.name +"BREAK"+ this.CPR + "BREAK" + this.note +"BREAK" + this.status + "\n";
                         tempChildqueuefw.write(tempStringFileChange);
                     }
                     else{
@@ -138,7 +137,7 @@ public class Child implements ClassesToStoreInFiles {
                     deletefw.close();
 
                     // her overskrives så childfile med tempChildFile "som er den ændrede information"
-                    Scanner sc = new Scanner(new File("src/resourser/tempChildFile"));
+                    Scanner sc = new Scanner(new File("src/resourser/tempChildFile")).useDelimiter("\\s*BREAK\\s*");;
                     FileWriter tempFilefw = new FileWriter("src/resourser/ChildFile",true);
                     while(sc.hasNextLine()){
                         String overrideText = sc.nextLine() + "\n";
