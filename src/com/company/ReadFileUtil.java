@@ -35,7 +35,7 @@ public final class ReadFileUtil {
         //READ FROM FILE
         Scanner sc = null;
         try {
-            sc = new Scanner(new File("src/resourser/EmployeeListFile")).useDelimiter("\\s*BREAK\\s*");;
+            sc = new Scanner(new File("src/resourser/EmployeeListFile")).useDelimiter("\\s*BREAK\\s*");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -54,7 +54,7 @@ public final class ReadFileUtil {
         //READ FROM FILE
         Scanner sc = null;
         try {
-            sc = new Scanner(new File("src/resourser/EmployeeListFile")).useDelimiter("\\s*BREAK\\s*");;
+            sc = new Scanner(new File("src/resourser/EmployeeListFile")).useDelimiter("\\s*BREAK\\s*");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -73,7 +73,7 @@ public final class ReadFileUtil {
         //READ FROM FILE
         Scanner sc = null;
         try {
-            sc = new Scanner(new File("src/resourser/EmployeeListFile")).useDelimiter("\\s*BREAK\\s*");;
+            sc = new Scanner(new File("src/resourser/ChildFile")).useDelimiter("\\s*BREAK\\s*");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -102,6 +102,9 @@ public final class ReadFileUtil {
     public static ArrayList<Worksheet> readWorksheet(){
         ArrayList<Worksheet> worksheetList = new ArrayList<Worksheet>();
         //READ FROM FILE
+
+
+
         return worksheetList;
     }
 

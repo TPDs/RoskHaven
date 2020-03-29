@@ -19,7 +19,13 @@ public class ChildCheckInOut {
         return child;
     }
 
+    public String getCheckInTime() {
+        return checkInTime;
+    }
 
+    public String getCheckOutTime() {
+        return checkOutTime;
+    }
 
     public void setCheckInTimeToNow(){
         LocalDateTime tempDateTime = LocalDateTime.now();

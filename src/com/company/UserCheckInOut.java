@@ -23,6 +23,13 @@ public class UserCheckInOut {
         return user;
     }
 
+    public String getCheckInTime() {
+        return checkInTime;
+    }
+
+    public String getCheckOutTime() {
+        return checkOutTime;
+    }
 
 
     public void setCheckInTimeToNow(){
