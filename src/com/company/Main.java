@@ -46,6 +46,8 @@ public class Main {
         System.out.println(child2.getCPR());
         System.out.println(child2.getStatus());
 
+        System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(1));
+
         System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(2).getCPR());
 
         // vi kan pludselig ikke printe en listo over daily overwiev ud det skal kigges på ?
@@ -54,6 +56,13 @@ public class Main {
         dailyOverview.dailyManagerCheckOut();
         dailyOverview.employeeCheckOut("030303-7474");
         dailyOverview.childCheckOut("031231-2453");
+
+        Kindergarten.getInstance().addChildToQueue("søren","010101-2200","allergi:pære");
+        Kindergarten.getInstance().addChildToQueue("søren1","010101-2211","allergi:kumkvut");
+        Kindergarten.getInstance().addChildToQueue("søren2","010101-2222","allergi:kumkvut");
+        Kindergarten.getInstance().addChildToQueue("søren3","010101-2233","allergi:ja");
+
+        Kindergarten.getInstance().removeChildFromQueue("010101-2222");
     }
 }
 

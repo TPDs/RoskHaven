@@ -1,6 +1,8 @@
 package com.company;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 //
 //
@@ -50,4 +52,25 @@ public final class ReadFileUtil {
         //READ FROM FILE
         return worksheetList;
     }
+
+    // prøver at lave en generisk filereader metode. filepath er filens placering - CPR er det ønskede søgte CPR
+    // CPR bruges til at modtage info fra den aktive liste så metoden kan bruges til Employee in garten now Arraylisten
+//    private void readFileEmployee(String filePath, String Array) throws FileNotFoundException {
+//        Scanner sc = new Scanner(filePath);
+//
+//        while(sc.hasNextLine()){
+//            String iName = sc.next();
+//            String iCPR = sc.next();
+//            String iPW = sc.next();
+//
+//            Kindergarten.getInstance().getEmployeesInGarten().add(iName,iCPR,iPW);
+//        }
+//    }
+
+
+
+    private void readFileChild(){
+
+    }
+
 }
