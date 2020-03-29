@@ -59,6 +59,7 @@ public class GuiClear {
         GuiAddGuardian.next2.setVisible(false);
         GuiAddGuardian.addedG.setVisible(false);
         GuiAddGuardian.add_next.setVisible(false);
+        GuiAddGuardian.back.setVisible(false);
 
     }
 
