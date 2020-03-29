@@ -83,11 +83,14 @@ public class GuiConfirm extends GuiAddGuardian implements ActionListener {
     }
 
     public void confirmList() {
-        Child newkid = new Child(barn_navn,barn_cpr,barn_note);
+
+         Child testkid =  Kindergarten.getInstance().addChildToQueue(barn_navn,barn_cpr,barn_note);
+
         for (int i = 0; i< v_list.size()-1;) {
-            newkid.addGuardian(v_list.get(i).name,v_list.get(i).mail,v_list.get(i).phoneNumber,v_list.get(i).adresse);
-             i++;
+            testkid.addGuardian(v_list.get(i).name,v_list.get(i).mail,v_list.get(i).phoneNumber,v_list.get(i).adresse);
+              i++;
         }
+
     }
 
 
