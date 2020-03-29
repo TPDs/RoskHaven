@@ -78,10 +78,12 @@ public final class ReadFileUtil {
             e.printStackTrace();
         }
         while (sc.hasNextLine()) {
-            String iName = sc.next();
-            String iCPR = sc.next();
-            String note = sc.next();
-            String status = sc.next();
+                String tempStr = sc.nextLine();
+                Scanner sc1 = new Scanner(tempStr).useDelimiter("\\s*BREAK\\s*");
+            String iName = sc1.next();
+            String iCPR = sc1.next();
+            String note = sc1.next();
+            String status = sc1.next();
             switch(status){
                 case "PASSIVE":
                     childList.add(new Child(iName, iCPR, note, ChildStatus.PASSIVE));

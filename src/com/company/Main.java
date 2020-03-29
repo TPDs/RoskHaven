@@ -54,7 +54,7 @@ public class Main {
         // vi kan pludselig ikke printe en listo over daily overwiev ud det skal kigges på ?
         // System.out.println(dailyOverview.showDailyOverview());
 
-        dailyOverview.dailyManagerCheckOut();
+
         dailyOverview.employeeCheckOut("030303-7474");
         dailyOverview.childCheckOut("031231-2453");
 
@@ -67,6 +67,10 @@ public class Main {
 
         Kindergarten.getInstance().addChildToGarten("010101-2211");
 
+        dailyOverview.dailyManagerCheckOut("020302-2817");
+
+
+        System.out.println(ReadFileUtil.readChildList());
     }
 }
 
