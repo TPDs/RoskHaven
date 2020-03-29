@@ -126,7 +126,7 @@ public final class ReadFileUtil {
 
             for(int i=0;i<childList.size();i++){
                 if(childCPR.equals(childList.get(i).getCPR())){
-                    childList.get(i).addGuardian(name,mail,phoneN,adress);
+                    childList.get(i).addGuardianFromFile(name,mail,phoneN,adress);
                 }
             }
 
