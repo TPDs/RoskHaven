@@ -99,12 +99,16 @@ public class Kindergarten {
 
     // this method moves child from queue list to active garten list and removes the child from queue list
     // in other words, it changes the status to active, then updates the child file
-    public void addChildToGarten(String CPR) throws IOException {
+    public void addChildToGarten(String CPR)  {
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
                 childrenInQueue.get(i).setStatus(ChildStatus.ACTIVE);
                 childrenInGarten.add(childrenInQueue.get(i));
-                childrenInQueue.get(i).updateChildInFile();
+                try {
+                    childrenInQueue.get(i).updateChildInFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 childrenInQueue.remove(i);
                 break;
             }
@@ -113,11 +117,15 @@ public class Kindergarten {
 
     //this method removes the child from the active garten list
     //changes child status to passive and updates file
-    public void removeChildFromGarten(String CPR) throws IOException {
+    public void removeChildFromGarten(String CPR){
         for(int i=0;i<childrenInGarten.size();i++){
             if(childrenInGarten.get(i).getCPR().equals(CPR)){
                 childrenInGarten.get(i).setStatus(ChildStatus.PASSIVE);
-                childrenInGarten.get(i).updateChildInFile();
+                try {
+                    childrenInGarten.get(i).updateChildInFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 childrenInGarten.remove(i);
                 break;
             }
@@ -126,11 +134,15 @@ public class Kindergarten {
 
     // this method removes the child from the que list and changes childstatus to passive
     //then updates file
-    public void removeChildFromQueue(String CPR) throws IOException {
+    public void removeChildFromQueue(String CPR){
         for(int i=0;i<childrenInQueue.size();i++){
             if(childrenInQueue.get(i).getCPR().equals(CPR)){
                 childrenInQueue.get(i).setStatus(ChildStatus.PASSIVE);
-                childrenInQueue.get(i).updateChildInFile();
+                try {
+                    childrenInQueue.get(i).updateChildInFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 childrenInQueue.remove(i);
                 break;
             }
@@ -140,14 +152,18 @@ public class Kindergarten {
     //this method checks first if child status is passive and removes child, and then if age > 10 and removes
     //the child, it also changes status to passive if age > 10 and updates file.
     //this is to make sure that children aren't in the wrong list!
-    public void updateChildQueue() throws IOException {
+    public void updateChildQueue(){
         for(int i=0; i<childrenInQueue.size(); i++){
             if(childrenInQueue.get(i).getStatus().equals(ChildStatus.PASSIVE)){
                 childrenInQueue.remove(i);
             }
             if(childrenInQueue.get(i).calcAge()>10){
                 childrenInQueue.get(i).setStatus(ChildStatus.PASSIVE);
-                childrenInQueue.get(i).updateChildInFile();
+                try {
+                    childrenInQueue.get(i).updateChildInFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 childrenInQueue.remove(i);
 
             }

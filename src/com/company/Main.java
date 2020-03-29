@@ -1,6 +1,7 @@
 package com.company;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
@@ -63,6 +64,9 @@ public class Main {
         Kindergarten.getInstance().addChildToQueue("søren3","010101-2233","allergi:ja");
 
         Kindergarten.getInstance().removeChildFromQueue("010101-2222");
+
+        Kindergarten.getInstance().addChildToGarten("010101-2211");
+
     }
 }
 

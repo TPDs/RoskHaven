@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,21 +30,72 @@ public final class ReadFileUtil {
         return boss;
     }
 
-    public static ArrayList<Employee> readEmployeeList(){
+    public static ArrayList<Employee> readEmployeeList() {
         ArrayList<Employee> empList = new ArrayList<Employee>();
         //READ FROM FILE
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new File("src/resourser/EmployeeListFile")).useDelimiter("\\s*BREAK\\s*");;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (sc.hasNextLine()) {
+            String iName = sc.next();
+            String iCPR = sc.next();
+            String iPW = sc.next();
+
+            empList.add(new Employee(iName, iCPR, iPW));
+        }
         return empList;
     }
 
     public static ArrayList<DailyManager> readDailyManagerList(){
         ArrayList<DailyManager> dmList = new ArrayList<DailyManager>();
         //READ FROM FILE
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new File("src/resourser/EmployeeListFile")).useDelimiter("\\s*BREAK\\s*");;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (sc.hasNextLine()) {
+            String iName = sc.next();
+            String iCPR = sc.next();
+            String iPW = sc.next();
+
+            dmList.add(new DailyManager(iName, iCPR, iPW));
+        }
         return dmList;
     }
 
     public static ArrayList<Child> readChildList(){
         ArrayList<Child> childList = new ArrayList<Child>();
         //READ FROM FILE
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new File("src/resourser/EmployeeListFile")).useDelimiter("\\s*BREAK\\s*");;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (sc.hasNextLine()) {
+            String iName = sc.next();
+            String iCPR = sc.next();
+            String note = sc.next();
+            String status = sc.next();
+            switch(status){
+                case "PASSIVE":
+                    childList.add(new Child(iName, iCPR, note, ChildStatus.PASSIVE));
+                    break;
+
+                case "ACTIVE":
+                    childList.add(new Child(iName, iCPR, note, ChildStatus.ACTIVE));
+                    break;
+
+                case "QUEUE":
+                    childList.add(new Child(iName, iCPR, note, ChildStatus.QUEUE));
+                    break;
+            }
+        }
         return childList;
     }
 
@@ -52,21 +104,6 @@ public final class ReadFileUtil {
         //READ FROM FILE
         return worksheetList;
     }
-
-    // prøver at lave en generisk filereader metode. filepath er filens placering - CPR er det ønskede søgte CPR
-    // CPR bruges til at modtage info fra den aktive liste så metoden kan bruges til Employee in garten now Arraylisten
-//    private void readFileEmployee(String filePath, String Array) throws FileNotFoundException {
-//        Scanner sc = new Scanner(filePath);
-//
-//        while(sc.hasNextLine()){
-//            String iName = sc.next();
-//            String iCPR = sc.next();
-//            String iPW = sc.next();
-//
-//            Kindergarten.getInstance().getEmployeesInGarten().add(iName,iCPR,iPW);
-//        }
-//    }
-
 
 
     private void readFileChild(){
