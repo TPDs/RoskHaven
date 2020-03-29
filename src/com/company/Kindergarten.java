@@ -90,11 +90,12 @@ public class Kindergarten {
 
     //this method is to add a new child to the queue list
     //adds a new child to queue list and then updates the file with the new info
-    public Child addChildToQueue(String name, String CPR, String note){
+    public void addChildToQueue(String name, String CPR, String note){
         Child child = new Child( name, CPR, note);
         childrenInQueue.add(child);
-        return child;
+
     }
+
 
     // this method moves child from queue list to active garten list and removes the child from queue list
     // in other words, it changes the status to active, then updates the child file
@@ -165,7 +166,6 @@ public class Kindergarten {
                 break;
             }
         }
-
         if(!flag){
             worksheetList.add(new Worksheet(year, month));
         }

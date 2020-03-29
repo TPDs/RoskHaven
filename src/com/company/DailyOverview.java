@@ -411,11 +411,6 @@ public class DailyOverview implements ClassesToStoreInFiles{
     }
 
 
-    private void removeUserFromDailyOverviewFile(String ID){
-
-    }
-
-
     private void removeFromDailyOverviewFile(String CPR) {
 
         Scanner sc = null;

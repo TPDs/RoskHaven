@@ -105,7 +105,7 @@ public class Child implements ClassesToStoreInFiles {
     public void writeToFile(){
 
         try {
-            FileWriter Childqueuefw = new FileWriter("src/resourser/ChildFile");
+            FileWriter Childqueuefw = new FileWriter("src/resourser/ChildFile",true);
             String StringToFile = ""+ this.name + " " + this.CPR + " " + this.note + " " + this.status + "\n";
             Childqueuefw.write(StringToFile);
             Childqueuefw.close();
@@ -117,28 +117,43 @@ public class Child implements ClassesToStoreInFiles {
     public void updateChildInFile()throws IOException{
 
             // lave en metode der iterere gennem child filen og sletter child med cpr nummer som matcher.
-            Scanner data = new Scanner("src/resourser/ChildFile");
-            if(data.hasNextLine()){
-                for(int j = 0; data.hasNextLine();j++){
-                    if(data.nextLine().contains(CPR)){
+            Scanner data = new Scanner(new File("src/resourser/ChildFile"));
+            FileWriter tempChildqueuefw = new FileWriter("src/resourser/tempChildFile",true);
+            // her skrives data med ændringer i temp child file
+            while(data.hasNextLine()){
+                    String tempString =data.nextLine();
+                    if(tempString.contains(CPR)){
 
                         String tempStringFileChange = this.name +" "+ this.CPR + " " + this.note +" " + this.status + "\n";
-                        FileWriter tempChildqueuefw = new FileWriter(new File("src/resourser/tempChildFile"));
                         tempChildqueuefw.write(tempStringFileChange);
-                        tempChildqueuefw.close();
                     }
                     else{
-                        FileWriter tempChildqueuefw = new FileWriter(new File("src/resourser/tempChildFile"));
-                        String tempStringToFile = data.nextLine() + "\n";
+                        String tempStringToFile = tempString + "\n";
                         tempChildqueuefw.write(tempStringToFile);
-                        tempChildqueuefw.close();
                     }
-                }// her overskrives så childfile med tempChildFile "som er den ændrede information"
 
-                Path source = Paths.get("src/resourser/tempChildFile");
-                Path newdir = Paths.get("src/resourser/ChildFile");
-                Files.move(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
             }
+        tempChildqueuefw.close();
+                    //her slettes indholdet af child file
+                    FileWriter deletefw = new FileWriter("src/resourser/ChildFile");
+                    String delete = "";
+                    deletefw.write(delete);
+                    deletefw.close();
+
+                    // her overskrives så childfile med tempChildFile "som er den ændrede information"
+                    Scanner sc = new Scanner(new File("src/resourser/tempChildFile"));
+                    FileWriter tempFilefw = new FileWriter("src/resourser/ChildFile",true);
+                    while(sc.hasNextLine()){
+                        String overrideText = sc.nextLine() + "\n";
+                        tempFilefw.write(overrideText);
+                    }
+                    tempFilefw.close();
+
+                //her slettes indholdet af tempchild file
+                FileWriter deletefw2 = new FileWriter("src/resourser/tempChildFile");
+                deletefw2.write(delete);
+                deletefw2.close();
+
     }
 
 
