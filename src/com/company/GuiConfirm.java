@@ -82,6 +82,18 @@ public class GuiConfirm extends GuiAddGuardian implements ActionListener {
         System.out.println("Counter" + v_counter);
     }
 
+    public void confirmList() {
+        Child newkid = new Child(barn_navn,barn_cpr,barn_note);
+        for (int i = 0; i< v_list.size()-1;) {
+            newkid.addGuardian(v_list.get(i).name,v_list.get(i).mail,v_list.get(i).phoneNumber,v_list.get(i).adresse);
+             i++;
+        }
+    }
+
+
+
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         GuiClear clean = new GuiClear();
@@ -89,6 +101,7 @@ public class GuiConfirm extends GuiAddGuardian implements ActionListener {
         String s = e.getActionCommand();
 
         if (s =="Godkend") {
+            confirmList();
             clean.guiConfirm();
             bigboss.GuiBoss();
             logo.setVisible(true);

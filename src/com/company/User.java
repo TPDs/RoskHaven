@@ -22,6 +22,7 @@ public class User implements ClassesToStoreInFiles{
     public String getCPR() {
         return CPR;
     }
+    
 
     public String getName() {
         return name;

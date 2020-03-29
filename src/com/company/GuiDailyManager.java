@@ -17,7 +17,17 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
 
     public void guiDailyManager(){
         Gui.frame.setTitle("Roskilde frie børnehave - DailyManager");
-        l_name.setText("Velkommen " + Gui.user);
+        String brugerNavn= "";
+        for (int i=0; i< Kindergarten.getInstance().getDailyManagersInGarten().size(); )
+        {
+            if (user.equals(Kindergarten.getInstance().getDailyManagersInGarten().get(i).getCPR())) {
+                brugerNavn= Kindergarten.getInstance().getDailyManagersInGarten().get(i).getName();
+            }
+            i++;
+        }
+
+        System.out.println(brugerNavn);
+        l_name.setText("Velkommen "+ brugerNavn);
         l_name.setVisible(true);
 
         GuiDailyManager te = new GuiDailyManager();
@@ -75,6 +85,7 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
             user=null;
             password=null;
             l_name.setText("CPR: ");
+            Gui.frame.setTitle("Roskilde frie børnehave");
             clean.guiDailyManagerClear();
             clean.guiLogOut();
 

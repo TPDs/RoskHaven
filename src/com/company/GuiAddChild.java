@@ -76,12 +76,11 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
-        barn_cpr = c_cpr.getText();
-
-            if (s == "Næste") {
+        if (s == "Næste") {
                 System.out.println("Guardian: " + s); //ændres til login();
 
                 barn_navn = c_name.getText();
+                barn_cpr = c_cpr.getText();
                 barn_note = c_note.getText();
 
                 clean.guiAddChild();

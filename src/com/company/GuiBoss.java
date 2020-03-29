@@ -21,7 +21,7 @@ public class GuiBoss extends Gui implements ActionListener {
 
         Gui.frame.setTitle("Roskilde frie børnehave - Boss");
 
-        l_name.setText("Velkommen " + Gui.user);
+        l_name.setText("Velkommen "+ Kindergarten.getInstance().getBoss().getName());
         l_name.setVisible(true);
 
         GuiBoss te = new GuiBoss();
@@ -78,7 +78,7 @@ public class GuiBoss extends Gui implements ActionListener {
             work.guiWorksheet();
 
         } else if (s.equals("Log ud")) {
-            frame = new JFrame("Roskilde frie børnehave");
+            frame.setTitle("Roskilde frie børnehave");
             System.out.println("Test: " + s);
             user=null;
             password=null;

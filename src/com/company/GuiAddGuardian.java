@@ -54,7 +54,6 @@ public class GuiAddGuardian extends GuiAddChild {
         address_box = new JTextField("");
         adresse_postnummer_box = new JTextField("");
         v_counter = 0;
-        //ArrayList<GuiAddGuardian> v_list = new ArrayList<>();
 
         GuiAddGuardian ter = new GuiAddGuardian();
         next2 = new JButton("Næste");
@@ -128,7 +127,6 @@ public class GuiAddGuardian extends GuiAddChild {
 
     }
 
-
     @Override
     public String toString() {
         return "\nGuardian\n "  +
@@ -137,9 +135,6 @@ public class GuiAddGuardian extends GuiAddChild {
                 "\nPhone: " + phoneNumber  +
                 "\nAdresse: " + adresse;
     }
-
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -156,8 +151,6 @@ public class GuiAddGuardian extends GuiAddChild {
         } else if (s == "Tilføj") {
             String location = address_box.getText() + "  " + adresse_postnummer_box.getText();
             addedG.setText("Navn: " + name_box.getText()+ "\nKontakt info: " + mail_box.getText()+ ",    " + phone_box.getText() +"\nAdresse: " +location);
-            //newg = new Guardian(name_text.getText(),mail_box.getText(),phone_box.getText(),location,barn_cpr);
-            String Gname = name_box.getText();
             v_list.add(new GuiAddGuardian(name_box.getText(),mail_box.getText(),phone_box.getText(),location));
             v_counter++;
             name_box.setText(null);
@@ -169,13 +162,7 @@ public class GuiAddGuardian extends GuiAddChild {
             next2.setVisible(true);
 
         }
-
-
     }
-
-
-
-
 
 }
 

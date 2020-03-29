@@ -29,7 +29,7 @@ public class Main {
         Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("Søren", "201854-8745","43241" ));
         Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("Rygesen", "060302-5221","432334" ));
 
-        Kindergarten.getInstance().setBoss(new Boss("Trolle", "080592-9992","iddqd"));
+        Kindergarten.getInstance().setBoss(new Boss("Trolle", "9992","iddqd"));
 
         DailyOverview dailyOverview = new DailyOverview(Kindergarten.getInstance().getEmployeesInGarten(),Kindergarten.getInstance().getDailyManagersInGarten().get(0));
         dailyOverview.childCheckIn("030503-2451");
