@@ -73,7 +73,7 @@ public final class ReadFileUtil {
         //READ FROM FILE
         Scanner sc = null;
         try {
-            sc = new Scanner(new File("src/resourser/ChildFile")).useDelimiter("\\s*BREAK\\s*");
+            sc = new Scanner(new File("src/resourser/ChildFile"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -98,8 +98,35 @@ public final class ReadFileUtil {
                     break;
             }
         }
+
+        readGuardians(childList);
         return childList;
     }
+
+
+    // skal indlæse og checke guardian filen om der er en guardian til barn
+    private static void readGuardians(ArrayList<Child> childList){
+
+
+        Scanner sc = new Scanner("src/resourser/GuardianFile").useDelimiter("\\s*BREAK\\s*");
+        while(sc.hasNextLine()){
+            String name = sc.next();
+            String mail = sc.next();
+            String phoneN = sc.next();
+            String adress = sc.next();
+            String childCPR = sc.next();
+
+            for(int i=0;i<childList.size();i++){
+                if(childCPR.equals(childList.get(i).getCPR())){
+                    childList.get(i).addGuardian(name,mail,phoneN,adress);
+                }
+            }
+
+            //format
+            //this.name + "BREAK" + this.mail + "BREAK" + this.phoneNumber + "BREAK" + this.address + "BREAK" + this.childCPR +"\n";
+        }
+    }
+
 
     public static ArrayList<Worksheet> readWorksheet(){
         ArrayList<Worksheet> worksheetList = new ArrayList<Worksheet>();
