@@ -65,9 +65,20 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scroll.setBounds(35,50,315,170);
 
+        String barn_name =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName() ;
+        String barn_note =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getNote();
+
+
+
+        child_info.setText("Navn:   " + barn_name +"\nCPR:   " + barn_cpr +"\nNoter:    " +barn_note +"\n\n");
+
+        // Mangler at adde barnets guardians via cpr :=)
+
+
+
+
 
         frame.add(topTekst);
-
 
         back.addActionListener(te);
         editChild.addActionListener(te);

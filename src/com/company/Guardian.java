@@ -21,6 +21,21 @@ public class Guardian implements ClassesToStoreInFiles {
         writeToFile();
     }
 
+    public String getGName(){
+        return name;
+    }
+    public String getMail(){
+        return mail;
+    }
+
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+
+    public String getAddress(){
+        return address;
+    }
+
     @Override
     public void writeToFile() {
 

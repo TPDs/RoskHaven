@@ -76,8 +76,6 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
 
             if (s == "Næste") {
                 if(Kindergarten.getInstance().searchAndFindChild(barn_cpr) != null){
-                System.out.println("CPR: " + s); //ændres til login();
-
                 clean.guiCheckChild();
 
                 GuiViewChild view = new GuiViewChild();

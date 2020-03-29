@@ -37,6 +37,13 @@ public class Child implements ClassesToStoreInFiles {
     public String getCPR() {
         return CPR;
     }
+    public String getName(){
+        return name;
+    }
+
+    public String getNote(){
+        return note;
+    }
 
     public void setStatus(ChildStatus status){
         this.status = status;
