@@ -2,9 +2,10 @@ package com.company;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Guardian implements ClassesToStoreInFiles {
-
+    private String guardianID;
     private String name;
     private String mail;
     private String phoneNumber;
@@ -12,6 +13,17 @@ public class Guardian implements ClassesToStoreInFiles {
     private String childCPR;
 
     public Guardian(String name, String mail, String phoneNumber, String address, String childCPR){
+        guardianID = makeGuardianID();
+        this.name=name;
+        this.mail=mail;
+        this.phoneNumber=phoneNumber;
+        this.address=address;
+        this.childCPR=childCPR;
+    }
+
+    //Constructor used when reading files.
+    public Guardian(String guardianID, String name, String mail, String phoneNumber, String address, String childCPR){
+        this.guardianID = guardianID;
         this.name=name;
         this.mail=mail;
         this.phoneNumber=phoneNumber;
@@ -35,12 +47,26 @@ public class Guardian implements ClassesToStoreInFiles {
         return phoneNumber;
     }
 
+
+
+    public String makeGuardianID(){
+        ArrayList<Child> allChildren = ReadFileUtil.readChildList();
+        for(int i=0; i<allChildren.size(); i++){
+            if(allChildren.get(i).getCPR().equals(childCPR)){
+                guardianID = childCPR + allChildren.get(i).getGuardians().size();
+            }
+        }
+        return childCPR + "0";
+    }
+
+
+
     @Override
     public void writeToFile() {
 
         try {
             FileWriter Guardianfw = new FileWriter("src/resourser/GuardianFile",true);
-            String StringToFile = ""+ this.name + "BREAK" + this.mail + "BREAK" + this.phoneNumber + "BREAK" + this.address + "BREAK" + this.childCPR +"\n";
+            String StringToFile = ""+ this.guardianID + "BREAK" + this.name + "BREAK" + this.mail + "BREAK" + this.phoneNumber + "BREAK" + this.address + "BREAK" + this.childCPR +"\n";
             Guardianfw.write(StringToFile);
             Guardianfw.close();
 
