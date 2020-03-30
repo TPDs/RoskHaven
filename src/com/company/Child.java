@@ -84,28 +84,30 @@ public class Child implements ClassesToStoreInFiles {
 
         int yearOfToday = today.getYear();
 
+
         //This handles possible Y2K-problems, where an age spans over two centuries. The possible age
         //that is lower than 10 years is chosen. The reasoning is that no child above 10 years should
         //be in this kindergarten.
 
-        int childCenturyPlus100 = ((yearOfToday+100)%100)*100+childYear;
-        int childCenturyMinus100 = ((yearOfToday-100)%100)*100+childYear;
+        int childCenturyMinus100 = ((yearOfToday%100)*100+childYear)-100;
+        System.out.println(childCenturyMinus100);
         int childCenturyAsIs = (yearOfToday%100)*100+childYear;
+        System.out.println(childCenturyAsIs);
 
-        LocalDate firstBirthday = LocalDate.of(childCenturyPlus100, childMonth, childDay);
         LocalDate secondBirthday = LocalDate.of(childCenturyMinus100, childMonth, childDay);
         LocalDate thirdBirthday = LocalDate.of(childCenturyAsIs, childMonth, childDay);
 
-        Period p0 = Period.between(firstBirthday, today);
-        Period p1 = Period.between(secondBirthday, today);
-        Period p2 = Period.between(thirdBirthday, today);
+        Period p0 = Period.between(secondBirthday, today);
+        System.out.println(p0.getYears());
+        Period p1 = Period.between(thirdBirthday, today);
+        System.out.println(p1.getYears());
 
-        if(p0.getYears() < 10){
-            return p0.getYears();
-        } else if(p1.getYears()< 10){
+        if(p0.getYears() < 0){
             return p1.getYears();
+        } else if (p0.getYears() < 100){
+            return p0.getYears();
         } else {
-            return p2.getYears();
+            return p1.getYears();
         }
     }
 
