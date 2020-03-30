@@ -1,9 +1,6 @@
 package com.company;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,13 +44,14 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
         topTekst.setBounds(90, 25, 200, 20);
 
-        //child_info.setBounds(20,50,340,170);
-
         back.setBounds(35, 320, 100, 20);
         editChild.setBounds(35, 230, 130, 20);
         editGuardian.setBounds(220, 230, 130, 20);
         createGuardian.setBounds(35,270,130,20);
         removeChild.setBounds(220, 270, 130, 20);
+
+        Font  f2  = new Font(Font.DIALOG,  Font.BOLD, 11);
+        child_info.setFont(f2);
 
         child_info.setLineWrap(true);
         child_info.setEditable(false);
@@ -67,16 +65,21 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
         String barn_name =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName() ;
         String barn_note =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getNote();
+        int barn_age = Kindergarten.getInstance().searchAndFindChild(barn_cpr).calcAge();
 
 
+        child_info.setText("Navn:   " + barn_name +"\nCPR:   " + barn_cpr +  "\nAlder:   "+ barn_age +  "\nNoter:    " +barn_note +"\n");
 
-        child_info.setText("Navn:   " + barn_name +"\nCPR:   " + barn_cpr +"\nNoter:    " +barn_note +"\n\n");
+        for (int i =0; i < Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().size();) {
 
-        // Mangler at adde barnets guardians via cpr :=)
+            child_info.append("\n\nNavn:   " + Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getName());
+            child_info.append("\nMail:   " + Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getMail());
+            child_info.append("\nTelefon:   " + Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getPhoneNumber());
+            child_info.append("\nAdresse:   " + Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getAddress());
+            i++;
+        }
 
-
-
-
+        JScrollPaneToTopAction(scroll);
 
         frame.add(topTekst);
 
@@ -105,6 +108,16 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
 
     }
+
+
+    public void JScrollPaneToTopAction(JScrollPane scroll) {
+        if (scroll == null) {
+            throw new IllegalArgumentException(
+                    "JScrollPaneToTopAction: null scroll");
+        }
+        this.scroll = scroll;
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
