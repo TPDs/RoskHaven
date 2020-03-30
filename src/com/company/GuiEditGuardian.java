@@ -23,13 +23,10 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
 
         GuiEditGuardian te = new GuiEditGuardian();
 
-
-
         for (int i =0; i < G_list.size();) {
             G_list_name.add(G_list.get(i).name);
             i++;
         }
-
 
         //String barn_name =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName();
         guardian_list = new JComboBox(G_list_name.toArray());
@@ -87,8 +84,8 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
         else if (s=="Afslut") {
             System.out.println("Lukker ned");
         }
-        else if (s=="ret") {
-            System.out.println("ret");
+        else if (s=="Ret") {
+            System.out.println("Ret");
 
             }
 
