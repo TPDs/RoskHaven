@@ -82,20 +82,22 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
         barn2_cpr = c_cpr.getText();
-        //DailyOverview nyt = new DailyOverview("brain",2);
-       // nyt.childCheckIn(barn2_cpr);
+        Worksheet checktest = new Worksheet(2020,05);
+        DailyOverview check = checktest.workDays.get(2).getDailyOverview();
+        //check.childCheckIn(barn2_cpr);
         // Skal laves når worksheet er done
+
         if (s == "Tjek barn ind") {
 
             topText.setText(barn2_cpr);
             c_cpr.setText("");
-
+            check.childCheckIn(barn2_cpr);
             checked.setText("er blevet tjekket ind");
 
         } else if (s == "Tjek barn ud") {
             topText.setText(barn2_cpr);
             c_cpr.setText("");
-
+            check.childCheckOut(barn2_cpr);
             checked.setText("er blevet tjekket ud");
 
         } else if (s == "Tilbage") {

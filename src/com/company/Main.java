@@ -37,9 +37,7 @@ public class Main {
 
         System.out.println(dailyO);
 
-        //DailyOverview dailyOverview = worksheet.getWorkDays().get(2).getDailyOverview();
-
-        /*Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202-7878","1234" ));
+        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202-7878","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Ulla", "030303-7474","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Faisal", "040404-0000","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Kian", "050505-1111","1234" ));
@@ -50,19 +48,6 @@ public class Main {
 
         Kindergarten.getInstance().setBoss(new Boss("Trolle", "9992","iddqd"));
 
-        System.out.println(dailyOverview.getDailyOverViewID());
-
-        dailyOverview.childCheckIn("030503-2451");
-        dailyOverview.childCheckIn("032332-2451");
-        dailyOverview.childCheckIn("031231-2453");
-
-       dailyOverview.employeeCheckIn("020202-7878");
-       dailyOverview.employeeCheckIn("030303-7474");
-       dailyOverview.employeeCheckIn("040404-0000");
-       dailyOverview.employeeCheckIn("050505-1111");
-
-        dailyOverview.dailyManagerCheckIn("020302-2817");
-
         System.out.println(child2.getCPR());
         System.out.println(child2.getStatus());
 
@@ -70,8 +55,6 @@ public class Main {
 
         System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(2).getCPR());
 
-        dailyOverview.employeeCheckOut("030303-7474");
-        dailyOverview.childCheckOut("031231-2453");
 
         Kindergarten.getInstance().addChildToQueue("søren","010101-2200","allergi:pære");
         Kindergarten.getInstance().addChildToQueue("søren1","010101-2211","allergi:kumkvut");
@@ -82,12 +65,9 @@ public class Main {
 
         Kindergarten.getInstance().addChildToGarten("010101-2211");
 
-        dailyOverview.dailyManagerCheckOut("020302-2817");
-
-
         System.out.println(ReadFileUtil.readChildList());
 
-         */
+
     }
 }
 
