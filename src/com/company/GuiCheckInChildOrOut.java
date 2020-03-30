@@ -82,8 +82,9 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
         barn2_cpr = c_cpr.getText();
-
-
+        //DailyOverview nyt = new DailyOverview("brain",2);
+       // nyt.childCheckIn(barn2_cpr);
+        // Skal laves når worksheet er done
         if (s == "Tjek barn ind") {
 
             topText.setText(barn2_cpr);
