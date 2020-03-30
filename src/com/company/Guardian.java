@@ -13,12 +13,12 @@ public class Guardian implements ClassesToStoreInFiles {
     private String childCPR;
 
     public Guardian(String name, String mail, String phoneNumber, String address, String childCPR){
-        guardianID = makeGuardianID();
         this.name=name;
         this.mail=mail;
         this.phoneNumber=phoneNumber;
         this.address=address;
         this.childCPR=childCPR;
+        this.guardianID = makeGuardianID();
     }
 
     //Constructor used when reading files.
@@ -50,13 +50,15 @@ public class Guardian implements ClassesToStoreInFiles {
 
 
     public String makeGuardianID(){
-        ArrayList<Child> allChildren = ReadFileUtil.readChildList();
+        ArrayList<Child> allChildren = Kindergarten.getInstance().getAllChildren();
+        String id = this.childCPR + "G";
         for(int i=0; i<allChildren.size(); i++){
-            if(allChildren.get(i).getCPR().equals(childCPR)){
-                guardianID = childCPR + allChildren.get(i).getGuardians().size();
+            if(childCPR.equals(allChildren.get(i).getCPR())){
+                id += allChildren.get(i).getGuardians().size();
+                break;
             }
         }
-        return childCPR + "0";
+        return id;
     }
 
 

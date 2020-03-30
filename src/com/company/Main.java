@@ -13,9 +13,9 @@ public class Main {
 
         // dummy data til test af funktionaliteter i DailyOverview classen
 
-        Child child = new Child("Cirkeline","030503-2451","hun spiser ikke kartofler om onsdagen",ChildStatus.ACTIVE);
-        Child child1 = new Child("Hansi","032332-2451","hun spiser ikke kartofler om onsdagen",ChildStatus.ACTIVE);
-        Child child2 = new Child("Gurgemau","031231-2453","hun spiser ikke kartofler om onsdagen",ChildStatus.ACTIVE);
+        Child child = new Child("Cirkeline","030503-2451","hun spiser ikke kartofler om onsdagen");
+        Child child1 = new Child("Hansi","032332-2451","hun spiser ikke kartofler om onsdagen");
+        Child child2 = new Child("Gurgemau","031231-2453","hun spiser ikke kartofler om onsdagen");
 
         child.addGuardian("As", "as@mail.dk", "22222222", "As,2. st");
 
@@ -23,7 +23,23 @@ public class Main {
         Kindergarten.getInstance().getChildrenInGarten().add(child1);
         Kindergarten.getInstance().getChildrenInGarten().add(child2);
 
-        Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202-7878","1234" ));
+        //System.out.println(child);
+
+        Worksheet worksheet = new Worksheet(2020,3);
+        DailyOverview dailyO = worksheet.workDays.get(5).getDailyOverview();
+
+        dailyO.childCheckIn("030503-2451");
+        dailyO.childCheckOut("030503-2451");
+
+        dailyO.childCheckIn("032332-2451", 12,21);
+        dailyO.childCheckOut("032332-2451", 16,10);
+
+
+        System.out.println(dailyO);
+
+        //DailyOverview dailyOverview = worksheet.getWorkDays().get(2).getDailyOverview();
+
+        /*Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202-7878","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Ulla", "030303-7474","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Faisal", "040404-0000","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Kian", "050505-1111","1234" ));
@@ -33,9 +49,6 @@ public class Main {
         Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("Rygesen", "060302-5221","432334" ));
 
         Kindergarten.getInstance().setBoss(new Boss("Trolle", "9992","iddqd"));
-
-        Worksheet worksheet = new Worksheet(2020,3);
-        DailyOverview dailyOverview = worksheet.getWorkDays().get(2).getDailyOverview();
 
         System.out.println(dailyOverview.getDailyOverViewID());
 
@@ -73,6 +86,8 @@ public class Main {
 
 
         System.out.println(ReadFileUtil.readChildList());
+
+         */
     }
 }
 

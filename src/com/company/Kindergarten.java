@@ -87,6 +87,10 @@ public class Kindergarten {
         return boss;
     }
 
+    public ArrayList<Child> getAllChildren() {
+        return allChildren;
+    }
+
     // denne midlertidige boss setter skal slettes.! husk daniel på det når han glemmer det.!
     public void setBoss(Boss boss) {
         this.boss = boss;

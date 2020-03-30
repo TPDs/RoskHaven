@@ -45,12 +45,15 @@ public class ChildCheckInOut {
         checkOutTime = "" + hour + ":" + minutes;
     }
 
-
-
-
     public void calcTotalTimeCheckedIn(){
         int checkInInMinutes = (Integer.parseInt(checkInTime.substring(0,2))*60)+(Integer.parseInt(checkInTime.substring(3)));
         int checkOutInMinutes = (Integer.parseInt(checkOutTime.substring(0,2))*60)+(Integer.parseInt(checkOutTime.substring(3)));
         totalTimeCheckedIn = checkOutInMinutes-checkInInMinutes;
+    }
+
+
+    @Override
+    public String toString() {
+        return child + " checkInTime=" + checkInTime + " " + "checkOutTime=" + checkOutTime;
     }
 }

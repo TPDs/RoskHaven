@@ -58,7 +58,7 @@ public class Child implements ClassesToStoreInFiles {
     }
 
     public void addGuardian(String name, String mail, String phoneNumber, String address){
-        Guardian guardian = new Guardian(name, mail, phoneNumber, address,this.CPR);
+        Guardian guardian = new Guardian(name, mail, phoneNumber, address, this.CPR);
         this.guardians.add(guardian);
         guardian.writeToFile();
     }
@@ -91,17 +91,13 @@ public class Child implements ClassesToStoreInFiles {
         //be in this kindergarten.
 
         int childCenturyMinus100 = ((yearOfToday%100)*100+childYear)-100;
-        System.out.println(childCenturyMinus100);
         int childCenturyAsIs = (yearOfToday%100)*100+childYear;
-        System.out.println(childCenturyAsIs);
 
         LocalDate secondBirthday = LocalDate.of(childCenturyMinus100, childMonth, childDay);
         LocalDate thirdBirthday = LocalDate.of(childCenturyAsIs, childMonth, childDay);
 
         Period p0 = Period.between(secondBirthday, today);
-        System.out.println(p0.getYears());
         Period p1 = Period.between(thirdBirthday, today);
-        System.out.println(p1.getYears());
 
         if(p0.getYears() < 0){
             return p1.getYears();
@@ -173,13 +169,7 @@ public class Child implements ClassesToStoreInFiles {
 
     @Override
     public String toString() {
-        return "Child{" +
-                "name='" + name + '\'' +
-                ", CPR='" + CPR + '\'' +
-                ", guardians=" + guardians + "\n" +
-                ", note='" + note + '\'' +
-                ", status=" + status +
-                '}';
+        return name + CPR;
     }
 }
 

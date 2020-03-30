@@ -535,11 +535,12 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
     @Override
     public String toString() {
-        return "DailyOverview{" +
-                "Children still in kindergarten: " + childrenInGartenNow + "\n\n" +
-                "Employees still on work: " + employeesInGartenNow + "\n\n" +
-                "Daily Manager still: " + dailyManagerInGartenNow +
-                '}';
+        return "Children still in kindergarten: " + childrenInGartenNow + "\n" +
+               "Employees still on work: " + employeesInGartenNow + "\n" +
+               "Daily Manager: " + dailyManagerInGartenNow + "\n\n" +
+                "Children checked out: " + childCheckedOut + "\n" +
+                "Employees checked out: " + employeeCheckedOut + "\n" +
+                "Daily Manager checked out: " + dailyManagerCheckedOut;
     }
 }
 
