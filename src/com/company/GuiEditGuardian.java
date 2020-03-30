@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GuiEditGuardian extends GuiViewChild implements ActionListener {
 
@@ -12,6 +13,7 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
     static JComboBox guardian_list;
     static JButton edit,exit;
     static JTextField name,mail,adresse,phone;
+    ArrayList G_list_name = new ArrayList<String>();
     GuiEditGuardian() {
     }
 
@@ -21,12 +23,19 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
 
         GuiEditGuardian te = new GuiEditGuardian();
 
-        String[] guardianArrays = {"Far", "mor", "søs"};
 
-        guardian_list = new JComboBox(guardianArrays);
-        guardian_list.setSelectedIndex(2);
+
+        for (int i =0; i < G_list.size();) {
+            G_list_name.add(G_list.get(i).name);
+            i++;
+        }
+
+
+        //String barn_name =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName();
+        guardian_list = new JComboBox(G_list_name.toArray());
+        guardian_list.setSelectedIndex(G_list_name.size()-1);
         guardian_list.addActionListener(te);
-        g_name = new JLabel("Barn_navn fra cpr"); //rettes til barn navn via cpr
+        g_name = new JLabel( "Listen over Væger"); //rettes til barn navn via cpr
         g_info = new JLabel("Info: ");
 
         name = new JTextField();
@@ -62,37 +71,27 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
         frame.add(edit);
         frame.add(exit);
 
-
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
-        if (guardian_list.getSelectedItem().equals("mor")){
-            name.setText("mor er nice");
-            mail.setText("mor love");
-            adresse.setText("morvej 12");
-            phone.setText("66");
+        for (int i=0; i< G_list.size();i++) {
+            if (guardian_list.getSelectedItem().equals(G_list.get(i).getName())) {
+                name.setText(G_list.get(i).getName());
+                mail.setText(G_list.get(i).getMail());
+                adresse.setText(G_list.get(i).getAdresse());
+                phone.setText(G_list.get(i).getPhoneNumber());
+            }
 
-
-        } else if (guardian_list.getSelectedItem().equals("søs")){
-            name.setText("Søs er nice");
-            mail.setText("Søs love");
-            adresse.setText("søsvej 55");
-            phone.setText("88888");
-
-        }
-        else if (guardian_list.getSelectedItem().equals("Far")) {
-            name.setText("lol tester");
-            mail.setText("Jeg ved det jo ikke");
-            adresse.setText("Google det da ");
-            phone.setText("Bruger ikke phone, men smartphone");
-
-
-        }
         else if (s=="Afslut") {
             System.out.println("Lukker ned");
+        }
+        else if (s=="ret") {
+            System.out.println("ret");
+
+            }
+
         }
     }
 }

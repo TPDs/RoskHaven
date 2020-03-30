@@ -83,10 +83,6 @@ public class GuiAddGuardian extends GuiAddChild {
         add_next.setForeground(Color.BLACK);
         add_next.setFocusPainted(false);
 
-
-
-
-
         int y = 40; //x For text fields
         int yy = 90; // y
         Gui.frame.getContentPane().add(name_text, BorderLayout.CENTER);

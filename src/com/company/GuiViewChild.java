@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
@@ -16,8 +17,23 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
     static JButton removeChild;
     static JTextArea child_info;
     static JScrollPane scroll;
+    static ArrayList<GuiViewChild> G_list = new ArrayList<>();
+
 
     GuiViewChild(){}
+
+    String name;
+    String mail;
+    String phoneNumber;
+    String adresse;
+
+    public GuiViewChild(String name, String mail, String phoneNumber, String location) {
+        this.name = name;
+        this.mail= mail;
+        this.phoneNumber= phoneNumber;
+        this.adresse= location;
+
+    }
 
     public void guiViewChild() {
         Gui.frame.setTitle("Roskilde frie børnehave - ViewChild");
@@ -57,8 +73,6 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         child_info.setEditable(false);
         child_info.setVisible(true);
 
-
-
         scroll = new JScrollPane(child_info);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scroll.setBounds(35,50,315,170);
@@ -69,17 +83,23 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
 
         child_info.setText("Navn:   " + barn_name +"\nCPR:   " + barn_cpr +  "\nAlder:   "+ barn_age +  "\nNoter:    " +barn_note +"\n");
-
+        child_info.append("\nVærger:");
+        G_list = new ArrayList<>();
         for (int i =0; i < Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().size();) {
 
-            child_info.append("\n\nNavn:   " + Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getName());
-            child_info.append("\nMail:   " + Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getMail());
-            child_info.append("\nTelefon:   " + Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getPhoneNumber());
-            child_info.append("\nAdresse:   " + Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getAddress());
+            String G_name = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getName();
+            String G_mail = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getMail();
+            String G_phone = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getPhoneNumber();
+            String G_adresse = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getAddress();
+
+
+            G_list.add(new GuiViewChild(G_name,G_mail,G_phone,G_adresse));
+            child_info.append("\n\nNavn:   " + G_name);
+            child_info.append("\nMail:   " + G_mail);
+            child_info.append("\nTelefon:   " + G_phone);
+            child_info.append("\nAdresse:   " + G_adresse);
             i++;
         }
-
-        JScrollPaneToTopAction(scroll);
 
         frame.add(topTekst);
 
@@ -109,15 +129,21 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
     }
 
-
-    public void JScrollPaneToTopAction(JScrollPane scroll) {
-        if (scroll == null) {
-            throw new IllegalArgumentException(
-                    "JScrollPaneToTopAction: null scroll");
-        }
-        this.scroll = scroll;
+    public String getName() {
+        return name;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
