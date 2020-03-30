@@ -117,7 +117,6 @@ public final class ReadFileUtil {
         while(sc.hasNextLine()){
             String tempF = sc.nextLine();
             Scanner sc1=new Scanner(tempF).useDelimiter("\\s*BREAK\\s*");
-
             String name = sc1.next();
             String mail = sc1.next();
             String phoneN = sc1.next();
@@ -129,9 +128,6 @@ public final class ReadFileUtil {
                     childList.get(i).addGuardianFromFile(name,mail,phoneN,adress);
                 }
             }
-
-            //format
-            //this.name + "BREAK" + this.mail + "BREAK" + this.phoneNumber + "BREAK" + this.address + "BREAK" + this.childCPR +"\n";
         }
     }
 
