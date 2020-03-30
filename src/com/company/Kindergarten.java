@@ -79,6 +79,10 @@ public class Kindergarten {
         return employeesInGarten;
     }
 
+    public ArrayList<Worksheet> getWorksheetList() {
+        return worksheetList;
+    }
+
     public ArrayList<DailyManager> getDailyManagersInGarten() {
         return dailyManagersInGarten;
     }

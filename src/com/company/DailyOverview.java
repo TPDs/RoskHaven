@@ -48,6 +48,10 @@ public class DailyOverview implements ClassesToStoreInFiles{
         return dailyManagerScheduled;
     }
 
+    public ArrayList<ChildCheckInOut> getChildrenInGartenNow() {
+        return childrenInGartenNow;
+    }
+
     public void setDailyManagerScheduled(DailyManager dailyManagerScheduled) {
         this.dailyManagerScheduled = dailyManagerScheduled;
     }
@@ -94,6 +98,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
                     ChildCheckInOut ccio = new ChildCheckInOut(childrenInGarten.get(i));
                     childrenInGartenNow.add(ccio);
                     childCheckInToDailyOverviewFile(ccio);
+                    break;
                 }
             }
         }
@@ -212,7 +217,6 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 employeesInGartenNow.get(i).setCheckOutTimeToNow();
                 employeesInGartenNow.get(i).calcTotalTimeCheckedIn();
                 employeeCheckedOut.add(employeesInGartenNow.get(i));
-
                 employeesCheckOutOfDailyoverview(employeesInGartenNow.get(i));
                 employeesInGartenNow.remove(i);
                 break;
@@ -353,6 +357,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
     //der skal også tilføjes en dato på de forskellige "checkout" filskrivninger når folk bliver checket ud og tilføjet
     //til filendailyOverviewCheckOutFile så vi kan holde styr på hvilke dato dataen er fra.
 
+    /*
     private void childCheckOutOfDailyOverview(ChildCheckInOut ccio){
         FileWriter childOutOfGartenTodayfw = null;
         try {
@@ -374,10 +379,34 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 while(sc.hasNextLine()){
                     String theStringINeed=sc.nextLine();
                     if(theStringINeed.contains(childrenInGartenNow.get(i).getChild().getCPR())){
-                       TheRightString = theStringINeed;
+                        TheRightString = theStringINeed;
                     }
                 }
-                String childCheckOutToFile = TheRightString + "BREAK" + ccio.getCheckOutTime() +"\n";
+                String childCheckOutToFile = ccio.getChild().getCPR() + "BREAK" + ccio.getCheckInTime() + "BREAK" + ccio.getCheckOutTime() +"\n";
+                try {
+                    childOutOfGartenTodayfw.write(childCheckOutToFile);
+                    childOutOfGartenTodayfw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                removeFromDailyOverviewFile(ccio.getChild().getCPR());
+            }
+        }
+    }
+     */
+
+
+    private void childCheckOutOfDailyOverview(ChildCheckInOut ccio){
+        FileWriter childOutOfGartenTodayfw = null;
+        try {
+            childOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile", true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(int i = 0; i< childrenInGartenNow.size(); i++){
+            if(childrenInGartenNow.get(i).getChild().getCPR().equals(ccio.getChild().getCPR())){
+                String childCheckOutToFile = ccio.getChild().getCPR() + "BREAK" + ccio.getCheckInTime() + "BREAK" + ccio.getCheckOutTime() +"\n";
                 try {
                     childOutOfGartenTodayfw.write(childCheckOutToFile);
                     childOutOfGartenTodayfw.close();
@@ -518,9 +547,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
             // her slettes indholdet af tempDailyOverviewFile med et tomt string Write så den er parat til næste opgave
 
-            PrintWriter writer2 = null;
             try {
-                writer2 = new PrintWriter("src/resourser/TempDailyOverviewFile");
+                PrintWriter writer2 = new PrintWriter("src/resourser/TempDailyOverviewFile");
                 writer2.print("");
                 writer2.close();
             } catch (FileNotFoundException e) {

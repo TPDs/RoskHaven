@@ -82,8 +82,9 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
         barn2_cpr = c_cpr.getText();
-        Worksheet checktest = new Worksheet(2020,05);
-        DailyOverview check = checktest.workDays.get(2).getDailyOverview();
+        //Using a singleton-instance to ensure the actionListener-loop takes the updated childrenInGartenNow list
+        Kindergarten.getInstance().createNewWorksheet(2020, 5);
+        DailyOverview check = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(2).getDailyOverview();
         //check.childCheckIn(barn2_cpr);
         // Skal laves når worksheet er done
 
