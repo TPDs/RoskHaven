@@ -45,6 +45,10 @@ public class Child implements ClassesToStoreInFiles {
         return note;
     }
 
+    public ArrayList<Guardian> getGuardians() {
+        return guardians;
+    }
+
     public void setStatus(ChildStatus status){
         this.status = status;
     }

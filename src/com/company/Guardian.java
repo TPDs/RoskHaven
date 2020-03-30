@@ -19,7 +19,21 @@ public class Guardian implements ClassesToStoreInFiles {
         this.childCPR=childCPR;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
     @Override
     public void writeToFile() {

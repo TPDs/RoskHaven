@@ -1,12 +1,10 @@
 package com.company;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
@@ -19,8 +17,23 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
     static JButton removeChild;
     static JTextArea child_info;
     static JScrollPane scroll;
+    static ArrayList<GuiViewChild> G_list = new ArrayList<>();
+
 
     GuiViewChild(){}
+
+    String name;
+    String mail;
+    String phoneNumber;
+    String adresse;
+
+    public GuiViewChild(String name, String mail, String phoneNumber, String location) {
+        this.name = name;
+        this.mail= mail;
+        this.phoneNumber= phoneNumber;
+        this.adresse= location;
+
+    }
 
     public void guiViewChild() {
         Gui.frame.setTitle("Roskilde frie børnehave - ViewChild");
@@ -47,19 +60,18 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
         topTekst.setBounds(90, 25, 200, 20);
 
-        //child_info.setBounds(20,50,340,170);
-
         back.setBounds(35, 320, 100, 20);
         editChild.setBounds(35, 230, 130, 20);
         editGuardian.setBounds(220, 230, 130, 20);
         createGuardian.setBounds(35,270,130,20);
         removeChild.setBounds(220, 270, 130, 20);
 
+        Font  f2  = new Font(Font.DIALOG,  Font.BOLD, 11);
+        child_info.setFont(f2);
+
         child_info.setLineWrap(true);
         child_info.setEditable(false);
         child_info.setVisible(true);
-
-
 
         scroll = new JScrollPane(child_info);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -67,16 +79,27 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
         String barn_name =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName() ;
         String barn_note =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getNote();
+        int barn_age = Kindergarten.getInstance().searchAndFindChild(barn_cpr).calcAge();
 
 
+        child_info.setText("Navn:   " + barn_name +"\nCPR:   " + barn_cpr +  "\nAlder:   "+ barn_age +  "\nNoter:    " +barn_note +"\n");
+        child_info.append("\nVærger:");
+        G_list = new ArrayList<>();
+        for (int i =0; i < Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().size();) {
 
-        child_info.setText("Navn:   " + barn_name +"\nCPR:   " + barn_cpr +"\nNoter:    " +barn_note +"\n\n");
+            String G_name = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getName();
+            String G_mail = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getMail();
+            String G_phone = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getPhoneNumber();
+            String G_adresse = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getAddress();
 
-        // Mangler at adde barnets guardians via cpr :=)
 
-
-
-
+            G_list.add(new GuiViewChild(G_name,G_mail,G_phone,G_adresse));
+            child_info.append("\n\nNavn:   " + G_name);
+            child_info.append("\nMail:   " + G_mail);
+            child_info.append("\nTelefon:   " + G_phone);
+            child_info.append("\nAdresse:   " + G_adresse);
+            i++;
+        }
 
         frame.add(topTekst);
 
@@ -104,6 +127,22 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
 
 
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getAdresse() {
+        return adresse;
     }
 
     @Override

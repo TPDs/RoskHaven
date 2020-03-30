@@ -28,7 +28,7 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
         child_information = new JLabel("Indtast barnets oplysninger");
         child_cpr = new JLabel("CPR-Nummer:");
 
-        c_cpr = new JTextField("");
+        c_cpr = new JTextField("030305-4455");
 
         next = new JButton("Næste");
         back = new JButton("Tilbage");
