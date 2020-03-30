@@ -50,7 +50,7 @@ public class Gui implements ActionListener {
 
         l_name = new JLabel("CPR:");
         l_password = new JLabel("Password:");
-        t_name = new JTextField("");
+        t_name = new JTextField("020202-7878");
         t_password = new JPasswordField();
 
         t_name.setBounds(190, 180, 130, 20);
@@ -79,13 +79,13 @@ public class Gui implements ActionListener {
         frame.add(l_password);
 
         // til at loade et billed og rescale det
-        ImageIcon icon = new ImageIcon("src/resourser/doll.jpg");
-        Image icon2 = icon.getImage();
-        Image scaleicon2 = icon2.getScaledInstance(90, 50, Image.SCALE_SMOOTH);
-        icon = new ImageIcon(scaleicon2);
+      //  ImageIcon icon = new ImageIcon("src/resourser/doll.jpg");
+       // Image icon2 = icon.getImage();
+       // Image scaleicon2 = icon2.getScaledInstance(90, 50, Image.SCALE_SMOOTH);
+        //icon = new ImageIcon(scaleicon2);
         frame.getContentPane().add(button);
         frame.setVisible(true);
-        JOptionPane.showMessageDialog(button, "Goddag", "hej", JOptionPane.INFORMATION_MESSAGE, icon);
+        //JOptionPane.showMessageDialog(button, "Goddag", "hej", JOptionPane.INFORMATION_MESSAGE, icon);
 
         t_password.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {

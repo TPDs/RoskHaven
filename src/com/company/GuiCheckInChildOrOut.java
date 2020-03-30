@@ -88,11 +88,13 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
             topText.setText(barn2_cpr);
             c_cpr.setText("");
+
             checked.setText("er blevet tjekket ind");
 
         } else if (s == "Tjek barn ud") {
             topText.setText(barn2_cpr);
             c_cpr.setText("");
+
             checked.setText("er blevet tjekket ud");
 
         } else if (s == "Tilbage") {

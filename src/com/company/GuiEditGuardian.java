@@ -67,7 +67,6 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
         frame.add(g_info);
         frame.add(edit);
         frame.add(exit);
-
     }
 
     @Override
