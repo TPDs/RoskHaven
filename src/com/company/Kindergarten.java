@@ -110,6 +110,11 @@ public class Kindergarten {
     public Child addChildToQueue(String name, String CPR, String note){
         Child child = new Child( name, CPR, note);
         childrenInQueue.add(child);
+        try {
+            child.updateChildInFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return child;
     }
 
