@@ -13,21 +13,20 @@ public class Worksheet implements ClassesToStoreInFiles {
 
     //This creates a new worksheet.
     public Worksheet(int yearOfWorkSheet, int monthOfWorksheet){
+        //Remember to check if a worksheet within the month already exists and deny the user to create a new if that's the case.
+        workSheetID = calcID(yearOfWorkSheet, monthOfWorksheet);
         makeListOfDaysInMonth(monthOfWorksheet, yearOfWorkSheet);
         completeListOfEmployees = Kindergarten.getInstance().getEmployeesInGarten();
         completeListOfDailyManagers = Kindergarten.getInstance().getDailyManagersInGarten();
-
-        //Remember to check if a worksheet within the month already exists and deny the user to create a new if that's the case.
-        workSheetID = calcID(yearOfWorkSheet, monthOfWorksheet);
     }
 
     public String getWorkSheetID() {
         return workSheetID;
     }
 
-
-
-
+    public ArrayList<WorkDay> getWorkDays() {
+        return workDays;
+    }
 
     public String calcID(int year, int month){
         return "Y" + year + "M" + month;
@@ -40,22 +39,22 @@ public class Worksheet implements ClassesToStoreInFiles {
         workDays = new ArrayList<WorkDay>();
         if(monthOfChoice == 1 || monthOfChoice == 3 || monthOfChoice == 5 || monthOfChoice == 7 || monthOfChoice == 8 || monthOfChoice == 10 || monthOfChoice == 12){
             for(int i=0; i<31; i++){
-                WorkDay workday = new WorkDay();
+                WorkDay workday = new WorkDay(workSheetID, i+1);
                 workDays.add(workday);
             }
         } else if(monthOfChoice == 2 && yearOfChoice%4 != 0){
             for(int i=0; i<28; i++){
-                WorkDay workday = new WorkDay();
+                WorkDay workday = new WorkDay(workSheetID, i+1);
                 workDays.add(workday);
             }
         } else if (monthOfChoice == 2){
             for(int i=0; i<29; i++){
-                WorkDay workday = new WorkDay();
+                WorkDay workday = new WorkDay(workSheetID, i+1);
                 workDays.add(workday);
             }
         } else {
             for(int i=0; i<30; i++){
-                WorkDay workday = new WorkDay();
+                WorkDay workday = new WorkDay(workSheetID, i+1);
                 workDays.add(workday);
             }
         }
@@ -69,11 +68,12 @@ public class Worksheet implements ClassesToStoreInFiles {
         for(int i=0; i<completeListOfDailyManagers.size(); i++){
             if(completeListOfDailyManagers.get(i).getCPR().equals(DMid)){
                 //Days are one-off (the 1st in each month will be in the 0th position).
-                workDays.get(dayOfMonth-1).setDailyManagerScheduled(completeListOfDailyManagers.get(i));
+                workDays.get(dayOfMonth-1).getDailyOverview().setDailyManagerScheduled(completeListOfDailyManagers.get(i));
+                workDays.get(dayOfMonth).getDailyOverview().setDailyManagerScheduled(completeListOfDailyManagers.get(i));
+                break;
             }
         }
     }
-
 
 
 
@@ -86,16 +86,18 @@ public class Worksheet implements ClassesToStoreInFiles {
                 for(int j=0; j<10; j++){
                     workDays.get(dayOfMonth-1).getWorkHours().get(j).getEmployeeAtWork().add(completeListOfEmployees.get(i));
                 }
+                workDays.get(dayOfMonth).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
                 break;
             }
         }
     }
-
     //Adds an employee to a specific hour - the int given should be the start of the hour and the following 60 minutes.
     public void addWorkerToSchedule(String empID, int dayOfMonth, int hour){
         for(int i=0; i<completeListOfEmployees.size(); i++){
             if(completeListOfEmployees.get(i).getCPR().equals(empID)){
                 workDays.get(dayOfMonth).getWorkHours().get(hour-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
+                workDays.get(dayOfMonth).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
+                break;
             }
         }
     }
@@ -107,6 +109,8 @@ public class Worksheet implements ClassesToStoreInFiles {
                 for(int j=startHour; j<endHour; j++){
                     workDays.get(dayOfMonth).getWorkHours().get(j-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
                 }
+                workDays.get(dayOfMonth).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
+                break;
             }
         }
     }

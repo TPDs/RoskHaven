@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DailyOverview implements ClassesToStoreInFiles{
+    private String dailyOverViewID;
+
     private ArrayList<ChildCheckInOut> childrenInGartenNow;
     private ArrayList<ChildCheckInOut> childCheckedOut;
 
@@ -24,16 +26,46 @@ public class DailyOverview implements ClassesToStoreInFiles{
     //The specific employees and daily manager at work today will be determined by the worksheet,
     //and directly imported from there, i. e. no input needed when instantiating this object.
 
-    public DailyOverview(ArrayList<Employee> employeesScheduled, DailyManager dailyManagerScheduled){
+    public DailyOverview(String worksheetID, int dayOfMonth){
         childrenInGartenNow = new ArrayList<ChildCheckInOut>();
         childCheckedOut = new ArrayList<ChildCheckInOut>();
 
-        this.employeesScheduled = employeesScheduled;
+        this.employeesScheduled = new ArrayList<Employee>();
         employeesInGartenNow = new ArrayList<UserCheckInOut>();
         employeeCheckedOut = new ArrayList<UserCheckInOut>();
 
-        this.dailyManagerScheduled = dailyManagerScheduled;
+        this.dailyManagerScheduled = null;
         //dailyManagerInGartenNow = new UserCheckInOut(null);
+
+        dailyOverViewID = worksheetID + "D" + dayOfMonth;
+    }
+
+    public ArrayList<Employee> getEmployeesScheduled() {
+        return employeesScheduled;
+    }
+
+    public DailyManager getDailyManagerScheduled() {
+        return dailyManagerScheduled;
+    }
+
+    public void setDailyManagerScheduled(DailyManager dailyManagerScheduled) {
+        this.dailyManagerScheduled = dailyManagerScheduled;
+    }
+
+    public String getDailyOverViewID() {
+        return dailyOverViewID;
+    }
+
+    //Using the customized, but auto-generated (for now) by IntelliJ, .equals-method in User.
+    //Checks whether this employee is already in the list before adding it.
+    public void addEmployeeToListOfScheduled(Employee employee){
+        for(int i=0; i<employeesScheduled.size(); i++){
+            if(employeesScheduled.get(i).equals(employee)){
+                break;
+            } else {
+                employeesScheduled.add(employee);
+            }
+        }
     }
 
     //
@@ -339,9 +371,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
                     }
                 }
 
-                FileWriter employeeOutOfGartenTodayfw = null;
                 try {
-                    employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true);
+                    FileWriter employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true);
                     String employeeCheckOutToFile = "" + TheRightString + "BREAK" + ucio.getCheckOutTime() +"\n";
                     employeeOutOfGartenTodayfw.write(employeeCheckOutToFile);
                     employeeOutOfGartenTodayfw.close();
@@ -375,9 +406,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
             }
         }
 
-        FileWriter dailyManagerOutOfGartenTodayfw = null;
         try {
-            dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true );
+            FileWriter dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true );
             String dailyManagerCheckOutToFile = TheRightString + "BREAK" + ucio.getCheckOutTime() +"\n";
             dailyManagerOutOfGartenTodayfw.write(dailyManagerCheckOutToFile);
             dailyManagerOutOfGartenTodayfw.close();
@@ -396,16 +426,16 @@ public class DailyOverview implements ClassesToStoreInFiles{
             } catch (FileNotFoundException e) {
             e.printStackTrace();
             }
-        String LineChecker = "";
+
         while (sc.hasNextLine()) {
 
-            LineChecker = sc.nextLine();
+            String LineChecker = sc.nextLine();
 // checker om linechecker String ikke indeholder CPR input og gemmer de linjer der ikke container i en temp fil
             if (!LineChecker.contains(CPR)) {
                 // denne else opretter en temp fil med alle informationerene der skal forblive og overskriver den nuværende DailyOverviewFile
-                FileWriter tempdailyOverviewfw = null;
+
                 try {
-                    tempdailyOverviewfw = new FileWriter("src/resourser/TempDailyOverviewFile", true);
+                    FileWriter tempdailyOverviewfw = new FileWriter("src/resourser/TempDailyOverviewFile", true);
                     String tempStringToFile = LineChecker + "\n";
                     tempdailyOverviewfw.write(tempStringToFile);
                     tempdailyOverviewfw.close();
@@ -417,9 +447,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
             }
         }
         // dailyoverwievFilen bliver slettet ved af lave et Write med en tom string til filen uden append.
-        PrintWriter writer = null;
         try {
-            writer = new PrintWriter("src/resourser/DailyOverviewFile");
+            PrintWriter writer = new PrintWriter("src/resourser/DailyOverviewFile");
             writer.print("");
             writer.close();
 
@@ -435,14 +464,12 @@ public class DailyOverview implements ClassesToStoreInFiles{
             e.printStackTrace();
         }
 
-        String overrideText = "";
         while(overridesc.hasNextLine()){
-            overrideText=overridesc.nextLine();
+            String overrideText=overridesc.nextLine();
 
 
-            FileWriter tempfw = null;
             try {
-                tempfw = new FileWriter("src/resourser/DailyOverviewFile",true);
+                FileWriter tempfw = new FileWriter("src/resourser/DailyOverviewFile",true);
                 String tempString = overrideText + "\n";
                 tempfw.write(tempString);
                 tempfw.close();
@@ -452,9 +479,8 @@ public class DailyOverview implements ClassesToStoreInFiles{
             }
 
             // her slettes indholdet af tempDailyOverviewFile med et tomt string Write så den er parat til næste opgave
-            PrintWriter writer2 = null;
             try {
-                writer2 = new PrintWriter("src/resourser/TempDailyOverviewFile");
+                PrintWriter writer2 = new PrintWriter("src/resourser/TempDailyOverviewFile");
                 writer2.print("");
                 writer2.close();
 
