@@ -420,8 +420,6 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
         }
     }
@@ -528,17 +526,11 @@ public class DailyOverview implements ClassesToStoreInFiles{
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 
     @Override
     public void writeToFile() {
-    }
-
-    // metoden skal kunne bruges på childingartenToday til at fjerne fra listen ved checkout
-    public void removeFromFile(){
     }
 
     @Override
