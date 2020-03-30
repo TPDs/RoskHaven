@@ -117,6 +117,7 @@ public final class ReadFileUtil {
         while(sc.hasNextLine()){
             String tempF = sc.nextLine();
             Scanner sc1=new Scanner(tempF).useDelimiter("\\s*BREAK\\s*");
+            String guardianID = sc1.next();
             String name = sc1.next();
             String mail = sc1.next();
             String phoneN = sc1.next();
@@ -125,7 +126,7 @@ public final class ReadFileUtil {
 
             for(int i=0;i<childList.size();i++){
                 if(childCPR.equals(childList.get(i).getCPR())){
-                    childList.get(i).addGuardianFromFile(name,mail,phoneN,adress);
+                    childList.get(i).addGuardian(guardianID,name,mail,phoneN,adress);
                 }
             }
         }
@@ -140,10 +141,4 @@ public final class ReadFileUtil {
 
         return worksheetList;
     }
-
-
-    private void readFileChild(){
-
-    }
-
 }
