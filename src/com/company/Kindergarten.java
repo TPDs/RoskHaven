@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 //
@@ -18,7 +19,7 @@ public class Kindergarten {
     private ArrayList<Child> childrenInGarten;
     private ArrayList<Employee> employeesInGarten;
     private ArrayList<DailyManager> dailyManagersInGarten;
-    private ArrayList<Child> childrenInQueue;
+    private LinkedList<Child> childrenInQueue;
     //private ArrayList<Child> listOfShame;
 
     private Boss boss;
@@ -61,8 +62,8 @@ public class Kindergarten {
         return childrenInGarten;
     }
 
-    public ArrayList<Child> findChildrenInQueue(){
-        ArrayList<Child> childrenInQueue = new ArrayList<Child>();
+    public LinkedList<Child> findChildrenInQueue(){
+        LinkedList<Child> childrenInQueue = new LinkedList<>();
         for(int i=0; i<allChildren.size(); i++){
             if(allChildren.get(i).getStatus()==ChildStatus.QUEUE){
                 childrenInQueue.add(allChildren.get(i));
@@ -126,17 +127,15 @@ public class Kindergarten {
     // this method moves child from queue list to active garten list and removes the child from queue list
     // in other words, it changes the status to active, then updates the child file
     public void addChildToGarten(String CPR)  {
-        for(int i=0;i<childrenInQueue.size();i++){
-            if(childrenInQueue.get(i).getCPR().equals(CPR)){
-                childrenInQueue.get(i).setStatus(ChildStatus.ACTIVE);
-                childrenInGarten.add(childrenInQueue.get(i));
-                try {
-                    childrenInQueue.get(i).updateChildInFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                childrenInQueue.remove(i);
-                break;
+        if(childrenInQueue.size()==0){
+            System.out.println("The queue is empty.");
+        } else {
+            Child child = childrenInQueue.pop();
+            childrenInGarten.add(child);
+            try {
+                child.updateChildInFile();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -161,15 +160,18 @@ public class Kindergarten {
     // this method removes the child from the que list and changes childstatus to passive
     //then updates file
     public void removeChildFromQueue(String CPR){
-        for(int i=0;i<childrenInQueue.size();i++){
-            if(childrenInQueue.get(i).getCPR().equals(CPR)){
-                childrenInQueue.get(i).setStatus(ChildStatus.PASSIVE);
+        for(int i=0; i<allChildren.size(); i++){
+            if(allChildren.get(i).getCPR().equals(CPR)){
+                Child child = allChildren.get(i);
+                childrenInQueue.remove(child);
+                child.setStatus(ChildStatus.PASSIVE);
+
                 try {
-                    childrenInQueue.get(i).updateChildInFile();
+                    child.updateChildInFile();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                childrenInQueue.remove(i);
+
                 break;
             }
         }

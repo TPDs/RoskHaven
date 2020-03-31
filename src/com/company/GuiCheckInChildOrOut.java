@@ -119,6 +119,4 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
         }
     }
-
-
 }

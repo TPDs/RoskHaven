@@ -1,5 +1,7 @@
 package com.company;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Worksheet implements ClassesToStoreInFiles {
@@ -15,6 +17,7 @@ public class Worksheet implements ClassesToStoreInFiles {
     public Worksheet(int yearOfWorkSheet, int monthOfWorksheet){
         //Remember to check if a worksheet within the month already exists and deny the user to create a new if that's the case.
         workSheetID = calcID(yearOfWorkSheet, monthOfWorksheet);
+        writeToFile();
         makeListOfDaysInMonth(monthOfWorksheet, yearOfWorkSheet);
         completeListOfEmployees = Kindergarten.getInstance().getEmployeesInGarten();
         completeListOfDailyManagers = Kindergarten.getInstance().getDailyManagersInGarten();
@@ -138,6 +141,13 @@ public class Worksheet implements ClassesToStoreInFiles {
 
     @Override
     public void writeToFile() {
-
+        try {
+            FileWriter initWriteToWorksheet = new FileWriter("src/resourser/WorkSheetFile", true);
+            String idLine = workSheetID;
+            initWriteToWorksheet.write(idLine);
+            initWriteToWorksheet.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

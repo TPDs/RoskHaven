@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
 
     // husk at slette IOException når dummy data bliver slettet.
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Gui gui = new Gui();
         gui.gui();
 
@@ -33,6 +33,8 @@ public class Main {
 
         dailyO.childCheckIn("032332-2451", 12,21);
         dailyO.childCheckOut("032332-2451", 16,10);
+
+        dailyO.childCheckIn("031231-2453");
 
 
         System.out.println(dailyO);

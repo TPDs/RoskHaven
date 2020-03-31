@@ -38,6 +38,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         //dailyManagerInGartenNow = new UserCheckInOut(null);
 
         dailyOverViewID = worksheetID + "D" + dayOfMonth;
+        writeToFile();
     }
 
     public ArrayList<Employee> getEmployeesScheduled() {
@@ -559,6 +560,23 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
     @Override
     public void writeToFile() {
+        try {
+            FileWriter initWriteToCheckedoutFile = new FileWriter("src/resourser/DailyOverviewCheckedOutFile");
+            String idLine = dailyOverViewID +"\n";
+            initWriteToCheckedoutFile.write(idLine);
+            initWriteToCheckedoutFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter initDailyOverviewFile = new FileWriter("src/resourser/DailyOverviewFile");
+            String idLine = dailyOverViewID +"\n";
+            initDailyOverviewFile.write(idLine);
+            initDailyOverviewFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -571,4 +589,3 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 "Daily Manager checked out: " + dailyManagerCheckedOut;
     }
 }
-
