@@ -7,6 +7,12 @@ public class Main {
 
     // husk at slette IOException når dummy data bliver slettet.
     public static void main(String[] args) {
+        Kindergarten.getInstance().createNewWorksheet(2020,3);
+        DailyOverview dailyO = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(4).getDailyOverview();
+
+        Worksheet worksheet1 = new Worksheet(2020,4);
+
+
         Gui gui = new Gui();
         gui.gui();
 
@@ -25,10 +31,7 @@ public class Main {
 
         //System.out.println(child);
 
-        Worksheet worksheet0 = new Worksheet(2020,3);
-        DailyOverview dailyO = worksheet0.workDays.get(5).getDailyOverview();
 
-        Worksheet worksheet1 = new Worksheet(2020,4);
 
 
         dailyO.childCheckIn("030503-2451");

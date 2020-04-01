@@ -27,7 +27,7 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         GuiCheckInChildOrOut te = new GuiCheckInChildOrOut();
 
         topText = new JLabel("Indtast CPR-nummeret på barnet");
-        child_cpr = new JLabel("CPR-Nummer:");
+        child_cpr = new JLabel("CPR:");
         checked = new JLabel("");
 
         c_cpr = new JTextField(null);
@@ -40,7 +40,7 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         topText.setBounds(120, 80, 380, 20);
         checked.setBounds(135, 110, 300, 20);
 
-        child_cpr.setBounds(42, 160, 110, 20);
+        child_cpr.setBounds(70, 160, 110, 20);
         c_cpr.setBounds(140, 160, 200, 20);
 
         checkInChild.setBounds(70, 220, 110, 20);
@@ -95,6 +95,7 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         } else if (s == "Tjek barn ud") {
             topText.setText("");
             c_cpr.setText("");
+            check.childCheckOut(barn2_cpr);
             checked.setText(Kindergarten.getInstance().searchAndFindChild(barn2_cpr).getName() +" er blevet tjekket ud");
 
         } else if (s == "Tilbage") {
