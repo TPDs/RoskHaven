@@ -9,18 +9,14 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
     static JLabel topText;
     static JLabel child_cpr;
-
     static JTextField c_cpr;
-
     static JButton checkInChild;
     static JButton checkOutChild;
-
     static JButton back;
-
     static String barn1_cpr;
     static String barn2_cpr;
-
     static JLabel checked;
+    String cpr_name = "test";
 
     GuiCheckInChildOrOut() {
     }
@@ -75,6 +71,7 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
         frame.add(checkInChild);
         frame.add(checkOutChild);
         frame.add(back);
+
     }
 
     @Override
@@ -90,16 +87,15 @@ public class GuiCheckInChildOrOut extends GuiDailyOverview implements ActionList
 
         if (s == "Tjek barn ind") {
 
-            topText.setText(barn2_cpr);
+            topText.setText("");
             c_cpr.setText("");
             check.childCheckIn(barn2_cpr);
-            checked.setText("er blevet tjekket ind");
+            checked.setText(Kindergarten.getInstance().searchAndFindChild(barn2_cpr).getName() + " er blevet tjekket ind");
 
         } else if (s == "Tjek barn ud") {
-            topText.setText(barn2_cpr);
+            topText.setText("");
             c_cpr.setText("");
-            check.childCheckOut(barn2_cpr);
-            checked.setText("er blevet tjekket ud");
+            checked.setText(Kindergarten.getInstance().searchAndFindChild(barn2_cpr).getName() +" er blevet tjekket ud");
 
         } else if (s == "Tilbage") {
             if (ansatliste.getSelectedItem() == "Daglig leder") {
