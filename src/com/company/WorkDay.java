@@ -36,6 +36,7 @@ public class WorkDay implements ClassesToStoreInFiles {
             WorkHour workhour = new WorkHour(i+7);
             workHours.add(workhour);
         }
+        addBlankSpaceToFile();
     }
 
     public void clearWorkDay(){
@@ -48,6 +49,17 @@ public class WorkDay implements ClassesToStoreInFiles {
         try {
             FileWriter initWriteToWorksheet = new FileWriter("src/resourser/WorkSheetFile", true);
             String idLine = "\n" + dailyOverview.getDailyOverViewID() + " ";
+            initWriteToWorksheet.write(idLine);
+            initWriteToWorksheet.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addBlankSpaceToFile() {
+        try {
+            FileWriter initWriteToWorksheet = new FileWriter("src/resourser/WorkSheetFile", true);
+            String idLine = "\n";
             initWriteToWorksheet.write(idLine);
             initWriteToWorksheet.close();
         } catch (IOException e) {
