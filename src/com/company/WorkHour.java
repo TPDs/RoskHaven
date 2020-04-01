@@ -24,11 +24,11 @@ public class WorkHour implements ClassesToStoreInFiles {
     public void writeToFile() {
         try {
             FileWriter initWriteToWorksheet = new FileWriter("src/resourser/WorkSheetFile", true);
-            String idLine = hour + "[";
+            String idLine = "\n" + hour + "[";
             for(int i=0; i<employeeAtWork.size(); i++){
                  idLine += employeeAtWork.get(i).getCPR() + ",";
             }
-            idLine += "] ";
+            idLine += "]";
             initWriteToWorksheet.write(idLine);
             initWriteToWorksheet.close();
         } catch (IOException e) {
