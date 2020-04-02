@@ -104,8 +104,6 @@ public class GuiClear {
         GuiEditGuardian.adresse.setVisible(false);
         GuiEditGuardian.phone.setVisible(false);
 
-
-
     }
 
     public void guiWorksheetWeek(){
