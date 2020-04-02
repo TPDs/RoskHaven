@@ -7,8 +7,8 @@ public class Main {
 
     // husk at slette IOException når dummy data bliver slettet.
     public static void main(String[] args) {
-        //Gui gui = new Gui();
-        //gui.gui();
+        Gui gui = new Gui();
+        gui.gui();
 
 
         //System.out.println(Kindergarten.getInstance().getAllChildren());
