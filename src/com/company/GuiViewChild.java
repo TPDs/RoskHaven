@@ -92,7 +92,6 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
             String G_phone = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getPhoneNumber();
             String G_adresse = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getAddress();
 
-
             G_list.add(new GuiViewChild(G_name,G_mail,G_phone,G_adresse));
             child_info.append("\n\nNavn:   " + G_name);
             child_info.append("\nMail:   " + G_mail);
@@ -165,19 +164,19 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
                 boss.GuiBoss();
             }
         } else if (s == "Opdater Barn") {
-            barn_cpr = c_cpr.getText();
+            //barn_cpr = c_cpr.getText();
             clean.guiViewChild();
 
             GuiEditChild editChild = new GuiEditChild();
             editChild.guiEditChild();
         } else if(s == "Opdater Værge"){
-            barn_cpr = c_cpr.getText();
+           barn_cpr = c_cpr.getText();
             clean.guiViewChild();
 
             GuiEditGuardian editGuardian = new GuiEditGuardian();
             editGuardian.guiEditGuardian();
         } else if(s == "Opret Værge"){
-            barn_cpr = c_cpr.getText();
+            //barn_cpr = c_cpr.getText();
             clean.guiViewChild();
 
             GuiAddGuardian addGuardian = new GuiAddGuardian();

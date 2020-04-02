@@ -13,7 +13,6 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
     static JLabel child_cpr;
     static JTextField c_cpr;
     static JButton next;
-    static String barn_cpr;
     static JButton back;
 
 
@@ -28,7 +27,7 @@ public class GuiCheckChild extends GuiBoss implements ActionListener {
         child_information = new JLabel("Indtast barnets oplysninger");
         child_cpr = new JLabel("CPR-Nummer:");
 
-        c_cpr = new JTextField("030305-4455");
+        c_cpr = new JTextField("020602-2255");
 
         next = new JButton("Næste");
         back = new JButton("Tilbage");

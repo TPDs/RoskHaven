@@ -16,9 +16,7 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
     static JTextArea c_note;
     static JButton next;
     static JButton back;
-    static String barn_navn;
-    static String barn_cpr;
-    static String barn_note;
+
 
     GuiAddChild() {
     }
@@ -33,8 +31,8 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         child_cpr = new JLabel("CPR-Nummer:");
         child_note = new JLabel("Note (Allergier, \n sygdomme mm):");
 
-        c_name = new JTextField("");
-        c_cpr = new JTextField(null);
+        c_name = new JTextField();
+        c_cpr = new JTextField();
         c_note = new JTextArea();
         c_note.setLineWrap(true);
 

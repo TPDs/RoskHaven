@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 public class GuiEditChild extends GuiViewChild implements ActionListener {
 
-
     static JTextField ce_name_field, ce_cpr_field;
     static JLabel ce_name, ce_cpr,ce_note_lable;
     static JTextArea ce_note;
@@ -16,7 +15,6 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
     GuiEditChild() {
     }
 
-
     public void guiEditChild() {
         Gui.frame.setTitle("Roskilde frie børnehave - EditChild");
 
@@ -24,7 +22,11 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
 
         ce_name_field = new JTextField();
         ce_cpr_field = new JTextField();
+        ce_note = new JTextArea();
 
+        ce_name_field.setText(Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName());
+        ce_cpr_field.setText(barn_cpr);
+        ce_note.setText(Kindergarten.getInstance().searchAndFindChild(barn_cpr).getNote());
 
         ce_ok= new JButton("Godkend");
         ce_regret = new JButton("Fortryd");
@@ -33,8 +35,6 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
         ce_cpr = new JLabel("CPR:");
         ce_note_lable = new JLabel("Noter:");
 
-        ce_note = new JTextArea();
-
         ce_ok.setBackground(new Color(62, 249, 106));
         ce_ok.setForeground(Color.BLACK);
         ce_ok.setFocusPainted(false);
@@ -42,8 +42,6 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
         ce_regret.setBackground(new Color(249, 34, 47));
         ce_regret.setForeground(Color.WHITE);
         ce_regret.setFocusPainted(false);
-
-
 
         ce_name_field.setBounds(120, 90, 150, 20);
         ce_cpr_field.setBounds(120, 130, 150, 20);
@@ -64,11 +62,8 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
         frame.add(ce_name_field);
         frame.add(ce_cpr_field);
         frame.add(ce_note);
-
         frame.add(ce_ok);
         frame.add(ce_regret);
-
-
 
     }
 
@@ -84,10 +79,9 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
             boss.GuiBoss();
         }
         else if (s =="Godkend") {
-            String noter = ce_note.getText();
             System.out.println("Navn: " +  ce_name_field.getText());
             System.out.println("CPR: " +  ce_cpr_field.getText());
-            System.out.println("Noter: " +  noter);
+            System.out.println("Noter: " +  ce_note.getText());
 
         }
     }
