@@ -7,12 +7,6 @@ public class Main {
 
     // husk at slette IOException når dummy data bliver slettet.
     public static void main(String[] args) {
-        Kindergarten.getInstance().createNewWorksheet(2020,3);
-        DailyOverview dailyO = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(4).getDailyOverview();
-
-        Worksheet worksheet1 = new Worksheet(2020,4);
-
-
         Gui gui = new Gui();
         gui.gui();
 
@@ -30,20 +24,6 @@ public class Main {
         Kindergarten.getInstance().getChildrenInGarten().add(child2);
 
         //System.out.println(child);
-
-
-
-
-        dailyO.childCheckIn("030503-2451");
-        dailyO.childCheckOut("030503-2451");
-
-        dailyO.childCheckIn("032332-2451", 12,21);
-        dailyO.childCheckOut("032332-2451", 16,10);
-
-        dailyO.childCheckIn("031231-2453");
-
-
-        System.out.println(dailyO);
 
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202-7878","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Ulla", "030303-7474","1234" ));
