@@ -13,6 +13,9 @@ public class GuiBoss extends Gui implements ActionListener {
     static JButton check_kid;
     static JButton workSheet;
     static JButton logout;
+    static String barn_navn;
+    static String barn_cpr;
+    static String barn_note;
 
     GuiBoss() {
     }

@@ -81,7 +81,10 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
             }
 
         else if (s=="Afslut") {
-            System.out.println("Lukker ned");
+                Gui.logo.setVisible(true);
+
+                GuiBoss boss = new GuiBoss();
+                boss.GuiBoss();
         }
         else if (s=="Ret") {
             System.out.println("Ret");

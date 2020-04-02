@@ -19,7 +19,7 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
 
         GuiWorksheetWeek te = new GuiWorksheetWeek();
 
-        label = new JLabel("Hvad kunne du tænke dig at gøre?");
+        label = new JLabel("Arbejsplan for uge: "+week_nr);
 
         worksheet_info = new JTextArea(/*Worksheet oplysninger*/);
 

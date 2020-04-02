@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.nio.file.WatchEvent.Kind;
 import java.util.ArrayList;
 
 public class GuiAddGuardian extends GuiAddChild {
@@ -68,6 +69,10 @@ public class GuiAddGuardian extends GuiAddChild {
         next2.addActionListener(ter);
         add_next.addActionListener(ter);
 
+        if (barn_navn == null) {
+            barn_navn = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName();
+            barn_note = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getNote();
+        }
         title = new JLabel("Tilføj Værge til " + barn_navn);
         name_text = new JLabel("Navn:");
         mail_text = new JLabel("Email:");
