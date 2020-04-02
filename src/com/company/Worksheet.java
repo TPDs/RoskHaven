@@ -156,8 +156,8 @@ public class Worksheet implements ClassesToStoreInFiles {
     public void addWorkerFromFile(String empID, int dayOfMonth, int hour){
         for(int i=0; i<completeListOfEmployees.size(); i++){
             if(completeListOfEmployees.get(i).getCPR().equals(empID)){
-                workDays.get(dayOfMonth).getWorkHours().get(hour-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
-                workDays.get(dayOfMonth).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
+                workDays.get(dayOfMonth-1).getWorkHours().get(hour-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
+                workDays.get(dayOfMonth-1).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
                 break;
             }
         }
@@ -211,7 +211,7 @@ public class Worksheet implements ClassesToStoreInFiles {
 
 
     public void workSheetUpdate(){
-        //Nevermind all the testing and tempfile-fun. The sulotion is quite simply to remake all the files.
+        //Nevermind all the testing and tempfile-fun. The solution is quite simply to remake all the files.
 
         try {
             PrintWriter pw = new PrintWriter("src/resourser/WorkSheetFile");

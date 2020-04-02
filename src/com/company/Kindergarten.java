@@ -50,6 +50,7 @@ public class Kindergarten {
         dailyManagersInGarten = ReadWriteFileUtil.readDailyManagerList();
 
         worksheetList = ReadWriteFileUtil.readWorksheet();
+        ReadWriteFileUtil.readDailyOverviewFile(worksheetList);
     }
 
     public ArrayList<Child> findChildrenInGarten(){
