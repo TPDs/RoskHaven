@@ -7,12 +7,17 @@ public class Main {
 
     // husk at slette IOException når dummy data bliver slettet.
     public static void main(String[] args) {
-        Gui gui = new Gui();
-        gui.gui();
+        //Gui gui = new Gui();
+        //gui.gui();
+
+
+        System.out.println(Kindergarten.getInstance().getAllChildren());
+
+
 
 
         // dummy data til test af funktionaliteter i DailyOverview classen
-
+/*
         Child child = new Child("Cirkeline","030503-2451","hun spiser ikke kartofler om onsdagen");
         Child child1 = new Child("Hansi","032332-2451","hun spiser ikke kartofler om onsdagen");
         Child child2 = new Child("Gurgemau","031231-2453","hun spiser ikke kartofler om onsdagen");
@@ -36,13 +41,6 @@ public class Main {
 
         Kindergarten.getInstance().setBoss(new Boss("Trolle", "9992","iddqd"));
 
-        System.out.println(child2.getCPR());
-        System.out.println(child2.getStatus());
-
-        System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(1));
-
-        System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(2).getCPR());
-
 
         Kindergarten.getInstance().addChildToQueue("søren","010101-2200","allergi:pære");
         Kindergarten.getInstance().addChildToQueue("søren1","010101-2211","allergi:kumkvut");
@@ -52,10 +50,10 @@ public class Main {
         Kindergarten.getInstance().removeChildFromQueue("010101-2222");
 
         Kindergarten.getInstance().addChildToGarten("010101-2211");
+*/
 
 
-
-
+/*
 
         Kindergarten.getInstance().createNewWorksheet(2020,3);
         Kindergarten.getInstance().createNewWorksheet(2020,4);
@@ -88,5 +86,20 @@ public class Main {
         worksheet2.addDailyManagerToSchedule("201854-8745", 4);
 
 
-    }
+        worksheet1.addWorkerToSchedule("040404-0000", 1);
+        worksheet1.addWorkerToSchedule("040404-0000", 2);
+        worksheet1.addWorkerToSchedule("040404-0000", 4);
+
+        worksheet1.addWorkerToSchedule("030303-7474", 1);
+        worksheet1.addWorkerToSchedule("030303-7474", 3);
+
+        worksheet1.addWorkerToSchedule("050505-1111", 4);*/
+/*
+        Worksheet w1 = Kindergarten.getInstance().findWorksheet(2020,3);
+        Worksheet w2 = Kindergarten.getInstance().findWorksheet(2020,4);
+
+        System.out.println(w1.getWorkDays().get(0).getDailyOverview().getDailyManagerScheduled());
+        System.out.println(w1.getWorkDays().get(0).getWorkHours().get(1).getEmployeeAtWork().get(0));
+        System.out.println(w1.getWorkDays().get(0).getWorkHours().get(1).getEmployeeAtWork().get(1));
+   */ }
 }

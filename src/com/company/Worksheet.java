@@ -27,6 +27,16 @@ public class Worksheet implements ClassesToStoreInFiles {
         completeListOfDailyManagers = Kindergarten.getInstance().getDailyManagersInGarten();
     }
 
+    //This constructor is to be used when reading from files.
+    public Worksheet(int year, int month, String workSheetID){
+        this.year = year;
+        this.month = month;
+        this.workSheetID = workSheetID;
+        makeListOfDaysInMonth(month, year);
+        completeListOfEmployees = Kindergarten.getInstance().getEmployeesInGarten();
+        completeListOfDailyManagers = Kindergarten.getInstance().getDailyManagersInGarten();
+    }
+
     public String getWorkSheetID() {
         return workSheetID;
     }
@@ -90,6 +100,16 @@ public class Worksheet implements ClassesToStoreInFiles {
         }
     }
 
+    public void addDailyManagerFromFile(String DMid, int dayOfMonth){
+        for(int i=0; i<completeListOfDailyManagers.size(); i++){
+            if(completeListOfDailyManagers.get(i).getCPR().equals(DMid)){
+                //Days are one-off (the 1st in each month will be in the 0th position).
+                workDays.get(dayOfMonth-1).getDailyOverview().setDailyManagerScheduled(completeListOfDailyManagers.get(i));
+                break;
+            }
+        }
+    }
+
 
 
 
@@ -105,6 +125,7 @@ public class Worksheet implements ClassesToStoreInFiles {
                 break;
             }
         }
+        workSheetUpdate();
     }
     //Adds an employee to a specific hour - the int given should be the start of the hour and the following 60 minutes.
     public void addWorkerToSchedule(String empID, int dayOfMonth, int hour){
@@ -115,6 +136,7 @@ public class Worksheet implements ClassesToStoreInFiles {
                 break;
             }
         }
+        workSheetUpdate();
     }
 
     //Adds employee to a range of hours in a specific workday.
@@ -124,6 +146,17 @@ public class Worksheet implements ClassesToStoreInFiles {
                 for(int j=startHour; j<endHour; j++){
                     workDays.get(dayOfMonth).getWorkHours().get(j-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
                 }
+                workDays.get(dayOfMonth).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
+                break;
+            }
+        }
+        workSheetUpdate();
+    }
+
+    public void addWorkerFromFile(String empID, int dayOfMonth, int hour){
+        for(int i=0; i<completeListOfEmployees.size(); i++){
+            if(completeListOfEmployees.get(i).getCPR().equals(empID)){
+                workDays.get(dayOfMonth).getWorkHours().get(hour-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
                 workDays.get(dayOfMonth).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
                 break;
             }
@@ -155,14 +188,14 @@ public class Worksheet implements ClassesToStoreInFiles {
             String days = workSheetID + "\n";
             for(int i=0; i<workDays.size(); i++){
                 if(workDays.get(i).getDailyOverview().getDailyManagerScheduled() == null){
-                    days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled() + "\n";
+                    days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled() + "BREAK" + "\n";
                 } else {
-                    days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled().getCPR() + "\n";
+                    days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled().getCPR() + "BREAK" + "\n";
                 }
                 for(int j=0; j<workDays.get(i).getWorkHours().size(); j++){
                     days += "" + (j+7) + "[";
                     for(int h=0; h<workDays.get(i).getWorkHours().get(j).getEmployeeAtWork().size(); h++){
-                        days += workDays.get(i).getWorkHours().get(j).getEmployeeAtWork().get(h) + ",";
+                        days += workDays.get(i).getWorkHours().get(j).getEmployeeAtWork().get(h).getCPR() + ",";
                     }
                     days += "]\n";
                 }

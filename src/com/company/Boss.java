@@ -4,7 +4,11 @@ public class Boss extends User {
 
 
     public Boss(String name, String id, String password) {
-        super(name, id, password);
+        super("b", name, id, password);
+    }
+
+    public Boss(String name, String id, String password, boolean readFromFile){
+        super("b", name, id, password, readFromFile);
     }
 }
 

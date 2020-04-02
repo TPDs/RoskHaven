@@ -5,11 +5,21 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class User implements ClassesToStoreInFiles{
+    private String userType;
     private String name;
     private String CPR;
     private String password;
 
-    public User(String name, String CPR, String password){
+    public User(String userType, String name, String CPR, String password){
+        this.userType = userType;
+        this.name = name;
+        this.CPR = CPR;
+        this.password = password;
+        writeToFile();
+    }
+
+    public User(String userType, String name, String CPR, String password, boolean readFromFile){
+        this.userType = userType;
         this.name = name;
         this.CPR = CPR;
         this.password = password;
@@ -48,10 +58,11 @@ public class User implements ClassesToStoreInFiles{
 
     @Override
     public void writeToFile(){
-    String StringToFile =  this.name + " " + this.CPR + " " + this.password;
+    String StringToFile = this.userType + "," + this.name + "," + this.CPR + "," + this.password + "\n";
         try {
-            FileWriter Userfw = new FileWriter("src/resourser/EmployeeListFile");
+            FileWriter Userfw = new FileWriter("src/resourser/EmployeeListFile", true);
             Userfw.write(StringToFile);
+            Userfw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
