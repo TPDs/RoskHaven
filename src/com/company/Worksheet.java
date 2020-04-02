@@ -1,12 +1,14 @@
 package com.company;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Worksheet implements ClassesToStoreInFiles {
     //ID is composed of the year followed by the month. So January of 2019 will be "Y2019M1".
     String workSheetID;
+    private int year;
+    private int month;
     ArrayList<WorkDay> workDays;
     ArrayList<Employee> completeListOfEmployees;
     ArrayList<DailyManager> completeListOfDailyManagers;
@@ -16,9 +18,11 @@ public class Worksheet implements ClassesToStoreInFiles {
     //This creates a new worksheet.
     public Worksheet(int yearOfWorkSheet, int monthOfWorksheet){
         //Remember to check if a worksheet within the month already exists and deny the user to create a new if that's the case.
+        this.year = yearOfWorkSheet;
+        this.month = monthOfWorksheet;
         workSheetID = calcID(yearOfWorkSheet, monthOfWorksheet);
-        writeToFile();
         makeListOfDaysInMonth(monthOfWorksheet, yearOfWorkSheet);
+        writeToFile();
         completeListOfEmployees = Kindergarten.getInstance().getEmployeesInGarten();
         completeListOfDailyManagers = Kindergarten.getInstance().getDailyManagersInGarten();
     }
@@ -29,6 +33,14 @@ public class Worksheet implements ClassesToStoreInFiles {
 
     public ArrayList<WorkDay> getWorkDays() {
         return workDays;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
     }
 
     public String calcID(int year, int month){
@@ -72,7 +84,7 @@ public class Worksheet implements ClassesToStoreInFiles {
             if(completeListOfDailyManagers.get(i).getCPR().equals(DMid)){
                 //Days are one-off (the 1st in each month will be in the 0th position).
                 workDays.get(dayOfMonth-1).getDailyOverview().setDailyManagerScheduled(completeListOfDailyManagers.get(i));
-                workDays.get(dayOfMonth).getDailyOverview().setDailyManagerScheduled(completeListOfDailyManagers.get(i));
+                workSheetUpdate();
                 break;
             }
         }
@@ -136,18 +148,168 @@ public class Worksheet implements ClassesToStoreInFiles {
     }
 
 
-
-
-
     @Override
     public void writeToFile() {
         try {
             FileWriter initWriteToWorksheet = new FileWriter("src/resourser/WorkSheetFile", true);
-            String idLine = workSheetID;
-            initWriteToWorksheet.write(idLine);
+            String days = workSheetID + "\n";
+            for(int i=0; i<workDays.size(); i++){
+                if(workDays.get(i).getDailyOverview().getDailyManagerScheduled() == null){
+                    days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled() + "\n";
+                } else {
+                    days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled().getCPR() + "\n";
+                }
+                for(int j=0; j<workDays.get(i).getWorkHours().size(); j++){
+                    days += "" + (j+7) + "[";
+                    for(int h=0; h<workDays.get(i).getWorkHours().get(j).getEmployeeAtWork().size(); h++){
+                        days += workDays.get(i).getWorkHours().get(j).getEmployeeAtWork().get(h) + ",";
+                    }
+                    days += "]\n";
+                }
+            }
+            days += "ENDOFWORKSHEET\n";
+            initWriteToWorksheet.write(days);
             initWriteToWorksheet.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+
+    public void workSheetUpdate(){
+        //Nevermind all the testing and tempfile-fun. The sulotion is quite simply to remake all the files.
+
+        try {
+            PrintWriter pw = new PrintWriter("src/resourser/WorkSheetFile");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<Worksheet> worksheetlist = Kindergarten.getInstance().getWorksheetList();
+        for(int i=0; i<worksheetlist.size(); i++){
+            worksheetlist.get(i).writeToFile();
+        }
+
+
+
+
+
+        //Calls upon the worksheetID of this object to ensure that changes are only made to this exact part of the file.
+        //subsequently the whole file is printed to a tempfile with the changes and finally printed onto the existing file.
+        //try {
+            //Scanner sc = new Scanner(new File("src/resourser/WorkSheetFile"));
+            //FileWriter tempWriter = new FileWriter("src/resourser/tempFile", true);
+
+
+
+            /*
+            while(sc.hasNextLine()){
+                String checkLine = sc.nextLine();
+                if(!checkLine.equals(workSheetID)){
+                    FileWriter tempWriter2 = new FileWriter("src/resourser/tempFile", true);
+                    tempWriter2.write(checkLine + "\n");
+                    tempWriter2.close();
+                } else {
+                    System.out.println("ID WAS CORRECT");
+                    while(!sc.nextLine().contains("ENDOFWORKSHEET")){
+                        System.out.println("SKIP");
+                    }
+                }
+            }
+            tempWriter.close();
+            sc.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            FileWriter tempWriter2 = new FileWriter("src/resourser/tempFile", true);
+            String days = workSheetID + "\n";
+            for(int i=0; i<workDays.size(); i++){
+                if(workDays.get(i).getDailyOverview().getDailyManagerScheduled() == null){
+                    days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled() + "\n";
+                } else {
+                    days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled().getCPR() + "\n";
+                }
+                for(int j=0; j<workDays.get(i).getWorkHours().size(); j++){
+                    days += "" + (j+7) + "[";
+                    for(int h=0; h<workDays.get(i).getWorkHours().get(j).getEmployeeAtWork().size(); h++){
+                        days += workDays.get(i).getWorkHours().get(j).getEmployeeAtWork().get(h) + ",";
+                    }
+                    days += "]\n";
+                }
+            }
+            days += "ENDOFWORKSHEET\n";
+            System.out.println(days);
+            tempWriter2.write(days);
+            tempWriter2.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        /*try {
+            Scanner scs = new Scanner(new File("src/resourser/WorkSheetFile"));
+            FileWriter tempWriter = new FileWriter("src/resourser/tempFile", true);
+            while(scs.hasNextLine()){
+                String lineCheck = scs.nextLine();
+                System.out.println(lineCheck);
+                if(lineCheck.equals(workSheetID)){
+                    String days = workSheetID + "\n";
+                    for(int i=0; i<workDays.size(); i++){
+                        if(workDays.get(i).getDailyOverview().getDailyManagerScheduled() == null){
+                            days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled() + "\n";
+                        } else {
+                            days += "\n" + workDays.get(i).getDailyOverview().getDailyOverViewID() + "BREAK" + workDays.get(i).getDailyOverview().getDailyManagerScheduled().getCPR() + "\n";
+                        }
+                        for(int j=0; j<workDays.get(i).getWorkHours().size(); j++){
+                            days += "" + (j+7) + "[";
+                            for(int h=0; h<workDays.get(i).getWorkHours().get(j).getEmployeeAtWork().size(); h++){
+                                days += workDays.get(i).getWorkHours().get(j).getEmployeeAtWork().get(h) + ",";
+                            }
+                            days += "]\n";
+                        }
+                    }
+                    days += "ENDOFWORKSHEET\n";
+                    tempWriter.write(days);
+                    tempWriter.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+
+        //Everything from tempfile is transferred to the original file.
+/*
+        try{
+            PrintWriter pw = new PrintWriter("src/resourser/WorkSheetFile");
+            pw.write("");
+            pw.close();
+
+            FileWriter fromTempToFileWriter = new FileWriter("src/resourser/WorkSheetFile");
+            Scanner sc = new Scanner(new File("src/resourser/tempFile"));
+
+            while(sc.hasNextLine()){
+                fromTempToFileWriter.write(sc.nextLine() + "\n");
+            }
+            fromTempToFileWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        try {
+            PrintWriter emptyTemp = new PrintWriter("src/resourser/tempFile");
+            emptyTemp.print("");
+            emptyTemp.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }*/
     }
 }

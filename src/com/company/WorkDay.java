@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class WorkDay implements ClassesToStoreInFiles {
+public class WorkDay {
     //A WorkDay is assumed to be from 7:00-17:00, and is only splitted in full hours, meaning employees
     //will have to be scheduled for a minumum of one hour and any subsequent full hour.
     private int dayOfMonth;
@@ -16,9 +16,7 @@ public class WorkDay implements ClassesToStoreInFiles {
         this.dayOfMonth = dayOfMonth;
 
         dailyOverview = new DailyOverview(worksheetID, dayOfMonth);
-        writeToFile();
         makeWorkHoursInADay();
-
     }
 
     public ArrayList<WorkHour> getWorkHours() {
@@ -36,35 +34,10 @@ public class WorkDay implements ClassesToStoreInFiles {
             WorkHour workhour = new WorkHour(i+7);
             workHours.add(workhour);
         }
-        addBlankSpaceToFile();
     }
 
     public void clearWorkDay(){
 
-    }
-
-
-    @Override
-    public void writeToFile() {
-        try {
-            FileWriter initWriteToWorksheet = new FileWriter("src/resourser/WorkSheetFile", true);
-            String idLine = "\n" + dailyOverview.getDailyOverViewID() + " ";
-            initWriteToWorksheet.write(idLine);
-            initWriteToWorksheet.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addBlankSpaceToFile() {
-        try {
-            FileWriter initWriteToWorksheet = new FileWriter("src/resourser/WorkSheetFile", true);
-            String idLine = "\n";
-            initWriteToWorksheet.write(idLine);
-            initWriteToWorksheet.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

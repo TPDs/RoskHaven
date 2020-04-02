@@ -25,23 +25,6 @@ public class Main {
 
         //System.out.println(child);
 
-        Worksheet worksheet0 = new Worksheet(2020,3);
-        DailyOverview dailyO = worksheet0.workDays.get(5).getDailyOverview();
-
-        Worksheet worksheet1 = new Worksheet(2020,4);
-
-
-        dailyO.childCheckIn("030503-2451");
-        dailyO.childCheckOut("030503-2451");
-
-        dailyO.childCheckIn("032332-2451", 12,21);
-        dailyO.childCheckOut("032332-2451", 16,10);
-
-        dailyO.childCheckIn("031231-2453");
-
-
-        System.out.println(dailyO);
-
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202-7878","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Ulla", "030303-7474","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Faisal", "040404-0000","1234" ));
@@ -53,13 +36,6 @@ public class Main {
 
         Kindergarten.getInstance().setBoss(new Boss("Trolle", "9992","iddqd"));
 
-        System.out.println(child2.getCPR());
-        System.out.println(child2.getStatus());
-
-        System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(1));
-
-        System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(2).getCPR());
-
 
         Kindergarten.getInstance().addChildToQueue("søren","010101-2200","allergi:pære");
         Kindergarten.getInstance().addChildToQueue("søren1","010101-2211","allergi:kumkvut");
@@ -70,12 +46,40 @@ public class Main {
 
         Kindergarten.getInstance().addChildToGarten("010101-2211");
 
-        System.out.println(ReadFileUtil.readChildList());
+
+
+
+
+        Kindergarten.getInstance().createNewWorksheet(2020,3);
+        Kindergarten.getInstance().createNewWorksheet(2020,4);
+
+        Worksheet worksheet1 = Kindergarten.getInstance().findWorksheet(2020,3);
+        Worksheet worksheet2 = Kindergarten.getInstance().findWorksheet(2020,4);
+
+        DailyOverview dailyO = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(0).getDailyOverview();
+        DailyOverview dailyO1 = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(1).getDailyOverview();
+
+
+        dailyO.childCheckIn("030503-2451");
+        dailyO.childCheckOut("030503-2451");
+
+        dailyO.childCheckIn("032332-2451", 12,21);
+        dailyO.childCheckOut("032332-2451", 16,10);
+
+        dailyO.childCheckIn("031231-2453");
+
+
+        worksheet1.addDailyManagerToSchedule("020302-2817", 1);
+        worksheet1.addDailyManagerToSchedule("201854-8745", 3);
+        worksheet1.addDailyManagerToSchedule("201854-8745", 4);
+        worksheet1.addDailyManagerToSchedule("201854-8745", 10);
+
+
+        worksheet2.addDailyManagerToSchedule("020302-2817", 1);
+        worksheet2.addDailyManagerToSchedule("020302-2817", 2);
+        worksheet2.addDailyManagerToSchedule("020302-2817", 3);
+        worksheet2.addDailyManagerToSchedule("201854-8745", 4);
 
 
     }
 }
-
-//Skal lave en fil scanner som kan bruges til af instantiere de forskellige objekter
-//skal lave en nogle metoder der kan læse linjer på filer og lave ændringer, så sætte dem ind i filen igen og slette den " læste linje"
-//

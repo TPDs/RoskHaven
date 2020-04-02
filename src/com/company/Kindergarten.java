@@ -39,17 +39,17 @@ public class Kindergarten {
     }
 
     public void makeAttributeArrays(){
-        boss = ReadFileUtil.readBoss();
+        boss = ReadWriteFileUtil.readBoss();
 
-        allChildren = ReadFileUtil.readChildList();
+        allChildren = ReadWriteFileUtil.readChildList();
 
         childrenInGarten = findChildrenInGarten();
         childrenInQueue = findChildrenInQueue();
 
-        employeesInGarten = ReadFileUtil.readEmployeeList();
-        dailyManagersInGarten = ReadFileUtil.readDailyManagerList();
+        employeesInGarten = ReadWriteFileUtil.readEmployeeList();
+        dailyManagersInGarten = ReadWriteFileUtil.readDailyManagerList();
 
-        worksheetList = ReadFileUtil.readWorksheet();
+        worksheetList = ReadWriteFileUtil.readWorksheet();
     }
 
     public ArrayList<Child> findChildrenInGarten(){
@@ -213,5 +213,16 @@ public class Kindergarten {
         if(!flag){
             worksheetList.add(new Worksheet(year, month));
         }
+    }
+
+    public Worksheet findWorksheet(int year, int month){
+        Worksheet worksheet = null;
+        for(int i=0; i<worksheetList.size(); i++){
+            if(worksheetList.get(i).getYear()==year && worksheetList.get(i).getMonth()==month){
+                worksheet = worksheetList.get(i);
+                break;
+            }
+        }
+        return worksheet;
     }
 }

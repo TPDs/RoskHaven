@@ -2,6 +2,8 @@ package com.company;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,9 +19,9 @@ import java.util.Scanner;
 //
 //
 
-public final class ReadFileUtil {
+public final class ReadWriteFileUtil {
 
-    private ReadFileUtil(){
+    private ReadWriteFileUtil(){
 
     }
 
@@ -140,5 +142,25 @@ public final class ReadFileUtil {
 
 
         return worksheetList;
+    }
+
+
+
+
+    //
+    //
+    //Write to file utils
+    //
+    //
+
+    public static void addBlankSpaceToFile() {
+        try {
+            FileWriter initWriteToWorksheet = new FileWriter("src/resourser/WorkSheetFile", true);
+            String idLine = "\n";
+            initWriteToWorksheet.write(idLine);
+            initWriteToWorksheet.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
