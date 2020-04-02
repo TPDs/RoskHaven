@@ -54,6 +54,14 @@ public class Child implements ClassesToStoreInFiles {
 
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public ChildStatus getStatus() {
         return status;
     }
