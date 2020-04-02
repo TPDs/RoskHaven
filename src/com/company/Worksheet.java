@@ -166,7 +166,7 @@ public class Worksheet implements ClassesToStoreInFiles {
 
 
 
-    //Beauty is when the ugliest methods does the most trivial job.
+    //Beauty is when the ugliest methods do the most trivial job.
     public ArrayList<String> empsAtWorkOnDay(int dayOfMonth){
         ArrayList<String> empCPRList = new ArrayList<String>();
 
