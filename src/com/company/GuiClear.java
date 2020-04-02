@@ -95,6 +95,8 @@ public class GuiClear {
         GuiWorksheetWeek.worksheet_info.setVisible(false);
         GuiWorksheetWeek.edit_worksheet.setVisible(false);
         GuiWorksheetWeek.back.setVisible(false);
+        GuiWorksheetWeek.scroll3.setVisible(false);
+
     }
 
     public void guiConfirm(){
