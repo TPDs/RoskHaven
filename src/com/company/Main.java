@@ -7,8 +7,8 @@ public class Main {
 
     // husk at slette IOException når dummy data bliver slettet.
     public static void main(String[] args) {
-        Gui gui = new Gui();
-        gui.gui();
+        //Gui gui = new Gui();
+        //gui.gui();
 
 
         //System.out.println(Kindergarten.getInstance().getAllChildren());
@@ -66,6 +66,7 @@ public class Main {
         DailyOverview dailyO1 = worksheet2.getWorkDays().get(2).getDailyOverview();
 
         System.out.println(dailyO.getChildrenInGartenNow());
+
         //dailyO1.childCheckOut("030503-2451");
 /*
         dailyO.childCheckIn("030503-2451");

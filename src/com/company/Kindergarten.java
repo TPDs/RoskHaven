@@ -127,12 +127,13 @@ public class Kindergarten {
 
     // this method moves child from queue list to active garten list and removes the child from queue list
     // in other words, it changes the status to active, then updates the child file
-    public void addChildToGarten(String CPR)  {
+    public void addChildToGarten()  {
         if(childrenInQueue.size()==0){
             System.out.println("The queue is empty.");
         } else {
             Child child = childrenInQueue.pop();
             childrenInGarten.add(child);
+            child.setStatus(ChildStatus.ACTIVE);
             try {
                 child.updateChildInFile();
             } catch (IOException e) {

@@ -51,6 +51,7 @@ public class Child implements ClassesToStoreInFiles {
 
     public void setStatus(ChildStatus status){
         this.status = status;
+
     }
 
     public ChildStatus getStatus() {
