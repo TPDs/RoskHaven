@@ -47,7 +47,25 @@ public class Guardian implements ClassesToStoreInFiles {
         return phoneNumber;
     }
 
+    public String getGuardianID() {
+        return guardianID;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public String makeGuardianID(){
         ArrayList<Child> allChildren = Kindergarten.getInstance().getAllChildren();
@@ -60,7 +78,6 @@ public class Guardian implements ClassesToStoreInFiles {
         }
         return id;
     }
-
 
 
     @Override

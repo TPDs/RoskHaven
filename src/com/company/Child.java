@@ -81,6 +81,17 @@ public class Child implements ClassesToStoreInFiles {
 
     }
 
+    public void editGuardian(String guardianID, String newName, String newMail, String newPhoneNumber, String newAddress){
+        for(int i=0; i<guardians.size(); i++){
+            if(guardians.get(i).getGuardianID().equals(guardianID)){
+                guardians.get(i).setName(newName);
+                guardians.get(i).setMail(newMail);
+                guardians.get(i).setPhoneNumber(newPhoneNumber);
+                guardians.get(i).setAddress(newAddress);
+            }
+        }
+    }
+
 
 
 
