@@ -179,6 +179,22 @@ public class Kindergarten {
         }
     }
 
+    public void editChild(String CPR, String newName, String newNote){
+        for(int i=0; i<allChildren.size(); i++){
+            if(allChildren.get(i).getCPR().equals(CPR)){
+                allChildren.get(i).setName(newName);
+                allChildren.get(i).setNote(newNote);
+
+                try {
+                    allChildren.get(i).updateChildInFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+    }
+
     //this method checks first if child status is passive and removes child, and then if age > 10 and removes
     //the child, it also changes status to passive if age > 10 and updates file.
     //this is to make sure that children aren't in the wrong list!
