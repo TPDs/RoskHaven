@@ -11,7 +11,11 @@ public class Main {
         //gui.gui();
 
 
-        System.out.println(Kindergarten.getInstance().getAllChildren());
+        //System.out.println(Kindergarten.getInstance().getAllChildren());
+        //System.out.println(Kindergarten.getInstance().getWorksheetList());
+
+        //Worksheet w1 = Kindergarten.getInstance().findWorksheet(2020,3);
+        //Worksheet w2 = Kindergarten.getInstance().findWorksheet(2020,4);
 
 
 
@@ -52,19 +56,18 @@ public class Main {
         Kindergarten.getInstance().addChildToGarten("010101-2211");
 */
 
-
-/*
-
-        Kindergarten.getInstance().createNewWorksheet(2020,3);
-        Kindergarten.getInstance().createNewWorksheet(2020,4);
+        //Kindergarten.getInstance().createNewWorksheet(2020,3);
+        //Kindergarten.getInstance().createNewWorksheet(2020,4);
 
         Worksheet worksheet1 = Kindergarten.getInstance().findWorksheet(2020,3);
         Worksheet worksheet2 = Kindergarten.getInstance().findWorksheet(2020,4);
 
-        DailyOverview dailyO = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(0).getDailyOverview();
-        DailyOverview dailyO1 = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(1).getDailyOverview();
+        DailyOverview dailyO = worksheet1.getWorkDays().get(0).getDailyOverview();
+        DailyOverview dailyO1 = worksheet2.getWorkDays().get(2).getDailyOverview();
 
-
+        System.out.println(dailyO.getChildrenInGartenNow());
+        //dailyO1.childCheckOut("030503-2451");
+/*
         dailyO.childCheckIn("030503-2451");
         dailyO.childCheckOut("030503-2451");
 
@@ -73,27 +76,33 @@ public class Main {
 
         dailyO.childCheckIn("031231-2453");
 
-
-        worksheet1.addDailyManagerToSchedule("020302-2817", 1);
-        worksheet1.addDailyManagerToSchedule("201854-8745", 3);
-        worksheet1.addDailyManagerToSchedule("201854-8745", 4);
-        worksheet1.addDailyManagerToSchedule("201854-8745", 10);
+        dailyO1.childCheckIn("030503-2451");
+*/
+        //System.out.println(dailyO.getChildrenInGartenNow());
 
 
-        worksheet2.addDailyManagerToSchedule("020302-2817", 1);
-        worksheet2.addDailyManagerToSchedule("020302-2817", 2);
-        worksheet2.addDailyManagerToSchedule("020302-2817", 3);
-        worksheet2.addDailyManagerToSchedule("201854-8745", 4);
 
 
-        worksheet1.addWorkerToSchedule("040404-0000", 1);
-        worksheet1.addWorkerToSchedule("040404-0000", 2);
-        worksheet1.addWorkerToSchedule("040404-0000", 4);
+        //worksheet1.addDailyManagerToSchedule("020302-2817", 2);
+        //worksheet1.addDailyManagerToSchedule("201854-8745", 3);
+        //worksheet1.addDailyManagerToSchedule("201854-8745", 4);
+        //worksheet1.addDailyManagerToSchedule("201854-8745", 10);
 
-        worksheet1.addWorkerToSchedule("030303-7474", 1);
-        worksheet1.addWorkerToSchedule("030303-7474", 3);
 
-        worksheet1.addWorkerToSchedule("050505-1111", 4);*/
+        //worksheet2.addDailyManagerToSchedule("020302-2817", 1);
+        //worksheet2.addDailyManagerToSchedule("020302-2817", 2);
+        //worksheet2.addDailyManagerToSchedule("020302-2817", 3);
+        //worksheet2.addDailyManagerToSchedule("201854-8745", 4);
+
+
+        //worksheet1.addWorkerToSchedule("040404-0000", 1);
+        //worksheet1.addWorkerToSchedule("040404-0000", 2);
+        //worksheet1.addWorkerToSchedule("040404-0000", 4);
+
+        //worksheet1.addWorkerToSchedule("030303-7474", 1);
+        //worksheet1.addWorkerToSchedule("030303-7474", 3);
+
+        //worksheet1.addWorkerToSchedule("050505-1111", 4);
 /*
         Worksheet w1 = Kindergarten.getInstance().findWorksheet(2020,3);
         Worksheet w2 = Kindergarten.getInstance().findWorksheet(2020,4);

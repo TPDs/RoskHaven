@@ -207,6 +207,34 @@ public final class ReadWriteFileUtil {
 
 
 
+    public static void readDailyOverviewFile(ArrayList<Worksheet> worksheetList){
+        try {
+            Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
+
+            System.out.println("eheyo");
+            while(sc.hasNextLine()){
+                String dailyID = sc.nextLine();
+                System.out.println(dailyID);
+
+                String[] dailySplitted = dailyID.split("D");
+                String worksheetID = dailySplitted[0];
+                System.out.println(worksheetID);
+
+                for(int i=0; i<worksheetList.size(); i++){
+                    if(worksheetList.get(i).getWorkSheetID().equals(worksheetID)){
+                        String[] childCheckInSplitted = sc.nextLine().split("BREAK");
+                        String[] hourMinutes = childCheckInSplitted[1].split(":");
+                        worksheetList.get(i).getWorkDays().get(Integer.parseInt(dailySplitted[1])-1).getDailyOverview().childCheckIn(childCheckInSplitted[0], Integer.parseInt(hourMinutes[0]), Integer.parseInt(hourMinutes[1]), true);
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     //
     //
