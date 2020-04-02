@@ -27,7 +27,6 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
         edit_worksheet = new JButton("Ændre uge plan");
         back = new JButton("Tilbage");
 
-        Component table;
         scroll3 = new JScrollPane(worksheet_info);
         scroll3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         worksheet_info.setLineWrap(true);

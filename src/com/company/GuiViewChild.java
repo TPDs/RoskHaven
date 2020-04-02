@@ -77,12 +77,12 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scroll.setBounds(35,50,315,170);
 
-        String barn_name =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName() ;
-        String barn_note =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getNote();
+        barn_navn =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName() ;
+        barn_note =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getNote();
         int barn_age = Kindergarten.getInstance().searchAndFindChild(barn_cpr).calcAge();
 
 
-        child_info.setText("Navn:   " + barn_name +"\nCPR:   " + barn_cpr +  "\nAlder:   "+ barn_age +  "\nNoter:    " +barn_note +"\n");
+        child_info.setText("Navn:   " + barn_navn +"\nCPR:   " + barn_cpr +  "\nAlder:   "+ barn_age +  "\nNoter:    " +barn_note +"\n");
         child_info.append("\nVærger:");
         G_list = new ArrayList<>();
         for (int i =0; i < Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().size();) {
@@ -164,25 +164,25 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
                 boss.GuiBoss();
             }
         } else if (s == "Opdater Barn") {
-            //barn_cpr = c_cpr.getText();
+
             clean.guiViewChild();
 
             GuiEditChild editChild = new GuiEditChild();
             editChild.guiEditChild();
         } else if(s == "Opdater Værge"){
-           barn_cpr = c_cpr.getText();
+
             clean.guiViewChild();
 
             GuiEditGuardian editGuardian = new GuiEditGuardian();
             editGuardian.guiEditGuardian();
         } else if(s == "Opret Værge"){
-            //barn_cpr = c_cpr.getText();
+
             clean.guiViewChild();
 
             GuiAddGuardian addGuardian = new GuiAddGuardian();
             addGuardian.guiAddGuardian();
         } else if(s == "Fjern Barn"){
-            barn_cpr = c_cpr.getText();
+
             clean.guiViewChild();
 
             GuiRemoveChild removeChild = new GuiRemoveChild();
