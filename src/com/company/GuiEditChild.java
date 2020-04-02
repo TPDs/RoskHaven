@@ -27,7 +27,7 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
         ce_name_field.setText(Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName());
         ce_cpr_field.setText(barn_cpr);
         ce_note.setText(Kindergarten.getInstance().searchAndFindChild(barn_cpr).getNote());
-
+        ce_cpr_field.setEditable(false);
         ce_ok= new JButton("Godkend");
         ce_regret = new JButton("Fortryd");
 
@@ -82,6 +82,11 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
             System.out.println("Navn: " +  ce_name_field.getText());
             System.out.println("CPR: " +  ce_cpr_field.getText());
             System.out.println("Noter: " +  ce_note.getText());
+            Kindergarten.getInstance().editChild(ce_cpr_field.getText(),ce_name_field.getText(),ce_note.getText());
+            clean.guiRemoveEditChild();
+            Gui.logo.setVisible(true);
+            GuiBoss boss = new GuiBoss();
+            boss.GuiBoss();
 
         }
     }

@@ -1,5 +1,7 @@
 package com.company;
 
+import javax.swing.*;
+
 public class GuiClear {
 
     public void guiClear() {
@@ -88,6 +90,20 @@ public class GuiClear {
         GuiWorksheet.week_text.setVisible(false);
         GuiWorksheet.back.setVisible(false);
         GuiWorksheet.next.setVisible(false);
+    }
+
+    public void guiEditGuardian(){
+
+
+        GuiEditGuardian.g_name.setVisible(false);
+        GuiEditGuardian.g_info.setVisible(false);
+        GuiEditGuardian.guardian_list.setVisible(false);
+        GuiEditGuardian.edit.setVisible(false);
+        GuiEditGuardian.name.setVisible(false);
+        GuiEditGuardian.mail.setVisible(false);
+        GuiEditGuardian.adresse.setVisible(false);
+        GuiEditGuardian.phone.setVisible(false);
+
     }
 
     public void guiWorksheetWeek(){
