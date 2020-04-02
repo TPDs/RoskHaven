@@ -7,6 +7,12 @@ public class Main {
 
     // husk at slette IOException når dummy data bliver slettet.
     public static void main(String[] args) {
+        Kindergarten.getInstance().createNewWorksheet(2020,3);
+        DailyOverview dailyO = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(4).getDailyOverview();
+
+        Worksheet worksheet1 = new Worksheet(2020,4);
+
+
         Gui gui = new Gui();
         gui.gui();
 
@@ -25,6 +31,20 @@ public class Main {
 
         //System.out.println(child);
 
+
+
+
+        dailyO.childCheckIn("030503-2451");
+        dailyO.childCheckOut("030503-2451");
+
+        dailyO.childCheckIn("032332-2451", 12,21);
+        dailyO.childCheckOut("032332-2451", 16,10);
+
+        dailyO.childCheckIn("031231-2453");
+
+
+        System.out.println(dailyO);
+
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Søren", "020202-7878","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Ulla", "030303-7474","1234" ));
         Kindergarten.getInstance().getEmployeesInGarten().add(new Employee("Faisal", "040404-0000","1234" ));
@@ -35,6 +55,13 @@ public class Main {
         Kindergarten.getInstance().getDailyManagersInGarten().add(new DailyManager("Rygesen", "060302-5221","432334" ));
 
         Kindergarten.getInstance().setBoss(new Boss("Trolle", "9992","iddqd"));
+
+        System.out.println(child2.getCPR());
+        System.out.println(child2.getStatus());
+
+        System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(1));
+
+        System.out.println(Kindergarten.getInstance().getEmployeesInGarten().get(2).getCPR());
 
 
         Kindergarten.getInstance().addChildToQueue("søren","010101-2200","allergi:pære");

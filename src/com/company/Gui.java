@@ -111,30 +111,12 @@ public class Gui implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
         String pass = new String(t_password.getPassword());
-        /*if (s.equals("Login")) {
-
-            System.out.println("Test: " + t_password.getText() + " " + t_name.getText()); //ændres til login();
-            user = t_name.getText();
-            password = t_password.getText();
-            t_name.setText("");
-            t_password.setText("");
-            System.out.println(ansatliste.getSelectedItem().toString());
-            GuiClear clean = new GuiClear();
-            clean.guiClear();
-
-            GuiBoss boss = new GuiBoss(); // ændres til en switch case der gør at vi kan vælge hvem der logger ind via login();
-            boss.GuiBoss();
-
-
-        }*/
-
         if (s.equals("Login") && ansatliste.getSelectedItem() == "Boss") {
 
             System.out.println("Test: " + pass + " " + t_name.getText());
             user = t_name.getText();
 
             if (LogInUtil.bossLogIn(user, pass)) {
-
                 t_name.setText("");
                 t_password.setText("");
                 System.out.println(ansatliste.getSelectedItem().toString());

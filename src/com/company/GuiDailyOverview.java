@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.WatchEvent.Kind;
 
 public class GuiDailyOverview extends GuiEmployee implements ActionListener {
     static JLabel topText;
@@ -15,9 +16,10 @@ public class GuiDailyOverview extends GuiEmployee implements ActionListener {
     static JButton back;
 
 
-    GuiDailyOverview(){}
+    GuiDailyOverview() {
+    }
 
-    public void guiDailyOverview(){
+    public void guiDailyOverview() {
         logo.setVisible(true);
         Gui.frame.setTitle("Roskilde frie børnehave - DailyOverview");
 
@@ -41,11 +43,11 @@ public class GuiDailyOverview extends GuiEmployee implements ActionListener {
 
         frame.getContentPane().add(topText, BorderLayout.CENTER);
 
-        frame.getContentPane().add(check_child_in_or_out,BorderLayout.CENTER);
-        frame.getContentPane().add(employee_check_in,BorderLayout.CENTER);
+        frame.getContentPane().add(check_child_in_or_out, BorderLayout.CENTER);
+        frame.getContentPane().add(employee_check_in, BorderLayout.CENTER);
         frame.getContentPane().add(employee_check_out, BorderLayout.CENTER);
 
-        frame.getContentPane().add(back,BorderLayout.CENTER);
+        frame.getContentPane().add(back, BorderLayout.CENTER);
 
         check_child_in_or_out.addActionListener(te);
         employee_check_in.addActionListener(te);
@@ -72,30 +74,32 @@ public class GuiDailyOverview extends GuiEmployee implements ActionListener {
             GuiCheckInChildOrOut checkInChildOrOut = new GuiCheckInChildOrOut();
             checkInChildOrOut.guiCheckInChildOrOut();
 
-        } else if(s == "Tjek ind") {
-                clean.guiDailyOverviewClean();
-                Gui.logo.setVisible(true);
+        } else if (s == "Tjek ind") {
+            clean.guiDailyOverviewClean();
+            Gui.logo.setVisible(true);
+            DailyOverview dailyO = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(4).getDailyOverview();
+            dailyO.employeeCheckIn(user);
+            GuiCheckIn checkIn = new GuiCheckIn();
+            checkIn.guiCheckIn();
 
-                GuiCheckIn checkIn = new GuiCheckIn();
-                checkIn.guiCheckIn();
 
+        } else if (s == "Tjek ud") {
+            clean.guiDailyOverviewClean();
+            Gui.logo.setVisible(true);
+            DailyOverview dailyO = Kindergarten.getInstance().getWorksheetList().get(0).getWorkDays().get(4).getDailyOverview();
+            dailyO.employeeCheckOut(user);
+            GuiCheckOut checkOut = new GuiCheckOut();
+            checkOut.guiCheckOut();
 
-        } else if(s == "Tjek ud") {
-                clean.guiDailyOverviewClean();
-                Gui.logo.setVisible(true);
-
-                GuiCheckOut checkOut = new GuiCheckOut();
-                checkOut.guiCheckOut();
-
-        } else if(s == "Tilbage"){
-            if(ansatliste.getSelectedItem() == "Daglig leder"){
+        } else if (s == "Tilbage") {
+            if (ansatliste.getSelectedItem() == "Daglig leder") {
                 clean.guiDailyOverviewClean();
                 Gui.logo.setVisible(true);
 
                 GuiDailyManager dailyManager = new GuiDailyManager();
                 dailyManager.guiDailyManager();
 
-            } else if(ansatliste.getSelectedItem() == "pædagog"){
+            } else if (ansatliste.getSelectedItem() == "pædagog") {
                 clean.guiDailyOverviewClean();
                 Gui.logo.setVisible(true);
 

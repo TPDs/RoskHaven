@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class GuiCheckIn extends GuiDailyOverview implements ActionListener {
 
@@ -18,7 +20,11 @@ public class GuiCheckIn extends GuiDailyOverview implements ActionListener {
 
         GuiCheckIn te = new GuiCheckIn();
 
-        checkInConfirmed = new JLabel("Du er herved tjekket ind");
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter timenow = DateTimeFormatter.ofPattern("HH:mm dd-MM");
+        String adjusted = time.format(timenow);
+        checkInConfirmed = new JLabel("<html> Du er herved tjekket ind klokken <br><br> \n <center>" + adjusted+ "</html>");
+
 
         back = new JButton("Tilbage");
 
@@ -26,7 +32,7 @@ public class GuiCheckIn extends GuiDailyOverview implements ActionListener {
 
         Gui.frame.getContentPane().add(back, BorderLayout.CENTER);
 
-        checkInConfirmed.setBounds(130,200,200,20);
+        checkInConfirmed.setBounds(100,170,300,50);
 
         back.setBounds(40, 320, 100, 20);
 
