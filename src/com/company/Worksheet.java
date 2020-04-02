@@ -9,9 +9,9 @@ public class Worksheet implements ClassesToStoreInFiles {
     String workSheetID;
     private int year;
     private int month;
-    ArrayList<WorkDay> workDays;
-    ArrayList<Employee> completeListOfEmployees;
-    ArrayList<DailyManager> completeListOfDailyManagers;
+    private ArrayList<WorkDay> workDays;
+    private ArrayList<Employee> completeListOfEmployees;
+    private ArrayList<DailyManager> completeListOfDailyManagers;
 
     //Worksheets are a monthly schedule, that stores what employees will be scheduled to work at certain hours.
 

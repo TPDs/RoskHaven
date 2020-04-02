@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.lang.Thread.sleep;
+
 public class GuiRemoveChild extends GuiViewChild implements ActionListener {
 
     static JLabel confirmationText1;
@@ -13,26 +15,26 @@ public class GuiRemoveChild extends GuiViewChild implements ActionListener {
     static JButton confirm;
 
 
+    GuiRemoveChild() {
+    }
 
-    GuiRemoveChild(){}
-
-    public void guiRemoveChild(){
+    public void guiRemoveChild() {
         Gui.frame.setTitle("Roskilde frie børnehave - RemoveChild");
         logo.setVisible(true);
 
         GuiRemoveChild te = new GuiRemoveChild();
 
         confirmationText1 = new JLabel("Er du sikker på, at " + barn_cpr);
-        confirmationText2 = new JLabel(" skal blive fjernet fra børnehaven?");
+        confirmationText2 = new JLabel(barn_navn + " skal fjernes fra børnehaven?");
 
-        back = new JButton("Fortryd");
+        back = new JButton("Tilbage");
         confirm = new JButton("Bekræft");
 
-        confirmationText1.setBounds(110,150,300,20);
-        confirmationText2.setBounds(100,180,300,20);
+        confirmationText1.setBounds(110, 150, 300, 20);
+        confirmationText2.setBounds(90, 180, 300, 20);
 
-        back.setBounds(40,320,100,20);
-        confirm.setBounds(250,320,100,20);
+        back.setBounds(40, 320, 100, 20);
+        confirm.setBounds(250, 320, 100, 20);
 
         Gui.frame.getContentPane().add(confirmationText1, BorderLayout.CENTER);
         Gui.frame.getContentPane().add(confirmationText2, BorderLayout.CENTER);
@@ -53,21 +55,21 @@ public class GuiRemoveChild extends GuiViewChild implements ActionListener {
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
 
-        if (s == "Fortryd") {
+        if (s == "Tilbage") {
             clean.guiRemoveChild();
 
             GuiBoss bigboss = new GuiBoss();
             bigboss.GuiBoss();
 
         } else if (s == "Bekræft") {
-            confirmationText1.setText(barn_cpr);
+            confirmationText1.setText(barn_cpr + ", " + barn_navn);
             confirmationText2.setText("er blevet fjernet fra børnehaven");
-
-            confirmationText1.setBounds(160,150,300,20);
-            confirmationText2.setBounds(110,180,300,20);
-
+            Kindergarten.getInstance().removeChildFromGarten(barn_cpr);
+            confirmationText1.setBounds(160, 150, 300, 20);
+            confirmationText2.setBounds(110, 180, 300, 20);
             confirm.setVisible(false);
-        }
-    }
 
+        }
+
+    }
 }
