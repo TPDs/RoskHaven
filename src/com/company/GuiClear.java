@@ -8,18 +8,12 @@ public class GuiClear {
 
         Gui.ansatliste.setBounds(10, 10, 10, 10); //dropDown menu der laver en glitch med andre boxe
         Gui.ansatliste.setVisible(false);
-        //Gui.frame.remove(Gui.ansatliste);
         Gui.l_name.setVisible(false);
         Gui.l_password.setVisible(false);
         Gui.button.setVisible(false);
-        //Gui.frame.remove(Gui.button);
         Gui.t_name.setVisible(false);
         Gui.t_password.setVisible(false);
         Gui.l_name.setVisible(false);
-        // Gui.logo.setVisible(false);
-        //Gui.l_test.setVisible(false);
-        //Gui.frame.remove(Gui.l_test);
-
 
     }
 
@@ -90,6 +84,8 @@ public class GuiClear {
         GuiWorksheet.week_text.setVisible(false);
         GuiWorksheet.back.setVisible(false);
         GuiWorksheet.next.setVisible(false);
+        GuiWorksheet.set_yr.setVisible(false);
+        GuiWorksheet.set_mb.setVisible(false);
     }
 
     public void guiEditGuardian(){
@@ -235,6 +231,7 @@ public class GuiClear {
         GuiEditWorksheet.load_day_button.setVisible(false);
         GuiEditWorksheet.add_emp_button.setVisible(false);
         GuiEditWorksheet.delete_day_button.setVisible(false);
+        GuiEditWorksheet.scroll3.setVisible(false);
 
     }
 

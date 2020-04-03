@@ -110,6 +110,7 @@ public class GuiEditWorksheet extends GuiWorksheetWeek implements ActionListener
 
         else if (s == "Afslut") {
             clean.guiRemoveEditWorksheet();
+            Gui.logo.setVisible(true);
             GuiBoss bigboss = new GuiBoss();
             bigboss.GuiBoss();
         }

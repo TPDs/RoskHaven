@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.nio.file.WatchEvent.Kind;
 
 public class GuiWorksheet extends GuiBoss implements ActionListener {
 
@@ -15,9 +16,10 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
     static JButton back;
     static JButton next;
     static String week_nr;
+    static JTextField set_yr, set_mb;
 
-    int mb = 3;
-    int yr = 2020;
+    static int mb;
+    static int yr;
 
 
     GuiWorksheet() {
@@ -29,13 +31,14 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
         GuiWorksheet te = new GuiWorksheet();
 
 
-        info = new JLabel("Indtast dag for måned:  "+mb + "  år:   \t "+yr);
-        week_label = new JLabel("Dag:");
-
-        week_text = new JTextField(null);
-
+        info = new JLabel("Vagtplan:");
+        week_label = new JLabel("Indtast dag, måned og år:");
         back = new JButton("Tilbage");
         next = new JButton("Næste");
+
+        set_yr = new JTextField();
+        set_mb = new JTextField();
+        week_text = new JTextField();
 
         Gui.frame.getContentPane().add(info, BorderLayout.CENTER);
         Gui.frame.getContentPane().add(week_label, BorderLayout.CENTER);
@@ -44,14 +47,19 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
         Gui.frame.getContentPane().add(next, BorderLayout.CENTER);
 
         info.setBounds(100, 145, 360, 20);
-        week_text.setBounds(100, 195, 160, 20);
+        week_label.setBounds(100,175,150,20);
+        week_text.setBounds(130, 195, 30, 20);
+        set_mb.setBounds(170,195,30,20);
+        set_yr.setBounds(210,195,40,20);
+
 
         next.setBounds(275, 320, 75, 20);
         back.setBounds(40, 320, 100, 20);
 
         next.addActionListener(te);
         back.addActionListener(te);
-
+        frame.add(set_yr);
+        frame.add(set_mb);
         frame.add(info);
         frame.add(week_label);
         frame.add(week_text);
@@ -77,8 +85,10 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
 
         if (s == "Næste") {
             week_nr = week_text.getText();
+            yr = Integer.parseInt(set_yr.getText());
+            mb = Integer.parseInt(set_mb.getText());
             clean.guiWorksheet();
-
+            Kindergarten.getInstance().createNewWorksheet(yr,mb);
             GuiWorksheetWeek worksheetWeek = new GuiWorksheetWeek();
             worksheetWeek.guiWorksheetWeek();
 

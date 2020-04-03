@@ -50,7 +50,7 @@ public class Gui implements ActionListener {
 
         l_name = new JLabel("CPR:");
         l_password = new JLabel("Password:");
-        t_name = new JTextField("020202-7878");
+        t_name = new JTextField("");
         t_password = new JPasswordField();
 
         t_name.setBounds(190, 180, 130, 20);

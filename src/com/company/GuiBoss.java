@@ -17,6 +17,10 @@ public class GuiBoss extends Gui implements ActionListener {
     static String barn_cpr;
     static String barn_note;
 
+
+    static int mb;
+    static int yr;
+
     GuiBoss() {
     }
 
@@ -33,6 +37,7 @@ public class GuiBoss extends Gui implements ActionListener {
         check_kid = new JButton("Ret barn");
         workSheet = new JButton("Uge plan");
         logout = new JButton("Log ud");
+
         frame.getContentPane().add(logout,BorderLayout.CENTER);
 
         create_kid.setBounds(70, 220, 120, 20);
