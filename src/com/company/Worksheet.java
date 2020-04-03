@@ -121,7 +121,7 @@ public class Worksheet implements ClassesToStoreInFiles {
                 for(int j=0; j<10; j++){
                     workDays.get(dayOfMonth-1).getWorkHours().get(j).getEmployeeAtWork().add(completeListOfEmployees.get(i));
                 }
-                workDays.get(dayOfMonth).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
+                workDays.get(dayOfMonth-1).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
                 break;
             }
         }
@@ -131,8 +131,8 @@ public class Worksheet implements ClassesToStoreInFiles {
     public void addWorkerToSchedule(String empID, int dayOfMonth, int hour){
         for(int i=0; i<completeListOfEmployees.size(); i++){
             if(completeListOfEmployees.get(i).getCPR().equals(empID)){
-                workDays.get(dayOfMonth).getWorkHours().get(hour-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
-                workDays.get(dayOfMonth).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
+                workDays.get(dayOfMonth-1).getWorkHours().get(hour-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
+                workDays.get(dayOfMonth-1).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
                 break;
             }
         }
@@ -144,9 +144,9 @@ public class Worksheet implements ClassesToStoreInFiles {
         for(int i=0; i<completeListOfEmployees.size(); i++){
             if(completeListOfEmployees.get(i).getCPR().equals(empID)){
                 for(int j=startHour; j<endHour; j++){
-                    workDays.get(dayOfMonth).getWorkHours().get(j-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
+                    workDays.get(dayOfMonth-1).getWorkHours().get(j-7).getEmployeeAtWork().add(completeListOfEmployees.get(i));
                 }
-                workDays.get(dayOfMonth).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
+                workDays.get(dayOfMonth-1).getDailyOverview().getEmployeesScheduled().add(completeListOfEmployees.get(i));
                 break;
             }
         }
@@ -205,6 +205,11 @@ public class Worksheet implements ClassesToStoreInFiles {
             workSchedule += "\n";
         }
         return workSchedule;
+    }
+
+
+    public void removeEmpFromDay(String CPR, int dayOfMonth){
+        WorkDay workDayOfChoice = getWorkDays().get(dayOfMonth-1);
     }
 
 
