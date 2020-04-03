@@ -95,6 +95,14 @@ public class Child implements ClassesToStoreInFiles {
         updateGuardian();
     }
 
+    public void deleteGuardian(String ID){
+        for(int i=0;i<guardians.size();i++){
+            if(guardians.get(i).getGuardianID().equals(ID)){
+                guardians.remove(i);
+                updateGuardian();
+            }
+        }
+    }
 
     // bare gennemgå objekterne guardian og skriv dem til filen. " husk at slette filen først.
     // en fejl ved denne måde at lave en file override / update på et hvis programmet går ned efter filen med guardians bliver slettet
