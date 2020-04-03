@@ -75,6 +75,7 @@ public class Child implements ClassesToStoreInFiles {
     public void addGuardian(String guardianID, String name, String mail, String phoneNumber, String address){
         Guardian guardian = new Guardian(guardianID, name, mail, phoneNumber, address,this.CPR);
         this.guardians.add(guardian);
+        updateGuardian();
     }
 
     public void removeGuardian(Guardian guardian){
@@ -88,9 +89,10 @@ public class Child implements ClassesToStoreInFiles {
                 guardians.get(i).setMail(newMail);
                 guardians.get(i).setPhoneNumber(newPhoneNumber);
                 guardians.get(i).setAddress(newAddress);
-                updateGuardian();
+
             }
         }
+        updateGuardian();
     }
 
 
@@ -111,10 +113,13 @@ public class Child implements ClassesToStoreInFiles {
 
                 String strToAdd = guardians.get(i).getGuardianID() + "BREAK" + guardians.get(i).getName() +"BREAK"+ guardians.get(i).getMail() +"BREAK"+ guardians.get(i).getPhoneNumber()+"BREAK"+ guardians.get(i).getAddress()+"BREAK"+ guardians.get(i).getGuardianID().substring(0,10)+"\n";
                 tempGuardianfw.write(strToAdd);
+
             }
+            tempGuardianfw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
