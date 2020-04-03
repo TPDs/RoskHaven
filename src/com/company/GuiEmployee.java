@@ -26,7 +26,6 @@ public class GuiEmployee extends GuiBoss implements ActionListener {
             i++;
         }
 
-        System.out.println(brugerNavn);
         l_name.setText("Velkommen "+ brugerNavn);
         l_name.setVisible(true);
 
@@ -61,24 +60,14 @@ public class GuiEmployee extends GuiBoss implements ActionListener {
         String s = e.getActionCommand();
 
         if (s == "Tjek uge plan") {
-            System.out.println("Test: " + s); //ændres til login();
 
             clean.guiEmployeeClear();
-        //try {
-            //GuiWorksheetWeek.label.setText("Ugeplanen for uge " /* + week*/);
-            //GuiWorksheetWeek.edit_worksheet.setVisible(false);
 
             GuiWorksheet worksheet = new GuiWorksheet();
             worksheet.guiWorksheet();
-        //}
-        //catch(NullPointerException n){
-            //System.out.println("NullPointerException catched");
-            //}
-            //GuiAddChild child = new GuiAddChild();
-            //child.guiAddChild();
+
 
         } else if (s == "Oversigt") {
-            System.out.println("Test: " + s);
 
             clean.guiEmployeeClear();
 
@@ -86,7 +75,6 @@ public class GuiEmployee extends GuiBoss implements ActionListener {
             dailyOverview.guiDailyOverview();
 
         } else if (s.equals("Log ud")) {
-            System.out.println("Test: " + s);
             user=null;
             password=null;
             l_name.setText("CPR: ");

@@ -79,9 +79,6 @@ public class GuiEditChild extends GuiViewChild implements ActionListener {
             boss.GuiBoss();
         }
         else if (s =="Godkend") {
-            System.out.println("Navn: " +  ce_name_field.getText());
-            System.out.println("CPR: " +  ce_cpr_field.getText());
-            System.out.println("Noter: " +  ce_note.getText());
             Kindergarten.getInstance().editChild(ce_cpr_field.getText(),ce_name_field.getText(),ce_note.getText());
             clean.guiRemoveEditChild();
             Gui.logo.setVisible(true);

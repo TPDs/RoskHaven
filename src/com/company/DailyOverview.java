@@ -178,7 +178,6 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 childCheckedOut.add(childrenInGartenNow.get(i));
                 checkChildOutToFile(CPR);
                 childrenInGartenNow.remove(i);
-                System.out.println(childrenInGartenNow);
                 break;
             }
         }

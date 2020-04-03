@@ -113,13 +113,11 @@ public class Gui implements ActionListener {
         String pass = new String(t_password.getPassword());
         if (s.equals("Login") && ansatliste.getSelectedItem() == "Boss") {
 
-            System.out.println("Test: " + pass + " " + t_name.getText());
             user = t_name.getText();
 
             if (LogInUtil.bossLogIn(user, pass)) {
                 t_name.setText("");
                 t_password.setText("");
-                System.out.println(ansatliste.getSelectedItem().toString());
                 GuiClear clean = new GuiClear();
                 clean.guiClear();
                 button.setBackground(new Color(59, 89, 182));
@@ -127,7 +125,6 @@ public class Gui implements ActionListener {
                 boss.GuiBoss();
             } else if (!LogInUtil.bossLogIn(user, pass)) {
                 button.setBackground(new Color(182, 0, 32));
-                System.out.println("Forkert");
                 t_name.setText("");
                 t_password.setText("");
 
@@ -148,7 +145,6 @@ public class Gui implements ActionListener {
 
                 t_name.setText("");
                 t_password.setText("");
-                System.out.println(ansatliste.getSelectedItem().toString());
                 GuiClear clean = new GuiClear();
                 clean.guiClear();
                 button.setBackground(new Color(59, 89, 182));
@@ -156,7 +152,6 @@ public class Gui implements ActionListener {
                 employee.guiEmployee();
             } else if (!LogInUtil.empLogIn(user, pass)) {
                 button.setBackground(new Color(182, 0, 32));
-                System.out.println("Forkert");
                 t_name.setText("");
                 t_password.setText("");
 
@@ -172,13 +167,13 @@ public class Gui implements ActionListener {
 
         } else if (s.equals("Login") && ansatliste.getSelectedItem() == "Daglig leder") {
 
-            System.out.println("Test: " + pass + " " + t_name.getText());
+
             user = t_name.getText();
             if (LogInUtil.dmLogIn(user, pass)) {
 
                 t_name.setText("");
                 t_password.setText("");
-                System.out.println(ansatliste.getSelectedItem().toString());
+
                 GuiClear clean = new GuiClear();
                 clean.guiClear();
                 button.setBackground(new Color(59, 89, 182));
@@ -186,7 +181,7 @@ public class Gui implements ActionListener {
                 dailyManager.guiDailyManager();
             } else if (!LogInUtil.dmLogIn(user, pass)) {
                 button.setBackground(new Color(182, 0, 32));
-                System.out.println("Forkert");
+
                 t_name.setText("");
                 t_password.setText("");
 

@@ -163,13 +163,11 @@ public final class ReadWriteFileUtil {
                     if(sc.nextLine().contains("ENDOFWORKSHEET")){
                         break;
                     }
-                    //System.out.println("broke the line");
+
 
                     //Taking a scanner to break the next line in two parts - one being each day, the other being the daily manager responsible for this day.
                     String[] dayHeader = sc.nextLine().split("BREAK");
-                    //System.out.println(dayHeader[0]);
-                    //System.out.println(dayHeader[1]);
-                    //System.out.println(dayHeader.length);
+
                     String workday = dayHeader[0];
                     String[] workday2 = workday.split("D");
                     String dailyManager = dayHeader[1];
@@ -177,7 +175,7 @@ public final class ReadWriteFileUtil {
                     worksheet.addDailyManagerFromFile(dailyManager, Integer.parseInt(workday2[1]));
 
                     for(int i=0; i<10; i++){
-                        //System.out.println("hour");
+
                         String workHours = sc.next();
                         String[] hourParts = workHours.split("\\[");
                         String[] employees = hourParts[1].split(",");
@@ -187,7 +185,7 @@ public final class ReadWriteFileUtil {
                         }
                     }
                     isEnd = sc.nextLine();
-                    //System.out.println(isEnd);
+
                 }
             }
 
@@ -205,14 +203,14 @@ public final class ReadWriteFileUtil {
         try {
             Scanner sc = new Scanner(new File("src/resourser/DailyOverviewFile"));
 
-            System.out.println("eheyo");
+
             while(sc.hasNextLine()){
                 String dailyID = sc.nextLine();
-                System.out.println(dailyID);
+
 
                 String[] dailySplitted = dailyID.split("D");
                 String worksheetID = dailySplitted[0];
-                System.out.println(worksheetID);
+
 
                 for(int i=0; i<worksheetList.size(); i++){
                     if(worksheetList.get(i).getWorkSheetID().equals(worksheetID)){

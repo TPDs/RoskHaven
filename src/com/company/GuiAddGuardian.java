@@ -150,7 +150,6 @@ public class GuiAddGuardian extends GuiAddChild {
         String s = e.getActionCommand();
 
         if (s == "Næste") {
-            System.out.println("Næste click");
             clean.guiAddGuardian();
 
             GuiConfirm confirm = new GuiConfirm();
@@ -165,7 +164,6 @@ public class GuiAddGuardian extends GuiAddChild {
             phone_box.setText(null);
             address_box.setText(null);
             adresse_postnummer_box.setText(null);
-            System.out.println(v_list.toString());
             next2.setVisible(true);
 
         }

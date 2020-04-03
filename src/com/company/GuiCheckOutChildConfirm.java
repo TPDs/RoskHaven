@@ -40,7 +40,6 @@ public class GuiCheckOutChildConfirm extends GuiCheckInChildOrOut implements Act
 
         frame.add(back2);
 
-        System.out.println(ansatliste.getSelectedItem());
     }
 
     @Override
@@ -53,16 +52,12 @@ public class GuiCheckOutChildConfirm extends GuiCheckInChildOrOut implements Act
                 clean.guiOutChildConfirm();
                 Gui.logo.setVisible(true);
 
-                System.out.println("Colamanden25");
-
                 GuiDailyManager dailyManager = new GuiDailyManager();
                 dailyManager.guiDailyManager();
 
             } else if(ansatliste.getSelectedItem().equals("pædagog")){
                 clean.guiOutChildConfirm();
                 Gui.logo.setVisible(true);
-
-                System.out.println("Colamanden23");
 
                 GuiEmployee employee = new GuiEmployee();
                 employee.guiEmployee();

@@ -26,7 +26,6 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
             i++;
         }
 
-        System.out.println(brugerNavn);
         l_name.setText("Velkommen "+ brugerNavn);
         l_name.setVisible(true);
 
@@ -65,7 +64,6 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
         String s = e.getActionCommand();
 
         if (s == "Tjek uge plan") {
-            System.out.println("Test: " + s); //ændres til login();
 
             clean.guiDailyManagerClear();
 
@@ -73,7 +71,6 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
             worksheet.guiWorksheet();
 
         } else if (s == "Oversigt") {
-            System.out.println("Test: " + s);
 
             clean.guiDailyManagerClear();
 
@@ -81,7 +78,6 @@ public class GuiDailyManager extends GuiBoss implements ActionListener {
             dailyOverview.guiDailyOverview();
 
         } else if (s.equals("Log ud")) {
-            System.out.println("Test: " + s);
             user=null;
             password=null;
             l_name.setText("CPR: ");

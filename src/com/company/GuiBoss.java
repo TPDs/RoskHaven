@@ -59,15 +59,11 @@ public class GuiBoss extends Gui implements ActionListener {
         String s = e.getActionCommand();
 
         if (s == "Opret barn") {
-            System.out.println("Test: " + s); //ændres til login();
-
             clean.guiBossClear();
-
             GuiAddChild child = new GuiAddChild();
             child.guiAddChild();
 
         } else if (s == "Ret barn") {
-            System.out.println("Test: " + s);
 
             clean.guiBossClear();
 
@@ -75,14 +71,13 @@ public class GuiBoss extends Gui implements ActionListener {
             child.guiCheckChild();
 
         } else if (s.equals("Uge plan")) {
-            System.out.println("Test: " + s);
+
             clean.guiBossClear();
             GuiWorksheet work = new GuiWorksheet();
             work.guiWorksheet();
 
         } else if (s.equals("Log ud")) {
             frame.setTitle("Roskilde frie børnehave");
-            System.out.println("Test: " + s);
             user=null;
             password=null;
             l_name.setText("CPR: ");

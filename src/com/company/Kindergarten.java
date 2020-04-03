@@ -129,7 +129,6 @@ public class Kindergarten {
     // in other words, it changes the status to active, then updates the child file
     public void addChildToGarten()  {
         if(childrenInQueue.size()==0){
-            System.out.println("The queue is empty.");
         } else {
             Child child = childrenInQueue.pop();
             childrenInGarten.add(child);

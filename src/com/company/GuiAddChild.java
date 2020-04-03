@@ -75,8 +75,6 @@ public class GuiAddChild extends GuiBoss implements ActionListener {
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
         if (s == "Næste") {
-                System.out.println("Guardian: " + s); //ændres til login();
-
                 barn_navn = c_name.getText();
                 barn_cpr = c_cpr.getText();
                 barn_note = c_note.getText();

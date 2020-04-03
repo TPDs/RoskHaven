@@ -75,11 +75,6 @@ public class GuiConfirm extends GuiAddGuardian implements ActionListener {
 
         }
 
-
-
-        System.out.println(v_list.get(v_counter-1).name);
-        System.out.println(v_list.size());
-        System.out.println("Counter" + v_counter);
     }
 
 

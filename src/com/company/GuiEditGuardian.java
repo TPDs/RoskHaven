@@ -74,10 +74,7 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
         GuiClear clean = new GuiClear();
 
         if (s == "Ret") {
-            System.out.println("Ret");
-            System.out.println(name.getText());
             Kindergarten.getInstance().searchAndFindChild(barn_cpr).editGuardian(gID, name.getText(), mail.getText(), phone.getText(), adresse.getText());
-            System.out.println(name.getText());
             Gui.logo.setVisible(true);
             clean.guiEditGuardian();
             GuiBoss boss = new GuiBoss();
