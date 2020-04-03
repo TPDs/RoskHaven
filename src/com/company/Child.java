@@ -102,8 +102,14 @@ public class Child implements ClassesToStoreInFiles {
 
     public void updateGuardian(){
 
-        File deletefile = new File("src/resourser/GuardianFile");
-        deletefile.delete();
+        try {
+            FileWriter deletefw= new FileWriter("src/resourser/GuardianFile");
+            String delete = "";
+            deletefw.write(delete);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         FileWriter tempGuardianfw = null;
         try {
@@ -116,6 +122,7 @@ public class Child implements ClassesToStoreInFiles {
 
             }
             tempGuardianfw.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
