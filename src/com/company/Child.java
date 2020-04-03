@@ -88,6 +88,7 @@ public class Child implements ClassesToStoreInFiles {
                 guardians.get(i).setMail(newMail);
                 guardians.get(i).setPhoneNumber(newPhoneNumber);
                 guardians.get(i).setAddress(newAddress);
+                updateGuardian();
             }
         }
     }
