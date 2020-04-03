@@ -221,5 +221,22 @@ public class GuiClear {
 
     }
 
+    public void guiRemoveEditWorksheet() {
+
+        GuiWorksheetWeek.back.setVisible(false);
+        GuiEditWorksheet.worker_cpr_label.setVisible(false);
+        GuiEditWorksheet.day_of_month_label.setVisible(false);
+        GuiEditWorksheet.start_time_label.setVisible(false);
+        GuiEditWorksheet.end_time_label.setVisible(false);
+        GuiEditWorksheet.worker_cpr_text.setVisible(false);
+        GuiEditWorksheet.day_of_month_text.setVisible(false);
+        GuiEditWorksheet.start_time_text.setVisible(false);
+        GuiEditWorksheet.end_time_text.setVisible(false);
+        GuiEditWorksheet.load_day_button.setVisible(false);
+        GuiEditWorksheet.add_emp_button.setVisible(false);
+        GuiEditWorksheet.delete_day_button.setVisible(false);
+
+    }
+
 
 }

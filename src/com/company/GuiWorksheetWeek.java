@@ -25,7 +25,7 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
 
         worksheet_info = new JTextArea(10,10);
 
-        edit_worksheet = new JButton("Dagens vagter");
+        edit_worksheet = new JButton("Ændre plan");
         back = new JButton("Tilbage");
 
 
@@ -41,17 +41,16 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
         Gui.frame.getContentPane().add(back, BorderLayout.CENTER);
 
         label.setBounds(75,25,360,20);
-
+        edit_worksheet.setBounds(200,330,150,20);
         scroll3.setBounds(35,50,320,250);
         worksheet_info.setEditable(false);
-
-
         back.setBounds(20,330,90,20);
 
         back.addActionListener(te);
+        edit_worksheet.addActionListener(te);
         frame.getContentPane().add(scroll3);
         frame.add(label);
-        edit_worksheet.setVisible(false);
+        //edit_worksheet.setVisible(false);
         frame.add(back);
 
         if(ansatliste.getSelectedItem() == "Boss"){
@@ -69,7 +68,7 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
         GuiClear clean = new GuiClear();
         String s = e.getActionCommand();
 
-        if (s == "Ændre uge plan") {
+        if (s == "Ændre plan") {
             clean.guiWorksheetWeek();
 
             GuiEditWorksheet editWorksheet = new GuiEditWorksheet();
