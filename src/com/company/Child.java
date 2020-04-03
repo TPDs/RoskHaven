@@ -122,12 +122,12 @@ public class Child implements ClassesToStoreInFiles {
         FileWriter tempGuardianfw = null;
         try {
             tempGuardianfw = new FileWriter("src/resourser/GuardianFile",true);
-
-            for(int i =0;i<guardians.size();i++){
-
-                String strToAdd = guardians.get(i).getGuardianID() + "BREAK" + guardians.get(i).getName() +"BREAK"+ guardians.get(i).getMail() +"BREAK"+ guardians.get(i).getPhoneNumber()+"BREAK"+ guardians.get(i).getAddress()+"BREAK"+ guardians.get(i).getGuardianID().substring(0,10)+"\n";
-                tempGuardianfw.write(strToAdd);
-
+            ArrayList<Child> allChildren = Kindergarten.getInstance().getAllChildren();
+            for(int j=0; j<allChildren.size(); j++){
+                for(int i =0;i<guardians.size();i++){
+                    String strToAdd = allChildren.get(j).guardians.get(i).getGuardianID() + "BREAK" + guardians.get(i).getName() +"BREAK"+ guardians.get(i).getMail() +"BREAK"+ guardians.get(i).getPhoneNumber()+"BREAK"+ guardians.get(i).getAddress()+"BREAK"+ CPR + "\n";
+                    tempGuardianfw.write(strToAdd);
+                }
             }
             tempGuardianfw.close();
 
