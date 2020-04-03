@@ -23,10 +23,11 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
 
         GuiEditGuardian te = new GuiEditGuardian();
 
-        for (int i =0; i < G_list.size();) {
-            G_list_name.add(G_list.get(i).name);
-            i++;
-        }
+
+            for (int i = 0; i < G_list.size(); ) {
+                G_list_name.add(G_list.get(i).name);
+                i++;
+            }
 
         //String barn_name =Kindergarten.getInstance().searchAndFindChild(barn_cpr).getName();
         guardian_list = new JComboBox(G_list_name.toArray());
@@ -72,6 +73,7 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
+        GuiClear clean = new GuiClear();
         for (int i=0; i< G_list.size();i++) {
             if (guardian_list.getSelectedItem().equals(G_list.get(i).getName())) {
                 name.setText(G_list.get(i).getName());
@@ -82,7 +84,7 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
 
         else if (s=="Afslut") {
                 Gui.logo.setVisible(true);
-
+                clean.guiEditGuardian();
                 GuiBoss boss = new GuiBoss();
                 boss.GuiBoss();
         }

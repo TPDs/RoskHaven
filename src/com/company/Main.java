@@ -66,6 +66,12 @@ public class Main {
         DailyOverview dailyO1 = worksheet2.getWorkDays().get(2).getDailyOverview();
 
         System.out.println(dailyO.getChildrenInGartenNow());
+
+        System.out.println(Kindergarten.getInstance().getAllChildren().get(0).getGuardians());
+
+        System.out.println(worksheet1.empsAtWorkOnDay(1));
+//      Kindergarten.getInstance().getAllChildren().get(0).getGuardians().get(0).
+
         //dailyO1.childCheckOut("030503-2451");
 /*
         dailyO.childCheckIn("030503-2451");
@@ -95,7 +101,7 @@ public class Main {
         //worksheet2.addDailyManagerToSchedule("201854-8745", 4);
 
 
-        //worksheet1.addWorkerToSchedule("040404-0000", 1);
+        //worksheet1.addWorkerToSchedule("020202-7878", 1);
         //worksheet1.addWorkerToSchedule("040404-0000", 2);
         //worksheet1.addWorkerToSchedule("040404-0000", 4);
 

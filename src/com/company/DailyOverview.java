@@ -224,7 +224,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
     }
 
     //Checks in with custom time.
-    public void employeeCheckIn(String CPR, int hours, int minutes) throws IOException {
+    public void employeeCheckIn(String CPR, int hours, int minutes) {
         boolean flag = false;
 
         //Checks whether the employee is already checked in.
@@ -361,7 +361,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String employeeWriteToCheckInFile = ucio.getUser().getCPR() + "BREAK" + ucio.getCheckInTime() +"\n";
+        String employeeWriteToCheckInFile = dailyOverViewID + "\n" + ucio.getUser().getCPR() + "BREAK" + ucio.getCheckInTime() +"\n";
         try {
             employeeInGartenTodayfw.write(employeeWriteToCheckInFile);
             employeeInGartenTodayfw.close();
@@ -379,7 +379,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String dailyManagerCheckInToFile = ucio.getUser().getCPR() +"BREAK"+ ucio.getCheckInTime() + "\n";
+        String dailyManagerCheckInToFile = dailyOverViewID + "\n" + ucio.getUser().getCPR() +"BREAK"+ ucio.getCheckInTime() + "\n";
         try {
             dailyManagerInGartenTodayfw.write(dailyManagerCheckInToFile);
             dailyManagerInGartenTodayfw.close();
@@ -484,7 +484,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
                 try {
                     FileWriter employeeOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true);
-                    String employeeCheckOutToFile = "" + TheRightString + "BREAK" + ucio.getCheckOutTime() +"\n";
+                    String employeeCheckOutToFile = dailyOverViewID + "\n" + TheRightString + "BREAK" + ucio.getCheckOutTime() +"\n";
                     employeeOutOfGartenTodayfw.write(employeeCheckOutToFile);
                     employeeOutOfGartenTodayfw.close();
                     removeFromDailyOverviewFile(ucio.getUser().getCPR());
@@ -517,7 +517,7 @@ public class DailyOverview implements ClassesToStoreInFiles{
 
         try {
             FileWriter dailyManagerOutOfGartenTodayfw = new FileWriter("src/resourser/DailyOverviewCheckedOutFile",true );
-            String dailyManagerCheckOutToFile = TheRightString + "BREAK" + ucio.getCheckOutTime() +"\n";
+            String dailyManagerCheckOutToFile = dailyOverViewID + "\n" + TheRightString + "BREAK" + ucio.getCheckOutTime() +"\n";
             dailyManagerOutOfGartenTodayfw.write(dailyManagerCheckOutToFile);
             dailyManagerOutOfGartenTodayfw.close();
 

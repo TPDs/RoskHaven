@@ -11,6 +11,7 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
     static JTextArea worksheet_info;
     static JButton edit_worksheet;
     static JButton back;
+    static JScrollPane scroll3;
 
 
     GuiWorksheetWeek(){}
@@ -21,29 +22,34 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
 
         label = new JLabel("Arbejsplan for uge: "+week_nr);
 
-        worksheet_info = new JTextArea(/*Worksheet oplysninger*/);
+        worksheet_info = new JTextArea(10,10);
 
         edit_worksheet = new JButton("Ændre uge plan");
         back = new JButton("Tilbage");
 
+        scroll3 = new JScrollPane(worksheet_info);
+        scroll3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        worksheet_info.setLineWrap(true);
+
         Gui.frame.getContentPane().add(label, BorderLayout.CENTER);
-        Gui.frame.getContentPane().add(worksheet_info, BorderLayout.CENTER);
+        //Gui.frame.getContentPane().add(worksheet_info, BorderLayout.CENTER);
         Gui.frame.getContentPane().add(edit_worksheet, BorderLayout.CENTER);
         Gui.frame.getContentPane().add(back, BorderLayout.CENTER);
 
         label.setBounds(95,25,360,20);
 
-        worksheet_info.setBounds(20,50,340,230);
+        scroll3.setBounds(20,50,340,230);
         worksheet_info.setEditable(false);
 
         //edit_worksheet.setBounds(130,290,140,20);
         back.setBounds(20,330,90,20);
-
+         Kindergarten.getInstance().findWorksheet(2020,3).getWorkDays().get(2).getWorkHours().get(2).getEmployeeAtWork();
+        worksheet_info.setText(Kindergarten.getInstance().findWorksheet(2020,3).getWorkDays().get(2).getWorkHours().get(2).getEmployeeAtWork().toString());
         //edit_worksheet.addActionListener(te);
         back.addActionListener(te);
-
+        frame.getContentPane().add(scroll3);
         frame.add(label);
-        frame.add(worksheet_info);
+        //frame.add(worksheet_info);
         // frame.add(edit_worksheet);
         edit_worksheet.setVisible(false);
         frame.add(back);

@@ -9,12 +9,6 @@ import java.util.Scanner;
 
 //
 //
-//Singleton class of all arrays to be used globally in the entire program.
-//
-//
-
-//
-//
 //Changed from a singleton class to a pure utility class
 //
 //

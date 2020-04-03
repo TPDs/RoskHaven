@@ -9,9 +9,9 @@ public class Worksheet implements ClassesToStoreInFiles {
     String workSheetID;
     private int year;
     private int month;
-    ArrayList<WorkDay> workDays;
-    ArrayList<Employee> completeListOfEmployees;
-    ArrayList<DailyManager> completeListOfDailyManagers;
+    private ArrayList<WorkDay> workDays;
+    private ArrayList<Employee> completeListOfEmployees;
+    private ArrayList<DailyManager> completeListOfDailyManagers;
 
     //Worksheets are a monthly schedule, that stores what employees will be scheduled to work at certain hours.
 
@@ -165,6 +165,33 @@ public class Worksheet implements ClassesToStoreInFiles {
 
 
 
+
+    //Beauty is when the ugliest methods do the most trivial job.
+    public ArrayList<String> empsAtWorkOnDay(int dayOfMonth){
+        ArrayList<String> empCPRList = new ArrayList<String>();
+
+        ArrayList<WorkHour> wh = workDays.get(dayOfMonth-1).getWorkHours();
+
+        for (int i=0; i<wh.size(); i++){
+            for(int j=0; j<wh.get(i).getEmployeeAtWork().size(); j++){
+                if(empCPRList.size()==0){
+                    empCPRList.add(wh.get(i).getEmployeeAtWork().get(j).getCPR());
+                } else {
+                    int listSize = empCPRList.size();
+                    boolean flag = false;
+                    for(int h=0; h<listSize; h++){
+                        if(empCPRList.get(h).equals(wh.get(i).getEmployeeAtWork().get(j).getCPR())){
+                            flag = true;
+                        }
+                    }
+                    if(!flag){
+                        empCPRList.add(wh.get(i).getEmployeeAtWork().get(j).getCPR());
+                    }
+                }
+            }
+        }
+        return empCPRList;
+    }
 
 
 
