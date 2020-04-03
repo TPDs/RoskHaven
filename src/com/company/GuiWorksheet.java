@@ -16,6 +16,10 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
     static JButton next;
     static String week_nr;
 
+    int mb = 3;
+    int yr = 2020;
+
+
     GuiWorksheet() {
     }
 
@@ -24,8 +28,9 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
 
         GuiWorksheet te = new GuiWorksheet();
 
-        info = new JLabel("Indtast ugenummeret, som du gerne vil se ugeplanen for");
-        week_label = new JLabel("Uge nr.:");
+
+        info = new JLabel("Indtast dag for måned:"+mb + " år: "+yr);
+        week_label = new JLabel("Dag: ");
 
         week_text = new JTextField(null);
 
@@ -74,7 +79,6 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
 
         if (s == "Næste") {
             week_nr = week_text.getText();
-
             clean.guiWorksheet();
 
             GuiWorksheetWeek worksheetWeek = new GuiWorksheetWeek();

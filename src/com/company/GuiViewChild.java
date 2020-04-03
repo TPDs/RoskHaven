@@ -26,13 +26,14 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
     String mail;
     String phoneNumber;
     String adresse;
+    String gID;
 
-    public GuiViewChild(String name, String mail, String phoneNumber, String location) {
+    public GuiViewChild(String name, String mail, String phoneNumber, String location,String gID) {
         this.name = name;
         this.mail= mail;
         this.phoneNumber= phoneNumber;
         this.adresse= location;
-
+        this.gID= gID;
     }
 
     public void guiViewChild() {
@@ -91,8 +92,9 @@ public class GuiViewChild extends GuiCheckChild implements ActionListener {
             String G_mail = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getMail();
             String G_phone = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getPhoneNumber();
             String G_adresse = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getAddress();
+            String gID = Kindergarten.getInstance().searchAndFindChild(barn_cpr).getGuardians().get(i).getGuardianID();
 
-            G_list.add(new GuiViewChild(G_name,G_mail,G_phone,G_adresse));
+            G_list.add(new GuiViewChild(G_name,G_mail,G_phone,G_adresse,gID));
             child_info.append("\n\nNavn:   " + G_name);
             child_info.append("\nMail:   " + G_mail);
             child_info.append("\nTelefon:   " + G_phone);
