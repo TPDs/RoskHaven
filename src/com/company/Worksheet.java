@@ -208,8 +208,16 @@ public class Worksheet implements ClassesToStoreInFiles {
     }
 
 
-    public void removeEmpFromDay(String CPR, int dayOfMonth){
+    //Removing a schedules employee from an entire workday.
+    public void removeEmpFromDay(String empID, int dayOfMonth){
         WorkDay workDayOfChoice = getWorkDays().get(dayOfMonth-1);
+        for(int i=0; i<workDayOfChoice.getWorkHours().size(); i++){
+            for(int j=0; j<workDayOfChoice.getWorkHours().get(i).getEmployeeAtWork().size(); j++){
+                if(empID.equals(workDayOfChoice.getWorkHours().get(i).getEmployeeAtWork().get(j).getCPR())){
+                    workDayOfChoice.getWorkHours().get(i).getEmployeeAtWork().remove(j);
+                }
+            }
+        }
     }
 
 
