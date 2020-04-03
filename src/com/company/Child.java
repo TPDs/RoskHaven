@@ -66,16 +66,17 @@ public class Child implements ClassesToStoreInFiles {
         return status;
     }
 
+    //Adds a new guardian to the system and writes to file.
     public void addGuardian(String name, String mail, String phoneNumber, String address){
         Guardian guardian = new Guardian(name, mail, phoneNumber, address, this.CPR);
         this.guardians.add(guardian);
         guardian.writeToFile();
     }
 
+    //Adds a guardian-object when reading from file.
     public void addGuardian(String guardianID, String name, String mail, String phoneNumber, String address){
         Guardian guardian = new Guardian(guardianID, name, mail, phoneNumber, address,this.CPR);
         this.guardians.add(guardian);
-        updateGuardian();
     }
 
     public void removeGuardian(Guardian guardian){
