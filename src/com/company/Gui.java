@@ -56,7 +56,7 @@ public class Gui implements ActionListener {
         t_name.setBounds(190, 180, 130, 20);
         t_password.setBounds(190, 220, 130, 20);
         ansatliste.setBounds(105, 256, 100, 25);
-        l_name.setBounds(105, 180, 150, 20);
+        l_name.setBounds(105, 180, 250, 20);
         l_password.setBounds(105, 220, 150, 20);
 
 

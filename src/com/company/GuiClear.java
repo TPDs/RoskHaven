@@ -103,6 +103,8 @@ public class GuiClear {
         GuiEditGuardian.mail.setVisible(false);
         GuiEditGuardian.adresse.setVisible(false);
         GuiEditGuardian.phone.setVisible(false);
+        GuiEditGuardian.exit.setVisible(false);
+
 
     }
 
