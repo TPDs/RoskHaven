@@ -556,7 +556,6 @@ public class DailyOverview implements ClassesToStoreInFiles{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         }
         // dailyoverwievFilen bliver slettet ved af lave et Write med en tom string til filen uden append.

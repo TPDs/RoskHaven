@@ -93,6 +93,28 @@ public class Child implements ClassesToStoreInFiles {
     }
 
 
+    // bare gennemgå objekterne guardian og skriv dem til filen. " husk at slette filen først.
+    // en fejl ved denne måde at lave en file override / update på et hvis programmet går ned efter filen med guardians bliver slettet
+    //så kan informationen om guardians gå tabt
+
+    public void updateGuardian(){
+
+        File deletefile = new File("src/resourser/GuardianFile");
+        deletefile.delete();
+
+        FileWriter tempGuardianfw = null;
+        try {
+            tempGuardianfw = new FileWriter("src/resourser/GuardianFile",true);
+
+            for(int i =0;i<guardians.size();i++){
+
+                String strToAdd = guardians.get(i).getGuardianID() + "BREAK" + guardians.get(i).getName() +"BREAK"+ guardians.get(i).getMail() +"BREAK"+ guardians.get(i).getPhoneNumber()+"BREAK"+ guardians.get(i).getAddress()+"BREAK"+ guardians.get(i).getGuardianID().substring(0,10)+"\n";
+                tempGuardianfw.write(strToAdd);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
