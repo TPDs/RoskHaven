@@ -218,6 +218,7 @@ public class Worksheet implements ClassesToStoreInFiles {
                 }
             }
         }
+        workSheetUpdate();
     }
 
 
