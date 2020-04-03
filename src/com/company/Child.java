@@ -66,21 +66,19 @@ public class Child implements ClassesToStoreInFiles {
         return status;
     }
 
+    //Adds a new guardian to the system and writes to file.
     public void addGuardian(String name, String mail, String phoneNumber, String address){
         Guardian guardian = new Guardian(name, mail, phoneNumber, address, this.CPR);
         this.guardians.add(guardian);
         guardian.writeToFile();
     }
 
+    //Adds a guardian-object when reading from file.
     public void addGuardian(String guardianID, String name, String mail, String phoneNumber, String address){
         Guardian guardian = new Guardian(guardianID, name, mail, phoneNumber, address,this.CPR);
         this.guardians.add(guardian);
-        updateGuardian();
     }
 
-    public void removeGuardian(Guardian guardian){
-
-    }
 
     public void editGuardian(String guardianID, String newName, String newMail, String newPhoneNumber, String newAddress){
         for(int i=0; i<guardians.size(); i++){
@@ -122,12 +120,12 @@ public class Child implements ClassesToStoreInFiles {
         FileWriter tempGuardianfw = null;
         try {
             tempGuardianfw = new FileWriter("src/resourser/GuardianFile",true);
-
-            for(int i =0;i<guardians.size();i++){
-
-                String strToAdd = guardians.get(i).getGuardianID() + "BREAK" + guardians.get(i).getName() +"BREAK"+ guardians.get(i).getMail() +"BREAK"+ guardians.get(i).getPhoneNumber()+"BREAK"+ guardians.get(i).getAddress()+"BREAK"+ guardians.get(i).getGuardianID().substring(0,10)+"\n";
-                tempGuardianfw.write(strToAdd);
-
+            ArrayList<Child> allChildren = Kindergarten.getInstance().getAllChildren();
+            for(int j=0; j<allChildren.size(); j++){
+                for(int i =0;i<guardians.size();i++){
+                    String strToAdd = allChildren.get(j).guardians.get(i).getGuardianID() + "BREAK" + guardians.get(i).getName() +"BREAK"+ guardians.get(i).getMail() +"BREAK"+ guardians.get(i).getPhoneNumber()+"BREAK"+ guardians.get(i).getAddress()+"BREAK"+ CPR + "\n";
+                    tempGuardianfw.write(strToAdd);
+                }
             }
             tempGuardianfw.close();
 
@@ -226,8 +224,6 @@ public class Child implements ClassesToStoreInFiles {
                 deletefw2.close();
 
     }
-
-
 
 
     @Override
