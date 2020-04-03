@@ -79,9 +79,6 @@ public class Child implements ClassesToStoreInFiles {
         this.guardians.add(guardian);
     }
 
-    public void removeGuardian(Guardian guardian){
-
-    }
 
     public void editGuardian(String guardianID, String newName, String newMail, String newPhoneNumber, String newAddress){
         for(int i=0; i<guardians.size(); i++){
@@ -227,8 +224,6 @@ public class Child implements ClassesToStoreInFiles {
                 deletefw2.close();
 
     }
-
-
 
 
     @Override
