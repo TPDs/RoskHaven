@@ -70,6 +70,7 @@ public class Main {
         System.out.println(Kindergarten.getInstance().getAllChildren().get(0).getGuardians());
 
         System.out.println(worksheet1.empsAtWorkOnDay(1));
+        System.out.println(worksheet1.workScheduleOfDay(1));
 //      Kindergarten.getInstance().getAllChildren().get(0).getGuardians().get(0).
 
         //dailyO1.childCheckOut("030503-2451");

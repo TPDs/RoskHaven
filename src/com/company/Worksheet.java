@@ -167,24 +167,25 @@ public class Worksheet implements ClassesToStoreInFiles {
 
 
     //Beauty is when the ugliest methods do the most trivial job.
-    public ArrayList<String> empsAtWorkOnDay(int dayOfMonth){
+    public ArrayList<String> empsAtWorkOnDay(int dayOfMonth) {
         ArrayList<String> empCPRList = new ArrayList<String>();
 
-        ArrayList<WorkHour> wh = workDays.get(dayOfMonth-1).getWorkHours();
+        ArrayList<WorkHour> wh = workDays.get(dayOfMonth - 1).getWorkHours();
 
-        for (int i=0; i<wh.size(); i++){
-            for(int j=0; j<wh.get(i).getEmployeeAtWork().size(); j++){
-                if(empCPRList.size()==0){
+        for (int i = 0; i < wh.size(); i++) {
+            for (int j = 0; j < wh.get(i).getEmployeeAtWork().size(); j++) {
+                if (empCPRList.size() == 0) {
                     empCPRList.add(wh.get(i).getEmployeeAtWork().get(j).getCPR());
                 } else {
                     int listSize = empCPRList.size();
                     boolean flag = false;
-                    for(int h=0; h<listSize; h++){
-                        if(empCPRList.get(h).equals(wh.get(i).getEmployeeAtWork().get(j).getCPR())){
+                    for (int h = 0; h < listSize; h++) {
+                        if (empCPRList.get(h).equals(wh.get(i).getEmployeeAtWork().get(j).getCPR())) {
                             flag = true;
+                            break;
                         }
                     }
-                    if(!flag){
+                    if (!flag) {
                         empCPRList.add(wh.get(i).getEmployeeAtWork().get(j).getCPR());
                     }
                 }
@@ -192,6 +193,20 @@ public class Worksheet implements ClassesToStoreInFiles {
         }
         return empCPRList;
     }
+
+    public String workScheduleOfDay(int dayOfMonth){
+        String workSchedule = "";
+        WorkDay workDayOfChoice = getWorkDays().get(dayOfMonth-1);
+        for(int i=0; i < workDayOfChoice.getWorkHours().size(); i++){
+            workSchedule += "" + (i+7) + "-" + (i+8) + ": ";
+            for(int j=0; j<workDayOfChoice.getWorkHours().get(i).getEmployeeAtWork().size(); j++){
+                workSchedule += workDayOfChoice.getWorkHours().get(i).getEmployeeAtWork().get(j).getCPR() + ", ";
+            }
+            workSchedule += "\n";
+        }
+        return workSchedule;
+    }
+
 
 
 
