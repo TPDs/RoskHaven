@@ -72,6 +72,28 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
         GuiClear clean = new GuiClear();
+
+        if (s == "Ret") {
+            System.out.println("Ret");
+            System.out.println(name.getText());
+            Kindergarten.getInstance().searchAndFindChild(barn_cpr).editGuardian(gID, name.getText(), mail.getText(), phone.getText(), adresse.getText());
+            System.out.println(name.getText());
+            Gui.logo.setVisible(true);
+            clean.guiEditGuardian();
+            GuiBoss boss = new GuiBoss();
+            boss.GuiBoss();
+            G_list.clear();
+            l_name.setText(barn_navn + "´s information er opdateret");
+
+        } else if (s == "Afslut") {
+            Gui.logo.setVisible(true);
+            clean.guiEditGuardian();
+            GuiBoss boss = new GuiBoss();
+            boss.GuiBoss();
+            G_list.clear();
+        }
+
+
         for (int i = 0; i < G_list.size(); i++) {
             if (guardian_list.getSelectedItem().equals(G_list.get(i).getName())) {
                 name.setText(G_list.get(i).getName());
@@ -79,23 +101,9 @@ public class GuiEditGuardian extends GuiViewChild implements ActionListener {
                 adresse.setText(G_list.get(i).getAdresse());
                 phone.setText(G_list.get(i).getPhoneNumber());
                 gID = G_list.get(i).gID;
-            } else if (s == "Afslut") {
-                Gui.logo.setVisible(true);
-                clean.guiEditGuardian();
-                GuiBoss boss = new GuiBoss();
-                boss.GuiBoss();
-                G_list.clear();
-            } else if (s == "Ret") {
-                System.out.println("Ret");
-                Kindergarten.getInstance().searchAndFindChild(barn_cpr).editGuardian(gID, name.getText(), mail.getText(), phone.getText(), adresse.getText());
-                Gui.logo.setVisible(true);
-                clean.guiEditGuardian();
-                GuiBoss boss = new GuiBoss();
-                boss.GuiBoss();
-                G_list.clear();
-                l_name.setText(barn_navn +"´s information er opdateret");
 
             }
+
         }
     }
 }

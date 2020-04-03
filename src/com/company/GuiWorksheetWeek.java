@@ -21,22 +21,17 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
 
         GuiWorksheetWeek te = new GuiWorksheetWeek();
 
-        label = new JLabel("Arbejsplan for uge: "+week_nr);
+        label = new JLabel("Arbejsplan for dag:\n "+week_nr + " Måned: \n" + mb + " År: \n " + yr);
 
         worksheet_info = new JTextArea(10,10);
 
         edit_worksheet = new JButton("Dagens vagter");
         back = new JButton("Tilbage");
 
-        worksheet_info.setText("vagter: \n\n");
 
-        ArrayList<String> weekliste = Kindergarten.getInstance().findWorksheet(yr,mb).empsAtWorkOnDay(Integer.parseInt(week_nr));
-        for (int i = 0; i < weekliste.size();) {
-            worksheet_info.append(weekliste.get(i) +"\n");
-
-            i++;
-        }
-
+        worksheet_info.setText("");
+        String weekliste = Kindergarten.getInstance().findWorksheet(yr,mb).workScheduleOfDay(Integer.parseInt(week_nr));
+        worksheet_info.append(weekliste);
         scroll3 = new JScrollPane(worksheet_info);
         scroll3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         worksheet_info.setLineWrap(true);
@@ -45,9 +40,9 @@ public class GuiWorksheetWeek extends GuiWorksheet implements ActionListener {
         Gui.frame.getContentPane().add(edit_worksheet, BorderLayout.CENTER);
         Gui.frame.getContentPane().add(back, BorderLayout.CENTER);
 
-        label.setBounds(95,25,360,20);
+        label.setBounds(75,25,360,20);
 
-        scroll3.setBounds(20,50,340,230);
+        scroll3.setBounds(35,50,320,250);
         worksheet_info.setEditable(false);
 
 

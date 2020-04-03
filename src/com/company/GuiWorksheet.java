@@ -29,8 +29,8 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
         GuiWorksheet te = new GuiWorksheet();
 
 
-        info = new JLabel("Indtast dag for måned:"+mb + " år: "+yr);
-        week_label = new JLabel("Dag: ");
+        info = new JLabel("Indtast dag for måned:  "+mb + "  år:   \t "+yr);
+        week_label = new JLabel("Dag:");
 
         week_text = new JTextField(null);
 
@@ -43,10 +43,8 @@ public class GuiWorksheet extends GuiBoss implements ActionListener {
         Gui.frame.getContentPane().add(back, BorderLayout.CENTER);
         Gui.frame.getContentPane().add(next, BorderLayout.CENTER);
 
-        info.setBounds(30, 45, 360, 20);
-
-        week_label.setBounds(40, 170, 200, 20);
-        week_text.setBounds(150, 170, 200, 20);
+        info.setBounds(100, 145, 360, 20);
+        week_text.setBounds(100, 195, 160, 20);
 
         next.setBounds(275, 320, 75, 20);
         back.setBounds(40, 320, 100, 20);
